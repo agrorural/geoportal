@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Aktualisierung von Mapbender3 auf eine neuere Version &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="Installation" href="../installation.html" />
+    <link rel="next" title="Details zur Konfiguration von Mapbender3" href="configuration.html" />
+    <link rel="prev" title="Git-basierte Installation" href="installation_git.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configuration.html" title="Details zur Konfiguration von Mapbender3"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation_git.html" title="Git-basierte Installation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../thebook.html" >Das Buch</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../installation.html" accesskey="U">Installation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="aktualisierung-von-mapbender3-auf-eine-neuere-version">
+<span id="update"></span><h1>Aktualisierung von Mapbender3 auf eine neuere Version<a class="headerlink" href="#aktualisierung-von-mapbender3-auf-eine-neuere-version" title="Permalink to this headline">¶</a></h1>
+<p>Um Mapbender3 zu aktualisieren, müssen Sie die folgenden Schritte durchführen:</p>
+<ul class="simple">
+<li>Laden Sie die neuste Version von <a class="reference external" href="http://mapbender3.org/builds/">http://mapbender3.org/builds/</a> herunter. Aktuelle Snapshots finden Sie unter <a class="reference external" href="http://mapbender3.org/builds/nightly/">http://mapbender3.org/builds/nightly/</a></li>
+<li>Sichern Sie Ihre Konfigurationsdateien (parameters.yml und config.yml) und Ihre alte Mapbender Version (Dateien und Datenbank)</li>
+<li>Ersetzen Sie die Dateien durch die neuen Mapbender Dateien</li>
+<li>Vergleichen Sie die Konfigurationsdateien und prüfen diese auf neue Parameter und Änderungen.</li>
+<li>Aktualisieren Sie Ihre Mapbender Datenbank</li>
+<li>Übernahme Ihrer Screenshots: Kopieren Sie die Dateien Ihrer alten Mapbender Version von /web/uploads/ in das /web/uploads Verzeichnis Ihrer neuen Mapbender Version</li>
+<li>Wenn Sie eigenen Templates verwenden sollten, müssen Sie Ihre Templates mit denen der neuen Version vergleichen (kam es zu Änderungen?)</li>
+<li>Importieren Sie die Anwendungen aus der mapbender.yml Datei, um sich den neusten Stand der Entwicklungen anzuschauen</li>
+<li>Das war&#8217;s auch schon! Schauen Sie sich Ihre neue Mapbender3 Version an.</li>
+</ul>
+<div class="section" id="aktualisierungsbeispiel-fur-linux">
+<h2>Aktualisierungsbeispiel für Linux<a class="headerlink" href="#aktualisierungsbeispiel-fur-linux" title="Permalink to this headline">¶</a></h2>
+<p>Im Folgenden sind die einzelnen Schritte als Befehle aufgeführt.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c1"># Laden Sie die neue Version herunter</span>
+wget -O http://mapbender3.org/builds/mapbender3-3.0.4.0.tar.gz /tmp/build_mapbender3/
+tar xfz /tmp/build_mapbender3/mapbender3-3.0.4.0.tar.gz
+
+<span class="c1"># Sichern Sie die alte Version</span>
+mv -R /var/www/mapbender3 /var/www/mapbender3_save
+
+<span class="c1"># Aktivieren Sie den Code der neuen Version</span>
+cp -R /tmp/build_mapbender3/mapbender3-3.0.4.0 /var/www/
+mv /var/www/mapbender3-3.0.4.0 /var/www/mapbender3
+
+<span class="c1"># Übernehmen Sie die Konfigurationsdateien in die neue Version von Mapbender</span>
+cp /var/www/mapbender3_save/app/config/parameters.yml /var/www/mapbender3/app/config/parameters.yml
+cp /var/www/mapbender3_save/app/config/config.yml /var/www/mapbender3/app/config/config.yml
+
+<span class="c1"># Händisch müssen Sie nun die Konfigurationsdateien auf neue Parameter überprüfen.</span>
+<span class="c1"># Vergleichen Sie die Dateien parameters.yml, config.yml und sofern verwendet die mapbender.yml.</span>
+<span class="c1"># Sofern Sie eigene Templates angelegt haben, vergeleichen Sie diese mit der neuen Mapbender Version.</span>
+<span class="c1"># Sofern Sie Vorschaubilder hochgeladen haben: Kopieren Sie diese von der alten Version wieder nach mapbender3/web/uploads.</span>
+<span class="c1"># Sofern Sie eigene Druckvorlagen verwenden: Kopieren Sie diese wieder nach mapbender3/app/Resources/MapbenderPrintBundle/templates/.</span>
+
+<span class="c1"># Setzen Sie die Schreibrechte für Besitzer (u), Gruppe (g) und Andere (a). Weisen Sie die Skripte dem Apache User (www-data) zu.</span>
+sudo chmod -R ugo+r /var/www/mapbender3
+sudo chown -R www-data:www-data /var/www/mapbender3
+
+<span class="c1"># Aktualisieren Sie Ihre Mapbender Datenbank</span>
+<span class="nb">cd</span> /var/www/mapbender3/
+app/console doctrine:schema:update --dump-sql
+app/console doctrine:schema:update --force
+
+<span class="c1"># Importieren Sie die Anwendungen aus der mapbender.yml Datei, um sich den neusten Stand der Entwicklungen anzuschauen</span>
+app/console doctrine:fixtures:load --fixtures<span class="o">=</span>./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Application/ --append
+
+app/console assets:install web
+
+<span class="c1"># Setzen Sie die Schreibrechte für Besitzer (u), Gruppe (g) und Andere (a). Weisen Sie die Skripte dem Apache User (www-data) zu.</span>
+sudo chmod -R ugo+r /var/www/mapbender3
+sudo chown -R www-data:www-data /var/www/mapbender3
+
+<span class="c1"># Sie benötigen Schreibrechte für die Verzeichnisse app/cache und app/logs.</span>
+sudo chmod -R ug+w /var/www/mapbender3/app/cache
+sudo chmod -R ug+w /var/www/mapbender3/app/logs
+sudo chmod -R ug+w /var/www/mapbender3/web/uploads
+</pre></div>
+</div>
+</div>
+<div class="section" id="aktualisierungsbeispiel-fur-windows">
+<h2>Aktualisierungsbeispiel für Windows<a class="headerlink" href="#aktualisierungsbeispiel-fur-windows" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c1"># Laden Sie die neue Version herunter http://mapbender3.org/builds/</span>
+
+<span class="c1"># Sichern Sie die alte Version (Dateien und Datenbank)</span>
+
+<span class="c1"># Übernehmen Sie die Konfigurationsdateien in die neue Version von Mapbender.</span>
+<span class="c1"># Vorher müssen Sie diese händisch auf neue Parameter und Änderungen überprüfen.</span>
+
+<span class="c1"># Rufen Sie die app/console Befehle über die php.exe auf.</span>
+<span class="c1"># Hierzu müssen Sie ein Standardeingabefenster öffnen.</span>
+c:
+<span class="nb">cd</span> mapbender3
+
+<span class="c1"># Aktualisieren Sie Ihre Mapbender Datenbank</span>
+php.exe app/console doctrine:schema:update --dump-sql
+php.exe app/console doctrine:schema:update --force
+
+<span class="c1"># Importieren Sie die Anwendungen aus der mapbender.yml Datei, um sich den neusten Stand der Entwicklungen anzuschauen</span>
+php.exe app/console doctrine:fixtures:load --fixtures<span class="o">=</span>./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Application/ --append
+php.exe app/console assets:install web
+
+<span class="c1"># Löschen Sie den Cache und die Logdateien unter mapbender3/app/cache und mapbender3/app/logs</span>
+
+<span class="c1"># Sofern Sie eigene Templates angelegt haben, vergleichen Sie diese mit der neuen Mapbender Version.</span>
+<span class="c1"># Sofern Sie Vorschaubilder hochgeladen haben: Kopieren Sie diese von der alten Version wieder nach mapbender3/web/uploads.</span>
+<span class="c1"># Sofern Sie eigene Druckvorlagen verwenden: Kopieren Sie diese wieder nach mapbender3/app/Resources/MapbenderPrintBundle/templates/</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Aktualisierung von Mapbender3 auf eine neuere Version</a><ul>
+<li><a class="reference internal" href="#aktualisierungsbeispiel-fur-linux">Aktualisierungsbeispiel für Linux</a></li>
+<li><a class="reference internal" href="#aktualisierungsbeispiel-fur-windows">Aktualisierungsbeispiel für Windows</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation_git.html"
+                        title="previous chapter">Git-basierte Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="configuration.html"
+                        title="next chapter">Details zur Konfiguration von Mapbender3</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/de/book/installation/update.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="configuration.html" title="Details zur Konfiguration von Mapbender3"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation_git.html" title="Git-basierte Installation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../thebook.html" >Das Buch</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../installation.html" >Installation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

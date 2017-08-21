@@ -1,0 +1,2535 @@
+@import url("../../../../components/font-awesome/css/font-awesome.min.css");
+@import url("../../../../components/mapbender-icons/style.css");
+@import url("../../../../components/open-sans/open-sans.css");
+@import url("../../../../components/bootstrap/css/bootstrap.min.css");
+[class^="icon"],
+[class*=" icon"],
+.icon, .ui-resizable-se, .flashBox.success:before, .flashBox.error:before, .flashBox.warning:before {
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+  display: inline;
+  width: auto;
+  height: auto;
+  vertical-align: top; }
+  [class^="icon"]:before,
+  [class*=" icon"]:before,
+  .icon:before, .ui-resizable-se:before, .flashBox.success:before, .flashBox.error:before, .flashBox.warning:before {
+    font-family: FontAwesome; }
+
+.iconBig, .tableUserGroups .iconCheckboxActive, .tableUserGroups .iconCheckbox, .tableUserGroups .regionProperties .iconRadio, .regionProperties .tableUserGroups .iconRadio, .tableUserGroups .regionProperties .iconRadioActive, .regionProperties .tableUserGroups .iconRadioActive {
+  line-height: 20px;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 23px; }
+  .iconBig:before, .tableUserGroups .iconCheckboxActive:before, .tableUserGroups .iconCheckbox:before, .tableUserGroups .regionProperties .iconRadio:before, .regionProperties .tableUserGroups .iconRadio:before, .tableUserGroups .regionProperties .iconRadioActive:before, .regionProperties .tableUserGroups .iconRadioActive:before {
+    font-family: FontAwesome;
+    font-size: 20px;
+    margin-top: -1px;
+    margin-left: -23px;
+    margin-bottom: -2px;
+    position: absolute;
+    display: block; }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(359deg); } }
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(359deg); } }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+.iconCheckboxActive:before {
+  content: "\f046" !important; }
+
+.iconCheckboxHalf:before {
+  content: "\f147" !important; }
+
+.iconCheckbox:before, .regionProperties .iconRadio:before, .regionProperties .iconRadioActive:before {
+  content: "\f096"; }
+
+.iconRadio:before {
+  content: "\f10c"; }
+
+.iconRadioActive:before {
+  content: "\f192"; }
+
+.iconView:before {
+  content: "\f108"; }
+
+.iconHelp:before {
+  content: "\f059"; }
+
+.iconLinkButton:before {
+  content: "\f0da"; }
+
+.iconDown:before {
+  content: "\f078"; }
+
+.iconRight:before {
+  content: "\f054"; }
+
+.iconLeft:before {
+  content: "\f053"; }
+
+.iconTop:before {
+  content: "\f077"; }
+
+.iconExpand:before {
+  content: "\f117"; }
+
+.iconExpandClosed:before {
+  content: "\f116"; }
+
+.iconMove:before {
+  content: "\f047"; }
+
+.iconMenu:before {
+  content: "\f0c9"; }
+
+.iconAbout:before {
+  content: "\f0c0"; }
+
+.iconPrint:before {
+  content: "\f02f"; }
+
+.iconGps:before {
+  content: "\f041"; }
+
+.iconLayertree:before {
+  content: "\f0e8"; }
+
+.iconLegend:before {
+  content: "\f00b"; }
+
+.iconInfo:before {
+  content: "\f129"; }
+
+.iconInfoActive:before {
+  content: "\f05a" !important; }
+
+.iconSearch:before {
+  content: "\f002"; }
+
+.iconWms:before, .iconOverview:before {
+  content: "\f0ac"; }
+
+.iconWmcEditor:before {
+  content: "\f044"; }
+
+.iconWmcLoader:before {
+  content: "\f07c"; }
+
+.iconOpen:before {
+  content: "\f067"; }
+
+.iconClose:before {
+  content: "\f068"; }
+
+.iconActivity:before, .icon[data-state="running"]:before, [data-state="running"].ui-resizable-se:before, [data-state="running"].flashBox.success:before, [data-state="running"].flashBox.error:before, [data-state="running"].flashBox.warning:before {
+  content: "\f110"; }
+
+.iconCoordinates:before {
+  content: "\f05b"; }
+
+.iconGpsTarget:before {
+  content: "\f05b"; }
+
+.iconPrev:before {
+  content: "\f0e2"; }
+
+.iconNext:before {
+  content: "\f01e"; }
+
+.iconZoomSelect:before {
+  content: "\f00e"; }
+
+.iconZoomMin:before {
+  content: "\f0ac"; }
+
+.iconZoomIn:before {
+  content: "\f196"; }
+
+.iconZoomOut:before {
+  content: "\f147"; }
+
+.iconZoomLevel:before {
+  content: "\f10c"; }
+
+.iconZoomLevelSelected:before {
+  content: "\f111"; }
+
+.iconAreaRuler:before {
+  content: "\f125"; }
+
+.iconFolder:before {
+  content: "\f07b"; }
+
+.iconFolderActive:before {
+  content: "\f07c"; }
+
+.iconTarget:before {
+  content: "\f05b"; }
+
+.iconPoi:before {
+  content: "\f08d"; }
+
+.iconImageExport:before {
+  content: "\f030"; }
+
+.iconWarning:before, .icon[data-state="aborted"]:before, [data-state="aborted"].ui-resizable-se:before, [data-state="aborted"].flashBox.success:before, [data-state="aborted"].flashBox.error:before, [data-state="aborted"].flashBox.warning:before {
+  content: "\f071"; }
+
+.iconWarningCcl:before {
+  content: "\f06a"; }
+
+.iconWarningSmpl:before {
+  content: "\f12a"; }
+
+.iconEmail:before {
+  content: "\f0e0"; }
+
+.iconTwitter:before {
+  content: "\f081"; }
+
+.iconFacebook:before {
+  content: "\f082"; }
+
+.iconGooglePlus:before {
+  content: "\f0d4"; }
+
+.iconSketch:before {
+  content: "\f044"; }
+
+.iconMore:before {
+  content: "\f0c9"; }
+
+.iconClock:before, .icon[data-state="waiting"]:before, [data-state="waiting"].ui-resizable-se:before, [data-state="waiting"].flashBox.success:before, [data-state="waiting"].flashBox.error:before, [data-state="waiting"].flashBox.warning:before {
+  content: "\f017"; }
+
+.iconFile:before, .icon[data-state="new"]:before, [data-state="new"].ui-resizable-se:before, [data-state="new"].flashBox.success:before, [data-state="new"].flashBox.error:before, [data-state="new"].flashBox.warning:before {
+  content: "\f016"; }
+
+.iconBolt:before, .icon[data-state="error"]:before, [data-state="error"].ui-resizable-se:before, [data-state="error"].flashBox.success:before, [data-state="error"].flashBox.error:before, [data-state="error"].flashBox.warning:before {
+  content: "\f0e7"; }
+
+.iconStarO:before {
+  content: "\f006"; }
+
+.iconBars:before, .regionProperties .iconRadioaccordion:before, .regionProperties .iconRadioaccordionActive:before {
+  content: "\f0c9"; }
+
+.iconFileText:before {
+  content: "\f0f6"; }
+
+.iconCancel:before {
+  content: "\f05c"; }
+
+.iconCopyright:before {
+  content: "\f1f9"; }
+
+.iconGroup:before {
+  content: "\f0c0"; }
+
+.iconAdd:before {
+  content: "\f067"; }
+
+.iconRemove:before {
+  content: "\f00d"; }
+
+.iconOk:before, .tableUserGroups .iconCheckboxActive:before, .tableUserGroups .iconCheckbox:before, .tableUserGroups .regionProperties .iconRadio:before, .regionProperties .tableUserGroups .iconRadio:before, .tableUserGroups .regionProperties .iconRadioActive:before, .regionProperties .tableUserGroups .iconRadioActive:before, .icon[data-state="success"]:before, [data-state="success"].ui-resizable-se:before, [data-state="success"].flashBox.success:before, [data-state="success"].flashBox.error:before, [data-state="success"].flashBox.warning:before {
+  content: "\f00c" !important; }
+
+.iconEdit:before {
+  content: "\f040"; }
+
+.iconPublish:before, .applicationTabContainer table .iconCheckbox:before, .applicationTabContainer table .regionProperties .iconRadio:before, .regionProperties .applicationTabContainer table .iconRadio:before, .applicationTabContainer table .regionProperties .iconRadioActive:before, .regionProperties .applicationTabContainer table .iconRadioActive:before, .containerLayers .iconCheckbox:before, .containerLayers .regionProperties .iconRadio:before, .regionProperties .containerLayers .iconRadio:before, .containerLayers .regionProperties .iconRadioActive:before, .regionProperties .containerLayers .iconRadioActive:before {
+  content: "\f070" !important; }
+
+.iconPublishActive:before, .applicationTabContainer table .iconCheckboxActive:before, .containerLayers .iconCheckboxActive:before {
+  content: "\f06e" !important; }
+
+.iconAppDefault:before {
+  content: "\f03e"; }
+
+.iconThumbsUp:before, .flashBox.success:before, .flashBox.warning:before {
+  content: "\f087"; }
+
+.iconThumbsDown:before, .flashBox.error:before {
+  content: "\f088"; }
+
+.iconGroup:before {
+  content: "\f0c0"; }
+
+.iconUser:before {
+  content: "\f007"; }
+
+.iconSettings:before {
+  content: "\f0ad"; }
+
+.iconSignOut:before {
+  content: "\f08b"; }
+
+.iconSignIn:before {
+  content: "\f090"; }
+
+.iconMore:before {
+  content: "\f141"; }
+
+.iconCopy:before {
+  content: "\f0c5"; }
+
+.iconKey:before {
+  content: "\f084"; }
+
+.iconTab:before {
+  content: "\f114"; }
+
+.iconTabActive:before, .regionProperties .iconRadiotabs:before, .regionProperties .iconRadiotabsActive:before {
+  content: "\f07b" !important; }
+
+.iconReset:before {
+  content: "\f021"; }
+
+.iconPlay:before {
+  content: "\f04b"; }
+
+.iconStop:before {
+  content: "\f04d"; }
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: 'mapbender-icons'; }
+
+.elementForm .labelInput, .elementForm .popupSubTitle {
+  margin-bottom: 10px; }
+
+.elementForm textarea {
+  height: 150px;
+  resize: none; }
+
+.elementForm select {
+  font-size: 12px;
+  padding-left: 5px; }
+
+.elementForm .input {
+  width: 100%; }
+
+.elementForm .dropdown {
+  min-width: 70%; }
+
+.elementForm .inputWrapper, .elementForm select, .elementForm .choiceExpandedSortable, .elementForm .collectionContainer {
+  width: 70%;
+  color: #858585; }
+
+.elementForm .collectionContainer {
+  position: relative;
+  display: table;
+  border: solid 1px #c8c8c8;
+  background-color: #f9f9f9;
+  padding-left: 5px; }
+  .elementForm .collectionContainer .collectionItem {
+    position: relative;
+    display: table-row;
+    float: none;
+    clear: both;
+    width: 100%; }
+    .elementForm .collectionContainer .collectionItem .checkWrapper, .elementForm .collectionContainer .collectionItem label {
+      color: #858585;
+      margin-bottom: 0px;
+      line-height: 21px;
+      display: inline; }
+    .elementForm .collectionContainer .collectionItem label {
+      margin-left: 5px;
+      float: none; }
+    .elementForm .collectionContainer .collectionItem .labelInput, .elementForm .collectionContainer .collectionItem .popupSubTitle {
+      margin-left: 0px;
+      width: 100px; }
+    .elementForm .collectionContainer .collectionItem div {
+      display: table-cell; }
+
+.elementForm .choiceExpandedSortable {
+  position: relative;
+  display: inline-block;
+  border: solid 1px #c8c8c8;
+  background-color: #f9f9f9; }
+  .elementForm .choiceExpandedSortable .sortableItem {
+    position: relative;
+    display: block;
+    float: none;
+    clear: both;
+    width: 100%;
+    height: 28px;
+    padding-left: 5px;
+    cursor: move; }
+    .elementForm .choiceExpandedSortable .sortableItem .checkWrapper, .elementForm .choiceExpandedSortable .sortableItem label {
+      color: #858585;
+      margin-bottom: 0px;
+      line-height: 21px;
+      cursor: move; }
+    .elementForm .choiceExpandedSortable .sortableItem .sortableItem :hover {
+      background-color: #e0e0e0; }
+
+.defaultForm .labelInput, .defaultForm .popupSubTitle {
+  width: 70px; }
+
+.wideLabelForm .labelInput, .wideLabelForm .popupSubTitle {
+  width: 100px; }
+
+.collectionItem {
+  clear: both;
+  position: relative; }
+  .collectionItem > .labelInput, .collectionItem > .popupSubTitle {
+    display: none; }
+  .collectionItem .labelInput, .collectionItem .popupSubTitle {
+    clear: both; }
+  .collectionItem textarea {
+    height: 100px;
+    margin-bottom: 20px; }
+
+.collectionRemove {
+  line-height: 28px;
+  position: absolute;
+  right: 33px;
+  top: 27px; }
+
+.elementFormYaml .labelInput, .elementFormYaml .popupSubTitle {
+  width: 90px; }
+
+.elementFormYaml .dropdown, .elementFormYaml .input {
+  min-width: 350px; }
+
+.buttonBack {
+  margin-left: 20px !important; }
+
+.elementFormActivity .labelInput, .elementFormActivity .popupSubTitle {
+  width: 100px; }
+
+.elementFormCopyright .labelInput, .elementFormCopyright .popupSubTitle {
+  width: 100px; }
+
+.elementFormFeatureInfo .labelInput, .elementFormFeatureInfo .popupSubTitle {
+  width: 60px; }
+
+.elementFormFeatureInfo .checkWrapper {
+  margin-bottom: 10px; }
+
+.elementFormFeatureInfo .labelCheck {
+  margin-right: 20px; }
+
+.elementFormGps .labelInput, .elementFormGps .popupSubTitle {
+  width: 100px; }
+
+.elementFormGps .labelCheck {
+  margin-right: 20px; }
+
+.elementFormLayerTree .labelInput, .elementFormLayerTree .popupSubTitle {
+  width: 100px; }
+
+.elementFormLayerTree .checkWrapper {
+  margin-bottom: 10px; }
+
+.elementFormLayerTree .labelCheck {
+  margin-right: 20px; }
+
+.elementFormLayerTree .collectionContainer .item-opened .iconCheckbox:before, .elementFormLayerTree .collectionContainer .item-opened .regionProperties .iconRadio:before, .regionProperties .elementFormLayerTree .collectionContainer .item-opened .iconRadio:before, .elementFormLayerTree .collectionContainer .item-opened .regionProperties .iconRadioActive:before, .regionProperties .elementFormLayerTree .collectionContainer .item-opened .iconRadioActive:before {
+  content: "\f07b" !important; }
+
+.elementFormLayerTree .collectionContainer .item-opened .iconCheckboxActive:before {
+  content: "\f07c" !important; }
+
+.elementFormLayerTree .collectionContainer .item-activate .iconCheckbox, .elementFormLayerTree .collectionContainer .item-activate .regionProperties .iconRadio, .regionProperties .elementFormLayerTree .collectionContainer .item-activate .iconRadio, .elementFormLayerTree .collectionContainer .item-activate .regionProperties .iconRadioActive, .regionProperties .elementFormLayerTree .collectionContainer .item-activate .iconRadioActive {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3; }
+
+.elementFormLayerTree .collectionContainer .item-activate .iconCheckboxActive {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1; }
+
+.elementFormLegend .labelInput, .elementFormLegend .popupSubTitle {
+  width: 90px; }
+
+.elementFormLegend .checkWrapper {
+  margin-bottom: 10px; }
+
+.elementFormLegend .labelCheck {
+  margin-right: 20px; }
+
+.elementFormMap .labelInput, .elementFormMap .popupSubTitle {
+  width: 100px; }
+
+.elementFormMap .checkWrapper {
+  margin-bottom: 10px; }
+
+.elementFormMap .singleRow {
+  float: right;
+  width: 320px; }
+  .elementFormMap .singleRow .labelInput, .elementFormMap .singleRow .popupSubTitle, .elementFormMap .singleRow > .input {
+    float: left; }
+  .elementFormMap .singleRow .labelInput, .elementFormMap .singleRow .popupSubTitle {
+    width: 40px;
+    margin-right: 5px; }
+  .elementFormMap .singleRow .inputWrapper {
+    min-width: 0;
+    width: 80px;
+    float: left; }
+    .elementFormMap .singleRow .inputWrapper:after {
+      content: '';
+      display: block;
+      clear: both; }
+
+.elementFormOverview .labelInput, .elementFormOverview .popupSubTitle {
+  width: 70px; }
+
+.elementFormOverview .checkWrapper {
+  margin-bottom: 10px; }
+
+.elementFormOverview .labelCheck {
+  margin-right: 20px; }
+
+.elementFormOverview .singleRow .labelInput, .elementFormOverview .singleRow .popupSubTitle, .elementFormOverview .singleRow > .input {
+  float: left; }
+
+.elementFormOverview .singleRow .labelInput, .elementFormOverview .singleRow .popupSubTitle {
+  width: 15px;
+  margin-right: 5px; }
+
+.elementFormOverview .singleRow .input {
+  width: 140px; }
+  .elementFormOverview .singleRow .input:first-child {
+    margin-right: 10px; }
+
+.elementFormPrintClient .labelInput, .elementFormPrintClient .popupSubTitle {
+  width: 110px; }
+
+.elementFormPrintClient .checkWrapper {
+  margin-bottom: 10px; }
+
+.elementFormPrintClient .labelCheck {
+  margin-right: 20px; }
+
+.elementFormPrintClient .singleRow .labelInput, .elementFormPrintClient .singleRow .popupSubTitle, .elementFormPrintClient .singleRow > .input {
+  float: left; }
+
+.elementFormPrintClient .singleRow .labelInput, .elementFormPrintClient .singleRow .popupSubTitle {
+  width: 25px;
+  margin-right: 10px; }
+
+.elementFormPrintClient .singleRow .left:first-child {
+  margin-right: 20px; }
+
+.elementFormPrintClient .singleRow .inputWrapper {
+  width: 120px; }
+
+.elementFormScaleBar .labelInput, .elementFormScaleBar .popupSubTitle {
+  width: 70px; }
+
+.elementFormScaleBar select {
+  margin-bottom: 10px; }
+
+.elementFormScaleBar .singleRow .labelInput, .elementFormScaleBar .singleRow .popupSubTitle, .elementFormScaleBar .singleRow > .input {
+  float: left; }
+
+.elementFormScaleBar .singleRow .labelInput, .elementFormScaleBar .singleRow .popupSubTitle {
+  width: 15px;
+  margin-right: 5px; }
+
+.elementFormScaleBar .singleRow .input {
+  width: 140px; }
+  .elementFormScaleBar .singleRow .input:first-child {
+    margin-right: 10px; }
+
+.elementFormSearchRouter {
+  max-height: 370px; }
+  .elementFormSearchRouter .labelInput, .elementFormSearchRouter .popupSubTitle {
+    width: 90px; }
+
+.elementFormToolbar .labelInput, .elementFormToolbar .popupSubTitle {
+  width: 80px; }
+
+.elementFormToolbar .checkWrapper {
+  margin-bottom: 10px; }
+
+.elementFormToolbar .labelCheck {
+  margin-right: 20px; }
+
+.elementFormToolbar select {
+  margin-bottom: 10px; }
+
+.elementFormToolbar .singleRow .labelInput, .elementFormToolbar .singleRow .popupSubTitle, .elementFormToolbar .singleRow > .input {
+  float: left; }
+
+.elementFormToolbar .singleRow .labelInput, .elementFormToolbar .singleRow .popupSubTitle {
+  width: 15px;
+  margin-right: 5px; }
+
+.elementFormToolbar .singleRow .input {
+  width: 125px; }
+  .elementFormToolbar .singleRow .input:first-child {
+    margin-right: 10px; }
+
+.elementFormBaseSourceSwitcher .collectionItem {
+  position: relative;
+  margin-bottom: 20px; }
+
+.elementFormBaseSourceSwitcher .iconRemove {
+  position: absolute;
+  top: 0;
+  right: 30px; }
+
+.elementFormSimpleSearch .labelInput, .elementFormSimpleSearch .popupSubTitle {
+  width: 110px; }
+
+.elementFormSimpleSearch .inputWrapper, .elementFormSimpleSearch .dropdown {
+  width: 70%; }
+
+.sidePane .mb-element-simplesearch .autocompleteWrapper {
+  width: 100%;
+  position: relative; }
+  .sidePane .mb-element-simplesearch .autocompleteWrapper input.searchterm {
+    width: 100%; }
+  .sidePane .mb-element-simplesearch .autocompleteWrapper .autocompleteList {
+    display: block !important;
+    width: 100%;
+    position: relative;
+    z-index: 20000;
+    background-color: #FFF;
+    color: #858585;
+    cursor: pointer;
+    max-width: 100%; }
+    .sidePane .mb-element-simplesearch .autocompleteWrapper .autocompleteList li {
+      padding-left: 5px;
+      width: 100%;
+      text-align: left;
+      display: list-item;
+      font-size: 11px; }
+      .sidePane .mb-element-simplesearch .autocompleteWrapper .autocompleteList li:hover {
+        color: #5b932a;
+        background-color: #f9f9f9; }
+      .sidePane .mb-element-simplesearch .autocompleteWrapper .autocompleteList li:last-child {
+        clear: both; }
+
+.toolBar .mb-element-simplesearch .autocompleteWrapper {
+  position: relative; }
+  .toolBar .mb-element-simplesearch .autocompleteWrapper .autocompleteList {
+    position: absolute;
+    display: none;
+    z-index: 20000;
+    background-color: #FFF;
+    color: #858585;
+    cursor: pointer;
+    line-height: 29px;
+    width: 100%;
+    max-height: 250px;
+    overflow: auto;
+    border: solid 1px #c8c8c8;
+    border-top: none;
+    font-size: 11px;
+    overflow-x: hidden; }
+    .toolBar .mb-element-simplesearch .autocompleteWrapper .autocompleteList li {
+      display: block;
+      padding-left: 5px;
+      width: 100%;
+      text-align: left; }
+      .toolBar .mb-element-simplesearch .autocompleteWrapper .autocompleteList li:hover {
+        background-color: #e6e6e6; }
+      .toolBar .mb-element-simplesearch .autocompleteWrapper .autocompleteList li:last-child {
+        clear: both; }
+
+.listFilterInput {
+  margin-bottom: 20px;
+  width: 250px; }
+
+.listFilterServiceBoxes .col1 {
+  width: 60px; }
+
+.listFilterServiceBoxes .col2 {
+  margin-left: 60px;
+  min-height: 91px; }
+
+.serviceAddBox {
+  margin-right: 20px; }
+  .serviceAddBox .labelInput, .serviceAddBox .popupSubTitle {
+    width: 120px; }
+  .serviceAddBox .input {
+    margin-bottom: 10px;
+    width: 300px; }
+
+.serviceContainer {
+  margin-bottom: 20px; }
+  .serviceContainer .labelText {
+    float: left; }
+
+.serviceMetaContainer .labelText {
+  float: none; }
+
+.serviceMetaContainer .metaText {
+  line-height: 16px;
+  margin-bottom: 5px;
+  text-align: justify;
+  padding-bottom: 5px; }
+
+.serviceMetaContainer .metaUrl {
+  word-wrap: break-word; }
+
+.serviceContactContainer .labelText {
+  width: 90px; }
+
+.serviceContactContainer .metaText {
+  margin-left: 100px; }
+
+.serviceServiceContainer .list,
+.serviceServiceContainer li,
+.serviceLayersContainer .list, .serviceLayersContainer li {
+  clear: both; }
+
+.serviceServiceContainer .list,
+.serviceLayersContainer .list {
+  border-left: dashed 1px #cccccc;
+  margin-bottom: 10px; }
+  .serviceServiceContainer .list.closed > li,
+  .serviceLayersContainer .list.closed > li {
+    display: none; }
+  .serviceServiceContainer .list.closed > .openCloseTitle,
+  .serviceLayersContainer .list.closed > .openCloseTitle {
+    display: block; }
+  .serviceServiceContainer .list li,
+  .serviceLayersContainer .list li {
+    margin-left: 20px; }
+  .serviceServiceContainer .list ul.left li,
+  .serviceLayersContainer .list ul.left li {
+    margin-left: 0px; }
+    .serviceServiceContainer .list ul.left li .metaText,
+    .serviceLayersContainer .list ul.left li .metaText {
+      margin-left: 0px; }
+
+.serviceServiceContainer .labelText,
+.serviceLayersContainer .labelText {
+  width: 85px;
+  margin-right: 10px; }
+
+.serviceServiceContainer .openCloseTitle,
+.serviceLayersContainer .openCloseTitle {
+  color: #3f3f3f;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: -10px !important;
+  background-color: #f9f9f9;
+  padding-left: 5px;
+  height: 17px;
+  font-style: italic;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1; }
+  .serviceServiceContainer .openCloseTitle.iconSmall:before,
+  .serviceLayersContainer .openCloseTitle.iconSmall:before {
+    margin-right: 10px; }
+
+.serviceServiceContainer .closed .openCloseTitle,
+.serviceLayersContainer .closed .openCloseTitle {
+  background-color: #f9f9f9; }
+
+.serviceServiceContainer .metaText,
+.serviceLayersContainer .metaText {
+  display: block;
+  margin-left: 95px;
+  word-wrap: break-word; }
+
+.instanceContainer .linkButton {
+  display: inline-block; }
+
+.instanceContainer .labelInput, .instanceContainer .popupSubTitle {
+  width: 100px;
+  display: inline-block; }
+
+.instanceContainer .dropdown {
+  min-width: 200px;
+  margin-bottom: 10px; }
+
+.instanceContainer .checkWrapper, .instanceContainer .labelCheck {
+  display: inline-block;
+  margin-top: 8px;
+  height: 28px; }
+
+.instanceContainer .leftContainer {
+  margin-right: 20px; }
+
+.instanceContainer .leftContainer .inputWrapper {
+  min-width: 200px;
+  margin-bottom: 10px; }
+
+.instanceContainer .leftContainer .inputWrapper input {
+  width: 100%; }
+
+.instanceContainer .extendedGroup {
+  width: 326px;
+  position: absolute;
+  right: 0px;
+  font-size: 12px;
+  border: solid 1px #a2a2a2;
+  z-index: 1; }
+  .instanceContainer .extendedGroup .on-off {
+    background-color: #c6c6c6;
+    border: solid 1px #939393; }
+  .instanceContainer .extendedGroup .on-off:hover, .instanceContainer .extendedGroup .on-off.active {
+    background-color: #939393;
+    border: solid 1px #606060; }
+  .instanceContainer .extendedGroup .on-off-content {
+    background-color: #f9f9f9; }
+  .instanceContainer .extendedGroup .vendorspecific-content, .instanceContainer .extendedGroup .on-off-content .on-off-content {
+    padding: 0 10px 10px 10px; }
+  .instanceContainer .extendedGroup .labelCheck {
+    display: inline-block;
+    margin: 0 20px 0 10px;
+    height: auto; }
+  .instanceContainer .extendedGroup .on-off-title {
+    padding: 0 10px 0 10px; }
+    .instanceContainer .extendedGroup .on-off-title .checkWrapper {
+      margin-left: 20px; }
+  .instanceContainer .extendedGroup .checkWrapper {
+    display: inline-block;
+    margin: 0px;
+    height: auto; }
+  .instanceContainer .extendedGroup .vendorspecific-content .dropdown, .instanceContainer .extendedGroup .vendorspecific-content .inputWrapper {
+    width: 200px !important;
+    margin: 0px; }
+  .instanceContainer .extendedGroup .vendorspecific-content .checkWrapper {
+    width: 20px !important;
+    margin-top: 4px; }
+  .instanceContainer .extendedGroup .vendorspecific-content input {
+    width: 100%; }
+  .instanceContainer .extendedGroup .vendorspecific-content .labelInput, .instanceContainer .extendedGroup .vendorspecific-content .popupSubTitle {
+    width: 80px; }
+  .instanceContainer .extendedGroup .vendorspecific-content .collectionItem > label {
+    display: none; }
+  .instanceContainer .extendedGroup .vendorspecific-content a.collectionRemove {
+    position: relative;
+    top: -190px;
+    right: -272px; }
+  .instanceContainer .extendedGroup .mb-slider {
+    margin-top: 10px; }
+
+.metaData {
+  position: relative; }
+  .metaData .rightContainer > .left {
+    white-space: nowrap; }
+
+.instanceTable {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+  .instanceTable .checkboxColumn {
+    text-align: center; }
+  .instanceTable .odd {
+    background-color: #eaeaea; }
+  .instanceTable.table > thead > tr > .checkboxColumn {
+    padding-left: 2px;
+    padding-right: 2px; }
+  .instanceTable.table > tbody > tr > td.titleColumn {
+    width: 260px; }
+  .instanceTable.table > tbody > tr > td.itemType {
+    padding-right: 0;
+    padding-left: 0; }
+  .instanceTable.table > tbody > tr > td.minScaleColumn,
+  .instanceTable.table > tbody > tr > td.maxScaleColumn {
+    padding-left: 4px; }
+  .instanceTable tbody .dropdown {
+    min-width: 100%; }
+  .instanceTable tbody .minScaleColumn, .instanceTable tbody .maxScaleColumn, .instanceTable tbody .styleColumn {
+    width: 80px; }
+  .instanceTable tbody .checkboxColumn {
+    padding: 5px 3px 5px 3px; }
+  .instanceTable tbody .checkWrapper {
+    margin-top: 5px;
+    width: 100%; }
+  .instanceTable .level0 {
+    margin-left: 4px; }
+  .instanceTable .level1 {
+    margin-left: 10px; }
+  .instanceTable .level2 {
+    margin-left: 16px; }
+  .instanceTable .level3 {
+    margin-left: 22px; }
+  .instanceTable .level4 {
+    margin-left: 28px; }
+  .instanceTable .dummy {
+    display: none; }
+  .instanceTable .itemType {
+    line-height: 38px;
+    padding: 0px;
+    cursor: ns-resize; }
+  .instanceTable .moreColumn {
+    padding-left: 0px; }
+  .instanceTable .iconMore {
+    position: relative;
+    line-height: 28px; }
+  .instanceTable .input {
+    width: 80px; }
+  .instanceTable .titleColumn .input {
+    width: 200px; }
+
+.infoMsgBox {
+  z-index: 10;
+  min-width: 260px;
+  padding: 3px 10px 3px 10px;
+  background-color: white;
+  border: solid 1px #a2a2a2;
+  position: absolute;
+  top: -8px;
+  right: 30px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; }
+  .infoMsgBox.hide {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    position: absolute;
+    right: 1000px; }
+  .infoMsgBox:after, .infoMsgBox:before {
+    position: absolute;
+    left: 100%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0; }
+  .infoMsgBox:after {
+    border-left-color: #404040;
+    border-width: 4px;
+    top: 13px;
+    margin-top: -4px; }
+  .infoMsgBox:before {
+    border-left-color: #404040;
+    border-width: 6px;
+    top: 13px;
+    margin-top: -5px; }
+  .infoMsgBox .labelText {
+    width: 100px;
+    display: inline-block; }
+  .infoMsgBox .dropdown {
+    min-width: 130px !important; }
+
+.userControlTable {
+  margin-top: 20px; }
+
+.tableUserGroups {
+  width: 300px; }
+  .tableUserGroups .description {
+    width: 150px;
+    text-align: right;
+    padding: 0px; }
+  .tableUserGroups .iconCheckboxActive:before, .tableUserGroups .iconCheckbox:before, .tableUserGroups .regionProperties .iconRadio:before, .regionProperties .tableUserGroups .iconRadio:before, .tableUserGroups .regionProperties .iconRadioActive:before, .regionProperties .tableUserGroups .iconRadioActive:before {
+    float: right;
+    margin-top: 7px;
+    margin-right: 10px; }
+  .tableUserGroups td {
+    cursor: pointer;
+    padding: 0px; }
+    .tableUserGroups td:hover .checkWrapper {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+      opacity: 0.4; }
+    .tableUserGroups td:hover .checkWrapper.iconCheckboxActive {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+      opacity: 1; }
+  .tableUserGroups .tdContentWrapper {
+    position: relative;
+    padding: 0px;
+    padding-left: 25px;
+    padding-top: 3px;
+    display: block; }
+  .tableUserGroups .checkWrapper {
+    width: 100%;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0; }
+    .tableUserGroups .checkWrapper .checkbox {
+      width: 100%;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+      opacity: 0; }
+    .tableUserGroups .checkWrapper.iconCheckboxActive {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+      opacity: 1; }
+
+.userGroupTabContainer {
+  margin-bottom: 20px; }
+  .userGroupTabContainer .containerBaseData .labelInput, .userGroupTabContainer .containerBaseData .popupSubTitle, .userGroupTabContainer .containerProfile .labelInput, .userGroupTabContainer .containerProfile .popupSubTitle {
+    float: left;
+    display: block;
+    margin-bottom: 10px; }
+  .userGroupTabContainer .containerBaseData .input, .userGroupTabContainer .containerBaseData .dropdown, .userGroupTabContainer .containerProfile .input, .userGroupTabContainer .containerProfile .dropdown {
+    min-width: 250px; }
+  .userGroupTabContainer .containerBaseData textarea, .userGroupTabContainer .containerProfile textarea {
+    height: 150px; }
+  .userGroupTabContainer .validationInput[disabled] {
+    background: #eeeeee; }
+
+.groupTabContainer .containerBaseData .labelInput, .groupTabContainer .containerBaseData .popupSubTitle {
+  width: 90px; }
+
+.userTabContainer .containerBaseData .labelInput, .userTabContainer .containerBaseData .popupSubTitle {
+  width: 130px; }
+
+.userTabContainer .containerProfile .labelInput, .userTabContainer .containerProfile .popupSubTitle {
+  width: 90px; }
+
+.aclTabContainer {
+  margin-bottom: 20px; }
+  .aclTabContainer .containerBaseData .labelInput, .aclTabContainer .containerBaseData .popupSubTitle {
+    width: 80px;
+    float: left;
+    display: block;
+    margin-bottom: 10px; }
+  .aclTabContainer .containerBaseData textarea, .aclTabContainer .containerBaseData input {
+    width: 300px; }
+  .aclTabContainer .containerBaseData textarea {
+    height: 100px; }
+  .aclTabContainer .containerBaseData .messageBox {
+    width: 270px;
+    position: absolute;
+    top: 20px;
+    right: 20px; }
+  .aclTabContainer .containerLayout .dropdown {
+    min-width: 270px;
+    margin-left: 20px; }
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", "Calluna Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 13px;
+  line-height: 21px;
+  color: #3f3f3f;
+  background-image: url("../../../../bundles/mapbendercore/image/body.png");
+  background: -owg-linear-gradient(rgba(255, 255, 255, 0.3) 100px, rgba(255, 255, 255, 0)) fixed, url("../../../../bundles/mapbendercore/image/body.png");
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.3) 100px, rgba(255, 255, 255, 0)) fixed, url("../../../../bundles/mapbendercore/image/body.png");
+  background: -moz-linear-gradient(rgba(255, 255, 255, 0.3) 100px, rgba(255, 255, 255, 0)) fixed, url("../../../../bundles/mapbendercore/image/body.png");
+  background: -o-linear-gradient(rgba(255, 255, 255, 0.3) 100px, rgba(255, 255, 255, 0)) fixed, url("../../../../bundles/mapbendercore/image/body.png");
+  background: linear-gradient(rgba(255, 255, 255, 0.3) 100px, rgba(255, 255, 255, 0)) fixed, url("../../../../bundles/mapbendercore/image/body.png"); }
+
+ul, ol {
+  list-style: none; }
+
+hr, h1, h2, h3, ul, ol, li {
+  margin: 0;
+  padding: 0px; }
+
+a {
+  text-decoration: none; }
+
+p {
+  margin: 0px; }
+
+.italic {
+  font-style: italic; }
+
+.smallerText {
+  font-size: 9px; }
+
+.smallText, .serviceContainer .metaText, .labelInput, .popupSubTitle, .labelText, .labelCheck, .description, .input, .buttonCore, .button, .tabContainerAlt .tab, .accordionContainer .accordion > div, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a, .button.critical, .linkButton, .tabContainer .tab, .dropdown {
+  font-size: 11px; }
+
+.bigText, .title, .popupHead {
+  font-size: 15px; }
+
+.biggerText, .contentTitle {
+  font-size: 21px; }
+
+.contentTitle {
+  font-weight: normal;
+  font-style: italic;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: dashed 1px #b3b3b3; }
+
+.title, .popupHead {
+  font-weight: normal;
+  color: #3f3f3f; }
+
+.subTitle, fieldset legend {
+  font-size: 13px;
+  color: #5b932a; }
+
+.labelInput, .popupSubTitle, .labelText, .labelCheck {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.labelInput, .popupSubTitle {
+  display: inline-block;
+  color: #707070;
+  margin-right: 10px;
+  line-height: 29px; }
+  .labelInput .required, .popupSubTitle .required {
+    color: #aa2323; }
+
+.labelCheck {
+  color: #707070;
+  margin-left: 5px; }
+
+.labelText {
+  color: #5b932a; }
+
+.description {
+  color: #707070;
+  font-style: italic; }
+
+.hidden {
+  display: none; }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
+
+.clear, .clearContainer {
+  clear: both; }
+
+.clearContainer {
+  height: 0px; }
+
+.overlay {
+  background: url("../../../../bundles/mapbendercore/image/overlay.png");
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0; }
+
+.popupHead {
+  margin: 0 20px 20px 20px;
+  padding: 20px 0 10px 0;
+  border-bottom: dashed 1px #b3b3b3; }
+  .popupHead.draggable {
+    cursor: move; }
+
+.popupButtons {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  left: 0; }
+
+.popupContent, .popupSubContent {
+  padding: 0 20px;
+  margin-bottom: 20px; }
+
+.popupSubContent {
+  width: 100%;
+  height: 100%; }
+
+.popup {
+  min-width: 300px;
+  min-height: 250px;
+  position: relative;
+  z-index: 9999;
+  width: 500px;
+  margin: -1000px auto 0 auto;
+  background-color: #f4f4f4;
+  padding-bottom: 20px;
+  background-image: url("../../../../bundles/mapbendercore/image/content.png");
+  border-top: solid 1px #858585;
+  border-left: solid 1px #a2a2a2;
+  border-right: solid 1px #a2a2a2;
+  border-bottom: solid 5px #a2a2a2; }
+  .popup.popupOverflow .popupContent, .popup.popupOverflow .popupSubContent {
+    overflow: visible; }
+
+.popupContainer {
+  height: 0px;
+  width: 0px;
+  z-index: 999;
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+  .popupContainer.ui-draggable-dragging {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    opacity: 0.6; }
+  .popupContainer.ui-draggable {
+    position: absolute !important; }
+    .popupContainer.ui-draggable .popup {
+      margin: 80px 0 0 100px; }
+    .popupContainer.ui-draggable .popupHead {
+      cursor: move; }
+  .popupContainer.modal {
+    height: 100%;
+    width: 100%;
+    display: block; }
+    .popupContainer.modal .popup {
+      margin-top: 80px; }
+    .popupContainer.modal .overlay {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+      opacity: 0.9;
+      position: fixed !important;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0; }
+  .popupContainer .button, .popupContainer .tabContainerAlt .tab, .tabContainerAlt .popupContainer .tab, .popupContainer .accordionContainer .accordion > div, .accordionContainer .popupContainer .accordion > div, .popupContainer .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane .popupContainer a {
+    margin-left: 3px; }
+
+.ui-resizable-se {
+  font-size: 16px;
+  position: absolute;
+  right: 3px;
+  bottom: -3px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  cursor: default; }
+  .ui-resizable-se:before {
+    content: "\f054";
+    display: block; }
+
+.popupScroll {
+  overflow: auto;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  bottom: 60px;
+  left: 0; }
+
+.input {
+  color: #858585;
+  border: solid 1px #c8c8c8;
+  line-height: 21px;
+  height: 28px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #f9f9f9; }
+  .input:focus {
+    outline: none;
+    border: 1px solid #8dce55; }
+
+.inputWrapper {
+  position: relative;
+  display: inline-block; }
+  .inputWrapper .validationMsgBox {
+    position: absolute;
+    z-index: 9999;
+    min-width: 260px;
+    margin-left: -10px;
+    color: #aa2323;
+    padding: 3px 10px 2px 10px;
+    background-color: #f6d6d6;
+    border: solid 1px #eeabab;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1; }
+    .inputWrapper .validationMsgBox.hide {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+      opacity: 0;
+      margin-left: 0px; }
+    .inputWrapper .validationMsgBox:after, .inputWrapper .validationMsgBox:before {
+      border: solid transparent;
+      content: "";
+      height: 0;
+      width: 0;
+      position: absolute;
+      right: 100%; }
+    .inputWrapper .validationMsgBox:after {
+      border-right-color: #f6d6d6;
+      border-width: 3px;
+      top: 14px;
+      margin-top: -3px; }
+    .inputWrapper .validationMsgBox:before {
+      border-right-color: #eeabab;
+      border-width: 5px;
+      top: 14px;
+      margin-top: -5px; }
+
+.buttonCore, .button, .tabContainerAlt .tab, .accordionContainer .accordion > div, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a, .button.critical, .linkButton {
+  font-family: "Open Sans", "Calluna Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: none;
+  cursor: pointer; }
+
+@-moz-document url-prefix() {
+  .buttonCore .buttonCore, .button .buttonCore, .tabContainerAlt .tab .buttonCore, .accordionContainer .accordion > div .buttonCore, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a .buttonCore, .linkButton .buttonCore, .buttonCore .button, .button .button, .tabContainerAlt .tab .button, .accordionContainer .accordion > div .button, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a .button, .linkButton .button, .buttonCore .tabContainerAlt .tab, .tabContainerAlt .buttonCore .tab, .button .tabContainerAlt .tab, .tabContainerAlt .button .tab, .tabContainerAlt .tab .tab, .accordionContainer .accordion > div .tabContainerAlt .tab, .tabContainerAlt .accordionContainer .accordion > div .tab, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a .tabContainerAlt .tab, .tabContainerAlt .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a .tab, .linkButton .tabContainerAlt .tab, .tabContainerAlt .linkButton .tab, .buttonCore .accordionContainer .accordion > div, .accordionContainer .buttonCore .accordion > div, .button .accordionContainer .accordion > div, .accordionContainer .button .accordion > div, .tabContainerAlt .tab .accordionContainer .accordion > div, .accordionContainer .tabContainerAlt .tab .accordion > div, .accordionContainer .accordion > div .accordion > div, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a .accordionContainer .accordion > div, .accordionContainer .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a .accordion > div, .linkButton .accordionContainer .accordion > div, .accordionContainer .linkButton .accordion > div, .buttonCore .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane .buttonCore a, .button .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane .button a, .tabContainerAlt .tab .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane .tabContainerAlt .tab a, .accordionContainer .accordion > div .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane .accordionContainer .accordion > div a, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a a, .linkButton .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane .linkButton a, .buttonCore .linkButton, .button .linkButton, .tabContainerAlt .tab .linkButton, .accordionContainer .accordion > div .linkButton, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a .linkButton, .linkButton .linkButton {
+    font: 11px sans-serif; } }
+
+.button, .tabContainerAlt .tab, .accordionContainer .accordion > div, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a {
+  padding: 5px 10px;
+  height: 24px;
+  line-height: 11px;
+  display: inline-block;
+  margin: 0px;
+  text-decoration: none;
+  border: 1px solid #538e24;
+  color: #fff;
+  background-color: #6fb536;
+  -webkit-transition: all, 0.3s, ease-in-out;
+  -moz-transition: all, 0.3s, ease-in-out;
+  -o-transition: all, 0.3s, ease-in-out;
+  transition: all, 0.3s, ease-in-out;
+  outline: none; }
+  .button:hover, .tabContainerAlt .tab:hover, .accordionContainer .accordion > div:hover, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a:hover {
+    background-color: #63a130; }
+  .button:focus, .tabContainerAlt .tab:focus, .accordionContainer .accordion > div:focus, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a:focus {
+    box-shadow: 0 0 5px #47791f; }
+  .button.critical, .tabContainerAlt .critical.tab, .accordionContainer .accordion > div.critical, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a.critical {
+    border: 1px solid #9f3434;
+    color: #fff;
+    background-color: #d36565; }
+    .button.critical:hover, .tabContainerAlt .critical.tab:hover, .accordionContainer .accordion > div.critical:hover, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a.critical:hover {
+      background-color: #cd5151; }
+
+.linkButton {
+  color: #707070; }
+  .linkButton:before {
+    margin-right: 5px; }
+  .linkButton:hover, .linkButton.activeLink, .linkButton:active {
+    color: #5b932a; }
+
+.seperator {
+  border: none;
+  border-bottom: dashed 1px #b3b3b3; }
+
+.dekoSeperator {
+  height: 6px;
+  border: none;
+  outline: none;
+  border-bottom: solid 1px #404040;
+  background: url("../../../../bundles/mapbendercore/image/line.png"); }
+
+.box {
+  border: solid 1px #a2a2a2;
+  background-color: #f9f9f9; }
+
+.listFilterBoxes .filterItem {
+  position: relative;
+  background-color: #f9f9f9;
+  margin-bottom: 20px; }
+
+.listFilterBoxes .col1 {
+  text-align: center;
+  color: #fff;
+  padding: 5px;
+  line-height: 15px;
+  background-color: #404040;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0; }
+  .listFilterBoxes .col1 .iconBig, .listFilterBoxes .col1 .tableUserGroups .iconCheckboxActive, .tableUserGroups .listFilterBoxes .col1 .iconCheckboxActive, .listFilterBoxes .col1 .tableUserGroups .iconCheckbox, .tableUserGroups .listFilterBoxes .col1 .iconCheckbox, .listFilterBoxes .col1 .tableUserGroups .regionProperties .iconRadio, .tableUserGroups .regionProperties .listFilterBoxes .col1 .iconRadio, .listFilterBoxes .col1 .regionProperties .tableUserGroups .iconRadio, .regionProperties .tableUserGroups .listFilterBoxes .col1 .iconRadio, .listFilterBoxes .col1 .tableUserGroups .regionProperties .iconRadioActive, .tableUserGroups .regionProperties .listFilterBoxes .col1 .iconRadioActive, .listFilterBoxes .col1 .regionProperties .tableUserGroups .iconRadioActive, .regionProperties .tableUserGroups .listFilterBoxes .col1 .iconRadioActive, .listFilterBoxes .col1 .icon, .listFilterBoxes .col1 .ui-resizable-se, .listFilterBoxes .col1 .flashBox.success:before, .listFilterBoxes .col1 .flashBox.error:before, .listFilterBoxes .col1 .flashBox.warning:before {
+    color: #fff;
+    cursor: default; }
+
+.listFilterBoxes .col2 {
+  padding: 10px; }
+
+.listFilterBoxes .buttonGroup {
+  position: absolute;
+  top: 10px;
+  right: 10px; }
+
+.listFilterBoxes .description {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: dashed 1px #b3b3b3; }
+
+.messageBox {
+  padding: 10px;
+  margin-bottom: 20px; }
+  .messageBox.error {
+    color: #aa2323;
+    background-color: #f6d6d6;
+    border: solid 1px #eeabab; }
+  .messageBox.hint {
+    color: #2375a8;
+    background-color: #d4e9f6;
+    border: solid 1px #aad3ed; }
+
+.flashBox {
+  padding: 5px 10px;
+  background-color: #f9f9f9;
+  text-align: center;
+  width: 280px;
+  margin-left: -140px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1; }
+  .flashBox.success {
+    color: #197b19;
+    background-color: #d1f5d1; }
+  .flashBox.error {
+    color: #801a1a;
+    background-color: #f6d6d6; }
+  .flashBox.warning {
+    color: #a4a421;
+    background-color: #fefef9; }
+  .flashBox.kill {
+    top: -100px;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0; }
+
+fieldset {
+  padding: 20px; }
+  fieldset legend {
+    margin: 0;
+    padding: 0 5px 0 5px; }
+
+.tabContainer .tab {
+  margin-right: 3px;
+  color: #707070;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  height: 34px;
+  z-index: 10;
+  border-left: solid 1px #a2a2a2;
+  border-top: solid 1px #a2a2a2;
+  border-right: solid 1px #a2a2a2;
+  float: left;
+  padding: 3px 10px 3px 10px;
+  position: relative;
+  bottom: "-$tabPopHeight*2";
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .tabContainer .tab:hover {
+    bottom: -3px; }
+  .tabContainer .tab.active {
+    cursor: default;
+    color: #3f3f3f;
+    bottom: -3px;
+    height: 34px;
+    z-index: 30;
+    background-color: #f9f9f9; }
+
+.tabContainer .container {
+  clear: left;
+  display: none;
+  padding: 20px;
+  z-index: 20;
+  position: relative;
+  background-color: #f9f9f9;
+  border-top: solid 3px #a2a2a2;
+  border-left: solid 1px #a2a2a2;
+  border-right: solid 1px #a2a2a2;
+  border-bottom: solid 1px #a2a2a2; }
+  .tabContainer .container.active {
+    display: block; }
+
+.tabContainerAlt .tab {
+  display: inline-block; }
+  .tabContainerAlt .tab.active {
+    cursor: default;
+    background-color: #578e2a;
+    color: #fff; }
+
+.tabContainerAlt .container {
+  border-top: dashed 1px #a2a2a2;
+  margin-top: 20px;
+  clear: left;
+  display: none;
+  padding: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  z-index: 20;
+  position: relative;
+  width: 100%; }
+  .tabContainerAlt .container.active {
+    display: block; }
+
+.accordionContainer {
+  display: table;
+  height: 100%;
+  width: 100%; }
+  .accordionContainer .accordion {
+    display: table-row; }
+    .accordionContainer .accordion > div {
+      display: table-cell; }
+    .accordionContainer .accordion.active {
+      cursor: default;
+      background-color: #578e2a;
+      color: #fff; }
+      .accordionContainer .accordion.active > div {
+        background-color: #578e2a; }
+  .accordionContainer .container-accordion {
+    display: none; }
+    .accordionContainer .container-accordion.active {
+      display: table-row; }
+      .accordionContainer .container-accordion.active .accordion-cell {
+        display: table-cell;
+        height: 100%; }
+        .accordionContainer .container-accordion.active .accordion-cell .accordion-wrapper {
+          height: 100%;
+          display: block;
+          position: relative; }
+          .accordionContainer .container-accordion.active .accordion-cell .accordion-wrapper > .mb-element, .accordionContainer .container-accordion.active .accordion-cell .accordion-wrapper > div {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%; }
+          .accordionContainer .container-accordion.active .accordion-cell .accordion-wrapper > .mb-element {
+            padding-top: 10px; }
+
+.checkWrapper {
+  cursor: pointer;
+  width: 13px; }
+  .checkWrapper.checkboxDisabled {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+    opacity: 0.4; }
+
+.checkbox {
+  position: absolute;
+  top: -999999px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0; }
+
+.radioWrapper {
+  cursor: pointer;
+  width: 13px; }
+  .radioWrapper.radioDisabled {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+    opacity: 0.4; }
+
+.radiobox {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0; }
+
+.dropdown {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  color: #5b932a;
+  border: solid 1px #c8c8c8;
+  line-height: 29px;
+  height: 28px;
+  text-align: left;
+  padding-right: 30px;
+  background-color: #FFF;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .dropdown .dropdownValue {
+    padding-left: 5px;
+    color: #858585;
+    border: none;
+    line-height: 29px;
+    cursor: pointer;
+    font-family: "Open Sans","Calluna Sans","Gill Sans MT",Calibri,"Trebuchet MS",sans-serif; }
+    .dropdown .dropdownValue.iconDown:before {
+      position: absolute;
+      top: 0;
+      right: 5px; }
+  .dropdown .dropdownList {
+    background-color: #FFF;
+    color: #858585;
+    position: absolute;
+    z-index: 10;
+    display: none;
+    overflow: auto;
+    max-height: 200px;
+    border: solid 1px #c8c8c8;
+    width: 100%; }
+    .dropdown .dropdownList li {
+      line-height: 29px;
+      padding-left: 5px; }
+      .dropdown .dropdownList li:hover {
+        color: #5b932a;
+        background-color: #f9f9f9; }
+  .dropdown .hiddenDropdown {
+    display: none;
+    position: absolute;
+    top: -9999px; }
+
+.tableCore, .table {
+  width: 100%;
+  background-color: #f9f9f9; }
+  .tableCore td, .table td {
+    padding: 0px 10px; }
+  .tableCore thead, .table thead {
+    border-bottom: solid 5px lightgray; }
+  .tableCore th, .table th {
+    padding: 5px;
+    padding-left: 10px;
+    font-weight: normal;
+    text-align: left; }
+  .tableCore tbody tr, .table tbody tr {
+    border-top: solid 1px #e0e0e0;
+    vertical-align: top; }
+    .tableCore tbody tr:hover, .table tbody tr:hover {
+      background-color: #f1f1f1; }
+  .tableCore tr, .table tr {
+    height: 30px; }
+  .tableCore .iconColumn, .table .iconColumn {
+    float: right;
+    display: block;
+    padding-top: 5px;
+    padding-right: 10px;
+    vertical-align: top; }
+    .tableCore .iconColumn [class^="icon"], .table .iconColumn [class^="icon"], .tableCore .iconColumn [class*=" icon"], .table .iconColumn [class*=" icon"] {
+      margin-left: 10px; }
+
+.table {
+  border-top: solid 3px #404040;
+  border-left: solid 1px #a2a2a2;
+  border-right: solid 1px #a2a2a2;
+  border-bottom: solid 1px #a2a2a2; }
+
+.permissionsTable.hidePermissions {
+  display: none; }
+
+.permissionsTable tr {
+  border-bottom: solid 1px #e0e0e0; }
+  .permissionsTable tr.new {
+    background-color: #f0ffed; }
+    .permissionsTable tr.new .labelInput, .permissionsTable tr.new .popupSubTitle, .permissionsTable tr.new .iconGroup, .permissionsTable tr.new .iconUser {
+      color: green; }
+  .permissionsTable tr .input {
+    width: 180px; }
+
+.permissionsTable th {
+  cursor: pointer;
+  padding: 5px 0px; }
+
+.permissionsTable td {
+  padding: 5px 0px; }
+  .permissionsTable td .labelInput, .permissionsTable td .popupSubTitle {
+    width: 150px; }
+  .permissionsTable td .input {
+    display: none; }
+  .permissionsTable td .iconGroup:before, .permissionsTable td .iconUser:before {
+    text-align: center;
+    width: 20px;
+    margin-right: 5px;
+    display: inline-block; }
+
+.permissionsTable .listFilterInput {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+.permissionsTable .checkWrapper, .permissionsTable .headTagWrapper {
+  width: 56px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  display: block;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+  .permissionsTable .checkWrapper:before, .permissionsTable .headTagWrapper:before {
+    display: none; }
+  .permissionsTable .checkWrapper.view.multi, .permissionsTable .headTagWrapper.view.multi {
+    background-color: #c1c1c1; }
+  .permissionsTable .checkWrapper.view.iconCheckboxActive, .permissionsTable .headTagWrapper.view.iconCheckboxActive {
+    color: white;
+    background-color: #8DCA35; }
+  .permissionsTable .checkWrapper.create.multi, .permissionsTable .headTagWrapper.create.multi {
+    background-color: #c1c1c1; }
+  .permissionsTable .checkWrapper.create.iconCheckboxActive, .permissionsTable .headTagWrapper.create.iconCheckboxActive {
+    color: white;
+    background-color: #FFAB00; }
+  .permissionsTable .checkWrapper.edit.multi, .permissionsTable .headTagWrapper.edit.multi {
+    background-color: #c1c1c1; }
+  .permissionsTable .checkWrapper.edit.iconCheckboxActive, .permissionsTable .headTagWrapper.edit.iconCheckboxActive {
+    color: white;
+    background-color: #FFAB00; }
+  .permissionsTable .checkWrapper.delete.multi, .permissionsTable .headTagWrapper.delete.multi {
+    background-color: #c1c1c1; }
+  .permissionsTable .checkWrapper.delete.iconCheckboxActive, .permissionsTable .headTagWrapper.delete.iconCheckboxActive {
+    color: white;
+    background-color: #FFAB00; }
+  .permissionsTable .checkWrapper.operator.multi, .permissionsTable .headTagWrapper.operator.multi {
+    background-color: #c1c1c1; }
+  .permissionsTable .checkWrapper.operator.iconCheckboxActive, .permissionsTable .headTagWrapper.operator.iconCheckboxActive {
+    color: white;
+    background-color: #FF702A; }
+  .permissionsTable .checkWrapper.master.multi, .permissionsTable .headTagWrapper.master.multi {
+    background-color: #c1c1c1; }
+  .permissionsTable .checkWrapper.master.iconCheckboxActive, .permissionsTable .headTagWrapper.master.iconCheckboxActive {
+    color: white;
+    background-color: #FF702A; }
+  .permissionsTable .checkWrapper.owner.multi, .permissionsTable .headTagWrapper.owner.multi {
+    background-color: #c1c1c1; }
+  .permissionsTable .checkWrapper.owner.iconCheckboxActive, .permissionsTable .headTagWrapper.owner.iconCheckboxActive {
+    color: white;
+    background-color: #FF702A; }
+
+.tableGroupsAndUsers {
+  border-top: solid 3px #404040;
+  border-left: solid 1px #a2a2a2;
+  border-right: solid 1px #a2a2a2;
+  border-bottom: solid 1px #a2a2a2;
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  width: 100% !important; }
+  .tableGroupsAndUsers .hide {
+    display: none; }
+  .tableGroupsAndUsers [class^="icon"], .tableGroupsAndUsers [class*=" icon"] {
+    margin-left: 10px; }
+
+.mb-element-modal-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  z-index: 1000; }
+  .mb-element-modal-dialog > .background {
+    background-color: #c0c0c0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.4;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50); }
+
+/* jQuery UI Dialog with Bootstrap classes */
+.mb-element-popup-dialog {
+  z-index: 22;
+  position: absolute !important;
+  border-radius: 0px;
+  border: 1px solid #b3b3b3;
+  box-shadow: none;
+  background: #E4E4E4 url("../../../../bundles/mapbendercore/image/content.png");
+  border-bottom-width: 5px; }
+  .mb-element-popup-dialog > * {
+    box-sizing: content-box !important; }
+  .mb-element-popup-dialog .ui-dialog-titlebar-close {
+    display: inline-block;
+    font-size: 0;
+    text-rendering: auto; }
+  .mb-element-popup-dialog > .modal-header {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    background-color: #47791f;
+    padding-top: 7px;
+    padding-bottom: 6px;
+    user-select: none;
+    position: relative;
+    border-bottom: none; }
+    .mb-element-popup-dialog > .modal-header .ui-dialog-title {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #fff;
+      user-select: none;
+      cursor: default; }
+    .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane button.close {
+      margin: 1px; }
+      .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane button.close .ui-icon-closethick:before {
+        font-family: FontAwesome;
+        font-size: 23px;
+        display: inline-block;
+        content: "\f00d";
+        font-weight: bold;
+        margin-top: -2px;
+        margin-bottom: 2px; }
+      .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane button.close .ui-button-icon-space {
+        display: none; }
+    .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a {
+      display: block;
+      float: right;
+      width: auto;
+      white-space: normal;
+      color: #000000 !important;
+      height: 20px;
+      overflow: hidden;
+      background-color: transparent !important;
+      border-radius: 0;
+      opacity: .2;
+      text-shadow: white 0px 1px 0px;
+      padding-left: 4px !important;
+      padding-right: 0 !important; }
+      .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a:hover, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a:focus {
+        background-color: transparent;
+        opacity: .5; }
+      .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a span {
+        font-size: 0;
+        /** maximize */
+        /** collapse **/
+        /** restore to normal **/ }
+        .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a span:after {
+          font-family: FontAwesome;
+          font-size: 23px;
+          display: inline-block;
+          content: "\f00d";
+          font-weight: bold; }
+        .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a span.ui-icon-extlink:after {
+          content: "\f0b2";
+          font-size: 18px;
+          margin-top: -2px; }
+        .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a span.ui-icon-triangle-1-s:after {
+          content: "\f062";
+          font-size: 18px;
+          margin-top: -3px; }
+        .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a span.ui-icon-newwin:after {
+          content: "\f063";
+          font-size: 18px;
+          margin-top: -3px; }
+    .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane > .close > span.ui-button-text {
+      font-size: 0;
+      margin-left: 4px;
+      margin-top: -1px;
+      margin-right: 5px;
+      display: block; }
+      .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane > .close > span.ui-button-text:after {
+        font-family: FontAwesome;
+        font-size: 23px;
+        display: inline-block;
+        content: "\f00d"; }
+  .mb-element-popup-dialog > .modal-body {
+    /** Dialog resizing fix */
+    width: auto !important;
+    overflow: auto; }
+    .mb-element-popup-dialog > .modal-body > .mapbender-element-tab-navigator > ul.modal-header {
+      background-color: #B6D39E; }
+      .mb-element-popup-dialog > .modal-body > .mapbender-element-tab-navigator > ul.modal-header > li {
+        margin-bottom: 0px;
+        border: none;
+        margin-right: -1px; }
+        .mb-element-popup-dialog > .modal-body > .mapbender-element-tab-navigator > ul.modal-header > li:first-child > a {
+          border-left: 0 !important; }
+        .mb-element-popup-dialog > .modal-body > .mapbender-element-tab-navigator > ul.modal-header > li:last-child > a {
+          border-right: 0 !important; }
+        .mb-element-popup-dialog > .modal-body > .mapbender-element-tab-navigator > ul.modal-header > li > a {
+          border-top: none; }
+    .mb-element-popup-dialog > .modal-body > .mapbender-element-tab-navigator > .tab-content {
+      padding: 0px;
+      position: relative; }
+      .mb-element-popup-dialog > .modal-body > .mapbender-element-tab-navigator > .tab-content > form {
+        padding: 10px; }
+  .mb-element-popup-dialog > .modal-footer {
+    border-top: 1px solid #c0c0c0;
+    background-color: transparent;
+    padding: 10px; }
+    .mb-element-popup-dialog > .modal-footer button {
+      border-radius: 0; }
+  .mb-element-popup-dialog .ui-resizable {
+    position: relative; }
+  .mb-element-popup-dialog .ui-resizable-handle {
+    position: absolute;
+    font-size: 0.1px;
+    display: block; }
+  .mb-element-popup-dialog .ui-resizable-disabled .ui-resizable-handle,
+  .mb-element-popup-dialog .ui-resizable-autohide .ui-resizable-handle {
+    display: none; }
+  .mb-element-popup-dialog .ui-resizable-n {
+    cursor: n-resize;
+    height: 7px;
+    width: 100%;
+    top: -5px;
+    left: 0; }
+  .mb-element-popup-dialog .ui-resizable-s {
+    cursor: s-resize;
+    height: 7px;
+    width: 100%;
+    bottom: -5px;
+    left: 0; }
+  .mb-element-popup-dialog .ui-resizable-e {
+    cursor: e-resize;
+    width: 7px;
+    right: -5px;
+    top: 0;
+    height: 100%; }
+  .mb-element-popup-dialog .ui-resizable-w {
+    cursor: w-resize;
+    width: 7px;
+    left: -5px;
+    top: 0;
+    height: 100%; }
+  .mb-element-popup-dialog .ui-resizable-se {
+    cursor: se-resize;
+    width: 12px;
+    height: 12px;
+    right: 1px;
+    bottom: 1px; }
+  .mb-element-popup-dialog .ui-resizable-sw {
+    cursor: sw-resize;
+    width: 9px;
+    height: 9px;
+    left: -5px;
+    bottom: -5px; }
+  .mb-element-popup-dialog .ui-resizable-nw {
+    cursor: nw-resize;
+    width: 9px;
+    height: 9px;
+    left: -5px;
+    top: -5px; }
+  .mb-element-popup-dialog .ui-resizable-ne {
+    cursor: ne-resize;
+    width: 9px;
+    height: 9px;
+    right: -5px;
+    top: -5px; }
+
+/* UI Mapbender slider */
+.mb-slider.ui-slider {
+  font-family: "Open Sans", "Calluna Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 13px;
+  position: relative;
+  border: 1px solid #5b932a;
+  height: 12px;
+  border-radius: 0px !important;
+  /*    > .ui-slider-handle.ui-state-focus{
+      border-color: $ciColor;
+      background-color: lighten($ciColor, 40%);
+    }*/ }
+  .mb-slider.ui-slider > .ui-slider-range {
+    position: absolute;
+    display: block;
+    height: 100%;
+    background-color: #c2e5a4;
+    top: 0; }
+  .mb-slider.ui-slider > .ui-slider-handle {
+    position: absolute;
+    display: block;
+    height: 200%;
+    width: 12px;
+    border: 1px solid #5b932a;
+    background-color: #c2e5a4;
+    top: -5px;
+    margin-left: -6px;
+    border-radius: 0px !important; }
+  .mb-slider.ui-slider > .ui-slider-handle.ui-state-hover, .mb-slider.ui-slider .ui-slider-handle.ui-state-activ, .mb-slider.ui-slider .ui-slider-handle.ui-state-focus {
+    border-color: #5b932a;
+    background-color: #5b932a; }
+
+.page {
+  top: -170px;
+  margin: 0 auto;
+  width: 1000px; }
+
+.popupContainer,
+.page {
+  position: relative; }
+  .popupContainer a,
+  .page a {
+    text-decoration: none; }
+    .popupContainer a:hover,
+    .page a:hover {
+      color: #3f3f3f; }
+  @media (min-width: 992px) {
+    .popupContainer .container,
+    .page .container {
+      width: auto; } }
+  @media (min-width: 768px) {
+    .popupContainer .container,
+    .page .container {
+      width: auto; } }
+  .popupContainer .table > tbody > tr > td,
+  .popupContainer .table > tbody > tr > th,
+  .popupContainer .table > tfoot > tr > td,
+  .popupContainer .table > tfoot > tr > th,
+  .popupContainer .table > thead > tr > td,
+  .popupContainer .table > thead > tr > th,
+  .page .table > tbody > tr > td, .page .table > tbody > tr > th, .page .table > tfoot > tr > td, .page .table > tfoot > tr > th, .page .table > thead > tr > td, .page .table > thead > tr > th {
+    border-top: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px; }
+
+.iconBig, .tableUserGroups .iconCheckboxActive, .tableUserGroups .iconCheckbox, .tableUserGroups .regionProperties .iconRadio, .regionProperties .tableUserGroups .iconRadio, .tableUserGroups .regionProperties .iconRadioActive, .regionProperties .tableUserGroups .iconRadioActive, .iconSmall {
+  color: #3f3f3f;
+  margin-left: 5px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6; }
+  .iconBig:hover, .tableUserGroups .iconCheckboxActive:hover, .tableUserGroups .iconCheckbox:hover, .tableUserGroups .regionProperties .iconRadio:hover, .regionProperties .tableUserGroups .iconRadio:hover, .tableUserGroups .regionProperties .iconRadioActive:hover, .regionProperties .tableUserGroups .iconRadioActive:hover, .iconSmall:hover {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1; }
+
+.head {
+  position: relative;
+  height: 170px;
+  min-width: 1000px;
+  border-top: solid 5px #272727;
+  background-image: url("../../../../bundles/mapbendercore/image/head.png");
+  background: -owg-linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)), url("../../../../bundles/mapbendercore/image/head.png");
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)), url("../../../../bundles/mapbendercore/image/head.png");
+  background: -moz-linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)), url("../../../../bundles/mapbendercore/image/head.png");
+  background: -o-linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)), url("../../../../bundles/mapbendercore/image/head.png");
+  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)), url("../../../../bundles/mapbendercore/image/head.png"); }
+  .head hr {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0; }
+
+.accountBar {
+  color: #707070;
+  cursor: pointer;
+  padding: 5px 10px 5px 10px;
+  background-color: #f9f9f9;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  position: absolute;
+  top: 0;
+  right: 0; }
+  .accountBar > .accountMenu {
+    height: 20px;
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; }
+    .accountBar > .accountMenu.opened {
+      height: 65px; }
+    .accountBar > .accountMenu .iconDown {
+      padding-right: 20px;
+      font-family: "Open Sans", "Calluna Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif; }
+      .accountBar > .accountMenu .iconDown:before {
+        position: absolute;
+        right: 0; }
+
+.leftPane {
+  width: 200px;
+  position: absolute;
+  top: 0;
+  left: 0; }
+  .leftPane > .navigation {
+    background-color: #f9f9f9;
+    border-bottom-left-radius: 5px;
+    padding: 10px; }
+    .leftPane > .navigation .navItem {
+      display: block; }
+      .leftPane > .navigation .navItem > a {
+        display: block;
+        padding: 2px 10px; }
+        .leftPane > .navigation .navItem > a:hover, .leftPane > .navigation .navItem > a:focus {
+          background-color: #E0DDDD;
+          color: #000;
+          -webkit-transition: all 0.3s linear;
+          -moz-transition: all 0.3s linear;
+          -o-transition: all 0.3s linear;
+          transition: all 0.3s linear; }
+  .leftPane .logo {
+    max-height: 120px;
+    position: absolute;
+    top: 20px;
+    left: 30px; }
+
+.logoContainer {
+  position: relative;
+  height: 170px; }
+
+.navLevel1 {
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  border-left: solid 1px #a2a2a2;
+  border-bottom: solid 1px #a2a2a2;
+  position: absolute;
+  top: 170px;
+  right: 0;
+  left: 0; }
+
+.navLevel2, .navLevel3 {
+  margin-left: 10px; }
+
+.navItem a {
+  font-family: "Open Sans", "Calluna Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 11px;
+  color: #707070;
+  padding: 5px 10px; }
+  .navItem a:before {
+    margin-right: 5px; }
+  .navItem a:hover {
+    color: #3f3f3f; }
+
+.navItem.activeItem {
+  display: block; }
+  .navItem.activeItem > a {
+    color: #5b932a; }
+
+.rightPane {
+  width: 800px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 200px; }
+
+textarea, input[type=text], input[type=submit], input[type=password], a.button, .tabContainerAlt a.tab, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a, button, div.dropdown {
+  border-radius: 3px; }
+
+a.button, .tabContainerAlt a.tab, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a {
+  color: #404040; }
+  a.button:hover, .tabContainerAlt a.tab:hover, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a:hover {
+    color: #fff; }
+
+ul.dropdownList {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  margin-top: -3px; }
+
+.tabContainer .tabs > .tab {
+  height: 32px;
+  background-color: #ECECEC;
+  padding-top: 5px;
+  bottom: -1px;
+  margin-right: -1px; }
+  .tabContainer .tabs > .tab:first-child {
+    border-top-left-radius: 5px; }
+  .tabContainer .tabs > .tab:last-child {
+    border-top-right-radius: 5px; }
+  .tabContainer .tabs > .tab:hover, .tabContainer .tabs > .tab:focus {
+    padding-top: 5px;
+    bottom: 0;
+    background-color: #f9f9f9;
+    outline: none;
+    box-shadow: 0px -1px 1px #000; }
+  .tabContainer .tabs > .tab.active {
+    bottom: 0px;
+    height: 35px;
+    margin-bottom: -3px;
+    background-color: #f9f9f9; }
+
+.tabContainer > .container {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.contentPane {
+  padding-top: 120px; }
+  .contentPane .iconBig:before, .contentPane .tableUserGroups .iconCheckboxActive:before, .tableUserGroups .contentPane .iconCheckboxActive:before, .contentPane .tableUserGroups .iconCheckbox:before, .tableUserGroups .contentPane .iconCheckbox:before, .contentPane .tableUserGroups .regionProperties .iconRadio:before, .tableUserGroups .regionProperties .contentPane .iconRadio:before, .contentPane .regionProperties .tableUserGroups .iconRadio:before, .regionProperties .tableUserGroups .contentPane .iconRadio:before, .contentPane .tableUserGroups .regionProperties .iconRadioActive:before, .tableUserGroups .regionProperties .contentPane .iconRadioActive:before, .contentPane .regionProperties .tableUserGroups .iconRadioActive:before, .regionProperties .tableUserGroups .contentPane .iconRadioActive:before {
+    /* Theoretically for IE 8 & 9 (more valid) */
+    /* ...but not required as filter works too */
+    /* should come BEFORE filter */
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha Opacity=70;
+    /* This works in IE 8 & 9 too */
+    /* ... but also 5, 6, 7 */
+    filter: alpha(opacity=70);
+    /* Modern!
+  /* Firefox 0.9+, Safari 2?, Chrome any?
+  /* Opera 9+, IE 9+ */
+    opacity: 0.7; }
+  .contentPane .iconBig:hover:before, .contentPane .tableUserGroups .iconCheckboxActive:hover:before, .tableUserGroups .contentPane .iconCheckboxActive:hover:before, .contentPane .tableUserGroups .iconCheckbox:hover:before, .tableUserGroups .contentPane .iconCheckbox:hover:before, .contentPane .tableUserGroups .regionProperties .iconRadio:hover:before, .tableUserGroups .regionProperties .contentPane .iconRadio:hover:before, .contentPane .regionProperties .tableUserGroups .iconRadio:hover:before, .regionProperties .tableUserGroups .contentPane .iconRadio:hover:before, .contentPane .tableUserGroups .regionProperties .iconRadioActive:hover:before, .tableUserGroups .regionProperties .contentPane .iconRadioActive:hover:before, .contentPane .regionProperties .tableUserGroups .iconRadioActive:hover:before, .regionProperties .tableUserGroups .contentPane .iconRadioActive:hover:before {
+    /* Theoretically for IE 8 & 9 (more valid) */
+    /* ...but not required as filter works too */
+    /* should come BEFORE filter */
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha Opacity=100;
+    /* This works in IE 8 & 9 too */
+    /* ... but also 5, 6, 7 */
+    filter: alpha(opacity=100);
+    /* Modern!
+  /* Firefox 0.9+, Safari 2?, Chrome any?
+  /* Opera 9+, IE 9+ */
+    opacity: 1; }
+  .contentPane > .content {
+    min-height: 600px;
+    position: relative;
+    padding: 20px;
+    margin: 0px;
+    background: #f9f9f9 url("../../../../bundles/mapbendercore/image/content.png");
+    border-radius: 5px;
+    border-top: solid 1px #858585;
+    border-left: solid 1px #a2a2a2;
+    border-right: solid 1px #a2a2a2;
+    border-bottom: solid 5px #a2a2a2; }
+    .contentPane > .content form:after {
+      content: "";
+      display: block;
+      visibility: hidden;
+      clear: both; }
+    .contentPane > .content form label.labelInput, .contentPane > .content form label.popupSubTitle {
+      margin-bottom: -6px; }
+    .contentPane > .content form .dropdown {
+      width: 100%; }
+      .contentPane > .content form .dropdown .dropdownList {
+        width: 100%; }
+    .contentPane > .content form .inputWrapper {
+      width: 100%; }
+      .contentPane > .content form .inputWrapper textarea,
+      .contentPane > .content form .inputWrapper input[type="password"],
+      .contentPane > .content form .inputWrapper input[type="email"],
+      .contentPane > .content form .inputWrapper input[type="text"] {
+        width: 100%;
+        background: #fff; }
+    .contentPane > .content form .screenshot_upload.left {
+      width: 100%; }
+    .contentPane > .content form select[multiple="multiple"] {
+      width: 100%;
+      margin-bottom: 10px; }
+    .contentPane > .content form input[type='submit'] {
+      min-width: 20px; }
+  .contentPane .mapbenderVersion {
+    color: #fff;
+    text-align: right; }
+
+.icon[data-state], [data-state].ui-resizable-se, [data-state].flashBox.success:before, [data-state].flashBox.error:before, [data-state].flashBox.warning:before {
+  cursor: default;
+  opacity: 1; }
+
+.icon[data-state="running"]:before, [data-state="running"].ui-resizable-se:before, [data-state="running"].flashBox.success:before, [data-state="running"].flashBox.error:before, [data-state="running"].flashBox.warning:before {
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite; }
+
+.icon[data-state="error"]:before, [data-state="error"].ui-resizable-se:before, [data-state="error"].flashBox.success:before, [data-state="error"].flashBox.error:before, [data-state="error"].flashBox.warning:before {
+  color: #aa2323; }
+
+.icon[data-state="aborted"]:before, [data-state="aborted"].ui-resizable-se:before, [data-state="aborted"].flashBox.success:before, [data-state="aborted"].flashBox.error:before, [data-state="aborted"].flashBox.warning:before {
+  color: #aa2323; }
+
+div[data-type="datetime"] {
+  position: relative;
+  display: inline-block;
+  min-width: 300px;
+  margin-bottom: 10px; }
+
+div[data-type="datetime"] div:first-child div.dropdown {
+  min-width: 98px;
+  display: inline-block;
+  margin-right: 3px;
+  margin-bottom: 10px; }
+
+div[data-type="datetime"] div:last-child div.dropdown {
+  min-width: 144px;
+  display: inline-block;
+  margin-right: 3px; }
+
+.secureElement.has:before {
+  color: #b23a3a;
+  font-weight: bold; }
+
+.popup .button.hidden, .popup .tabContainerAlt .hidden.tab, .tabContainerAlt .popup .hidden.tab, .popup .accordionContainer .accordion > div.hidden, .accordionContainer .popup .accordion > div.hidden, .popup .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane a.hidden, .mb-element-popup-dialog > .modal-header .ui-dialog-titlebar-buttonpane .popup a.hidden {
+  display: none; }
+
+.screenshot_upload {
+  padding: 0px;
+  position: relative;
+  min-width: 300px; }
+  .screenshot_upload .label {
+    margin: 0px;
+    padding: 2px;
+    font-size: 12px;
+    white-space: nowrap;
+    position: relative; }
+    .screenshot_upload .label .left {
+      min-width: 100px;
+      width: 100px; }
+    .screenshot_upload .label .right {
+      min-width: 200px;
+      width: 200px; }
+  .screenshot_upload .input {
+    border: 0px;
+    padding: 5px; }
+  .screenshot_upload .inputWrapper {
+    position: absolute;
+    left: 0; }
+    .screenshot_upload .inputWrapper input[type=file] {
+      display: block;
+      float: left;
+      width: 100px;
+      font-size: 20px;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+      filter: alpha(opacity=0);
+      -moz-opacity: 0;
+      -khtml-opacity: 0;
+      opacity: 0;
+      cursor: pointer; }
+    .screenshot_upload .inputWrapper:after {
+      clear: both; }
+  .screenshot_upload .upload_label {
+    overflow: hidden;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+    padding: 0px 0px 0px 5px;
+    font-size: 11px;
+    font-weight: normal; }
+  .screenshot_upload .upload_button {
+    line-height: 24px;
+    vertical-align: top;
+    height: 24px;
+    margin: 0px;
+    font-size: 11px;
+    padding: 0px 10px;
+    font-weight: normal;
+    cursor: pointer;
+    border: 1px solid #538e24;
+    color: #fff;
+    background-color: #6fb536; }
+    .screenshot_upload .upload_button.hover,
+    .screenshot_upload .upload_button:hover {
+      background-color: #63a130; }
+  .screenshot_upload .upload {
+    font-size: 30px; }
+  .screenshot_upload:after {
+    clear: both; }
+
+.listFilterInput {
+  margin-bottom: 20px;
+  width: 250px; }
+
+.listFilterApplicationBoxes .filterItem {
+  min-height: 120px; }
+
+.listFilterApplicationBoxes .col1 {
+  width: 120px;
+  padding: 0px;
+  display: table; }
+  .listFilterApplicationBoxes .col1.default {
+    border: 1px solid #a2a2a2;
+    background-color: #404040; }
+  .listFilterApplicationBoxes .col1 div.cell {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 120px;
+    width: 120px; }
+    .listFilterApplicationBoxes .col1 div.cell img {
+      max-height: 100%;
+      max-width: 100%;
+      width: inherit;
+      /*       width: auto;*/
+      display: block;
+      margin: 0 auto; }
+
+.listFilterApplicationBoxes .col2 {
+  height: 120px;
+  margin-left: 120px; }
+
+.listFilterApplicationBoxes .iconAppDefault {
+  font-size: 70px;
+  line-height: 120px;
+  color: #595959; }
+
+.elementPopup {
+  width: 500px; }
+
+.applicationTabContainer {
+  margin-bottom: 20px; }
+
+.containerBaseData .screenshot_img {
+  width: 200px;
+  height: 200px;
+  margin-right: 50px;
+  border: 1px solid #c0c0c0;
+  background-color: #f9f9f9;
+  display: table;
+  overflow: hidden; }
+  .containerBaseData .screenshot_img.default {
+    border: 1px solid #a2a2a2;
+    background-color: #404040; }
+  .containerBaseData .screenshot_img.iconAppDefault {
+    font-size: 60px;
+    padding-top: 50px;
+    padding-left: 65px;
+    padding-bottom: 0px;
+    display: block;
+    line-height: 110px;
+    height: 202px !important;
+    color: #595959; }
+  .containerBaseData .screenshot_img .delete {
+    position: absolute;
+    right: 20px;
+    margin-right: 50px; }
+  .containerBaseData .screenshot_img div.cell_edit {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 200px;
+    width: 200px; }
+    .containerBaseData .screenshot_img div.cell_edit img {
+      max-height: 100%;
+      max-width: 100%;
+      width: inherit;
+      display: block;
+      margin: 0 auto; }
+
+.containerBaseData .labelInput, .containerBaseData .popupSubTitle {
+  width: 80px;
+  float: left;
+  display: block;
+  margin-bottom: 10px; }
+
+.containerBaseData textarea, .containerBaseData input, .containerBaseData .dropdown {
+  min-width: 300px; }
+
+.containerBaseData textarea {
+  height: 100px; }
+
+.containerBaseData .messageBox {
+  width: 300px;
+  position: absolute;
+  top: 20px;
+  right: 20px; }
+
+.containerExchange {
+  border: 1px solid #c0c0c0;
+  background-color: #f9f9f9;
+  padding: 20px; }
+  .containerExchange .labelInput, .containerExchange .popupSubTitle {
+    width: 80px;
+    float: left;
+    display: block;
+    margin-bottom: 10px; }
+  .containerExchange label {
+    margin-right: 10px; }
+  .containerExchange select {
+    min-width: 300px; }
+  .containerExchange .dropdown {
+    min-width: 300px; }
+  .containerExchange .messageBox {
+    width: 270px;
+    position: absolute;
+    top: 20px;
+    right: 20px; }
+
+.popup .popupSubContent {
+  overflow: visible; }
+  .popup .popupSubContent .labelInput, .popup .popupSubContent .popupSubTitle, .popup .popupSubContent .input {
+    float: left; }
+
+.elementsTable tbody tr {
+  cursor: move; }
+
+.elementsTable .typeColumn {
+  width: 30%; }
+
+.elementsTable .titleColumn {
+  width: 50%; }
+
+.elementsTable .ui-sortable-helper {
+  background-color: #f1f1f1; }
+
+.elementsTable .placeholderRow {
+  height: 20px; }
+
+.checkContainer {
+  position: relative;
+  color: #707070;
+  display: block;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  padding: 5px 10px 5px 10px;
+  border: solid 1px white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+  .checkContainer .iconOk, .checkContainer .tableUserGroups .iconCheckboxActive, .tableUserGroups .checkContainer .iconCheckboxActive, .checkContainer .tableUserGroups .iconCheckbox, .tableUserGroups .checkContainer .iconCheckbox, .checkContainer .tableUserGroups .regionProperties .iconRadio, .tableUserGroups .regionProperties .checkContainer .iconRadio, .checkContainer .regionProperties .tableUserGroups .iconRadio, .regionProperties .tableUserGroups .checkContainer .iconRadio, .checkContainer .tableUserGroups .regionProperties .iconRadioActive, .tableUserGroups .regionProperties .checkContainer .iconRadioActive, .checkContainer .regionProperties .tableUserGroups .iconRadioActive, .regionProperties .tableUserGroups .checkContainer .iconRadioActive, .checkContainer .icon[data-state="success"], .checkContainer [data-state="success"].ui-resizable-se, .checkContainer [data-state="success"].flashBox.success:before, .checkContainer [data-state="success"].flashBox.error:before, .checkContainer [data-state="success"].flashBox.warning:before {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    position: absolute;
+    top: 5px;
+    right: 5px; }
+  .checkContainer:hover {
+    background-color: white;
+    border: solid 1px #d9d9d9; }
+    .checkContainer:hover .iconOk, .checkContainer:hover .tableUserGroups .iconCheckboxActive, .tableUserGroups .checkContainer:hover .iconCheckboxActive, .checkContainer:hover .tableUserGroups .iconCheckbox, .tableUserGroups .checkContainer:hover .iconCheckbox, .checkContainer:hover .tableUserGroups .regionProperties .iconRadio, .tableUserGroups .regionProperties .checkContainer:hover .iconRadio, .checkContainer:hover .regionProperties .tableUserGroups .iconRadio, .regionProperties .tableUserGroups .checkContainer:hover .iconRadio, .checkContainer:hover .tableUserGroups .regionProperties .iconRadioActive, .tableUserGroups .regionProperties .checkContainer:hover .iconRadioActive, .checkContainer:hover .regionProperties .tableUserGroups .iconRadioActive, .regionProperties .tableUserGroups .checkContainer:hover .iconRadioActive, .checkContainer:hover .icon[data-state="success"], .checkContainer:hover [data-state="success"].ui-resizable-se, .checkContainer:hover [data-state="success"].flashBox.success:before, .checkContainer:hover [data-state="success"].flashBox.error:before, .checkContainer:hover [data-state="success"].flashBox.warning:before {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+      opacity: 1; }
+
+.regionProperties {
+  margin-right: 10px; }
+  .regionProperties .radioWrapper {
+    margin-left: 10px; }
+  .regionProperties .labelInput, .regionProperties .popupSubTitle {
+    display: none; }
+  .regionProperties .iconRadio {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    opacity: 0.3; }
+  .regionProperties .iconRadioActive {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1; }
+  .regionProperties .iconRadiotabs {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    opacity: 0.3; }
+  .regionProperties .iconRadiotabsActive {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1; }
+  .regionProperties .iconRadioaccordion {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    opacity: 0.3; }
+  .regionProperties .iconRadioaccordionActive {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1; }
+
+.region {
+  padding-top: 20px;
+  border-top: dashed 1px #b3b3b3;
+  width: 100%;
+  clear: both; }
+
+.layersetForm .labelInput, .layersetForm .popupSubTitle {
+  width: 40px;
+  float: left; }
+
+.layersetTable tbody tr {
+  cursor: move; }
+
+.layersetTable .idColumn {
+  width: 3%; }
+
+.layersetTable .typeColumn {
+  width: 7%; }
+
+.layersetTable .titleColumn {
+  width: 70%; }
+
+.containerCustomCss .inputWrapper {
+  width: 100%; }

@@ -1,0 +1,687 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Version history &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../index.html" />
+    <link rel="up" title="The Book" href="../thebook.html" />
+    <link rel="next" title="Bundle Documentation" href="../bundles.html" />
+    <link rel="prev" title="Glossary" href="glossary.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../bundles.html" title="Bundle Documentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="glossary.html" title="Glossary"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" accesskey="U">The Book</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="version-history">
+<h1>Version history<a class="headerlink" href="#version-history" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="../../de/book/versions.html">German Version of this document.</a></p>
+<p>You find the milestones at: <a class="reference external" href="https://github.com/mapbender/mapbender/milestones">https://github.com/mapbender/mapbender/milestones</a></p>
+<div class="section" id="version-3-0-6-3">
+<h2>Version 3.0.6.3<a class="headerlink" href="#version-3-0-6-3" title="Permalink to this headline">¶</a></h2>
+<p>Release Datum: 27.07.2017</p>
+<p><strong>Bugfixes:</strong></p>
+<ul class="simple">
+<li>Regression: Fixed coordinate order at requests to a WMS 1.3.0. Coordinate reference systems with reversed axis-orientation are supported by map, print and export. (#529)</li>
+<li>Regression: Fixed ScaleHint for WMS services. Some WMS services that defined a Scale in their Capabilities couldn&#8217;t be put into an application. (#584)</li>
+</ul>
+</div>
+<div class="section" id="version-3-0-6-2">
+<h2>Version 3.0.6.2<a class="headerlink" href="#version-3-0-6-2" title="Permalink to this headline">¶</a></h2>
+<p>Release date: 20.07.2017</p>
+<p><strong>Bugfixes:</strong></p>
+<ul class="simple">
+<li>Search Router: Error with OpenLayers fixed (#543)</li>
+<li>Search Router: Auto Close after Click in mobile application (#548)</li>
+<li>Coordinate order (axis order) on requests to WMS 1.3.0 fixed (#529)</li>
+<li>Print: Rendering of points and labels on high-resolution Print (#573, #574, #492)</li>
+<li>Saving of WMC in WMC editor dialog (#577)</li>
+<li>ScaleHint for sub-layers of 1:1 fixed (#565)</li>
+<li>Widen the Title-Columns on Layerset-Instances (#559)</li>
+<li>Command to update the image-path in existing map-elements (#530)</li>
+<li>Translation of Print-button in FeatureInfo dialog (#552)</li>
+<li>Change of default-value of &#8220;immediate&#8221; in measure-tools (#538)</li>
+<li>SRS: Update of definitions (#550, #562) and update of YAML standard applications (#561)</li>
+<li>Update documentation for handling of translations.</li>
+</ul>
+<p><strong>Additional update steps:</strong></p>
+<p><strong>(1) Update of EPSG-Codes</strong></p>
+<p>Execute again the command <code class="docutils literal"><span class="pre">app/console</span> <span class="pre">doctrine:fixtures:load</span> <span class="pre">--fixtures=mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Epsg/</span> <span class="pre">--append</span></code>. Two new coordinate-systems are added to the Mapbender database-table <code class="docutils literal"><span class="pre">mb_core_srs</span></code>: EPSG:4839|ETRS89 / LCC Germany (N-E) and EPSG:5243|ETRS89 / LCC Germany (E-N)).</p>
+<p><strong>(2) Update of parameters im Map-Control</strong></p>
+<p>Execute the command <code class="docutils literal"><span class="pre">app/console</span> <span class="pre">mapbender:upgrade:database</span></code>, to update the OL-imagePath Parameter from <code class="docutils literal"><span class="pre">bundles/mapbendercore/mapquery/lib/openlayers/img</span></code> to <code class="docutils literal"><span class="pre">components/mapquery/lib/openlayers/img</span></code>. This is necessary if you use the POI-Elements or call Mapbender with the poi-parameter and see no bubble-icon for the poi. Example: <a class="reference external" href="https://demo.mapbender3.org/application/mapbender_user?poi[point]=366164%2C5623183&amp;poi[scale]=25000&amp;poi[label]=Please+take+a+look+at+this+POI%3A">https://demo.mapbender3.org/application/mapbender_user?poi[point]=366164%2C5623183&amp;poi[scale]=25000&amp;poi[label]=Please+take+a+look+at+this+POI%3A</a></p>
+</div>
+<div class="section" id="version-3-0-6-1">
+<h2>Version 3.0.6.1<a class="headerlink" href="#version-3-0-6-1" title="Permalink to this headline">¶</a></h2>
+<p>Release date: 24.05.2017</p>
+<p><strong>Bugfixes:</strong></p>
+<ul class="simple">
+<li>Print map showed wrong scale in map-display.</li>
+<li>Specific WMS could not be printed due to HTTP response image/png; charset-iso....</li>
+<li>Backend: FOM dialogues with many entries made checkboxes unusable.</li>
+<li>config.php back in mapbender-starter.</li>
+<li>Update bin/composer build command for building Mapbender.</li>
+<li>Style-Fix for administrations-dialog of Basesource-switcher.</li>
+<li>Add WmcEditor Default Parameters for width and height.</li>
+<li>Update landing-page of this documentation.</li>
+<li>Some minor styling changes in backend.</li>
+<li>Some cleanup.</li>
+</ul>
+</div>
+<div class="section" id="version-3-0-6-0">
+<h2>Version 3.0.6.0<a class="headerlink" href="#version-3-0-6-0" title="Permalink to this headline">¶</a></h2>
+<p>Release date: 05.05.2017</p>
+<p><strong>Architecture:</strong></p>
+<ul class="simple">
+<li>System Requirement PHP: 5.5.4 or higher.</li>
+<li>Support of PHP 7.</li>
+<li>Mapbender, FOM and OWSProxy excluded into Modules. They are now bind in composer.json</li>
+<li>Documentation is part of the composer.</li>
+<li>Adjustments of the ElementGenerator</li>
+<li>Determining of user-roles</li>
+<li>Composer entries with https</li>
+<li>Adjustments of Controllers and Bundles.</li>
+<li>Doctrine generate commands are marked deprecated</li>
+<li>Doctrine assets:dump command is marked deprecated</li>
+<li>Update of the JOII library</li>
+<li>Introduction of symblinks to the different binaries in the bin directory of mapbender-starter</li>
+<li>Composer shipped in application/bin directory</li>
+<li>Check in the Composer-installation, if the SASS Compiler Binaries are executable. If not, they are set executable.</li>
+<li>New Composer commands for documentation: Generate API documentation only: bin/composer gen-api-docs</li>
+<li>New Composer commands for documentation: Generate User-documentation only: bin/composer gen-user-docs</li>
+<li>Use of own forks of open-sans, joii, compass-mixins and codemirror libraries.</li>
+</ul>
+<p><strong>Bugfixes und Features:</strong></p>
+<ul class="simple">
+<li>Measuring shows the coordinates directly, by moving the mouse the calculated lengths of the segment are displayed live.</li>
+<li>New measuring results are shown on Top. The current result is visible at first place and you don&#8217;t need to scroll.</li>
+<li>The login-dialog (registration, forgotten password) is optimized for mobile devices to achieve a better workflow to secured mobile applications.</li>
+<li>New added layerset instances are now per default not marked as base-source.</li>
+<li>The <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/copyright.html">Copyright element popup</a> can be defined with a height and a width.</li>
+<li>Deleting a layerset led in some cases to a corrupt map element and a wrong layertree.</li>
+<li>Adjustments and Simplification of the general style of the FullScreenTemplate</li>
+<li>Introduction of the check of the CSS statements in a application</li>
+<li>Fix in the delay when switching layers.</li>
+<li>Fix in GetMap request if the layer order was changed manually in the TOC.</li>
+<li>Fix for WMS support 1.3.0</li>
+<li>Fix for secured WMS services on GetMap, GetFeatureInfo, Print, Export and Legend.</li>
+<li>Fix for secured WMS services where the username or password included a hash-character.</li>
+<li>Fixes for the WMS parameter Exception Format for the GetMap and GetFeatureInfo Request (Github-Issue 400)</li>
+<li>Fixes of Layer-Styles for GetMap und GetFeatureInfo request</li>
+<li>Default Tile Size for the Map set to 512 (was 256)</li>
+<li>WMS Keyword limit (was: 255 characters) is changed. The column-type is now &#8220;text&#8221;. The command app/console doctrine:schema:update is necessary to update the Mapbender database of a previous version.</li>
+<li>Fix when importing YAML based applications and creating duplicate WMS data-sources.</li>
+<li>Fix on minimal and maximal scale hint on WMS services.</li>
+<li>Print: Color can be set for variable texts.</li>
+<li>Print: Printout of the legend, if the service is built in with the proxy.</li>
+<li>Print: Services registered with PNG8 could not be printed or exported in some cases. The types image/png8 and image/png mode=24bit is not supported.</li>
+<li>Print: In some cases, the legend wasn&#8217;t printed if OWSProxy was activated</li>
+<li>BaseSourceSwitcher: Duplicate request on WMS which was not visible and where the BaseSourceSwitcher was used as a menu.</li>
+<li>Unneccessary requests on specifc WMS configurations with scale.</li>
+<li>Saving of YML applications in application/app/config/applications: mapbender_mobile.yml, mapbender_user_basic.yml, mapbender_user.yml and adjustments in their referenced WMS Version</li>
+<li>Fixes in administration interface of the YAML editing after saving (Github-Issue 350)</li>
+<li>Fixes in POI-Coordinate: Transformation and SRS and the trailing digits after the comma.</li>
+<li>Fix of a XSS error in POI dialog</li>
+<li>Fix in POI dialog, if useMailto is set to false</li>
+<li>GPS: Error messages if no GPS signal and the dependency to Chrome-browser and https.</li>
+<li>GPS: Pan the map only on first position.</li>
+<li>User-Interface: Scrolling of a drop-down list in backend, for example the icons for the buttons, did also scroll the background.</li>
+<li>&#8220;Only valid&#8221; Checkbox on <a class="reference external" href="../bundles/Mapbender/CoreBundle/entities/source.html">loading a  WMS</a> is now per default not activated anymore.</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Reformatted messages if the schemes of a WMS are not accessible when adding a WMS.</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>The <a class="reference external" href="../bundles/Mapbender/CoreBundle/entities/search_router.html">SearchRouter</a> shows, if placed in the sidebar, the Search and Reset buttons.</li>
+<li>Internet Explorer Compatibility: Adjustments in the <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/zoom_bar.html">Zoombar</a>..</li>
+<li>Internet Explorer Compatibility: Adjustments in the <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/overview.html">OverviewMap</a>.</li>
+<li>MS Egde Compatibility: Trying to fix the Import Dialog (<a class="reference external" href="https://connect.microsoft.com/IE/feedback/details/1574105/microsoft-edge-file-upload-bug-build-10240-rtm">https://connect.microsoft.com/IE/feedback/details/1574105/microsoft-edge-file-upload-bug-build-10240-rtm</a>)</li>
+<li>Improvement of the performance on <em>some</em> Windows installations through  WinCachePHP and PHP Opcache (for details see <a class="reference external" href="installation/installation_windows.html">Installation under Windows</a>)</li>
+<li>Change in System-Requirement for Windows: For PHP, the &#8220;Non-Thread-Safe&#8221; version is needed!</li>
+<li>Copying of applications through users who are not root (ACL Application: owner, Users: owner, ACLs: owner, Element: owner, Groups: owner, Service Source: owner, specific applications: owner)</li>
+</ul>
+<p><strong>FOM and Security:</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="../bundles/FOM/UserBundle/users.html">Show the users</a> who have a access on an element in an application.</li>
+<li>Rework of the Secure Elements dialog.</li>
+<li>User with the role View for services are allowed to view the Metadata and to load the services into an application.</li>
+</ul>
+<p><strong>miscellaneous</strong></p>
+<ul class="simple">
+<li>Design and presentation of the FeatureInfo dialog if shown as Accordion. Also if shown as &#8220;not from source&#8221;.</li>
+<li>Drag of Popups in an application.</li>
+<li>WMC Editor: Adjustments in size. XSS fix.</li>
+<li>Fix of translations</li>
+<li>YAML based applications can adjust the sidebar: align (left/right), closed (true/false), width (px/em/%)</li>
+<li>Backend: Target field: Empty option of a Drop-Down field.</li>
+<li>Adjustments of WMS Scale, ScaleHint and Min/Max values when a Layerset-Instance is opened.</li>
+<li>Display of WMS Title in the metadata of the TOC, when the WMS was updated.</li>
+<li>Display of the application logo in the Configuration.</li>
+<li>Display Issues of Simple Search and Search Router.</li>
+<li>Fixes for error messages on a wrong configured Layerset-Instance.</li>
+<li>Print: Introduction of setasign/pdf instead of toooni/fpdf</li>
+<li>Print: Fix of error messages on a missing print-template</li>
+<li>Measuring of lines and polygons in  WGS84 (EPSG:4326)</li>
+<li>Adjustments of display of the element ACL</li>
+<li>WMS Update: remove user/password from web-browser autocomplete</li>
+<li>Display of number of digits in coordinates-display.</li>
+<li>Adjustments and extending EPSG import</li>
+<li>fix default visibility for a layer and the scale</li>
+<li>remove of DataSource Monitor icon (comes in version &#8220;next&#8221;)</li>
+<li>Administration: Movement on the tabs with the tab-key</li>
+<li>Improvement of the display of the configuration interface</li>
+<li>Display of Source-ID in applications</li>
+<li>Improvements of Caching Mechanisms</li>
+<li>Improvements of Export and Copy mechanism.</li>
+<li>Improvements for the creation of new elements.</li>
+<li>Remove the provide ext-ldap statement in Composer. The components are released from the core. We will build in the LDAP module in version 3.0.7.</li>
+<li>Restructuring of DataManager and DataSource since <a class="reference external" href="https://github.com/mapbender/data-manager/releases/tag/1.0.2">version 1.0.2 of data-manager</a>.</li>
+</ul>
+<p><strong>Mobile template</strong></p>
+<ul class="simple">
+<li>General improvements of the mobile template.</li>
+<li>Fix handle mobile template button click if target isn&#8217;t defined</li>
+<li>Set mobile icon label font weight to normal</li>
+<li>Fix and improve mobile template button handling</li>
+<li>Fix register mobile application event handler &#8220;on moveend&#8221;</li>
+</ul>
+<p><strong>Digitizer</strong></p>
+<ul class="simple">
+<li>Update <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/digitizer.html">Digitizer</a> to version 1.1.</li>
+<li>Printing of Multipolygons.</li>
+<li>Objects don&#8217;t appear in the printout if they are not displayed in the Digitizer.</li>
+<li>MinScale restriction added</li>
+<li>Objects with a line-width of 0 are now not shown anymore in the printout.</li>
+<li>Adjustments of the Close Button: &#8220;allowCancelButton&#8221; and &#8220;allowDeleteByCancelNewGeometry&#8221;.</li>
+</ul>
+<p><strong>Form Generator:</strong></p>
+<ul class="simple">
+<li>Adjustments: Add HTMLElement handling  of service and DataStore configuration.</li>
+</ul>
+<p><strong>Dokumentation</strong></p>
+<ul class="simple">
+<li>Introduction of the <a class="reference external" href="faq.html">FAQ</a>.</li>
+<li>Introduction of Contributing Guide for <a class="reference external" href="https://github.com/mapbender/mapbender-starter/blob/release/3.0.6/CONTRIBUTING.md">Mapbender-Starter</a> and <a class="reference external" href="https://github.com/mapbender/owsproxy3/blob/release/3.0.6/CONTRIBUTING.md">OWSProxy</a>. Mapbender itself and FOM will follow. This is the main documentation for developers and contributors of Mapbender.</li>
+<li>The developer documentation will be maintained there and be transferred step-by-step from this user-documentation. So in the future this documentation here will be more for users and the developers have their documentation directly in the source code of the different modules.</li>
+<li>Better <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/layertree.html">Layertree</a> documentation</li>
+</ul>
+<p><strong>config.yml Anpassungen</strong></p>
+<p>DBAL-Parameter:</p>
+<ul class="simple">
+<li>default_connection: If more database entries are defined, this parameter</li>
+<li>persistent: Persistent connections to the database for performance reasons (Oracle)</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">doctrine</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">dbal</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">default_connection</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+      <span class="l l-Scalar l-Scalar-Plain">connections</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">...</span>
+          <span class="l l-Scalar l-Scalar-Plain">persistent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p><strong>mapbender-starter/application/app/config/applications/</strong></p>
+<p>Directory where YAML-based application definition are stored. As an example the well-known applications Mapbender-User, Mapbeder-User-Basic and Mapbender-Mobile are placed here.</p>
+<p><strong>app/console doctrine:schema:update</strong></p>
+<div class="highlight-sql"><div class="highlight"><pre>$ app/console doctrine:schema:update --dump-sql
+ALTER TABLE mb_core_keyword ALTER value TYPE TEXT;
+ALTER TABLE mb_core_keyword ALTER value DROP DEFAULT;
+</pre></div>
+</div>
+</div>
+<div class="section" id="milestone-3-0-5-3">
+<h2>Milestone 3.0.5.3<a class="headerlink" href="#milestone-3-0-5-3" title="Permalink to this headline">¶</a></h2>
+<p>Release date: 04.02.2016</p>
+<p><strong>Bugfixes:</strong></p>
+<p>Notable Modifications:</p>
+<ul class="simple">
+<li>Performance: The CSS, JavaScript and Translation files are now held in the Symfony Cache for the <a class="reference external" href="installation/configuration.html#production-and-development-environment-and-caching-app-php-and-app-dev-php">production mode</a>. This can lead to better performance on slower machines. These cache is not used by the <a class="reference external" href="installation/configuration.html#production-and-development-environment-and-caching-app-php-and-app-dev-php">development-mode</a>.</li>
+<li>The package <a class="reference external" href="https://github.com/eSlider/sassc-binaries">eslider/sassc-binaries</a> offers now a sassc Compiler for 32-bit Linux systems. This led to a wrong display on 32-bit Linux-Systems (<a class="reference external" href="http://lists.osgeo.org/pipermail/mapbender_users/2015-December/004768.html">http://lists.osgeo.org/pipermail/mapbender_users/2015-December/004768.html</a>)</li>
+<li>Redlining: The contents of the Redlining element is visible and Redlining can now be used as a Dialog or an Element in the Sidepane. See also the <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/redlining.html">documentation of the Redlining Element</a>. The scroll bar for the Geometry-Types in the configuration dialog is now displayed correctly.</li>
+</ul>
+<p>Users and security:</p>
+<ul class="simple">
+<li>Users can be switched active or inactive by an Administrator, who has at least the ACL-user-right &#8220;operator&#8221;. This can be used for users, who have self-registered but not yet activated their account. See the <a class="reference external" href="../bundles/FOM/UserBundle/users.html">documentation of user-management</a> for details.</li>
+<li>The text, translations and styles for the Self-Register process and the Password Reset are improved. Also the <a class="reference external" href="../bundles/FOM/UserBundle/users.html">Documentation</a> is adjusted.</li>
+</ul>
+<p>Print and export image:</p>
+<ul class="simple">
+<li>The <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/printclient.html">Print module</a> can now also be used in the Sidepane.</li>
+<li>Print legend: The size of the legend in the print-out was scaled down to improve the quality.</li>
+<li>Print-templates: The default print-templates have changed. The padding of the dynamic texts to their border and their justification were improved.</li>
+<li>Print: The Print configuration messed up mandatory (required: true) and optional fields (required: false), if they were used in combination. Optional fields were partly shown as mandatory (Github #380).</li>
+<li>In some cases Mapbender printed the legend of all WMS-layers, even if the layer was not set active (seen in Mapbender_Users WMS).</li>
+<li>Export Image: Transparency of tiled and non-tiled services is supported in Export Image.</li>
+</ul>
+<p>Copy and import:</p>
+<ul class="simple">
+<li>Copying an application under SQLite and MySQL: There was en error that applications could not be copied if the database was SQLite or MySQL.</li>
+<li>Errors at the import of application as JSON on MySQL (elements lose their target) was fixed.</li>
+</ul>
+<p>Individual Elements:</p>
+<ul class="simple">
+<li><strong>WMC</strong> and thematic layertree: If a WMC is loaded and Keep Sources is set to &#8220;no&#8221;, the thematic layers are now also removed from the layertree.</li>
+<li><strong>WMS-URL parameter</strong> and legend: If a service was loaded with the wms_url parameter, the complete legend was shown. This behaviour is fixed.<ul>
+<li><em>Note:</em> WMS services exists, which define a legend in the root-layer element. According to the WMS-specification, this legend will be inherited by sub-layers who itself haven&#8217;t defined a legend (for example if they only contain the annotations). The effect is similar in MB3 but the cause is different, so that in these cases a change in the WMS capabilities is needed (define a static legend image for these layers).</li>
+</ul>
+</li>
+<li><strong>Thematic Layer</strong>: Fix in switching layers on and off which are in their own Layerset but not displayed as a thematic layer.</li>
+<li><strong>Coordinate display</strong>: The coordinate-element display doesn&#8217;t show &#8220;null&#8221; as prefix or separator anymore, although the field was defined as empty. The element has get a fixed with so that the layout in the footer region is more sable. The value can be changed (see the chapter <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/coordinates_display.html">CSS-customizing of the element</a>).</li>
+<li><strong>SearchRouter</strong>: The content of the result uses the whole space of the dialog and fits itself to changes of the size. In the sidebar the whole height is used. The search router can be configured <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/search_router.html">with a width and a height</a>.</li>
+<li><strong>ScaleSelector</strong>: The width of the element can be <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/scale_selector.html">customized with a CSS-Statement</a> and is no more set to 155 pixel.</li>
+<li>If all layer in a <strong>layerset-instance</strong> are set to visible=off they were not visible in the layertree and the legend. This is fixed.</li>
+<li>Improvements in the styling of the <strong>POI dialog</strong> if &#8220;usemailto&#8221; is set to false.</li>
+<li><strong>Layertree</strong>: Titles are now shown per default with a length of 40. The default value has been changed. You can set the <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/layertree.html">parameter Titlemaxlength in the configuration dialog</a>.</li>
+<li><strong>GPS</strong>: Improvements in the GPS handling.</li>
+</ul>
+<p>General changes:</p>
+<ul class="simple">
+<li>Changing the Base Data, the Layout, the Layerset, the CSS and the Security of an application does not change the tab anymore and doesn&#8217;t jump back to the base data tab.</li>
+<li>General improvements of the <a class="reference external" href="https://github.com/mapbender/mapbender-digitizer">Digitizer</a> version 1.0. Version 1.1 is compatible with Mapbender 3.0.5.3.</li>
+<li>Github files: Small clean up actions in the Github repository to improve the automatic build-processes.</li>
+<li>Transparency of services: Services with a transparency refreshed with a poor effect, caused by the &#8220;transitionEffect&#8221; in OpenLayers. The effect was removed.</li>
+<li>Group filter: The security configuration dialog got improvements at the selection of Groups, if the Groups had the same name but a different suffix.</li>
+<li>TileSize Parameter in the map configuration was not set in some cases.</li>
+<li>Display of symbols in Internet Explorer 11 and MS Edge 25 (also an error in MS Edge 20).</li>
+<li>mapbender.yml: At the initial import of the mapbender.yml the values of GetFeatureInfo are now set to text/html. The mapbender.yml can now customized with Redlining.</li>
+</ul>
+<p><strong>Change of the Mapbender domains:</strong></p>
+<ul class="simple">
+<li>We have switched the URL www.mapbender.org to the Mapbender3 page. In future, the Mapbender3 page is also available via www.mapbender.org and www.mapbender3.org. Mapbender2 is now available at www.mapbender2.org<ul>
+<li><a class="reference external" href="http://www.mapbender.org">http://www.mapbender.org</a>: Mapbender3,</li>
+<li><a class="reference external" href="http://www.mapbender3.org">http://www.mapbender3.org</a>: Mapbender3,</li>
+<li><a class="reference external" href="http://www.mapbender2.org">http://www.mapbender2.org</a>: Mapbender2.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Known Issues:</strong></p>
+<ul class="simple">
+<li>The Sketch Tool doesn&#8217;t work correctly and will be built into the <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/redlining.html">Redlining Tool</a>.</li>
+<li>Share map doesn&#8217;t work for Facebook, Twitter und Google+.</li>
+</ul>
+</div>
+<div class="section" id="milestone-3-0-5-2">
+<h2>Milestone 3.0.5.2<a class="headerlink" href="#milestone-3-0-5-2" title="Permalink to this headline">¶</a></h2>
+<p>Release Datum: 27.10.2015</p>
+<p><strong>Bugfixes:</strong></p>
+<ul class="simple">
+<li>Copy applications: User-Rights and groups are copied. The user who copied the application becomes owner of the copied application.</li>
+<li>FOM: Changes in behaviour of wrong logins and user locking. It is only shown that the login failed, independent if the user exists or not.</li>
+<li>Fixed error message when creating a user with a too short password.</li>
+<li>Print: Fix of replace pattern.</li>
+<li>Print: Fix if a wrong configured WMS has special characters (%26) in the legend URL.</li>
+<li>Image export in Firefox.</li>
+<li>WMC Loader: Loading WMC and Behaviour of BaseSources.</li>
+<li>BaseSourceSwitcher: Tiles of a not visible service are not pre-fetched.</li>
+<li>BaseSourceSwitcher: If a group is defined, only one theme is switched on.</li>
+<li>SearchRouter: Fix of quotes for table-names.</li>
+<li>Copy applications: Fix of the search in the copied application.</li>
+<li>Simple Search: Catch the return key.</li>
+<li>FeatureInfo: Add WMS functionality and WMS Loader.</li>
+<li>Icon Polygon is visible in the toolbar of applications.</li>
+<li>Icons, which are not based on FontAwesome also work in the mobile application.</li>
+<li>Administration of the map element: The view of the configuration dialog in the backend starts on top.</li>
+<li>Administration data source: No form data auto-complete from the browser for username and password.</li>
+<li>Mobile application: Design in Firefox for Android.</li>
+<li>Update 3.0.4.x: FeatureInfo autoopen=true is kept.</li>
+<li>Doku: FOM <a class="reference external" href="../bundles/FOM/UserBundle/index.html">UserBundle translation</a> and <a class="reference external" href="../bundles/FOM/UserBundle/users.html">additional information for failed user logins</a>.</li>
+<li>Doku: URL parameter scale in <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/map.html">map element</a>.</li>
+<li>Doku: <a class="reference external" href="../bundles/Mapbender/WmcBundle/elements/wmc_loader.html">WMC Loader</a> and KeepSources.</li>
+</ul>
+<p><strong>Changes in config.yml:</strong></p>
+<ul>
+<li><p class="first">The following changes are optional parameters for the behaviour of the login (see also <a class="reference external" href="../bundles/FOM/UserBundle/users.html">the chapter in the FOM bundle for details</a>):</p>
+<blockquote>
+<div><div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">fom_user</span><span class="p p-Indicator">:</span>
+
+  <span class="c1"># Allow to create user log table on the fly if the table doesn&#39;t exits.</span>
+  <span class="c1"># Default: true</span>
+  <span class="l l-Scalar l-Scalar-Plain">auto_create_log_table</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class="c1"># Time between to check login tries</span>
+  <span class="l l-Scalar l-Scalar-Plain">login_check_log_time</span><span class="p p-Indicator">:</span> <span class="s">&quot;-5</span><span class="nv"> </span><span class="s">minutes&quot;</span>
+
+  <span class="c1"># Login attemps before delay starts</span>
+  <span class="l l-Scalar l-Scalar-Plain">login_attempts_before_delay</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+
+  <span class="c1"># Login delay after all attemps are failed</span>
+  <span class="l l-Scalar l-Scalar-Plain">login_delay_after_fail</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span> <span class="c1"># Seconds</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="milestone-3-0-5-1">
+<h2>Milestone 3.0.5.1<a class="headerlink" href="#milestone-3-0-5-1" title="Permalink to this headline">¶</a></h2>
+<p>Release Datum: 26.08.2015</p>
+<p><strong>New functions</strong>: in the <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/map.html">Map element</a> and in the <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/printclient.html">Print client</a>:</p>
+<ul class="simple">
+<li>Map: OpenLayers TileSize: You can set the tile-size for the map. Default: 256x256.</li>
+<li>Map: Delay before Tiles: For WMS-T, for example with temporal parameters (in future)</li>
+<li>Print: Show coordinates in PDF print</li>
+<li>Print: get print scale depending on map-scale</li>
+<li>Print: print legend_default_behaviour</li>
+<li>Print: add print templates with the + symbol</li>
+<li>Print: user-defined logo and text</li>
+</ul>
+<p><strong>Bugfixes:</strong></p>
+<ul class="simple">
+<li>Layertree: loading symbol and exclamation mark symbol.</li>
+<li>Layertree: zoom Symbol not for layers without a BBOX information</li>
+<li>WMS Reload: FeatureInfo</li>
+<li>WMS Reload: some WMS couldn&#8217;t be reloaded.</li>
+<li>Export/Import of application and miscellaneous bugfixes</li>
+<li>WMC-Editor and WMC-Load fixes.</li>
+<li>WMC from a Mapbender 3.0.4.1 application</li>
+<li>Tile buffer and BBOX buffer fixes</li>
+<li>FeatureInfo: Fixes in design and when shown as an Accordion Panel</li>
+<li>FeatureInfo: Print</li>
+<li>Wrong Jquery-UI link in layerset instance</li>
+<li>Save Layerset and Save Layout leaves you on the page</li>
+<li>Classic Template: SCSS corrections</li>
+<li>Mobile Template: Bootstrap message hides close button</li>
+<li>Mobile Template: close SearchRouter window</li>
+<li>Mobile Template: Mozilla Firefox Fixes on layout</li>
+<li>Backend: Layerset Filter and +-Buttons doesn&#8217;t hide everything anymore</li>
+<li>composer.json upgrade version of Digitizer to 1.0.*</li>
+<li>Documentation of the JS-UI Generator (Form-Generator): <a class="reference external" href="https://github.com/eSlider/vis-ui.js">https://github.com/eSlider/vis-ui.js</a></li>
+<li>Restructured <a class="reference external" href="installation.html">Installations-Dokumentation</a> and some changes (php-pear, assets-Verzeichnis, init:acl, openssl).</li>
+<li>Better documentation of the <a class="reference external" href="templates.html">Mapbender3 Templates</a></li>
+<li>Better documentation of the <a class="reference external" href="quickstart.html">Quickstart</a></li>
+</ul>
+<p><strong>Known Issues:</strong></p>
+<ul class="simple">
+<li>After copying an application from Mapbender 3.0.4.x you have to set the layerset in the map/overview element. Please save the map and overview element beforehand.</li>
+<li>Regional Template removed</li>
+</ul>
+</div>
+<div class="section" id="milestone-3-0-5-0">
+<h2>Milestone 3.0.5.0<a class="headerlink" href="#milestone-3-0-5-0" title="Permalink to this headline">¶</a></h2>
+<p>Release Date: 01.07.2015</p>
+<p>For details have a look at:  <a class="reference external" href="https://github.com/mapbender/mapbender-starter/blob/develop/CHANGELOG.md">https://github.com/mapbender/mapbender-starter/blob/develop/CHANGELOG.md</a></p>
+<ul class="simple">
+<li><strong>WMS reload:</strong> WMS sources can now be reloaded if the structure has changed.</li>
+<li><strong>Digitizer:</strong> The digitizer allows the editing of geometries and their attributes. Right now it needs access to the database where the editable tables are. The definition of the digitizer is done in YAML syntax. To provide an usable interface for the attributes, you can declare the form in your configuration file. The form supports different input fields (textboxes, checkboxes, date-pickers, and so on..), validation, tabs and it uses Bootstrap.</li>
+<li><strong>Print with legend:</strong> The print element supports the print-out of the legend on a seperate page. This can be set with a checkbox.</li>
+<li><strong>Configurable layertree:</strong> The layertree supports the usage of more than one layerset. You have to adjust the map element to define which layersets should be shown and the layertree element itself. The usage is documented <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/layertree.html">on the Layertree page</a>.</li>
+<li><strong>Improved FeatureInfo dialog:</strong> You can set a) the width and height of the FeatureInfo dialog, b) if the dialog should show the original format of the WMS and c) if it should only open if a valid entry is found (otherwise a messagebox is displayed). See the documentation of the <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/feature_info.html">FeatureInfo Dialog</a>.</li>
+<li><strong>Mobile template:</strong> A new modern mobile template is provided.</li>
+<li><strong>SASS Compiler:</strong> Architectual changes are made at the SASS compiler which leads to a more performant interface.</li>
+<li><strong>Vendor Specific Parameters:</strong> A WMS layer instance supports the definition of Vendor Specific Parameters that are added to the WMS request. You can define hard coded values or the user or group information of the logged-in user. See the documentation of <a class="reference external" href="../book/quickstart.html#configure-your-wms">Vendor Specific Parameters</a> for details.</li>
+<li><strong>Expanded functionality of HTML elements with a form-builder:</strong> This approach is used in the Digitizer to provide the forms for attribute editing.</li>
+<li><strong>New button colletion:</strong> The new buttons are based on a new font, the old buttons are available under the &#8220;FontAwesome&#8221; name.</li>
+<li><strong>Starting mapbender with URL parameters:</strong> Mapbender3 can be started with URL parameters. See the documentation of <a class="reference external" href="../bundles/Mapbender/CoreBundle/elements/map.html#controlling-by-url">URL parameters</a>.</li>
+<li>New translations for Portuguese and Russian.</li>
+<li>Symfony updated to 2.3.30.</li>
+</ul>
+<p><strong>Changes in config.yml:</strong></p>
+<ul>
+<li><p class="first">Changes in a dbal connection:</p>
+<ul class="simple">
+<li><strong>logging: false</strong>: This options sets, that <em>all</em> SQL statements are not logged. Further information can be found here: <a class="reference external" href="http://www.loremipsum.at/blog/doctrine-2-sql-profiler-in-debugleiste/">http://www.loremipsum.at/blog/doctrine-2-sql-profiler-in-debugleiste/</a></li>
+<li><strong>profiling: false</strong>: This option handles the profiling of SQL statements. This option can be switched off in production environments.</li>
+</ul>
+<p>If possible the options should be set this way, so that they are only active in debug mode:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">logging</span><span class="p p-Indicator">:</span>               <span class="s">&quot;%kernel.debug%&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">profiling</span><span class="p p-Indicator">:</span>             <span class="s">&quot;%kernel.debug%&quot;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p><strong>Known Issues</strong></p>
+<ul class="simple">
+<li>After copying an application from Mapbender 3.0.4.x you have to set the layerset in the map/overview element.</li>
+</ul>
+</div>
+<div class="section" id="milestone-3-0-4-1">
+<h2>Milestone 3.0.4.1<a class="headerlink" href="#milestone-3-0-4-1" title="Permalink to this headline">¶</a></h2>
+<p>Release Datum: 23-01-2015</p>
+<p>For details have a look at:  <a class="reference external" href="https://github.com/mapbender/mapbender-starter/blob/develop/CHANGELOG.md">https://github.com/mapbender/mapbender-starter/blob/develop/CHANGELOG.md</a></p>
+<ul class="simple">
+<li>option &#8216;removelayer&#8217; added into layertree menu</li>
+<li>parameter &#8216;layerRemove&#8217; removed from layertree configuration</li>
+<li>container accordion structure changed</li>
+<li>import / export from applications added (without acls)</li>
+<li>display layer metadata</li>
+<li>Frontend: Sidepane Accordeon Legend is displayed without horizontal Scrollbar</li>
+<li>Backend: WMS Instanz configuration - contextmenu for layers shows wrong ID (only instance ID)</li>
+<li>Frontend: Legend - displays WMS Information although the checkbox Show</li>
+<li>Frontend: Layertree - contextmenu zoomlayer does not use the layer extent</li>
+<li>Backend: Add Source with user/password - informations is added to field originUrl not to fields user and password</li>
+<li>app/console mapbender:generate:element fixed errors</li>
+<li>bug visiblelayers fixed</li>
+<li>WMS with authentication saves in table mb_wms_wmssource username and password</li>
+<li>no metadata for applications coming from mapbender.yml definition (no entry in context menu)</li>
+<li>copy an application via button on application fixed</li>
+<li>print template resize northarrow, overview added</li>
+<li>improved screenshot for application handling</li>
+<li><a class="reference external" href="https://github.com/mapbender/mapbender/milestones/3.0.4.1">https://github.com/mapbender/mapbender/milestones/3.0.4.1</a></li>
+</ul>
+</div>
+<div class="section" id="milestone-3-0-4-0">
+<h2>Milestone 3.0.4.0<a class="headerlink" href="#milestone-3-0-4-0" title="Permalink to this headline">¶</a></h2>
+<p>release date: 12-09-2014</p>
+<p>For details have a look at <a class="reference external" href="https://github.com/mapbender/mapbender-starter/blob/develop/CHANGELOG.md">https://github.com/mapbender/mapbender-starter/blob/develop/CHANGELOG.md</a></p>
+<ul class="simple">
+<li>Switched to MIT license</li>
+<li>Symfony Update 2.3 LTS</li>
+<li>OpenLayers 2.13 with additional patches</li>
+<li>Switch Services (BaseSourceSwitcher) with menu</li>
+<li>added generic HTML element</li>
+<li>added custom CSS editor for applications</li>
+<li>added accordion container for SidePane</li>
+<li>added screenshot management to application editing</li>
+<li>import/export of applications/sources</li>
+<li>spanish translation</li>
+</ul>
+</div>
+<div class="section" id="milestone-3-0-3">
+<h2>Milestone 3.0.3<a class="headerlink" href="#milestone-3-0-3" title="Permalink to this headline">¶</a></h2>
+<p>release date: 17-03-2014</p>
+<p>For details have a look at: <a class="reference external" href="https://github.com/mapbender/mapbender/issues?milestone=8">https://github.com/mapbender/mapbender/issues?milestone=8</a></p>
+<ul class="simple">
+<li>Enhancements for Search-Router für SQL-Suchen (Selectboxes, Distinct)</li>
+<li>WMC Editor and Loader</li>
+<li>WMSLoader Enhancement add WMS via link</li>
+<li>i18n - Internationalisation (english / german)</li>
+<li>Sketch to draw temporary objects</li>
+<li>POI - Meetingpoint</li>
+<li>Imageexport to generate png or jpg</li>
+<li>Change WMS Collection via button (BaselayerSwitcher)</li>
+<li>Print with overview</li>
+<li>Sidepane with different elements (chnage via button)</li>
+<li>Layertree context menue to change opacity and to zoom to layer</li>
+<li>Open application with parameters (f.e. position)</li>
+<li>ACL for elements</li>
+<li>Added function for validate WMS GetCapabilities documents</li>
+</ul>
+</div>
+<div class="section" id="milestone-3-0-2">
+<h2>Milestone 3.0.2<a class="headerlink" href="#milestone-3-0-2" title="Permalink to this headline">¶</a></h2>
+<p>release date: 27-11-2013</p>
+<p>For details have a look at <a class="reference external" href="https://github.com/mapbender/mapbender/issues?milestone=6">https://github.com/mapbender/mapbender/issues?milestone=6</a></p>
+<ul class="simple">
+<li>SearchRouter</li>
+<li>WMC Editor and Loader</li>
+<li>WMSLoader enhancement to load a WMS from a link</li>
+</ul>
+</div>
+<div class="section" id="milestone-3-0-1">
+<h2>Milestone 3.0.1<a class="headerlink" href="#milestone-3-0-1" title="Permalink to this headline">¶</a></h2>
+<p>release date: 06-09-2013</p>
+<p>For details have a look at <a class="reference external" href="https://github.com/mapbender/mapbender/issues?milestone=5">https://github.com/mapbender/mapbender/issues?milestone=5</a></p>
+<ul class="simple">
+<li>Kopieren einer Anwendung mit Diensten</li>
+<li>Popup - draggable</li>
+<li>PrintClient Erweiterung Druck EPSG 4326, neue Drucklayouts, Druck A4-A0</li>
+<li>Catch login failures to avoid  brute force login attempts</li>
+<li>Bug fixes</li>
+</ul>
+</div>
+<div class="section" id="milestone-3-0-0-2">
+<h2>Milestone 3.0.0.2<a class="headerlink" href="#milestone-3-0-0-2" title="Permalink to this headline">¶</a></h2>
+<p>Bugfix-Release Date: 19-07-2013</p>
+<p>For details have a look at: <a class="reference external" href="https://github.com/mapbender/mapbender/issues?milestone=4">https://github.com/mapbender/mapbender/issues?milestone=4</a></p>
+</div>
+<div class="section" id="milestone-3-0-0-1">
+<h2>Milestone 3.0.0.1<a class="headerlink" href="#milestone-3-0-0-1" title="Permalink to this headline">¶</a></h2>
+<p>Bugfix-Release Date: 07-06-2013</p>
+<p>For details have a look at: <a class="reference external" href="https://github.com/mapbender/mapbender/issues?milestone=3">https://github.com/mapbender/mapbender/issues?milestone=3</a></p>
+</div>
+<div class="section" id="milestone-3-0-0-0">
+<h2>Milestone 3.0.0.0<a class="headerlink" href="#milestone-3-0-0-0" title="Permalink to this headline">¶</a></h2>
+<p>release date: 29-05-2013</p>
+<p>For details have a look at <a class="reference external" href="https://github.com/mapbender/mapbender/issues?milestone=1">https://github.com/mapbender/mapbender/issues?milestone=1</a></p>
+<ul class="simple">
+<li>Administration Backend for Service, Application, User/Group and security administration</li>
+<li>Backend-/Frontend Design</li>
+<li>Security</li>
+<li>User/Group Administration</li>
+<li>WMS Administration</li>
+<li>Map</li>
+<li>Layertree</li>
+<li>Legend</li>
+<li>Overview Map</li>
+<li>Navigation Toolbar (Zoombar)</li>
+<li>Feature Info</li>
+<li>Coordinates Display</li>
+<li>Copyright</li>
+<li>Line/Area Ruler</li>
+<li>Scale Selector</li>
+<li>ScaleBar</li>
+<li>Spatial Reference System Selector</li>
+<li>GPS-Position</li>
+<li>Print</li>
+<li>Add WMS to application</li>
+<li>Documentation at <a class="reference external" href="http://doc.mapbender3.org">http://doc.mapbender3.org</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Version history</a><ul>
+<li><a class="reference internal" href="#version-3-0-6-3">Version 3.0.6.3</a></li>
+<li><a class="reference internal" href="#version-3-0-6-2">Version 3.0.6.2</a></li>
+<li><a class="reference internal" href="#version-3-0-6-1">Version 3.0.6.1</a></li>
+<li><a class="reference internal" href="#version-3-0-6-0">Version 3.0.6.0</a></li>
+<li><a class="reference internal" href="#milestone-3-0-5-3">Milestone 3.0.5.3</a></li>
+<li><a class="reference internal" href="#milestone-3-0-5-2">Milestone 3.0.5.2</a></li>
+<li><a class="reference internal" href="#milestone-3-0-5-1">Milestone 3.0.5.1</a></li>
+<li><a class="reference internal" href="#milestone-3-0-5-0">Milestone 3.0.5.0</a></li>
+<li><a class="reference internal" href="#milestone-3-0-4-1">Milestone 3.0.4.1</a></li>
+<li><a class="reference internal" href="#milestone-3-0-4-0">Milestone 3.0.4.0</a></li>
+<li><a class="reference internal" href="#milestone-3-0-3">Milestone 3.0.3</a></li>
+<li><a class="reference internal" href="#milestone-3-0-2">Milestone 3.0.2</a></li>
+<li><a class="reference internal" href="#milestone-3-0-1">Milestone 3.0.1</a></li>
+<li><a class="reference internal" href="#milestone-3-0-0-2">Milestone 3.0.0.2</a></li>
+<li><a class="reference internal" href="#milestone-3-0-0-1">Milestone 3.0.0.1</a></li>
+<li><a class="reference internal" href="#milestone-3-0-0-0">Milestone 3.0.0.0</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="glossary.html"
+                        title="previous chapter">Glossary</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../bundles.html"
+                        title="next chapter">Bundle Documentation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/en/book/versions.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../bundles.html" title="Bundle Documentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="glossary.html" title="Glossary"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" >The Book</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

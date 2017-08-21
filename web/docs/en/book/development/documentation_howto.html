@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to write Mapbender3 Documentation? &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="The Developer’s Book" href="../../development.html" />
+    <link rel="next" title="Willkommen bei der Mapbender3 Dokumentation" href="../../../de/index.html" />
+    <link rel="prev" title="Conventions for Mapbender3" href="conventions.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../de/index.html" title="Willkommen bei der Mapbender3 Dokumentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="conventions.html" title="Conventions for Mapbender3"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" accesskey="U">The Developer&#8217;s Book</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-write-mapbender3-documentation">
+<span id="documentation-howto"></span><h1>How to write Mapbender3 Documentation?<a class="headerlink" href="#how-to-write-mapbender3-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="mapbender3-documentation-website">
+<h2>Mapbender3 Documentation website<a class="headerlink" href="#mapbender3-documentation-website" title="Permalink to this headline">¶</a></h2>
+<p>You find the Mapbender3 Documentation at:</p>
+<p><a class="reference external" href="http://doc.mapbender3.org">http://doc.mapbender3.org</a></p>
+<p>The Documentation is build from the mapbender-docmentation repository at Github. This repository is used to build and deploy the <a class="reference external" href="http://doc.mapbender3.org">http://doc.mapbender3.org</a> website on a nightly base. The website code is generated using Sphinx, therefore the documentation source is written in Restructured Text.</p>
+<p>Mapbender3 also provides an API Documentation at:</p>
+<p><a class="reference external" href="http://api.mapbender3.org">http://api.mapbender3.org</a></p>
+<p>This API Documentation is generated from the Mapbender3 code. You find information about how to write the Mapbender3 API documentation at <a class="reference internal" href="apidocumentation.html"><em>API documentation</em></a>.</p>
+<p>This HowTo concentrates on the build of the documentation at <a class="reference external" href="http://doc.mapbender3.org">http://doc.mapbender3.org</a>.</p>
+</div>
+<div class="section" id="edit-documentation-at-git-repository-mapbender-documentation">
+<h2>Edit documentation at Git Repository mapbender-documentation<a class="headerlink" href="#edit-documentation-at-git-repository-mapbender-documentation" title="Permalink to this headline">¶</a></h2>
+<p>The documentation files are located at the git repository:</p>
+<p><a class="reference external" href="https://github.com/mapbender/mapbender-documentation/">https://github.com/mapbender/mapbender-documentation/</a></p>
+<p>Developers granted secure access to the code must use the SSH-URL of the
+repository to get the files and be able to push:</p>
+<div class="highlight-bash"><div class="highlight"><pre>git clone git@github.com:mapbender/mapbender-documentation
+</pre></div>
+</div>
+</div>
+<div class="section" id="structure-of-the-documentation">
+<h2>Structure of the documentation<a class="headerlink" href="#structure-of-the-documentation" title="Permalink to this headline">¶</a></h2>
+<p>We want to provide documentation in different languages. The language we want to support first is english. So every document should be build up in english first.</p>
+<p>Every language (en - english, de - german) has the same file structure.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">/mapbender-documentation</span>
+  <span class="l l-Scalar l-Scalar-Plain">index.rst</span>          <span class="c1"># refers to the different languages</span>
+  <span class="l l-Scalar l-Scalar-Plain">/figures</span>           <span class="c1"># images that are included in the documentation</span>
+  <span class="l l-Scalar l-Scalar-Plain">/de</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+  <span class="l l-Scalar l-Scalar-Plain">/en</span>
+    <span class="l l-Scalar l-Scalar-Plain">index.rst</span>        <span class="c1"># refers to TheBook, Developer&#39;s Book &amp; the Bundle Documentation</span>
+    <span class="l l-Scalar l-Scalar-Plain">bundles.rst</span>      <span class="c1"># lists the chapters of this category - refers to rst files</span>
+    <span class="l l-Scalar l-Scalar-Plain">development.rst</span>  <span class="c1"># lists the chapters of this category - refers to rst files</span>
+    <span class="l l-Scalar l-Scalar-Plain">thebook.rst</span>      <span class="c1"># lists the chapters of this category - refers to rst files</span>
+    <span class="l l-Scalar l-Scalar-Plain">/book</span>
+      <span class="l l-Scalar l-Scalar-Plain">....</span>
+      <span class="l l-Scalar l-Scalar-Plain">/development</span>
+        <span class="l l-Scalar l-Scalar-Plain">....</span>
+    <span class="l l-Scalar l-Scalar-Plain">/bundles</span>
+        <span class="l l-Scalar l-Scalar-Plain">/Mapbender</span>
+          <span class="l l-Scalar l-Scalar-Plain">/CoreBundle</span>
+            <span class="l l-Scalar l-Scalar-Plain">index.rst</span>             <span class="c1"># refers to the elements, entitiy &amp; service documentation</span>
+            <span class="l l-Scalar l-Scalar-Plain">template_element.rst</span>  <span class="c1"># template to use for new element documentation</span>
+            <span class="l l-Scalar l-Scalar-Plain">/elements</span>
+              <span class="l l-Scalar l-Scalar-Plain">legend.rst</span>
+              <span class="l l-Scalar l-Scalar-Plain">...</span>
+            <span class="l l-Scalar l-Scalar-Plain">/services</span>
+              <span class="l l-Scalar l-Scalar-Plain">...</span>
+          <span class="l l-Scalar l-Scalar-Plain">/WmsBundle</span>
+            <span class="l l-Scalar l-Scalar-Plain">...</span>
+        <span class="l l-Scalar l-Scalar-Plain">/FOM</span>
+          <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-build-the-documentation-via-sphinx">
+<h2>How to build the documentation via Sphinx?<a class="headerlink" href="#how-to-build-the-documentation-via-sphinx" title="Permalink to this headline">¶</a></h2>
+<p>We generate the webside code from the rst-files using Sphinx.</p>
+<p>To build the website locally, you need to install Sphinx. In Debian-based distributions this is done via:</p>
+<div class="highlight-bash"><div class="highlight"><pre>apt-get install python-sphinx
+</pre></div>
+</div>
+<p>Additionally, a Sphinx extension for Symfony2 is used as a submodule, so a</p>
+<div class="highlight-bash"><div class="highlight"><pre>git submodule update --init --recursive
+</pre></div>
+</div>
+<p>is also required.</p>
+<p>You can then build the documentation by running</p>
+<div class="highlight-bash"><div class="highlight"><pre>sphinx-build . output
+</pre></div>
+</div>
+<p>You can also use the generate.sh shell script if you like.</p>
+<div class="section" id="build-the-documentation-with-the-makefile">
+<h3>Build the documentation with the Makefile<a class="headerlink" href="#build-the-documentation-with-the-makefile" title="Permalink to this headline">¶</a></h3>
+<p>We also provide a Makefile. This Makefile contains two targets:</p>
+<ul class="simple">
+<li><strong>build:</strong> The build-target runs the above mentioned sphinx-build command. This is the default target.</li>
+<li><strong>clean:</strong> The clean-target removes all files from the output directory and the .doctrees and .buildinfo file. These files are generated by the build-target. Sometimes it is useful to clean the output directory, for example if images were changed or sphinx did not recognize the changes.</li>
+</ul>
+<p>To build the documentation type:</p>
+<div class="highlight-bash"><div class="highlight"><pre>make
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-bash"><div class="highlight"><pre>make build
+</pre></div>
+</div>
+<p>To clean the documentation type:</p>
+<div class="highlight-bash"><div class="highlight"><pre>make clean
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-write-documentation">
+<h2>How to write documentation?<a class="headerlink" href="#how-to-write-documentation" title="Permalink to this headline">¶</a></h2>
+<p>We write documentation for elements, entities, services.</p>
+</div>
+<div class="section" id="images-figures">
+<h2>Images (figures)<a class="headerlink" href="#images-figures" title="Permalink to this headline">¶</a></h2>
+<p>Images for the documentation are <strong>all</strong> located at</p>
+<ul class="simple">
+<li>mapbender-documentation/figures</li>
+<li>create images with size 800 x 600px (you can resize your browser window f.e. with web developer to this size)</li>
+<li>have a look at quickstart.rst about how to refer to an image</li>
+</ul>
+</div>
+<div class="section" id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h2>
+<p>The Mapbender3 Quickstart is a tutorial to get to know Mapbender. It is used on OSGeo-Live too <a class="reference external" href="http://live.osgeo.org">http://live.osgeo.org</a>.</p>
+<dl class="docutils">
+<dt>If you want to add a new lesson to the Quickstart:</dt>
+<dd><ul class="first last simple">
+<li>add the subject of you lesson at the beginning of the document (This Quick Start describes how to: ...)</li>
+<li>add the new lesson to the document and provide a screenshot if this makes sense</li>
+<li>images are stored in the ../../../figures-directory</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="example-for-element-documentation">
+<h2>Example for element documentation<a class="headerlink" href="#example-for-element-documentation" title="Permalink to this headline">¶</a></h2>
+<p>You have to write a new element documentation when a new element with new functionality is added to Mapbender.</p>
+<p>In this example we assume, that you are a developer and just added a new element to Mapbender3 code base. We assume your element is called AddWMS and is part of the Mapbender CoreBundle.</p>
+<p><strong>Now it is time to write the documentation!</strong></p>
+<p>Here are the steps you have to do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c1"># get the documentation files from github</span>
+<span class="nb">cd</span> /data
+git clone git@github.com:mapbender/mapbender-documentation
+<span class="nb">cd</span> /mapbender-documentation/en/bundles/Mapbender/CoreBundle
+
+<span class="c1"># create a rst-file. Use the template for element documentation!</span>
+cp template_element.rst elements/add_wms.rst
+
+<span class="c1"># write the documentation. You find information how and what to write in the documentation in template_element.rst</span>
+
+<span class="c1"># build the the documentation locally to see how your documentation looks like</span>
+<span class="nb">cd</span> /data/mapbender-documentation/
+sphinx-build . output
+
+<span class="c1"># have a look at the documentation in your browser (example location). Is everything ok? Any changes needed?</span>
+file:///data/mapbender-documentation/output/index.html
+
+<span class="c1"># add, commit and push your new file to the mapbender-documentation repository</span>
+git add en/bundles/Mapbender/CoreBundle/elements/add_wms.rst
+git commit -m <span class="s1">&#39;new documentation for element AddWms&#39;</span> en/bundles/Mapbender/CoreBundle/elements/add_wms.rst
+git push
+
+<span class="c1"># get the actual files from the mapbender-documentation repository</span>
+git pull
+</pre></div>
+</div>
+</div>
+<div class="section" id="working-with-restructured-text-rst">
+<h2>Working with reStructured Text (rst)<a class="headerlink" href="#working-with-restructured-text-rst" title="Permalink to this headline">¶</a></h2>
+<p>For more info for rst-files and reStructured Text, take a look at these documentations:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://en.wikipedia.org/wiki/ReStructuredText">Wikipedia reStructured Text</a></li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructured Text on docutils at SourceForge</a></li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">Quick reStructuredText</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to write Mapbender3 Documentation?</a><ul>
+<li><a class="reference internal" href="#mapbender3-documentation-website">Mapbender3 Documentation website</a></li>
+<li><a class="reference internal" href="#edit-documentation-at-git-repository-mapbender-documentation">Edit documentation at Git Repository mapbender-documentation</a></li>
+<li><a class="reference internal" href="#structure-of-the-documentation">Structure of the documentation</a></li>
+<li><a class="reference internal" href="#how-to-build-the-documentation-via-sphinx">How to build the documentation via Sphinx?</a><ul>
+<li><a class="reference internal" href="#build-the-documentation-with-the-makefile">Build the documentation with the Makefile</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#how-to-write-documentation">How to write documentation?</a></li>
+<li><a class="reference internal" href="#images-figures">Images (figures)</a></li>
+<li><a class="reference internal" href="#quickstart">Quickstart</a></li>
+<li><a class="reference internal" href="#example-for-element-documentation">Example for element documentation</a></li>
+<li><a class="reference internal" href="#working-with-restructured-text-rst">Working with reStructured Text (rst)</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="conventions.html"
+                        title="previous chapter">Conventions for Mapbender3</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../../de/index.html"
+                        title="next chapter">Willkommen bei der Mapbender3 Dokumentation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/en/book/development/documentation_howto.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../de/index.html" title="Willkommen bei der Mapbender3 Dokumentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="conventions.html" title="Conventions for Mapbender3"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" >The Developer&#8217;s Book</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

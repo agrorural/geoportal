@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Layertree - Table of Content (Layerbaum) &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="Legend" href="legend.html" />
+    <link rel="prev" title="ImageExport" href="imageexport.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="legend.html" title="Legend"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="imageexport.html" title="ImageExport"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="layertree-table-of-content-layerbaum">
+<span id="layertree"></span><h1>Layertree - Table of Content (Layerbaum)<a class="headerlink" href="#layertree-table-of-content-layerbaum" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p><strong>What are the functionalities of the Layertree?</strong></p>
+<ul class="simple">
+<li>Display layers</li>
+<li>Display layergroups</li>
+<li>Display thematic layergroups (since version 3.0.5)</li>
+<li>Enabling and disabling layers</li>
+<li>Enabling and disabling queries for the layers</li>
+<li>Changing the order of layers</li>
+<li>Zoom to map extend of layers</li>
+<li>Query the metadata of layers</li>
+</ul>
+<div class="figure" id="id12">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_example_dialog1.png"><img alt="simple Layertree integrated as dialogue with a Layerset and Layer" src="../../../../../_images/layertree_example_dialog1.png" style="width: 278.4px; height: 253.6px;" /></a>
+<p class="caption"><span class="caption-text">Simple Layertree integrated as dialogue with one Layerset and Layer.</span></p>
+</div>
+<div class="figure" id="id13">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_example_sidepane1.png"><img alt="complex Layertree integrated in the sidebar with multiple Layersets divided into thematic groups" src="../../../../../_images/layertree_example_sidepane1.png" style="width: 316.8px; height: 326.4px;" /></a>
+<p class="caption"><span class="caption-text">Thematic Layertree integrated in the sidebar with multiple Layersets.</span></p>
+</div>
+<p>To configure the Layer tree there are a few linking points to other elements that must be considered:</p>
+<ul class="simple">
+<li><a class="reference external" href="../entities/layerset.html">Layersets</a></li>
+<li><a class="reference external" href="../elements/map.html">Map element</a></li>
+<li><a class="reference external" href="../entities/source.html">Sources</a></li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-configuration">
+<h3>General Configuration<a class="headerlink" href="#general-configuration" title="Permalink to this headline">¶</a></h3>
+<p><strong>What do we have to do?</strong></p>
+<p>To use the different Layersets in our Layertree, various adjustments are necessary. These relate to:</p>
+<ol class="arabic simple">
+<li>Configuration of various Layersets,</li>
+<li>Configuration of the map ( Map element) to display the Layersets</li>
+<li>Configuration of the Layertree itself</li>
+</ol>
+<p>Through the use of the <strong>Layersets</strong>, the desired layers are included in the application. The instances are the references to the individual WMS services. With the plus-button <strong>[1]</strong> new Layersets can be created. Then, new layers can be integrated in the application by adding the existing instances <strong>[2]</strong>. The Layerset &#8220;overview &#8221; <strong>[3]</strong> is -as usual- used for displaying the overview map.
+For a detailed documentation on how the services can be integrated correctly, please head for to the documentation of the <a class="reference external" href="../entities/layerset.html">Layersets</a> and <a class="reference external" href="../entities/source.html">sources</a>.</p>
+<div class="figure" id="id14">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_layerset_en.png"><img alt="Configuration of various Layersets for integration into the Layertree." src="../../../../../_images/layertree_configuration_layerset_en.png" style="width: 641.6px; height: 578.4px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of various Layersets for integration into the Layertree.</span></p>
+</div>
+<p>In order to let the new integrated Layersets appear in the application, they must be specified in the <a class="reference external" href="../elements/map.html">Mapelement</a>.
+Here, you define which Layersets you want to use in the map by checking <strong>[1]</strong> the Layersets in the list. The Layerset &#8220;overview &#8221; for example is not displayed on the main map.
+In this step, you define the order in which the Layersets appear in your Layertree and the map. You can move the created Layersets from the list [2] by drag &amp; drop. Please notice that the first defined themes can cover underlying themes.</p>
+<div class="figure" id="id15">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_map_en.png"><img alt="Configuration in the map ( Map-Element ) to display the Layersets." src="../../../../../_images/layertree_configuration_map_en.png" style="width: 440.0px; height: 440.8px;" /></a>
+<p class="caption"><span class="caption-text">Configuration in the map ( Map-Element ) to display the Layersets.</span></p>
+</div>
+</div>
+<div class="section" id="workflow-layertree-with-basic-functions">
+<h3>Workflow Layertree with basic functions<a class="headerlink" href="#workflow-layertree-with-basic-functions" title="Permalink to this headline">¶</a></h3>
+<p>In the following section, we walk through an exemplary configuration of a Layertree with basic functions in three steps:</p>
+<ol class="arabic simple">
+<li>Configuration of a Layerset</li>
+<li>Configuration of the map ( Mapelement) to display the Layerset</li>
+<li>Configuration of the Layertree itself</li>
+</ol>
+<p>In the example we defined one <strong>Layerset</strong> with one instance:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Layerset World:</dt>
+<dd><ul class="first last simple">
+<li>Instance <a class="reference external" href="http://osm-demo.wheregroup.com/service?">OSM Demosource</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The instance of the OSM demosource is automatically included in the installation. Now this needs to be integrated into an existing Layerset. Change into the tab &#8220;Layersets&#8221;. In the following example, the Layerset &#8221; YAML main&#8221; was renamed to &#8221; World &#8221;.
+In case of difficulties with the integration, the documentation of the <a class="reference external" href="../entities/layerset.html">Layersets</a> provides useful information.</p>
+<div class="figure" id="id16">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_layerset_simple_en.png"><img alt="Configuration of a Layerset for integration into the simple Layertree." src="../../../../../_images/layertree_configuration_layerset_simple_en.png" style="width: 618.4px; height: 333.6px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of a Layerset for integration into the simple Layertree.</span></p>
+</div>
+<p>In the next step we configure the <a class="reference external" href="../elements/map.html">Map element</a> to display the Layersets in the <strong>map</strong>. To do this you need to change into the tab &#8220;Layouts&#8221; and edit the map element in the content.
+It is important, that you put a tick in the field of the Layerset &#8220;World&#8221; <strong>[1]</strong>, so it appears in the application afterwards. If you have questions for further configuration of the <a class="reference external" href="../elements/map.html">Map element</a>  the documentation can help.</p>
+<div class="figure" id="id17">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_map_simple_en.png"><img alt="Configuration in the map ( Map-Element ) to display the Layerset." src="../../../../../_images/layertree_configuration_map_simple_en.png" style="width: 441.6px; height: 440.8px;" /></a>
+<p class="caption"><span class="caption-text">Configuration in the map ( Map-Element ) to display the Layerset.</span></p>
+</div>
+<p>The last step is the configuration of the <strong>Layertree</strong>.
+The instances specified in the map element can be defined in more detail with the Layertree. If a predefined application has been copied, the Layertree should work now. If the element is newly created, it can already be used with the default settings without necessary further adjustments.
+For a better understanding of the functions and their usage we now edit the Layertree-element in the content.</p>
+<div class="figure" id="id18">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_1_en.png"><img alt="Configuration of the simple Layertree in the content." src="../../../../../_images/layertree_configuration_1_en.png" style="width: 440.0px; height: 331.2px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of the simple Layertree in the content.</span></p>
+</div>
+<p>When configuring the Layersets the function Basesource is activated as default. This is important for the <a class="reference external" href="../elements/basesourceswitcher.html">BaseSourceSwitcher</a>, which allows you to switch between predefined themes. By enabling  <strong>Display BaseSources</strong> [1], instances that have been loaded as a base source in the application, are displayed in the Layertree.</p>
+<p>The function <strong>Display Header</strong> [2] allows the inclusion of a headline in the Layertree.</p>
+<div class="figure" id="id19">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_header_en.png"><img alt="Headline in the Layertree." src="../../../../../_images/layertree_header_en.png" style="width: 259.2px; height: 52.0px;" /></a>
+<p class="caption"><span class="caption-text">Headline in the Layertree.</span></p>
+</div>
+<p>If you activate <strong>Open automatically</strong>, the Layertree is open on default when you start the application and must not be activated by clicking on a button or the unfolding of a sidebar. The <strong>Title</strong> [4] of the element is displayed in the &#8220;Layouts&#8221;-list and allows you to distinguish between different elements. The <strong>Target</strong> [5] is the ID of the map element.</p>
+<div class="figure" id="id20">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_title_en.png"><img alt="Title of the Layertree in the layout." src="../../../../../_images/layertree_title_en.png" style="width: 592.0px; height: 101.6px;" /></a>
+<p class="caption"><span class="caption-text">Title of the Layertree in the layout.</span></p>
+</div>
+<p>By specifying a <strong>Type</strong> [6] the display of the Layertrees can be defined. There are two display options:</p>
+<ul class="simple">
+<li><em>Dialog</em></li>
+<li><em>Element</em></li>
+</ul>
+<div class="figure">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_type1.png"><img alt="../../../../../_images/layertree_type1.png" src="../../../../../_images/layertree_type1.png" style="width: 380.0px; height: 100.8px;" /></a>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Dialog:</th><td class="field-body">You should choose the type <em>Dialog</em> when the Layertree is integrated via a button and the configuration element is in the content.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Element:</th><td class="field-body">You should choose the type <em>Element</em> when the Layertree is integrated via the sidepane.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" id="id21">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_type_map_en.png"><img alt="Type specification for the display of the Layertree." src="../../../../../_images/layertree_type_map_en.png" style="width: 673.6px; height: 398.4px;" /></a>
+<p class="caption"><span class="caption-text">Type specification for the display of the Layertree.</span></p>
+</div>
+<p>The <strong>Displaytype</strong> [7] defines the accordion-like display (<em>Tree</em>) of the Layertree. By adjusting the maximum number of characters in the field <strong>Titlemaxlength</strong> [8] the title of the individual layers can be limited to a number of characters. This is important for long layer names. After the maximung title length the title is shortened with &#8221;...&#8221;.</p>
+<div class="figure" id="id22">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_1_en.png"><img alt="Setup of a simple layertree in the content-area." src="../../../../../_images/layertree_configuration_1_en.png" style="width: 440.0px; height: 331.2px;" /></a>
+<p class="caption"><span class="caption-text">Setup of a simple layertree in the content-area.</span></p>
+</div>
+<p>Via the <strong>Menu</strong> [9] a number of buttons can be activated, which are then available in the layertree.</p>
+<ul class="simple">
+<li><em>Remove layer</em> (remove layer from the application)</li>
+<li><em>Opacity</em> (change the opacity of a layer)</li>
+<li><em>Zoom to layer</em> (zoom to the BBOX of the layer)</li>
+<li><em>Metadata</em> (show the metadata of the layer)</li>
+</ul>
+<div class="figure" id="id23">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_menu1.png"><img alt="Configuration for the context-menu." src="../../../../../_images/layertree_menu1.png" style="width: 397.6px; height: 65.6px;" /></a>
+<p class="caption"><span class="caption-text">Configuration for the context-menu.</span></p>
+</div>
+<p>The individual functions can be activated by clicking on the button. All active functions are highlighted in green. In addition next to each layer in the Layertree a symbol of the context menu appears. By clicking on the menu a window pops up and the individual features can be used. The menu can be closed by clicking on the x-button.</p>
+<div class="figure" id="id24">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_menu_map1.png"><img alt="Context menu of the layer in the Layertree." src="../../../../../_images/layertree_menu_map1.png" style="width: 276.8px; height: 156.0px;" /></a>
+<p class="caption"><span class="caption-text">Context menu of the layer in the Layertree.</span></p>
+</div>
+<p>The slider in the Layertree context menu <strong>[1]</strong> regulates the function <em>Opacity</em>. By moving the green box you can adjust the opacity of each layer. The percent of the opacity is displayed as an integer in the box.</p>
+<p>You can display the metadata of the layer by clicking on the Fact Sheet in the Layertree context menu <strong>[2]</strong>. If the service includes metadata, these will be displayed in a new dialog.</p>
+<p>A click on the &#8220;x&#8221; in the Layertree context menu <strong>[3]</strong> allows you to remove a layer from the application for the duration of the session.</p>
+<div class="figure" id="id25">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_menu_map1.png"><img alt="Layertree context menu." src="../../../../../_images/layertree_menu_map1.png" style="width: 276.8px; height: 156.0px;" /></a>
+<p class="caption"><span class="caption-text">Layertree context menu.</span></p>
+</div>
+<p>The function <strong>Hide visibility by folders</strong> [11] allows to save the configuration of the opacity. When active, the opacity of the layers is not displayed and can not be changed.</p>
+<div class="figure" id="id26">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_1_en.png"><img alt="Configuration of a simple Layertree in the content." src="../../../../../_images/layertree_configuration_1_en.png" style="width: 440.0px; height: 331.2px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of a simple Layertree in the content.</span></p>
+</div>
+<p>By clicking on the &#8220;folder&#8221;-icon of the Layertree <strong>[1]</strong> to the left of the instance the embedded layers can be displayed. All layers that have been previously activated in the Layerset now appear in the list. The function <strong>Hide not toggleable</strong> [10] allows you to hide layers that don&#8217;t contain multiple layers.</p>
+<div class="figure" id="id27">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_buttons1.png"><img alt="Layertree Buttons." src="../../../../../_images/layertree_buttons1.png" style="width: 199.2px; height: 71.2px;" /></a>
+<p class="caption"><span class="caption-text">Layertree Buttons.</span></p>
+</div>
+<p>The checkbox next to the respective layer name <strong>[2]</strong> allows to turn a layer on and off. If the checkbox is set, the Layer will appear in the map. However, it will continue to respect the defined rules of the Layerset, such as scale-dependent display.</p>
+<p>The &#8220;i&#8221;-icon next to a layer name <strong>[3]</strong> indicates if the FeatureInfo-function is enabled. The FeatureInfo-function is inactive if the &#8220;i&#8221;-icon is grayed out. If you activate the function with a click, the icon is dark gray and the requested information of the layer appears in a dialog box.</p>
+<p>The function <strong>Hide info</strong> [12] allows you to disable the FeatureInfo-function. Independent of the settings in the Layerset or source the FeatureInfo-function is no longer possible.</p>
+<div class="figure" id="id28">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_1_en.png"><img alt="Configuration of a simple Layertree in the content." src="../../../../../_images/layertree_configuration_1_en.png" style="width: 440.0px; height: 331.2px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of a simple Layertree in the content.</span></p>
+</div>
+</div>
+<div class="section" id="workflow-thematic-layertree">
+<h3>Workflow thematic Layertree<a class="headerlink" href="#workflow-thematic-layertree" title="Permalink to this headline">¶</a></h3>
+<p>In the following we walk through an exemplary configuration of a Layertree with advanced features such as the thematic layersets in three steps:</p>
+<ol class="arabic simple">
+<li>Configuration of multiple Layersets</li>
+<li>Configuration of the map ( Map element) to display the Layerset</li>
+<li>Configuration of the thematic Layertree itself</li>
+</ol>
+<p>In the example, we defined two Layerset with two instances each:</p>
+<ul class="simple">
+<li>Layerset Project NRW:
+* Instance <a class="reference external" href="http://www.wms.nrw.de/geobasis/wms_nw_dtk50?">DTK50 NRW</a>
+* Instance <a class="reference external" href="http://www.wms.nrw.de/umwelt/waldNRW?">Wald NRW</a></li>
+<li>Layerset World:
+* Instance <a class="reference external" href="http://osm-demo.wheregroup.com/service?">OSM Demodienst</a>
+* Instance <a class="reference external" href="http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv?">GEBCO</a></li>
+</ul>
+<p>For the configuraion of the Layersets the four services mentioned above were added as instances (Detailed information see above or in the documentation of the <a class="reference external" href="../entities/layerset.html">Layersets</a> and <a class="reference external" href="../entities/source.html">Sources</a>).</p>
+<p>For this example, the above mentioned steps were performed to add the Layerset &#8220;World&#8221; <strong>[2]</strong> with the instance &#8220;osm&#8221;. Now we add the instance &#8220;GEBCO&#8221; in this Layerset.
+To use the thematic grouping we create a new Layerset named &#8220;Project NRW&#8221; <strong>[3]</strong> and load the two instances &#8220;DTK50 NRW&#8221; and &#8220;Forest NRW&#8221; into our new Layerset &#8220;Project NRW&#8221;.</p>
+<div class="figure" id="id29">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_layerset_komplex_en.png"><img alt="Configuration of Layersets for thematic Layertree." src="../../../../../_images/layertree_configuration_layerset_komplex_en.png" style="width: 628.8px; height: 489.6px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of Layersets for thematic Layertree.</span></p>
+</div>
+<p>The Layerset should now contain three Layersets. The <strong>Overview</strong> [1] for the overview map, the <strong>World</strong>-Layerset [2] with the world-/ Germany-wide data and the <strong>Project NRW</strong> Layerset [3] with the two regional data sets from NRW.</p>
+<p>Now we configurate the <a class="reference external" href="../elements/map.html">map element</a>  to display the Layersets in the map. To do this we switch to the tab &#8220;layout&#8221; and edit the feature in the content area.
+It is now important that you set an active checkbox in the Layerset &#8220;World&#8221; AND Layerset &#8220;Project NRW&#8221; <strong>[1]</strong>, so that they appear later in the application.
+If you have questions for further configuration of the map, you can view the documentation of the <a class="reference external" href="../elements/map.html">map element</a>.</p>
+<div class="figure" id="id30">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_map_komplex_en.png"><img alt="Configuration of Layersets for thematic Layertree." src="../../../../../_images/layertree_configuration_map_komplex_en.png" style="width: 440.8px; height: 440.8px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of Layersets for thematic Layertree.</span></p>
+</div>
+<p>The last step is the creation of the Layertree itself.
+The instances in the <a class="reference external" href="../elements/map.html">map element</a>  can be defined in more detail via the Layertree. For a general understanding of the functions and introduction tutorial to create a Layertree please note the already declared settings in the workflow for the simple Layertree.</p>
+<div class="figure" id="id31">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_1_en.png"><img alt="Configuration of the simple Layertree." src="../../../../../_images/layertree_configuration_1_en.png" style="width: 440.0px; height: 331.2px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of the simple Layertree.</span></p>
+</div>
+<p>For the thematic Layertree we bind the element to the sidebar. For the integration into the Sidepane sector the element needs the type <em>Element</em> <strong>[6]</strong>.</p>
+<div class="figure" id="id32">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_type1.png"><img alt="Configuration of the type &quot;Element&quot;." src="../../../../../_images/layertree_type1.png" style="width: 380.0px; height: 100.8px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of the type &#8220;Element&#8221;.</span></p>
+</div>
+<p>If the option <strong>Thematic layer</strong> is disabled the Layertree ignores the configured Layersets and shows the individual instances without thematic structuring in the main level. However, we want to show the layers of our thematic Layersets, so we activate the function <strong>Thematic layer</strong> [1].
+Since we inserted both Layersets into the <a class="reference external" href="../elements/map.html">map element</a> of the application, they are now displayed under the <strong>Themes</strong>-area.</p>
+<div class="figure" id="id33">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_2_en.png"><img alt="Configuration of the thematic Layertree in the content." src="../../../../../_images/layertree_configuration_2_en.png" style="width: 441.6px; height: 441.6px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of the thematic Layertree in the content</span></p>
+</div>
+<p>Thus, to let the <strong>themes</strong> in the application appear as you want, there are several configuration options:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_configuration_thematic_map_en.png"><img alt="../../../../../_images/layertree_configuration_thematic_map_en.png" src="../../../../../_images/layertree_configuration_thematic_map_en.png" style="width: 378.4px; height: 102.4px;" /></a>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">[1] View theme:</th><td class="field-body">If this option is set, the Layerset appears as an additional level . If this option is not set, the defined instances are displayed in the main level.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">[2] Theme open or closed:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">If this option is set (symbol of the open folder), the theme in the Layertree is automatically opened or closed.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">[3] Theme source visibility:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">If this option is set, the &#8220;Show/ Hide source&#8221;-button is added in the Layertree.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">[4] Theme layer visibility:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">If this option is set, the &#8220;Activate all Layers&#8221;-button is added in the Layertree.</td>
+</tr>
+</tbody>
+</table>
+<p>If we keep the default settings in the Theme Set &#8220;World&#8221; and activate the other options in the Theme Set &#8220;Project NRW&#8221;, the configuration of the element will look like this:</p>
+<div class="figure" id="id34">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_example_sidepane_config_en.png"><img alt="Configuration of the thematic Layertree in the content." src="../../../../../_images/layertree_example_sidepane_config_en.png" style="width: 389.6px; height: 100.8px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of the thematic Layertree in the content.</span></p>
+</div>
+<p>Now we have the Layersets integrated as thematic groups. By configuring the thematic layer, the Layertree appears now like this:</p>
+<div class="figure" id="id35">
+<a class="reference internal image-reference" href="../../../../../_images/layertree_example_sidepane1.png"><img alt="Configuration of the thematic Layertree in the sidepane." src="../../../../../_images/layertree_example_sidepane1.png" style="width: 316.8px; height: 326.4px;" /></a>
+<p class="caption"><span class="caption-text">Configuration of the thematic Layertree in the sidepane.</span></p>
+</div>
+<p>The Layerset &#8220;World&#8221; is displayed as a theme, but it is not open and the two buttons are not available. In the Layerset &#8220;Project NRW&#8221; the theme is shown unfolded upon opening the application. The button for displaying/ hiding the source is available and all layers can be activated via a button.</p>
+</div>
+</div>
+<div class="section" id="yaml-definition">
+<h2>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">layertree</span>             <span class="c1"># title of layertree</span>
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>                    <span class="c1"># Id of the Map element to query</span>
+<span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>                      <span class="c1"># type of layertree, element or dialog</span>
+<span class="l l-Scalar l-Scalar-Plain">displaytype</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">tree</span>            <span class="c1"># only tree in 3.0, future will offer list</span>
+<span class="l l-Scalar l-Scalar-Plain">useAccordion</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>          <span class="c1"># accordion element, default is false</span>
+<span class="l l-Scalar l-Scalar-Plain">autoOpen</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>              <span class="c1"># true/false open when application is started, default is false</span>
+<span class="l l-Scalar l-Scalar-Plain">titleMaxLength</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>           <span class="c1"># max length of layer title, default is 20</span>
+<span class="l l-Scalar l-Scalar-Plain">showBaseSource</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>         <span class="c1"># show base layer, default is true</span>
+<span class="l l-Scalar l-Scalar-Plain">showHeader</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>             <span class="c1"># shows a headline which counts the number of services</span>
+<span class="l l-Scalar l-Scalar-Plain">menu</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">opacity</span><span class="p p-Indicator">,</span><span class="nv">zoomtolayer</span><span class="p p-Indicator">,</span><span class="nv">metadata</span><span class="p p-Indicator">,</span><span class="nv">removelayer</span><span class="p p-Indicator">]</span>  <span class="c1"># show contextmenu for the layer (like opacity, zoom to layer, metadata, remove layer), default is menu: []</span>
+</pre></div>
+</div>
+<p>You can optionally use a button to show this element. See <a class="reference internal" href="button.html"><em>Button</em></a> for inherited configuration options. You also can define the layertree with a type element. Then you can display the layertree in a frame like the sidebar.</p>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\Layertree</li>
+<li><strong>Widget:</strong> mapbender.element.layertree.js</li>
+<li><strong>Style:</strong> mapbender.elements.css</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="open">
+<h3>open<a class="headerlink" href="#open" title="Permalink to this headline">¶</a></h3>
+<p>Opens the layertree</p>
+</div>
+<div class="section" id="reload">
+<h3>reload<a class="headerlink" href="#reload" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Layertree - Table of Content (Layerbaum)</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#general-configuration">General Configuration</a></li>
+<li><a class="reference internal" href="#workflow-layertree-with-basic-functions">Workflow Layertree with basic functions</a></li>
+<li><a class="reference internal" href="#workflow-thematic-layertree">Workflow thematic Layertree</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a><ul>
+<li><a class="reference internal" href="#open">open</a></li>
+<li><a class="reference internal" href="#reload">reload</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="imageexport.html"
+                        title="previous chapter">ImageExport</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="legend.html"
+                        title="next chapter">Legend</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/en/bundles/Mapbender/CoreBundle/elements/layertree.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="legend.html" title="Legend"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="imageexport.html" title="ImageExport"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

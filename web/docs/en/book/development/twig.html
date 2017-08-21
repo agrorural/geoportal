@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Twig &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="The Developer’s Book" href="../../development.html" />
+    <link rel="next" title="Symfony2" href="symfony.html" />
+    <link rel="prev" title="Controllers" href="controllers.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="symfony.html" title="Symfony2"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="controllers.html" title="Controllers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" accesskey="U">The Developer&#8217;s Book</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="twig">
+<span id="id1"></span><h1>Twig<a class="headerlink" href="#twig" title="Permalink to this headline">¶</a></h1>
+<p>Symfony follows the template approach and we use this in Mapbender3. Symfony uses a templating engine to generate HTML, CSS or other content.</p>
+<p>Twig is a templating engine that is packaged in Symfony2 and offers an easy and powerfull way to generate templates.</p>
+<p>A template is a text file that can generate any text based format like HTML, XML. It is used to express presentation and not programm logic.</p>
+<p>You can use templates to create a layout. You can create a base layout and the overwrite or append any of your layout blocks with individual templates.</p>
+<p>Read more about Templates in Mapbender3 at <a class="reference internal" href="../templates.html"><em>How to create your own Template?</em></a>.</p>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Read more about Twig in Twig documentation the <a class="reference external" href="http://twig.sensiolabs.org/">http://twig.sensiolabs.org/</a>.</p>
+<p>You find a good introduction in the Symfony2 documentation <strong>Creating and using Templates</strong> <a class="reference external" href="http://symfony.com/doc/current/templating.html">http://symfony.com/doc/current/templating.html</a></p>
+</div>
+<div class="section" id="twig-syntax">
+<h2>Twig Syntax<a class="headerlink" href="#twig-syntax" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml"><div class="highlight"><pre>{# define a comment like this #}
+
+{{ mb_user }}      {# echo a variable #}
+
+{%    %}           {# do something if, for #}
+
+{{ mb_user|upper }}   {# use filter #}
+
+{{title|trans }}   {# translates the variable title #}
+{% trans %}title{% endtrans %}
+</pre></div>
+</div>
+</div>
+<div class="section" id="twig-template-caching">
+<h2>Twig Template caching<a class="headerlink" href="#twig-template-caching" title="Permalink to this headline">¶</a></h2>
+<p>Twig is fast and the twig template is compiled to a native PHP class at runtime.</p>
+<p>You find the compiled classes at</p>
+<blockquote>
+<div><p>app/cache/dev/twig   # when running in the development mode</p>
+<p>or</p>
+<p>app/cache/prod/twig   # when running in the productive mode</p>
+</div></blockquote>
+<p><strong>Notice:</strong> The files are cached in the productive mode. In the debug mode, the Twig template will be automatically recompiled.</p>
+</div>
+<div class="section" id="template-location">
+<h2>Template Location<a class="headerlink" href="#template-location" title="Permalink to this headline">¶</a></h2>
+<p>Templates can be located at</p>
+<ul class="simple">
+<li>app/Resources/views/</li>
+<li>&lt;path bundle&gt;/Resources/views/</li>
+</ul>
+</div>
+<div class="section" id="template-name">
+<h2>Template Name<a class="headerlink" href="#template-name" title="Permalink to this headline">¶</a></h2>
+<p>The name of your template should follows the syntax <strong>bundle:controller:template</strong>.</p>
+<p>In Mapbender3 we use for example the following twig templates:</p>
+<ul class="simple">
+<li>app/base.html.twig</li>
+<li>application/mapbender/src/Mapbender/CoreBundle/Resources/views/frontend.html.twig</li>
+<li>application/mapbender/src/Mapbender/CoreBundle/Resources/views/Template/fullscreen.html.twig</li>
+</ul>
+</div>
+<div class="section" id="check-the-syntax-of-your-twig-template">
+<h2>Check the syntax of your Twig template<a class="headerlink" href="#check-the-syntax-of-your-twig-template" title="Permalink to this headline">¶</a></h2>
+<p>You can check for syntax errors in Twig templates using the twig:lint console command:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console twig:lint mapbender/src/Mapbender/CoreBundle/Resources/views/Template/fullscreen.html.twig</span>
+</pre></div>
+</div>
+<p>The example checks by filename, but you could also check by directory or bundle name.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Twig</a><ul>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#twig-syntax">Twig Syntax</a></li>
+<li><a class="reference internal" href="#twig-template-caching">Twig Template caching</a></li>
+<li><a class="reference internal" href="#template-location">Template Location</a></li>
+<li><a class="reference internal" href="#template-name">Template Name</a></li>
+<li><a class="reference internal" href="#check-the-syntax-of-your-twig-template">Check the syntax of your Twig template</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="controllers.html"
+                        title="previous chapter">Controllers</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="symfony.html"
+                        title="next chapter">Symfony2</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/en/book/development/twig.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="symfony.html" title="Symfony2"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="controllers.html" title="Controllers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" >The Developer&#8217;s Book</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

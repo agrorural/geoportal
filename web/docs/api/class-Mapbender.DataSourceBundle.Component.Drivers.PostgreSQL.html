@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+
+	<title>Class Mapbender\DataSourceBundle\Component\Drivers\PostgreSQL | Mapbender 3.0.6.3 API documenation</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?260161822">
+	<link rel="stylesheet" href="resources/style.css?1063268116">
+
+</head>
+
+<body>
+	<div id="navigation" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="index.html" class="brand">Mapbender 3.0.6.3 API documenation</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="namespace-Mapbender.DataSourceBundle.Component.Drivers.html" title="Summary of Mapbender\DataSourceBundle\Component\Drivers"><span>Namespace</span></a>
+						</li>
+						<li class="active">
+<span>Class</span>						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+						</li>
+						<li>
+							<a href="deprecated.html" title="List of deprecated elements"><span>Deprecated</span></a>
+						</li>
+						<li>
+							<a href="todo.html" title="Todo list"><span>Todo</span></a>
+						</li>
+
+						<li class="divider-vertical"></li>
+
+						<li>
+							<a href="mapbender-3-0-6-3-api-documenation-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="left">
+	<div id="menu">
+		<form id="search" class="form-search">
+			<input type="hidden" name="cx" value="">
+			<input type="hidden" name="ie" value="UTF-8">
+			<input type="text" name="q" class="search-query" placeholder="Search">
+		</form>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-FOM.html">FOM<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.CoreBundle.html">CoreBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.CoreBundle.Component.html">Component</a>
+						</li>
+				<li><a href="namespace-FOM.CoreBundle.DependencyInjection.html">DependencyInjection</a>
+						</li>
+				<li><a href="namespace-FOM.CoreBundle.Doctrine.html">Doctrine<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.CoreBundle.Doctrine.Types.html">Types</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-FOM.CoreBundle.Form.html">Form<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.CoreBundle.Form.DataTransformer.html">DataTransformer</a>
+						</li>
+				<li><a href="namespace-FOM.CoreBundle.Form.Type.html">Type</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-FOM.ManagerBundle.html">ManagerBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.ManagerBundle.Component.html">Component</a>
+						</li>
+				<li><a href="namespace-FOM.ManagerBundle.Configuration.html">Configuration</a>
+						</li>
+				<li><a href="namespace-FOM.ManagerBundle.Controller.html">Controller</a>
+						</li>
+				<li><a href="namespace-FOM.ManagerBundle.DependencyInjection.html">DependencyInjection<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.ManagerBundle.DependencyInjection.Compiler.html">Compiler</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-FOM.ManagerBundle.Form.html">Form<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.ManagerBundle.Form.Type.html">Type</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-FOM.ManagerBundle.Routing.html">Routing</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-FOM.UserBundle.html">UserBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.UserBundle.Command.html">Command</a>
+						</li>
+				<li><a href="namespace-FOM.UserBundle.Component.html">Component</a>
+						</li>
+				<li><a href="namespace-FOM.UserBundle.Controller.html">Controller</a>
+						</li>
+				<li><a href="namespace-FOM.UserBundle.DependencyInjection.html">DependencyInjection<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.UserBundle.DependencyInjection.Factory.html">Factory</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-FOM.UserBundle.Entity.html">Entity</a>
+						</li>
+				<li><a href="namespace-FOM.UserBundle.EventListener.html">EventListener</a>
+						</li>
+				<li><a href="namespace-FOM.UserBundle.Form.html">Form<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.UserBundle.Form.DataTransformer.html">DataTransformer</a>
+						</li>
+				<li><a href="namespace-FOM.UserBundle.Form.EventListener.html">EventListener</a>
+						</li>
+				<li><a href="namespace-FOM.UserBundle.Form.Type.html">Type</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-FOM.UserBundle.Security.html">Security<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.UserBundle.Security.Authentication.html">Authentication<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.UserBundle.Security.Authentication.Provider.html">Provider</a>
+						</li>
+				<li><a href="namespace-FOM.UserBundle.Security.Authentication.Token.html">Token</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-FOM.UserBundle.Security.Authorization.html">Authorization<span></span></a>
+						<ul>
+				<li><a href="namespace-FOM.UserBundle.Security.Authorization.Voter.html">Voter</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-FOM.UserBundle.Security.Firewall.html">Firewall</a>
+						</li>
+							</ul></li></ul></li></ul></li>
+				<li class="active"><a href="namespace-Mapbender.html">Mapbender<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.Component.html">Component</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.html">CoreBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.CoreBundle.Asset.html">Asset</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Command.html">Command</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Component.html">Component<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.CoreBundle.Component.Exception.html">Exception</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.CoreBundle.Controller.html">Controller</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.DataFixtures.html">DataFixtures<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.CoreBundle.DataFixtures.ORM.html">ORM<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.CoreBundle.DataFixtures.ORM.Application.html">Application</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Mapbender.CoreBundle.DependencyInjection.html">DependencyInjection<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.CoreBundle.DependencyInjection.Compiler.html">Compiler</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.CoreBundle.Element.html">Element<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.CoreBundle.Element.DataTransformer.html">DataTransformer</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Element.EventListener.html">EventListener</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Element.Type.html">Type</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.CoreBundle.Entity.html">Entity</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.EventListener.html">EventListener</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Extension.html">Extension</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Form.html">Form<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.CoreBundle.Form.DataTransformer.html">DataTransformer</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Form.EventListener.html">EventListener</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Form.Type.html">Type</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.CoreBundle.Security.html">Security</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Template.html">Template</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Tests.html">Tests<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.CoreBundle.Tests.Controller.html">Controller</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.CoreBundle.Utils.html">Utils</a>
+						</li>
+				<li><a href="namespace-Mapbender.CoreBundle.Validator.html">Validator<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.CoreBundle.Validator.Constraints.html">Constraints</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Mapbender.DataSourceBundle.html">DataSourceBundle<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Mapbender.DataSourceBundle.Component.html">Component<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Mapbender.DataSourceBundle.Component.Drivers.html">Drivers<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.html">Interfaces</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Mapbender.DataSourceBundle.Controller.html">Controller</a>
+						</li>
+				<li><a href="namespace-Mapbender.DataSourceBundle.DependencyInjection.html">DependencyInjection</a>
+						</li>
+				<li><a href="namespace-Mapbender.DataSourceBundle.Element.html">Element<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.DataSourceBundle.Element.Type.html">Type</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.DataSourceBundle.Entity.html">Entity</a>
+						</li>
+				<li><a href="namespace-Mapbender.DataSourceBundle.Extension.html">Extension</a>
+						</li>
+				<li><a href="namespace-Mapbender.DataSourceBundle.Tests.html">Tests</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.DigitizerBundle.html">DigitizerBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.DigitizerBundle.Component.html">Component</a>
+						</li>
+				<li><a href="namespace-Mapbender.DigitizerBundle.Element.html">Element<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.DigitizerBundle.Element.Type.html">Type</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.DigitizerBundle.Entity.html">Entity</a>
+						</li>
+				<li><a href="namespace-Mapbender.DigitizerBundle.Utils.html">Utils</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.html">DrupalIntegrationBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.DependencyInjection.html">DependencyInjection</a>
+						</li>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.Security.html">Security<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.Security.Authentication.html">Authentication<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.Security.Authentication.Provider.html">Provider</a>
+						</li>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.Security.Authentication.Token.html">Token</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.Security.Authorization.html">Authorization<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.Security.Authorization.Voter.html">Voter</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.Security.Factory.html">Factory</a>
+						</li>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.Security.Firewall.html">Firewall</a>
+						</li>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.Security.User.html">User</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.DrupalIntegrationBundle.Session.html">Session</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.KmlBundle.html">KmlBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.KmlBundle.Element.html">Element</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.ManagerBundle.html">ManagerBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.ManagerBundle.Component.html">Component<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.ManagerBundle.Component.Exception.html">Exception</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.ManagerBundle.Controller.html">Controller</a>
+						</li>
+				<li><a href="namespace-Mapbender.ManagerBundle.Form.html">Form<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.ManagerBundle.Form.DataTransformer.html">DataTransformer</a>
+						</li>
+				<li><a href="namespace-Mapbender.ManagerBundle.Form.Type.html">Type</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.ManagerBundle.Template.html">Template</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.MobileBundle.html">MobileBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.MobileBundle.DependencyInjection.html">DependencyInjection</a>
+						</li>
+				<li><a href="namespace-Mapbender.MobileBundle.Template.html">Template</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.PrintBundle.html">PrintBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.PrintBundle.Component.html">Component</a>
+						</li>
+				<li><a href="namespace-Mapbender.PrintBundle.Element.html">Element<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.PrintBundle.Element.Type.html">Type</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Mapbender.WmcBundle.html">WmcBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.WmcBundle.Component.html">Component<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.WmcBundle.Component.Exception.html">Exception</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.WmcBundle.Element.html">Element<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.WmcBundle.Element.Type.html">Type</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.WmcBundle.Entity.html">Entity</a>
+						</li>
+				<li><a href="namespace-Mapbender.WmcBundle.Form.html">Form<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.WmcBundle.Form.Type.html">Type</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.WmcBundle.Tests.html">Tests<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.WmcBundle.Tests.Component.html">Component</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Mapbender.WmsBundle.html">WmsBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.WmsBundle.Component.html">Component<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.WmsBundle.Component.Exception.html">Exception</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.WmsBundle.Controller.html">Controller</a>
+						</li>
+				<li><a href="namespace-Mapbender.WmsBundle.DependencyInjection.html">DependencyInjection</a>
+						</li>
+				<li><a href="namespace-Mapbender.WmsBundle.Element.html">Element<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.WmsBundle.Element.DataTransformer.html">DataTransformer</a>
+						</li>
+				<li><a href="namespace-Mapbender.WmsBundle.Element.EventListener.html">EventListener</a>
+						</li>
+				<li><a href="namespace-Mapbender.WmsBundle.Element.Type.html">Type</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Mapbender.WmsBundle.Entity.html">Entity</a>
+						</li>
+				<li><a href="namespace-Mapbender.WmsBundle.Event.html">Event</a>
+						</li>
+				<li><a href="namespace-Mapbender.WmsBundle.Form.html">Form<span></span></a>
+						<ul>
+				<li><a href="namespace-Mapbender.WmsBundle.Form.DataTransformer.html">DataTransformer</a>
+						</li>
+				<li><a href="namespace-Mapbender.WmsBundle.Form.EventListener.html">EventListener</a>
+						</li>
+				<li><a href="namespace-Mapbender.WmsBundle.Form.Type.html">Type</a>
+						</li>
+							</ul></li></ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-OwsProxy3.html">OwsProxy3<span></span></a>
+						<ul>
+				<li><a href="namespace-OwsProxy3.CoreBundle.html">CoreBundle<span></span></a>
+						<ul>
+				<li><a href="namespace-OwsProxy3.CoreBundle.Component.html">Component<span></span></a>
+						<ul>
+				<li><a href="namespace-OwsProxy3.CoreBundle.Component.Exception.html">Exception</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-OwsProxy3.CoreBundle.Controller.html">Controller</a>
+						</li>
+				<li><a href="namespace-OwsProxy3.CoreBundle.DependencyInjection.html">DependencyInjection</a>
+						</li>
+				<li><a href="namespace-OwsProxy3.CoreBundle.Entity.html">Entity</a>
+						</li>
+				<li><a href="namespace-OwsProxy3.CoreBundle.Event.html">Event</a>
+						</li>
+				<li><a href="namespace-OwsProxy3.CoreBundle.EventListener.html">EventListener</a>
+						</li>
+				<li><a href="namespace-OwsProxy3.CoreBundle.Worker.html">Worker</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html">BaseDriver</a></li>
+				<li><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html">DoctrineBaseDriver</a></li>
+				<li><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Oracle.html">Oracle</a></li>
+				<li class="active"><a href="class-Mapbender.DataSourceBundle.Component.Drivers.PostgreSQL.html">PostgreSQL</a></li>
+				<li><a href="class-Mapbender.DataSourceBundle.Component.Drivers.SQLite.html">SQLite</a></li>
+				<li><a href="class-Mapbender.DataSourceBundle.Component.Drivers.YAML.html">YAML</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class PostgreSQL</h1>
+
+
+	<div class="description">
+	
+<p>Class PostgreSQL</p>
+
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+Symfony\Component\DependencyInjection\ContainerAware
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html"><span>Mapbender\DataSourceBundle\Component\Drivers\BaseDriver</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html"><span>Mapbender\DataSourceBundle\Component\Drivers\DoctrineBaseDriver</span></a>
+			
+			 implements 
+				<a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Base.html"><span>Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Base</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Mapbender\DataSourceBundle\Component\Drivers\PostgreSQL</span></b>			
+			 implements 
+				<a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Manageble.html"><span>Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Manageble</span></a>, 
+			
+				<a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Routable.html"><span>Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Routable</span></a>, 
+			
+				<a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Geographic.html"><span>Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Geographic</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Mapbender.html">Mapbender</a>\<a href="namespace-Mapbender.DataSourceBundle.html">DataSourceBundle</a>\<a href="namespace-Mapbender.DataSourceBundle.Component.html">Component</a>\<a href="namespace-Mapbender.DataSourceBundle.Component.Drivers.html">Drivers</a><br>
+		<b>Package:</b> Mapbender\DataSourceBundle\Component\Drivers<br>
+
+				<b>Author:</b>
+				Andriy Oblivantsev &lt;<a
+href="mailto:eslider&#64;gmail.com">eslider&#64;<!-- -->gmail.com</a>&gt;<br>
+		<b>Located at</b> data-source/Component/Drivers/PostgreSQL.php<br>
+	</div>
+
+
+
+		<h2>Methods summary</h2>
+		<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="insert" id="_insert">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Mapbender.DataSourceBundle.Entity.DataItem.html">Mapbender\DataSourceBundle\Entity\DataItem</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_insert">#</a>
+			<code>insert( <span>array|<code><a href="class-Mapbender.DataSourceBundle.Entity.DataItem.html">Mapbender\DataSourceBundle\Entity\DataItem</a></code> <var>$item</var></span>, <span>boolean <var>$cleanData</var> = <span class="php-keyword1">true</span></span> )</code>
+
+			<div class="description short">
+				
+<p>Insert data item</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Insert data item</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$item</var></dt>
+						<dd></dd>
+						<dt><var>$cleanData</var></dt>
+						<dd>Clean data before insert?</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><code><a href="class-Mapbender.DataSourceBundle.Entity.DataItem.html">Mapbender\DataSourceBundle\Entity\DataItem</a></code></code><br>DataItem<br>
+					</div>
+
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_insert">Mapbender\DataSourceBundle\Component\Drivers\DoctrineBaseDriver::insert</a></code></div>
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="addGeometryColumn" id="_addGeometryColumn">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_addGeometryColumn">#</a>
+			<code>addGeometryColumn( <span>string <var>$tableName</var></span>, <span>string <var>$type</var></span>, <span>string <var>$srid</var></span>, <span>string <var>$geomFieldName</var> = <span class="php-quote">&quot;geom&quot;</span></span>, <span>string <var>$schemaName</var> = <span class="php-quote">&quot;public&quot;</span></span>, <span>integer <var>$dimensions</var> = <span class="php-num">2</span></span> )</code>
+
+			<div class="description short">
+				
+<p>Add geometry column</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Add geometry column</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$tableName</var></dt>
+						<dd></dd>
+						<dt><var>$type</var></dt>
+						<dd></dd>
+						<dt><var>$srid</var></dt>
+						<dd></dd>
+						<dt><var>$geomFieldName</var></dt>
+						<dd></dd>
+						<dt><var>$schemaName</var></dt>
+						<dd></dd>
+						<dt><var>$dimensions</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>boolean</code><br>bool<br>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code>Doctrine\DBAL\DBALException</code><br>\Doctrine\DBAL\DBALException<br>
+					</div>
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Geographic.html#_addGeometryColumn">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Geographic::addGeometryColumn()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="createTable" id="_createTable">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_createTable">#</a>
+			<code>createTable( <span>mixed <var>$name</var></span>, <span>string <var>$idColumn</var> = <span class="php-quote">'id'</span></span>, <span>boolean <var>$dropBeforeCreate</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$name</var></dt>
+						<dd></dd>
+						<dt><var>$idColumn</var></dt>
+						<dd></dd>
+						<dt><var>$dropBeforeCreate</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>boolean</code><br>bool<br>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code>Doctrine\DBAL\DBALException</code><br>\Doctrine\DBAL\DBALException<br>
+					</div>
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Manageble.html#_createTable">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Manageble::createTable()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="dropTable" id="_dropTable">
+
+			<td class="attributes"><code>
+				 public 
+				integer
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_dropTable">#</a>
+			<code>dropTable( <span>mixed <var>$name</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$name</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>integer</code><br>int<br>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code>Doctrine\DBAL\DBALException</code><br>\Doctrine\DBAL\DBALException<br>
+					</div>
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Manageble.html#_dropTable">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Manageble::dropTable()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getTableGeomType" id="_getTableGeomType">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getTableGeomType">#</a>
+			<code>getTableGeomType( <span>string <var>$tableName</var></span>, <span>string <var>$schema</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				
+<p>Get table geom type</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get table geom type</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$tableName</var></dt>
+						<dd>Table name. The name can contains schema name splited by dot.</dd>
+						<dt><var>$schema</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code><br>string<br>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code>Doctrine\DBAL\DBALException</code><br>\Doctrine\DBAL\DBALException<br>
+					</div>
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Geographic.html#_getTableGeomType">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Geographic::getTableGeomType()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getLastInsertId" id="_getLastInsertId">
+
+			<td class="attributes"><code>
+				 public 
+				integer
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getLastInsertId">#</a>
+			<code>getLastInsertId( )</code>
+
+			<div class="description short">
+				
+<p>Get last insert id</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get last insert id</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>integer</code><br>int<br>
+					</div>
+
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_getLastInsertId">Mapbender\DataSourceBundle\Component\Drivers\DoctrineBaseDriver::getLastInsertId</a></code></div>
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Manageble.html#_getLastInsertId">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Manageble::getLastInsertId()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getNodeFromGeom" id="_getNodeFromGeom">
+
+			<td class="attributes"><code>
+				 public 
+				integer
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getNodeFromGeom">#</a>
+			<code>getNodeFromGeom( <span>mixed <var>$waysVerticesTableName</var></span>, <span>mixed <var>$waysGeomFieldName</var></span>, <span>string <var>$ewkt</var></span>, <span>null <var>$transformTo</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$idKey</var> = <span class="php-quote">&quot;id&quot;</span></span> )</code>
+
+			<div class="description short">
+				
+<p>Get nearest node to given geometry</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get nearest node to given geometry</p>
+
+<p>Important: &lt;-&gt; operator works not well!!</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$waysVerticesTableName</var></dt>
+						<dd></dd>
+						<dt><var>$waysGeomFieldName</var></dt>
+						<dd></dd>
+						<dt><var>$ewkt</var></dt>
+						<dd>EWKT</dd>
+						<dt><var>$transformTo</var></dt>
+						<dd></dd>
+						<dt><var>$idKey</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>integer</code><br>Node ID<br>
+					</div>
+
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Routable.html#_getNodeFromGeom">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Routable::getNodeFromGeom()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="routeBetweenNodes" id="_routeBetweenNodes">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Mapbender.DataSourceBundle.Entity.Feature.html">Mapbender\DataSourceBundle\Entity\Feature</a>[]</code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_routeBetweenNodes">#</a>
+			<code>routeBetweenNodes( <span>mixed <var>$waysTableName</var></span>, <span>mixed <var>$waysGeomFieldName</var></span>, <span>integer <var>$startNodeId</var></span>, <span>integer <var>$endNodeId</var></span>, <span>mixed <var>$srid</var></span>, <span>boolean <var>$directedGraph</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$hasReverseCost</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				
+<p>Route between nodes</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Route between nodes</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$waysTableName</var></dt>
+						<dd></dd>
+						<dt><var>$waysGeomFieldName</var></dt>
+						<dd></dd>
+						<dt><var>$startNodeId</var></dt>
+						<dd></dd>
+						<dt><var>$endNodeId</var></dt>
+						<dd></dd>
+						<dt><var>$srid</var></dt>
+						<dd></dd>
+						<dt><var>$directedGraph</var></dt>
+						<dd>directed graph</dd>
+						<dt><var>$hasReverseCost</var></dt>
+						<dd>Has reverse cost, only can be true, if directed graph=true</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><code><a href="class-Mapbender.DataSourceBundle.Entity.Feature.html">Mapbender\DataSourceBundle\Entity\Feature</a>[]</code></code><br>\Mapbender\DataSourceBundle\Entity\Feature[]<br>
+					</div>
+
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Routable.html#_routeBetweenNodes">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Routable::routeBetweenNodes()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="listDatabases" id="_listDatabases">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_listDatabases">#</a>
+			<code>listDatabases( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>array</code><br>array<br>
+					</div>
+
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Manageble.html#_listDatabases">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Manageble::listDatabases()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="listSchemas" id="_listSchemas">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_listSchemas">#</a>
+			<code>listSchemas( <span>mixed <var>$databaseName</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$databaseName</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>array</code><br>array<br>
+					</div>
+
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Manageble.html#_listSchemas">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Manageble::listSchemas()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="listTables" id="_listTables">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_listTables">#</a>
+			<code>listTables( <span>mixed <var>$schemaName</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Get database table names</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get database table names</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$schemaName</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>array</code><br>array<br>
+					</div>
+
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Manageble.html#_listTables">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Manageble::listTables()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="transformEwkt" id="_transformEwkt">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_transformEwkt">#</a>
+			<code>transformEwkt( <span>mixed <var>$ewkt</var></span>, <span>null <var>$srid</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$ewkt</var></dt>
+						<dd></dd>
+						<dt><var>$srid</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>mixed</code><br>mixed<br>
+					</div>
+
+
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Geographic.html#_transformEwkt">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Geographic::transformEwkt()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getIntersectCondition" id="_getIntersectCondition">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getIntersectCondition">#</a>
+			<code>getIntersectCondition( <span>string <var>$wkt</var></span>, <span>string <var>$geomFieldName</var></span>, <span>string <var>$srid</var></span>, <span>string <var>$sridTo</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$wkt</var></dt>
+						<dd>WKT</dd>
+						<dt><var>$geomFieldName</var></dt>
+						<dd>geometry field name</dd>
+						<dt><var>$srid</var></dt>
+						<dd>SRID convert from</dd>
+						<dt><var>$sridTo</var></dt>
+						<dd>SRID convert to</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code><br>SQL<br>
+					</div>
+
+
+					<h4>Inheritdoc</h4>
+					<div class="list">
+					</div>
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Geographic.html#_getIntersectCondition">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Geographic::getIntersectCondition()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getGeomAttributeAsWkt" id="_getGeomAttributeAsWkt">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getGeomAttributeAsWkt">#</a>
+			<code>getGeomAttributeAsWkt( <span>string <var>$geometryAttribute</var></span>, <span>string <var>$sridTo</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$geometryAttribute</var></dt>
+						<dd></dd>
+						<dt><var>$sridTo</var></dt>
+						<dd>SRID convert to</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code><br>SQL<br>
+					</div>
+
+
+					<h4>Inheritdoc</h4>
+					<div class="list">
+					</div>
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Geographic.html#_getGeomAttributeAsWkt">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Geographic::getGeomAttributeAsWkt()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="findGeometryFieldSrid" id="_findGeometryFieldSrid">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_findGeometryFieldSrid">#</a>
+			<code>findGeometryFieldSrid( <span>string <var>$tableName</var></span>, <span>string <var>$geomFieldName</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$tableName</var></dt>
+						<dd></dd>
+						<dt><var>$geomFieldName</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code><br>SQL<br>
+					</div>
+
+
+					<h4>Inheritdoc</h4>
+					<div class="list">
+					</div>
+
+
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.Interfaces.Geographic.html#_findGeometryFieldSrid">Mapbender\DataSourceBundle\Component\Drivers\Interfaces\Geographic::findGeometryFieldSrid()</a></code></div>
+			</div>
+			</div></td>
+		</tr>
+		</table>
+
+		<h3>Methods inherited from <a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#methods">Mapbender\DataSourceBundle\Component\Drivers\DoctrineBaseDriver</a></h3>
+		<p class="elementList">
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_canRead">canRead()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_canWrite">canWrite()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_cleanData">cleanData()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_connect">connect()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_extractTypeValues">extractTypeValues()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_fetchColumn">fetchColumn()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_fetchList">fetchList()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_get">get()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_getByCriteria">getByCriteria()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_getById">getById()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_getPlatformName">getPlatformName()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_getSelectQueryBuilder">getSelectQueryBuilder()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_getStoreFields">getStoreFields()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_getTableName">getTableName()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_getVersion">getVersion()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_isReady">isReady()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_prepareResults">prepareResults()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_remove">remove()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_save">save()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_search">search()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_setFilter">setFilter()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_setTable">setTable()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#_update">update()</a></code>
+		</p>
+		<h3>Methods inherited from <a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#methods">Mapbender\DataSourceBundle\Component\Drivers\BaseDriver</a></h3>
+		<p class="elementList">
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#___construct">__construct()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#_create">create()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#_getConnection">getConnection()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#_getFields">getFields()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#_getUniqueId">getUniqueId()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#_getWktType">getWktType()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#_roundGeometry">roundGeometry()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#_setFields">setFields()</a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#_setUniqueId">setUniqueId()</a></code>
+		</p>
+
+
+		<h3>Magic methods summary</h3>
+
+
+
+
+
+		<h2>Constants summary</h2>
+
+		<h3>Constants inherited from <a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#constants">Mapbender\DataSourceBundle\Component\Drivers\DoctrineBaseDriver</a></h3>
+		<p class="elementList">
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#MAX_RESULTS"><b>MAX_RESULTS</b></a></code>
+		</p>
+
+
+
+		<h2>Properties summary</h2>
+
+		<h3>Properties inherited from <a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#properties">Mapbender\DataSourceBundle\Component\Drivers\DoctrineBaseDriver</a></h3>
+		<p class="elementList">
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#$connection"><var>$connection</var></a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#$sqlFilter"><var>$sqlFilter</var></a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.DoctrineBaseDriver.html#$tableName"><var>$tableName</var></a></code>
+		</p>
+		<h3>Properties inherited from <a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#properties">Mapbender\DataSourceBundle\Component\Drivers\BaseDriver</a></h3>
+		<p class="elementList">
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#$fields"><var>$fields</var></a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#$settings"><var>$settings</var></a></code>, 
+			<code><a href="class-Mapbender.DataSourceBundle.Component.Drivers.BaseDriver.html#$uniqueId"><var>$uniqueId</var></a></code>
+		</p>
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		Mapbender 3.0.6.3 API documenation API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+<script src="resources/combined.js?4128610353"></script>
+<script src="elementlist.js?1523744770"></script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Suggest Map &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderWMCBundle" href="../index.html" />
+    <link rel="next" title="WMC Editor" href="wmc_editor.html" />
+    <link rel="prev" title="MapbenderWMCBundle" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="wmc_editor.html" title="WMC Editor"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="MapbenderWMCBundle"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderWMCBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="suggest-map">
+<span id="suggestmap"></span><h1>Suggest Map<a class="headerlink" href="#suggest-map" title="Permalink to this headline">¶</a></h1>
+<p><strong>Notice:</strong> that you need the element <a class="reference external" href="../elements/wmc_editor.html">WMC Editor</a> to use this functionality.</p>
+<p><strong>Notice:</strong> that all configurations are pubic at the moment. Later in development we want to add access control to this module too.</p>
+<a class="reference internal image-reference" href="../../../../../_images/suggestmap1.png"><img alt="../../../../../_images/suggestmap1.png" src="../../../../../_images/suggestmap1.png" style="width: 249.6px; height: 176.0px;" /></a>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/suggestmap_configuration1.png"><img alt="../../../../../_images/suggestmap_configuration1.png" src="../../../../../_images/suggestmap_configuration1.png" style="width: 364.8px; height: 263.2px;" /></a>
+<ul class="simple">
+<li><strong>Title:</strong> Title of the element. The title will be listed in &#8220;Layouts&#8221; and allows to distinguish between different buttons. It will be indicated if &#8220;Show label&#8221; is activated.</li>
+<li><strong>Tooltip:</strong> text to use as tooltip.</li>
+<li><strong>Target:</strong> Id of Map element to query.</li>
+<li><strong>Receiver:</strong> element to use (E-Mail, Facebook, Twitter, Google+)</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Suggest Map</span>
+<span class="l l-Scalar l-Scalar-Plain">tooltip</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Suggest Map</span>      <span class="c1"># text to use as tooltip</span>
+<span class="l l-Scalar l-Scalar-Plain">icon</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">iconSuggestMap</span>      <span class="c1"># choose an icon</span>
+<span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>               <span class="c1"># add title as label</span>
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wmceditor</span>         <span class="c1"># choose wmceditor as target</span>
+<span class="l l-Scalar l-Scalar-Plain">action</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">open</span>              <span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">deactivate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">close</span>         <span class="c1">#</span>
+</pre></div>
+</div>
+<p>You need a button to show this element. See <a class="reference internal" href="../../CoreBundle/elements/button.html#button-en"><span>Button</span></a> for inherited configuration options.</p>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\WmcBundle\Element\SuggestMap</li>
+<li><strong>Widget:</strong> &lt;Put Widget name here&gt;</li>
+<li><strong>Style:</strong> &lt;Put name of css file here&gt;</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="action">
+<h3>&lt;action&gt;<a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="function">
+<h3>&lt;function&gt;<a class="headerlink" href="#function" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="signal">
+<h3>&lt;signal&gt;<a class="headerlink" href="#signal" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Suggest Map</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a><ul>
+<li><a class="reference internal" href="#action">&lt;action&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a><ul>
+<li><a class="reference internal" href="#function">&lt;function&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a><ul>
+<li><a class="reference internal" href="#signal">&lt;signal&gt;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">MapbenderWMCBundle</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="wmc_editor.html"
+                        title="next chapter">WMC Editor</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/en/bundles/Mapbender/WmcBundle/elements/suggestmap.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="wmc_editor.html" title="WMC Editor"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="MapbenderWMCBundle"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderWMCBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

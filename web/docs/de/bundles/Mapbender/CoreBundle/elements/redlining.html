@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Redlining &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="Ruler: Linien-/Flächenmessung (Line/Area Ruler)" href="ruler.html" />
+    <link rel="prev" title="PrintClient (Druck)" href="printclient.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ruler.html" title="Ruler: Linien-/Flächenmessung (Line/Area Ruler)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="printclient.html" title="PrintClient (Druck)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="redlining">
+<span id="id1"></span><h1>Redlining<a class="headerlink" href="#redlining" title="Permalink to this headline">¶</a></h1>
+<p>Mit dem Element Redlining können temporär verfügbaren Geometrien in der Karte erstellt werden. Temporär bedeutet, dass die Objekte nicht in einer Datenbank gespeichert werden und beim Neustart der Anwendung verloren gehen.</p>
+<p>Die gezeichneten Geometrien werden in das Druckbild übernommen. Die Objekte in der Karte können weiter editiert werden.</p>
+<p>Die möglichen Geometrietypen sind:</p>
+<ul class="simple">
+<li>Punkte</li>
+<li>Linien</li>
+<li>Polygonen</li>
+<li>Rechtecke</li>
+<li>Texte (Annotations)</li>
+</ul>
+<a class="reference internal image-reference" href="../../../../../_images/redlining.png"><img alt="../../../../../_images/redlining.png" src="../../../../../_images/redlining.png" style="width: 620.8px; height: 315.2px;" /></a>
+<div class="section" id="konfiguration">
+<h2>Konfiguration<a class="headerlink" href="#konfiguration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/redlining_configuration.png"><img alt="../../../../../_images/redlining_configuration.png" src="../../../../../_images/redlining_configuration.png" style="width: 444.0px; height: 444.0px;" /></a>
+<ul class="simple">
+<li><strong>Title:</strong> Titel des Elements. Dieser wird von der Schaltfläche referenziert, die das Element öffnen soll.</li>
+<li><strong>Target:</strong> ID des Kartenelements, auf das sich das Redlining bezieht.</li>
+<li><strong>Geometrytypes:</strong> Die Geometrietypen, die das Redlining unterstützen soll. Sie können mit der Maus die einzelnen Zeilen auswählen: Punkt, Linie, Polygon, Rechteck, Text.</li>
+</ul>
+<div class="section" id="als-dialog">
+<h3>Als Dialog<a class="headerlink" href="#als-dialog" title="Permalink to this headline">¶</a></h3>
+<p>Setzen Sie den Display type auf &#8220;Dialog&#8221;. Sie benötigen eine Schaltfläche, um das Redlining als Dialog zu öffnen. Wählen Sie z.B. das Sketch Symbol als Toolbar-Icon aus und setzen Sie als Target den Namen des Elements.</p>
+</div>
+<div class="section" id="in-der-sidepane">
+<h3>In der Sidepane<a class="headerlink" href="#in-der-sidepane" title="Permalink to this headline">¶</a></h3>
+<p>Sie können das Redlining auch in die Sidepane positionieren. Setzen Sie <strong>Display</strong> type auf &#8220;Element&#8221;.</p>
+</div>
+</div>
+<div class="section" id="nutzung">
+<h2>Nutzung<a class="headerlink" href="#nutzung" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="objekte-setzen">
+<h3>Objekte setzen<a class="headerlink" href="#objekte-setzen" title="Permalink to this headline">¶</a></h3>
+<p>Punkte: Wählen Sie die Schaltfläche &#8220;Punkt&#8221; und setzen Sie einen Punkt in der Karte.</p>
+<p>Linie: Wählen Sie die Schaltfläche &#8220;Linie&#8221; und zeichnen Sie die einzelnen Liniensegmente in der Karte. Mit einem Doppelklick schließen Sie das Zeichnen ab.</p>
+<p>Polygon: Wählen Sie die Schaltfläche &#8220;Polygon&#8221; und zeichnen Sie die einzelnen Stützpunkte in der Karte. Mit einem Doppelklick schließen Sie das Zeichnen ab.</p>
+<p>Rechteck: Wählen Sie die Schaltfläche &#8220;Rechteck&#8221; und ziehen Sie einfach ein Rechteck mit der Maus auf.</p>
+<p>Text: Wählen Sie die Schaltfläche &#8220;Text&#8221;. Im Dialog erscheint ein Textfeld zur Texteingabe. Danach klicken Sie einfach in die Karte. Am Klickpunkt erscheint der eingegebene Text.</p>
+<p>Sobald Sie die Schaltfläche eines Geometrietyps geklickt haben, ist die Schaltfläche aktiv und Sie können Objekte in die Karte zeichnen. Wenn Sie den Zeichen-Modus verlassen wollen, klicken Sie wieder auf diese Schaltfläche.</p>
+</div>
+<div class="section" id="objekte-loschen">
+<h3>Objekte löschen<a class="headerlink" href="#objekte-loschen" title="Permalink to this headline">¶</a></h3>
+<p>Mit dem X-Symbol können Sie das jeweilige Objekt aus der Karte löschen.</p>
+</div>
+<div class="section" id="objekte-verandern">
+<h3>Objekte verändern<a class="headerlink" href="#objekte-verandern" title="Permalink to this headline">¶</a></h3>
+<p>Mit dem Stift-Symbol können Sie das jeweilige Objekt verschieben oder verändern. Das jeweilige Objekt wird hervorgehoben. Mit einem Klick in die Karte schließen Sie das Verändern ab.</p>
+<p>Punkte und Texte können verschoben werden, Linien und Polygone nicht.</p>
+<a class="reference internal image-reference" href="../../../../../_images/redlining_modify_point.png"><img alt="../../../../../_images/redlining_modify_point.png" src="../../../../../_images/redlining_modify_point.png" style="width: 436.0px; height: 434.4px;" /></a>
+<p>Bei Linien und Polygonen können Sie neue Stützpunkte hinzufügen, wenn Sie den Stützpunkt in der Mitte der Kanten-Linie verschieben (der leicht transparent dargestellte Vertex). Stützpunkte können durch anklicken und anschließendes drücken der Entf-Taste entfernt werden.</p>
+<a class="reference internal image-reference" href="../../../../../_images/redlining_modify_polygon.png"><img alt="../../../../../_images/redlining_modify_polygon.png" src="../../../../../_images/redlining_modify_polygon.png" style="width: 883.2px; height: 351.2px;" /></a>
+<p>Texte können verschoben werden. Der Ankerpunkt eines Textes befindet sich an der unteren linken Ecke des ersten Buchstabens. Zum Verschieben klicken Sie einfach auf diese Region und verschieben den Text in der Karte. Der Text kann im Nachhinein nicht mehr verändert werden. Bitte löschen Sie den alten Text und setzen Sie einen neuen.</p>
+<a class="reference internal image-reference" href="../../../../../_images/redlining_modify_text.png"><img alt="../../../../../_images/redlining_modify_text.png" src="../../../../../_images/redlining_modify_text.png" style="width: 421.6px; height: 364.8px;" /></a>
+</div>
+<div class="section" id="zu-objekten-zoomen">
+<h3>Zu Objekten zoomen<a class="headerlink" href="#zu-objekten-zoomen" title="Permalink to this headline">¶</a></h3>
+<p>Mit dem Lupen-Symbol können Sie zu dem jeweiligen Objekt zoomen.</p>
+</div>
+<div class="section" id="den-zeichnen-modus-verlassen">
+<h3>Den Zeichnen-Modus verlassen<a class="headerlink" href="#den-zeichnen-modus-verlassen" title="Permalink to this headline">¶</a></h3>
+<p>Wenn Sie mit dem Zeichnen fertig sind, klicken Sie wieder auf die Schaltfläche des Geometrietyps, den Sie gezeichnet haben. Die Schaltfläche wird inaktiv und bei einem Klick auf der Karte wird wieder das normale Verhalten ausgeführt.</p>
+</div>
+</div>
+<div class="section" id="yaml-definition">
+<h2>YAML-Definition<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml"><div class="highlight"><pre>&quot;auto_activate&quot;: false, # true/false
+&quot;deactivate_on_close&quot;: true, # true/false
+&quot;display_type&quot;: &quot;element&quot;, # element/dialog
+&quot;geometrytypes&quot;: [
+  &quot;point&quot;,
+  &quot;line&quot;,
+  &quot;polygon&quot;,
+  &quot;text&quot;,
+  &quot;rectangle&quot;
+],
+&quot;target&quot;: ~
+</pre></div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender/CoreBundle/Element/Redlining</li>
+<li><strong>Widget:</strong> Mapbender/CoreBundle/Resources/public/mapbender.element.redlining.js</li>
+<li><strong>Scss:</strong> Mapbender/CoreBundle/Resources/public/sass/element/redlining.scss</li>
+<li><strong>Twig:</strong> Mapbender/CoreBundle/Resources/views/Element/redlining.html.twig</li>
+<li><strong>Json:</strong> Mapbender/CoreBundle/Resources/views/Element/redlining.json.twig</li>
+<li><strong>AdminType:</strong> /Mapbender/CoreBundle/Element/Type/RedliningAdminType.php</li>
+<li><strong>Admin:</strong> Mapbender/CoreBundle/Resources/views/ElementAdmin/redlining.html.twig</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Redlining</a><ul>
+<li><a class="reference internal" href="#konfiguration">Konfiguration</a><ul>
+<li><a class="reference internal" href="#als-dialog">Als Dialog</a></li>
+<li><a class="reference internal" href="#in-der-sidepane">In der Sidepane</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nutzung">Nutzung</a><ul>
+<li><a class="reference internal" href="#objekte-setzen">Objekte setzen</a></li>
+<li><a class="reference internal" href="#objekte-loschen">Objekte löschen</a></li>
+<li><a class="reference internal" href="#objekte-verandern">Objekte verändern</a></li>
+<li><a class="reference internal" href="#zu-objekten-zoomen">Zu Objekten zoomen</a></li>
+<li><a class="reference internal" href="#den-zeichnen-modus-verlassen">Den Zeichnen-Modus verlassen</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition</a></li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="printclient.html"
+                        title="previous chapter">PrintClient (Druck)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ruler.html"
+                        title="next chapter">Ruler: Linien-/Flächenmessung  (Line/Area Ruler)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/de/bundles/Mapbender/CoreBundle/elements/redlining.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ruler.html" title="Ruler: Linien-/Flächenmessung (Line/Area Ruler)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="printclient.html" title="PrintClient (Druck)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

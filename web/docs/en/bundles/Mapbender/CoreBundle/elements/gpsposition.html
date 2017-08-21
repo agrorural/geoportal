@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>GPS-Position &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="HTML Element" href="html.html" />
+    <link rel="prev" title="Feature Info" href="feature_info.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="html.html" title="HTML Element"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="feature_info.html" title="Feature Info"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="gps-position">
+<span id="gpspostion"></span><h1>GPS-Position<a class="headerlink" href="#gps-position" title="Permalink to this headline">¶</a></h1>
+<p>This element provides a button to navigate to your current position and display a symbol at that position. The scale will not be changed until you activate <code class="docutils literal"><span class="pre">zoom</span> <span class="pre">to</span> <span class="pre">accuracy</span> <span class="pre">(zoom</span> <span class="pre">to</span> <span class="pre">accuracy</span> <span class="pre">on</span> <span class="pre">first</span> <span class="pre">position)</span></code>.</p>
+<p>The function is built upon the <a class="reference external" href="https://www.w3.org/TR/geolocation-API/">Geolocation-API</a> by the W3C. To validate that your browser supports this functionality please take a look at the <a class="reference external" href="http://caniuse.com/#feat=geolocation">Can I Use</a> page. The function uses the <code class="docutils literal"><span class="pre">High</span> <span class="pre">Accurcacy</span> <span class="pre">Parameter</span></code> that forces the positioning via GPS. If your device is shipped with a GPS-receiver and if it is activated the positioning is more accurate. Otherwise the WIFI access-points are used for positioning.</p>
+<p>The midpoint shows the probable position of the device, the outer circle the accuracy of the positioning, that means the region where the position is probably to find.</p>
+<p>Compatibility: Internet Explorer and MS Edge devliver without a GPS-reciever at the machine imprecise informationen. This behaviour is also observable with other applications.</p>
+<a class="reference internal image-reference" href="../../../../../_images/gps_position1.png"><img alt="../../../../../_images/gps_position1.png" src="../../../../../_images/gps_position1.png" style="width: 416.8px; height: 372.8px;" /></a>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/gps_position_configuration1.png"><img alt="../../../../../_images/gps_position_configuration1.png" src="../../../../../_images/gps_position_configuration1.png" style="width: 437.6px; height: 437.6px;" /></a>
+<ul class="simple">
+<li><strong>Show label:</strong> Switches the button label on/off.</li>
+<li><strong>Autostart:</strong> true/false, default is false.</li>
+<li><strong>Title:</strong> Title of the element.</li>
+<li><strong>Tooltip:</strong> The text entered as a tool tip will be indicated by hovering over the element with the mouse cursor a longer time.</li>
+<li><strong>Icon:</strong> icon to display on button.</li>
+<li><strong>Target:</strong> Id of Map element, activated after the click.</li>
+<li><strong>Average:</strong> calculates the average of the last at parameter average defined amount of received GPS coordinates, default 1.</li>
+<li><strong>Refreshinterval:</strong>  refresh interval in ms, default is 5000 ms.</li>
+<li><strong>Follow:</strong> default false, true refreshes the map for every received GPS position received, only use with WMS in tiled mode.</li>
+<li><strong>Center on first position:</strong> center map only on first received GPS position.</li>
+<li><strong>Zoom to accuracy:</strong> zoom map according to received GPS position accuracy.</li>
+<li><strong>Zoom to accuracy on first position:</strong> Zoom map according to first received gps position accuracy.</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<p>The element is placed as a button into the toolbar.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Mapbender\CoreBundle\Element\GpsPosition</span>
+<span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                         <span class="c1"># true/false to label button, default is true</span>
+<span class="l l-Scalar l-Scalar-Plain">autoStart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>                        <span class="c1"># true/false, default is false</span>
+<span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">GPS-Position</span>                 <span class="c1"># title of the button</span>
+<span class="l l-Scalar l-Scalar-Plain">tooltip</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">GPS-Position</span>               <span class="c1"># text to use as tool tip</span>
+<span class="l l-Scalar l-Scalar-Plain">icon</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gpsposition</span>                   <span class="c1"># icon to display on button</span>
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">map</span>                         <span class="c1"># Id of Map element to query</span>
+<span class="l l-Scalar l-Scalar-Plain">average</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>                          <span class="c1"># calculates the average of the last at parameter average defined amount of received GPS coordinates, default 1</span>
+<span class="l l-Scalar l-Scalar-Plain">refreshinterval</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5000</span>               <span class="c1"># refresh interval in ms, default is 5000 ms</span>
+<span class="l l-Scalar l-Scalar-Plain">follow</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                        <span class="c1"># default false, true refreshes the map for every received GPS position received, only use with WMS in tiled mode</span>
+<span class="l l-Scalar l-Scalar-Plain">centerOnFirstPosition</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>         <span class="c1"># center map only on first received gps position</span>
+<span class="l l-Scalar l-Scalar-Plain">zoomToAccuracy</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>               <span class="c1"># zoom map according to received gps position accuracy</span>
+<span class="l l-Scalar l-Scalar-Plain">zoomToAccuracyOnFirstPosition</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># zoom map according to first received gps position accuracy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\GpsPosition</li>
+<li><strong>Widget:</strong> mapbender.element.gpsPostion.js</li>
+<li><strong>Style:</strong> mapbender.element.gpsPosition.css</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">GPS-Position</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a></li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="feature_info.html"
+                        title="previous chapter">Feature Info</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="html.html"
+                        title="next chapter">HTML Element</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/en/bundles/Mapbender/CoreBundle/elements/gpsposition.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="html.html" title="HTML Element"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="feature_info.html" title="Feature Info"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

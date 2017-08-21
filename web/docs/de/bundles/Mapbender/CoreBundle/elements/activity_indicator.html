@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Activity Indicator (Aktivitätsindikator) &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="BaseSourceSwitcher (Themenwechsel)" href="basesourceswitcher.html" />
+    <link rel="prev" title="About Dialog (Über-Dialog)" href="about_dialog.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="basesourceswitcher.html" title="BaseSourceSwitcher (Themenwechsel)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="about_dialog.html" title="About Dialog (Über-Dialog)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="activity-indicator-aktivitatsindikator">
+<span id="activity-indicator"></span><h1>Activity Indicator (Aktivitätsindikator)<a class="headerlink" href="#activity-indicator-aktivitatsindikator" title="Permalink to this headline">¶</a></h1>
+<p>Der Aktivitätsindikator (Sanduhr) ist ein einfaches Modul, das Aktivitäten anzeigt (Ajax-Aufrufe und Kartenaufrufe). In der voreingestellten Konfiguration wird ein Schrift-Symbol verwendet. Dieses kann ganz einfach in der css-Datei <code class="docutils literal"><span class="pre">fom//src//FOM//CoreBundle//Resources//public//css/frontend//mapbender3_theme.css</span></code> geändert werden.</p>
+<a class="reference internal image-reference" href="../../../../../_images/activity_indicator.png"><img alt="../../../../../_images/activity_indicator.png" src="../../../../../_images/activity_indicator.png" style="width: 35.0px; height: 38.0px;" /></a>
+<div class="section" id="konfiguration">
+<h2>Konfiguration<a class="headerlink" href="#konfiguration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/activity_indicator_configuration.png"><img alt="../../../../../_images/activity_indicator_configuration.png" src="../../../../../_images/activity_indicator_configuration.png" style="width: 440.0px; height: 439.2px;" /></a>
+<ul class="simple">
+<li><strong>Title:</strong> Titel des Elements</li>
+<li><strong>Tooltip:</strong> Der hier eingegebene Text wird angezeigt, wenn der Mauszeiger längere Zeit über dem Element verweilt.</li>
+<li><strong>Activity class:</strong> CSS Klasse, die Aktivitäten anzeigt (Ajax oder Kacheln)</li>
+<li><strong>Ajax activity class:</strong> CSS Klasse, die Ajax-Aktivitäten anzeigt</li>
+<li><strong>Tile activiy class:</strong> CSS Klasse, die Kartenaufrufe anzeigt</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">activityClass</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mb-activity</span>          <span class="c1"># CSS Klasse, die Aktivitäten anzeigt (Ajax oder Kacheln)</span>
+<span class="l l-Scalar l-Scalar-Plain">ajaxActivityClass</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mb-activity-ajax</span> <span class="c1"># CSS Klasse, die Ajax-Aktivitäten anzeigt</span>
+<span class="l l-Scalar l-Scalar-Plain">tileActivityClass</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mb-activity-tile</span> <span class="c1"># CSS Klasse, die Kartenaufrufe anzeigt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\ActivityIndicator</li>
+<li><strong>Widget:</strong> mapbender.element.activityindicator.js</li>
+<li><strong>Style:</strong> mapbender.elements.css</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>Keine.</p>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<p>Keine.</p>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>Keine.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Activity Indicator (Aktivitätsindikator)</a><ul>
+<li><a class="reference internal" href="#konfiguration">Konfiguration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a></li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="about_dialog.html"
+                        title="previous chapter">About Dialog (Über-Dialog)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="basesourceswitcher.html"
+                        title="next chapter">BaseSourceSwitcher (Themenwechsel)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/de/bundles/Mapbender/CoreBundle/elements/activity_indicator.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="basesourceswitcher.html" title="BaseSourceSwitcher (Themenwechsel)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="about_dialog.html" title="About Dialog (Über-Dialog)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

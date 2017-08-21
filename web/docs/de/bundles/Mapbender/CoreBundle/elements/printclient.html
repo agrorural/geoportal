@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PrintClient (Druck) &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="Redlining" href="redlining.html" />
+    <link rel="prev" title="POI (Treffpunkt)" href="poi.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="redlining.html" title="Redlining"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="poi.html" title="POI (Treffpunkt)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="printclient-druck">
+<h1>PrintClient (Druck)<a class="headerlink" href="#printclient-druck" title="Permalink to this headline">¶</a></h1>
+<p>Mapbender3 bietet einen PDF Druck, der einen definierten Bereich der Karte ausdruckt. Hierbei stehen dem Client verschiedene Auswahlmöglichkeiten zur Verfügung:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Auswahl Maßstab,</li>
+<li>Auswahl Qualität,</li>
+<li>Drehung des Ausschnitts,</li>
+<li>Ausdruck Legende.</li>
+<li>Optional können freie Textfelder definiert werden (z.B. Titel, Kommentar, Bemerkung), die mit in den Druck übergeben werden.</li>
+</ul>
+</div></blockquote>
+<p>Der Druck greift auf Druckvorlagen zu, die individuell angepasst werden können. In den Druckvorlagen können Bereiche für Datum, Maßstab (Text und Maßstabsbalken), Übersichtskarte und Nordpfeil definiert werden.</p>
+<p>Mapbender3 bringt bereits eine Kollektion von Druckvorlagen (LibreOffice Draw Dateien in den Formaten A4 bis A0) mit, die individuell angepasst werden können.</p>
+<a class="reference internal image-reference" href="../../../../../_images/print_client.png"><img alt="../../../../../_images/print_client.png" src="../../../../../_images/print_client.png" style="width: 319.2px; height: 391.2px;" /></a>
+<p>Der PrintClient kann sowohl als Dialog als auch als Element in der Sidebar verwendet werden. Wenn er sich in der Sidebar befindet, müssen Sie zuerst den Druckrahmen aktivieren, um den Druck starten zu können. Wenn Sie fertig sind, müssen Sie den Druckrahmen wieder deaktivieren, damit die Karte wieder wie gehabt genutzt werden kann (im Dialog geschieht dies alles durch das Öffnen und Schließen des Dialogfensters).</p>
+<a class="reference internal image-reference" href="../../../../../_images/print_client_sidebar.png"><img alt="../../../../../_images/print_client_sidebar.png" src="../../../../../_images/print_client_sidebar.png" style="width: 471.2px; height: 395.2px;" /></a>
+<div class="section" id="konfiguration">
+<h2>Konfiguration<a class="headerlink" href="#konfiguration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/print_client_configuration.png"><img alt="../../../../../_images/print_client_configuration.png" src="../../../../../_images/print_client_configuration.png" style="width: 440.8px; height: 440.8px;" /></a>
+<p>Das Element kann über einen Button aufgerufen werden oder in der Sidepane (Seitenleiste) verwendet werden. Siehe unter <a class="reference internal" href="button.html"><em>Button</em></a> für die Konfiguration.</p>
+<ul class="simple">
+<li><strong>Titel</strong>: Titel des Elements. Dieser wird in der Layouts Liste angezeigt und ermöglicht, mehrere Button-Elemente voneinander zu unterscheiden. Der Titel wird außerdem neben dem Button angezeigt, wenn &#8220;Beschriftung anzeigen&#8221; aktiviert ist.</li>
+<li><strong>Target</strong>: Zielelement (ID des Kartenelements).</li>
+<li><strong>Type</strong>: element oder dialog, default ist dialog</li>
+<li><strong>Maßstabsstufen (Scales)</strong>: Maßstäbe, die in der Selectbox ausgewählt werden können. Wenn keine Maßstäbe angegeben werden, kann ein beliebiger Maßstab in einem Textfeld definiert werden.</li>
+<li><strong>Drehbar</strong>: definiert, ob der Ausdruck gedreht werden kann, der Standardwert ist true</li>
+<li><strong>Legende drucken</strong>: ob auch die Legende der Karte gedruckt werden soll, der Standardwert ist false</li>
+<li><strong>Legenden Checkbox aktiv</strong>: Soll die Legenden-Checkbox beim Start aktiv sein</li>
+<li><strong>File prefix</strong>: Definition des Dateinames für das PDF</li>
+<li><strong>Qualitätsstufen</strong>: Qualität in dpi-Werten definieren und die dazugehörige Beschriftung angegeben</li>
+<li><strong>Template</strong>: Verweis auf die Druckvorlage (z.B. a4potrait).</li>
+<li><strong>Beschriftung (Label)</strong>: Beschriftung des Feldes (z.B. Potrait A4).</li>
+<li><strong>Optionale Felder (optional field)</strong>:<ul>
+<li><strong>title</strong>: Name des optionalen Feldes, der Standardwert ist null (keine optionalen Felder sind definiert).</li>
+<li><strong>label</strong>: Beschriftung des optionalen Feldes.</li>
+<li><strong>options</strong>: { required: true } : Typ des optionalen Feldes, muss true oder false sein.</li>
+</ul>
+</li>
+<li><strong>Replace pattern</strong>: Kartenaufruf kann verändert werden. Angaben können angefügt oder verändert werden, wie beispielsweise map_resolution (für MapServer).</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">map</span>                    <span class="c1"># ID des Kartenelements</span>
+<span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dialog</span>                   <span class="c1"># element oder dialog, default ist dialog</span>
+<span class="l l-Scalar l-Scalar-Plain">templates</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">template</span><span class="p p-Indicator">:</span> <span class="nv">a4portrait</span><span class="p p-Indicator">,</span> <span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">A4 Portrait</span><span class="p p-Indicator">}</span>   <span class="c1"># Vorlagen (template): Vorlagename, Vorlagedateiname ohne Dateierweiterung (Mapbender sucht die Datei a4portrait.odg und a4portrait.pdf), die Vorlagedateien befinden sich in app/Resources/MapbenderPrintBundle</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">template</span><span class="p p-Indicator">:</span> <span class="nv">a4landscape</span><span class="p p-Indicator">,</span> <span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">A4 Landscape</span><span class="p p-Indicator">}</span>         <span class="c1"># Vorlagebeschriftung im Druckdialog</span>
+<span class="l l-Scalar l-Scalar-Plain">scales</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">5000</span><span class="p p-Indicator">,</span> <span class="nv">10000</span><span class="p p-Indicator">,</span> <span class="nv">25000</span><span class="p p-Indicator">]</span>   <span class="c1"># Maßstäbe definieren, die in der Selectbox ausgewählt werden können. Wenn keine Maßstäbe angegeben werden, kann ein beliebiger Maßstab in einem Textfeld definiert werden.</span>
+<span class="l l-Scalar l-Scalar-Plain">quality_levels</span><span class="p p-Indicator">:</span>                                <span class="c1"># die Qualität in dpi definieren und die dazugehörige Beschriftung angegeben</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">dpi</span><span class="p p-Indicator">:</span> <span class="nv">72</span> <span class="p p-Indicator">,</span> <span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">Draft (72dpi)</span><span class="p p-Indicator">}</span>             <span class="c1"># die erste Angabe ist der dpi Wert, die zweite Angabe ist die Beschriftung</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">dpi</span><span class="p p-Indicator">:</span> <span class="nv">288</span><span class="p p-Indicator">,</span>  <span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">Document (288dpi)</span><span class="p p-Indicator">}</span>        <span class="c1"># es können weitere dpi-Werte angegeben werden</span>
+<span class="l l-Scalar l-Scalar-Plain">rotatable</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                                     <span class="c1"># true/false ob der Ausdruck gedreht werden kann, der Standardwert ist true</span>
+<span class="l l-Scalar l-Scalar-Plain">legend</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                   <span class="c1"># true/false, der Standardwert ist false</span>
+<span class="l l-Scalar l-Scalar-Plain">legend_default_behaviour</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># true/false, Legenden Checkbox standardmäßig ausgewählt</span>
+<span class="l l-Scalar l-Scalar-Plain">file_prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mapbender3</span>        <span class="c1"># Definition des Dateinames für das PDF (wird zusammengesetzt zu file_prefix_date.pdf)</span>
+<span class="l l-Scalar l-Scalar-Plain">optional_fields</span><span class="p p-Indicator">:</span>               <span class="c1"># es können optional weitere Felder definiert werden (z.B. Titel-Feld)</span>
+    <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span>                     <span class="c1"># Name des optionalen Feldes, der Standardwert ist null (keine optionalen Felder sind definiert)</span>
+        <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Titel</span>           <span class="c1"># Beschriftung des optionalen Feldes</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>             <span class="c1"># Typ des optionalen Feldes</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>     <span class="c1"># erforderlich: true or false</span>
+    <span class="l l-Scalar l-Scalar-Plain">comment1</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Kommentar 1</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">required</span><span class="p p-Indicator">:</span> <span class="nv">false</span> <span class="p p-Indicator">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">comment2</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Kommentar 2</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">required</span><span class="p p-Indicator">:</span> <span class="nv">false</span> <span class="p p-Indicator">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">bearbeiter</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Bearbeiter</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">required</span><span class="p p-Indicator">:</span> <span class="nv">true</span> <span class="p p-Indicator">}</span>
+<span class="l l-Scalar l-Scalar-Plain">replace_pattern</span><span class="p p-Indicator">:</span>               <span class="c1"># Für den Druck kann der Kartenaufruf verändert werden.</span>
+        <span class="p p-Indicator">-</span>                      <span class="c1"># Es können zusätzliche Parameter hinzugefügt werden (wie map_resolution für MapServer)</span>
+            <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">288</span><span class="p p-Indicator">:</span> <span class="s">&#39;&amp;map_resolution=288&#39;</span> <span class="p p-Indicator">}</span>
+        <span class="p p-Indicator">-</span>
+            <span class="l l-Scalar l-Scalar-Plain">pattern</span><span class="p p-Indicator">:</span> <span class="s">&#39;stadtplan.xml&#39;</span>        <span class="c1"># oder es können für den Druck optimierte Dienste angefordert werden.</span>
+            <span class="l l-Scalar l-Scalar-Plain">replacement</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">288</span><span class="p p-Indicator">:</span> <span class="s">&#39;stadtplan_4.xml&#39;</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Class: Mapbender\CoreBundle\Element\PrintClient</li>
+<li>Widget: mapbender.element.printClient.js</li>
+</ul>
+</div>
+<div class="section" id="file-location">
+<h2>File location<a class="headerlink" href="#file-location" title="Permalink to this headline">¶</a></h2>
+<p><strong>northarrow</strong>
+Das Bild des Nordpfeils (&#8220;North arrow&#8221;) befindet sich unter <strong>app/Resources/MapbenderPrintBundle/images/</strong>. Sie können das Bild des Nordpfeils auch durch ein anderes Bild ersetzen.</p>
+<p><strong>print templates</strong>
+Die Vorlagen befinden sich unter <strong>app/Resources/MapbenderPrintBundle/templates/</strong>. Sie können eigene Druckvorlagen erstellen.</p>
+</div>
+<div class="section" id="erstellen-eines-individuellen-vorlage">
+<h2>Erstellen eines individuellen Vorlage<a class="headerlink" href="#erstellen-eines-individuellen-vorlage" title="Permalink to this headline">¶</a></h2>
+<p>Um eine individuelle Druckvorlage zu erstellen, kopieren Sie eine vorhandene Druckvorlage (ODG-Datei) und bearbeiten diese. Sie können auch eine neue Libre Office Draw-Datei erzeugen. Die Vorlage kann feste Objekte wie ein Logo, ein Copyright oder Druckinformationen beinhalten. Zusätzlich muss eine Ebene für die dynamischen Elemente wie die Karte, die Übersichtskarte, der Nordpfeil, der Maßstab, das Datum und optionale Felder erstellt werden. Die dynamische Ebene ist eine zusätzliche nicht druckbare Ebene in der Libre Office Draw-Datei. Fügen Sie die Ebene in Libre Office Draw folgendermaßen hinzu: <strong>Menü: Einfügen -&gt; Ebene... -&gt; definieren Sie einen Namen für die Ebene und wählen Sie die Option nicht druckbar</strong>.</p>
+<a class="reference internal image-reference" href="../../../../../_images/print_template_odg.png"><img alt="../../../../../_images/print_template_odg.png" src="../../../../../_images/print_template_odg.png" style="width: 758.4px; height: 540.0px;" /></a>
+<p>Definieren Sie Bereiche für die Karte, den Nordpfeil, den Maßstab, das Datum und mehr sowie für optionale Felder.</p>
+<p>Die folgenden Bereiche liegen standardmäßig vor:</p>
+<ul class="simple">
+<li>map (Karte)</li>
+<li>overview (Übersichtskarte)</li>
+<li>scale (Maßstabsangabe in der Form 1:1000)</li>
+<li>scalebar (Maßstabsleiste)</li>
+<li>date (Datum in der Form 10.10.2014)</li>
+<li>northarrow (Nordpfeil)</li>
+<li>extent_ur_y, extent_ur_x, extent_ll_x, extent_ll_y (Koordinaten des Druckbereichs)</li>
+<li>dynamic_image (dynamisches Bild - gekoppelt an die Gruppe)</li>
+<li>dynamic_text (dynamischer Text - gekoppelt an die Gruppe)</li>
+</ul>
+<p>Sie könne optionale Felder über die Element-Konfiguration definieren (wie Titel, Kommentar, Bearbeiter). Diese müssen Sie dann auch in die Open Office Draw Datei einfügen. Die dynamisch erstellten Text müssen in der ODG-Datei auf dem nicht druckbaren Bereich abgelegt werden, so dass Sie nicht im Vorlage-PDF ausgegeben werden.</p>
+<p>Bei der Erstellung dynamischer Texte müssen die jeweiligen Objekte den passenden Namen haben, z.B. das Kommentarfeld <strong>comment1</strong> muss auch in der Vorlage <strong>comment1</strong> heißen. Zum Bennenen der Objektfelder reicht es nicht den Textinhalt anzupassen. Die Felder müssen selektiert und über <strong>Menü Ändern &#8211;&gt; Name...</strong> angepasst werden.</p>
+<a class="reference internal image-reference" href="../../../../../_images/print_template_name.png"><img alt="../../../../../_images/print_template_name.png" src="../../../../../_images/print_template_name.png" style="width: 841.6px; height: 550.4px;" /></a>
+<p>Exportieren Sie die Vorlage als PDF unter dem gleichen Namen wie die ODG-Datei. Verwenden Sie den Namen ohne Dateierweiterung in der Druck yml-Definition.</p>
+<p>Das Druck-Skript liest die Informationen (Position, Größe, Schriftgröße, Ausrichtung) aus der ODG-Datei aus und verwendet ebenfalls das PDF-Dokument mit den festen Objekten. Aus beiden und den aktuellen Karten wird dann eine PDF-Druckdatei erstellt.</p>
+<p>Gruppenabhängig können in der Druckausgabe unterschiedliche Bilder (z.B. Logo der Gemeinde) ausgegeben werden. Hierzu gibt es die Platzhalter dynamisches Bild und dynamischer Text. Sofern diese Bereiche im Drucklayout vorliegen wird nach einem Bild mit dem Namen der Gruppe gesucht und dieses im Bereich dynamic_image ausgegeben. Hierbei wird die Höhe zur Orientierung verwendet und die Breite entsprechend angepasst. Unter dynamic_text wird die Beschreibung der Gruppe ausgegeben.</p>
+<p><strong>Druck von Elementen vor dem Kartenbild</strong></p>
+<p>Damit beim Druck der Kartenbereich möglichst groß ist und wenig Platz durch weiße oder leere Bereiche verloren geht können Elemente vor das Kartenbild gelegt werden. Besonders hilfreich ist dies vorallem bei großen Druckformaten, wie DIN A1, die einen verhältnissmäßig breiten weißen Rand aufweisen.</p>
+<p>Für die Nutzung dieser Funktion müssen die Templates angepasst und transparente PDF-Vorlagen erzeugt werden.</p>
+<p>Templates anpassen:</p>
+<ul class="simple">
+<li>Elemente neu anordnen, am besten vor weißem Hintergrund<ul>
+<li>Anordnung der Elemente im Vordergrund<ul>
+<li>Rechtsklick Anordnen -&gt; Ganz nach vorne</li>
+</ul>
+</li>
+<li>Anordnung Karte = ganz nach hinten<ul>
+<li>Rechtsklick Anordnen -&gt; Ganz nach hinten</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Alles selektieren<ul>
+<li>STRG + A drücken</li>
+</ul>
+</li>
+<li>Selektion als PDF drucken<ul>
+<li>Exportieren als PDF</li>
+<li>Bereich Auswahl statt Alle</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="konfiguration-des-elements">
+<h2>Konfiguration des Elements<a class="headerlink" href="#konfiguration-des-elements" title="Permalink to this headline">¶</a></h2>
+<p>Gehen Sie in der Administration von Mapbender3 zu Ihrer Anwendung und erzeugen Sie ein Element <strong>Druck</strong> (Beachten Sie: Das Element kann über einen Button aufgerufen werden oder in der Sidepane (Seitenleiste) verwendet werden).</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PrintClient (Druck)</a><ul>
+<li><a class="reference internal" href="#konfiguration">Konfiguration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#file-location">File location</a></li>
+<li><a class="reference internal" href="#erstellen-eines-individuellen-vorlage">Erstellen eines individuellen Vorlage</a></li>
+<li><a class="reference internal" href="#konfiguration-des-elements">Konfiguration des Elements</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="poi.html"
+                        title="previous chapter">POI (Treffpunkt)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="redlining.html"
+                        title="next chapter">Redlining</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/de/bundles/Mapbender/CoreBundle/elements/printclient.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="redlining.html" title="Redlining"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="poi.html" title="POI (Treffpunkt)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

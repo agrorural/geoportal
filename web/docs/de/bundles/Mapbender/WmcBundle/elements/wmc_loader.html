@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>WMC Loader (WMC laden) &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderWMCBundle" href="../index.html" />
+    <link rel="next" title="FOMUserBundle - Benutzer und Absicherung" href="../../../FOM/UserBundle/index.html" />
+    <link rel="prev" title="WMC List (WMC Liste)" href="wmc_list.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../FOM/UserBundle/index.html" title="FOMUserBundle - Benutzer und Absicherung"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="wmc_list.html" title="WMC List (WMC Liste)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderWMCBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="wmc-loader-wmc-laden">
+<span id="wmc-loader"></span><h1>WMC Loader (WMC laden)<a class="headerlink" href="#wmc-loader-wmc-laden" title="Permalink to this headline">¶</a></h1>
+<p>Mapbender kann Konfigurationen speichern. Mehr dazu unter <a class="reference external" href="../elements/wmc_editor.html">WMC Editor</a>. Diese Konfigurationen  mit dem Element WMC-Lader geladen werden.</p>
+<p>Sie können den WMC-Lader ihrer Applikation als Selektbox oder als Button, der einen Dialog öffnet, hinzufügen.</p>
+<p>Wenn Sie eine Konfiguration auswählen, werden die Dienste der Konfiguration in Ihrer vorhandenen Applikation zusammengefügt.</p>
+<a class="reference internal image-reference" href="../../../../../_images/wmc_loader.png"><img alt="../../../../../_images/wmc_loader.png" src="../../../../../_images/wmc_loader.png" style="width: 764.0px; height: 289.6px;" /></a>
+<div class="section" id="konfiguration">
+<h2>Konfiguration<a class="headerlink" href="#konfiguration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/wmc_loader_configuration.png"><img alt="../../../../../_images/wmc_loader_configuration.png" src="../../../../../_images/wmc_loader_configuration.png" style="width: 440.8px; height: 443.2px;" /></a>
+<ul class="simple">
+<li><strong>Title:</strong> Titel des Elements. Dieser wird in der Layouts Liste angezeigt und ermöglicht, mehrere Button-Elemente voneinander zu unterscheiden. Der Titel wird außerdem neben dem Button angezeigt, wenn “Beschriftung anzeigen” aktiviert ist.</li>
+<li><strong>Tooltip:</strong> Text, der angezeigt wird, wenn der Mauszeiger eine längere Zeit über dem Element verweilt.</li>
+<li><strong>Target:</strong> ID des Kartenelements, auf das sich das Element bezieht.</li>
+<li><strong>Components:</strong><ul>
+<li>Id Loader: lädt die Konfiguration per ID beim Start der Applikation z.B. ?wmcid=&lt;wmcid&gt;,</li>
+<li>From List Loader: lädt die Konfiguration aus einer Liste</li>
+<li>Wmc Xml Loader: lädt die Konfiguration aus einer Datei</li>
+<li>Wmc From Url Loader: lädt das WMC über eine URL ?wmcurl=&lt;wmcurl&gt;</li>
+</ul>
+</li>
+<li><strong>Keepsources:</strong> definiert, was mit den Diensten in der Applikation geschehen soll.<ul>
+<li>no: keine Quellen werden behalten. Alle werden vom WMC überschrieben.</li>
+<li>BaseSources: Behält die BaseSources und die anderen werden überschrieben. Z.B. im Zusammenhang mit einem BaseSourceSwitcher.</li>
+<li>AllSources: Behält alle Quellen und fügt die Datenquellen aus dem WMC hinzu.</li>
+</ul>
+</li>
+<li><strong>Keep Extent:</strong> behält den aktuellen Extent, Standard ist false (erscheint im Extent der Konfiguration).</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">WMC Loader</span>
+<span class="l l-Scalar l-Scalar-Plain">tooltip</span><span class="p p-Indicator">:</span> <span class="s">&#39;Load</span><span class="nv"> </span><span class="s">configuration&#39;</span>        <span class="c1"># Text des Tooltips</span>
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">map</span>                          <span class="c1"># Name des Kartenelements</span>
+<span class="l l-Scalar l-Scalar-Plain">components</span><span class="p p-Indicator">:</span>  <span class="p p-Indicator">[</span><span class="s">&#39;idloader&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;listloader&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;wmcloader&#39;</span><span class="p p-Indicator">]</span> <span class="c1"># Komponenten:</span>
+                                     <span class="c1"># idloader - lädt die Konfiguration per ID beim Start der Applikation z.B. ?wmcid=&lt;wmcid&gt;</span>
+                                     <span class="c1"># listloader - lädt die Konfiguration aus einer Liste</span>
+                                     <span class="c1"># wmcloader - lädt die Konfiguration aus einer Datei</span>
+<span class="l l-Scalar l-Scalar-Plain">keepSources</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>                   <span class="c1"># definiert, was mit den Diensten in der Applikation geschehen soll</span>
+                                     <span class="c1"># Standard ist false (no)</span>
+                                     <span class="c1"># BaseSources - behält nur die als BaseSource markierten Dienste in der Anwendung</span>
+                                     <span class="c1"># AllSources - behält die Dienste, die bereits geladen sind, in der Anwendung</span>
+<span class="l l-Scalar l-Scalar-Plain">keepExtent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>                    <span class="c1"># behält den aktuellen Extent, Standard ist false</span>
+                                     <span class="c1"># (erscheint im Extent der Konfiguration)</span>
+</pre></div>
+</div>
+<p>Das Element kann als Selektbox oder als Dialog konfiguriert werden. Wenn das Element als Dialog verwendet wird, wird ein Button benötigt. Siehe unter <a class="reference internal" href="../../CoreBundle/elements/button.html#button-de"><span>Button</span></a> für die Konfiguration.</p>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\WmcBundle\Element\WmcLoader</li>
+<li><strong>Widget:</strong> &lt;Put Widget name here&gt;</li>
+<li><strong>Style:</strong> &lt;Put name of css file here&gt;</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="action">
+<h3>&lt;action&gt;<a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="function">
+<h3>&lt;function&gt;<a class="headerlink" href="#function" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="signal">
+<h3>&lt;signal&gt;<a class="headerlink" href="#signal" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="kontrolle-uber-den-aufruf">
+<h2>Kontrolle über den Aufruf<a class="headerlink" href="#kontrolle-uber-den-aufruf" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="wmc-per-id-laden">
+<h3>WMC per ID laden<a class="headerlink" href="#wmc-per-id-laden" title="Permalink to this headline">¶</a></h3>
+<p>Im Element WMC Loader muss die Option <em>Id Loader</em> aktiviert sein, um das Laden eines WMCs über die URL zu erlauben.</p>
+<p>Beim Aufruf der Anwendung wird die &lt;wmcid&gt; über den Parameter <em>wmcid</em> der URL angefügt:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="o">?</span><span class="nx">wmcid</span><span class="o">=&lt;</span><span class="nx">wmcid</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">WMC Loader (WMC laden)</a><ul>
+<li><a class="reference internal" href="#konfiguration">Konfiguration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a><ul>
+<li><a class="reference internal" href="#action">&lt;action&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a><ul>
+<li><a class="reference internal" href="#function">&lt;function&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a><ul>
+<li><a class="reference internal" href="#signal">&lt;signal&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kontrolle-uber-den-aufruf">Kontrolle über den Aufruf</a><ul>
+<li><a class="reference internal" href="#wmc-per-id-laden">WMC per ID laden</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="wmc_list.html"
+                        title="previous chapter">WMC List (WMC Liste)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../../FOM/UserBundle/index.html"
+                        title="next chapter">FOMUserBundle - Benutzer und Absicherung</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/de/bundles/Mapbender/WmcBundle/elements/wmc_loader.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../FOM/UserBundle/index.html" title="FOMUserBundle - Benutzer und Absicherung"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="wmc_list.html" title="WMC List (WMC Liste)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderWMCBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

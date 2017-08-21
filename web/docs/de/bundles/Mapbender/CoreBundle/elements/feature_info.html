@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Feature Info (Information) &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="GPS-Position" href="gpsposition.html" />
+    <link rel="prev" title="Digitalisierung (Digitizer)" href="digitizer.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="gpsposition.html" title="GPS-Position"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="digitizer.html" title="Digitalisierung (Digitizer)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="feature-info-information">
+<span id="feature-info"></span><h1>Feature Info (Information)<a class="headerlink" href="#feature-info-information" title="Permalink to this headline">¶</a></h1>
+<p>Dieses Element stellt die Infoabfrage bereit, die mit WMS Services funktioniert.</p>
+<a class="reference internal image-reference" href="../../../../../_images/feature_info.png"><img alt="../../../../../_images/feature_info.png" src="../../../../../_images/feature_info.png" style="width: 562.4px; height: 460.8px;" /></a>
+<div class="section" id="konfiguration">
+<h2>Konfiguration<a class="headerlink" href="#konfiguration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/feature_info_configuration.png"><img alt="../../../../../_images/feature_info_configuration.png" src="../../../../../_images/feature_info_configuration.png" style="width: 440.0px; height: 440.8px;" /></a>
+<ul class="simple">
+<li><strong>Automatisches Öffnen (Autoopen):</strong> Schaltet ein/aus, ob das Informationsfenster beim Start der Anwendung automatisch geöffnet werden soll (Standard: Ausgeschaltet).</li>
+<li><strong>Print Result:</strong> Anzeige eines Links, über den die Infoabfrage ausgedruckt werden kann. Standardwert ist false.</li>
+<li><strong>Beim Schließen deaktivieren:</strong> false, um die Funktion nach dem Schließen des Ergebnisfensters zu deaktivieren, der Standardwert ist true.</li>
+<li><strong>Title:</strong> Titel des Elements. Dieser wird in der Layouts Liste angezeigt und ermöglicht, mehrere Button-Elemente voneinander zu unterscheiden. Der Titel wird außerdem neben dem Button angezeigt, wenn “Beschriftung anzeigen” aktiviert ist.</li>
+<li><strong>Tooltip:</strong> Text, der angezeigt wird, wenn der Mauszeiger eine längere Zeit über dem Element verweilt.</li>
+<li><strong>Target:</strong> ID des Kartenelements, auf das sich das Element bezieht.</li>
+<li><strong>Type:</strong> Auwahl, ob die Info als Element oder Dialog angezeigt werden soll. Default und mandatory: Dialog.</li>
+<li><strong>Display:</strong> Anzeige der Information als Tabs oder in Accordionform.</li>
+<li><strong>Width/ Height:</strong> Größe des Dialogfeldes (Breite und Höhe in Pixel)</li>
+<li><strong>Original Zeigen:</strong> Original css-Stil des Ergebnisses wird angezeigt. Standardwert ist false.</li>
+<li><strong>nur valide zeigen:</strong> Parameter hängt sehr vom Format des GetFeatureInfo Responses ab. Beispiel UMN: Solange ein Template korrekte HTML Head und Body Elemente definiert (z.B. über die Angabe einer Headers und Footers Datei), interpretiert Mapbender3 das Resultat als valide. Fehlen diese Head und Body Angaben, so gilt dies für Mapbender3 als nicht valide.<ul>
+<li>Bitte stellen Sie sicher, dass die GetFeatureInfo Antworten valides HTML zurückgeben.</li>
+<li>Wenn sie <code class="docutils literal"><span class="pre">text/plan</span></code> als Ausgabeformat definieren, darf der Schalter <code class="docutils literal"><span class="pre">only</span> <span class="pre">valid</span></code> nicht aktiviert sein, da <code class="docutils literal"><span class="pre">text/plain</span></code> kein valides HTML zurückgibt.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Hinweis:</strong> Über die Informationsabfrage des FeatureInfo Dialogs können der Anwendung dynamisch WMS Dienste hinzugefügt werden. Hierfür wird der WMS Loader genutzt. Für nähere Informationen siehe das Kapitel <a class="reference external" href="../../WmsBundle/elements/wms_loader.html#hinzufugen-eines-wms-uber-einen-definierten-link">Hinzufügen eines WMS über einen definierten Link</a>.</p>
+<div class="section" id="anzeige-als-original-und-gestyled">
+<h3>Anzeige als Original und gestyled<a class="headerlink" href="#anzeige-als-original-und-gestyled" title="Permalink to this headline">¶</a></h3>
+<p>Mit der Option &#8220;Original zeigen&#8221; wird die Original-Darstellung des FeatureInfo Responses genutzt. Ist die Option deaktiviert, wird versucht eine einheitliche Darstellung in Mapbender zu erreichen.</p>
+<p>Beispiel Original:</p>
+<a class="reference internal image-reference" href="../../../../../_images/feature_info_original.png"><img alt="../../../../../_images/feature_info_original.png" src="../../../../../_images/feature_info_original.png" style="width: 561.6px; height: 400.8px;" /></a>
+<p>Beispiel gestyled:</p>
+<a class="reference internal image-reference" href="../../../../../_images/feature_info_not_original.png"><img alt="../../../../../_images/feature_info_not_original.png" src="../../../../../_images/feature_info_not_original.png" style="width: 559.2px; height: 401.6px;" /></a>
+</div>
+<div class="section" id="anzeige-als-tabs-und-accordion">
+<h3>Anzeige als Tabs und Accordion<a class="headerlink" href="#anzeige-als-tabs-und-accordion" title="Permalink to this headline">¶</a></h3>
+<p>Mit dem Schalter &#8220;Type&#8221; können die Responses mehrerer Dienste in unterschiedlichen Tabs oder als Accordion angezeigt werden.</p>
+<p>Beispiel Tabs:</p>
+<a class="reference internal image-reference" href="../../../../../_images/feature_info_tabs.png"><img alt="../../../../../_images/feature_info_tabs.png" src="../../../../../_images/feature_info_tabs.png" style="width: 560.8px; height: 401.6px;" /></a>
+<p>Beispiel Accordion:</p>
+<a class="reference internal image-reference" href="../../../../../_images/feature_info_accordion.png"><img alt="../../../../../_images/feature_info_accordion.png" src="../../../../../_images/feature_info_accordion.png" style="width: 560.8px; height: 400.8px;" /></a>
+</div>
+<div class="section" id="ausdruck-der-resultate">
+<h3>Ausdruck der Resultate<a class="headerlink" href="#ausdruck-der-resultate" title="Permalink to this headline">¶</a></h3>
+<p>Mit dem Schalter &#8220;print Result&#8221; kann die Information des FeatureInfo ausgedruckt werden. Eine Druck Schaltfläche ist dann in dem Feature-Dialog sichtbar. Das Drucken geschieht über den Druckdialog des Webbrowsers.</p>
+<p>Um alle Bilder und Hintergrundfarben des im Ausdruck zu erhalten, sollten Sie die Druckeinstellungen des Webbrowsers beachten: Im Firefox kann man die Option &#8220;Hintergrund drucken&#8221; im Druckoptionendialog anschalten, in Chrome basierten Browsern nennt sich die Option &#8220;Hintergrundgrafiken&#8221;. Die übermittelten Schriften können bei einem Ausdruck in PDF je nach Viewer unterschiedlich gut funktionieren. Desweiteren modifizieren die meisten Browser Webseiten etwas vor dem Druck, damit nicht so viel Tinte/Toner verbraucht wird.</p>
+</div>
+<div class="section" id="button-konfiguration">
+<h3>Button-Konfiguration<a class="headerlink" href="#button-konfiguration" title="Permalink to this headline">¶</a></h3>
+<p>Für das Element wird ein Button verwendet. Siehe das Kapitel <a class="reference internal" href="button.html"><em>Button</em></a> für die generelle Konfiguration. Der folgende Screenshot zeigt ein Beispiel für einen FeatureInfo Button, der so lange aktiviert ist, bis er vom Benutzer wieder deaktiviert wird. Eine weitere Möglichkeit, ihn zu deaktivieren wäre den FeatureInfo Dialog zu schließen, wenn dieser die Option die Option &#8220;Deactivate on Close&#8221; angeschaltet hat.</p>
+<ul class="simple">
+<li><strong>Group:</strong> featureinfo</li>
+<li><strong>Deactivate:</strong> deactivate</li>
+</ul>
+<a class="reference internal image-reference" href="../../../../../_images/feature_info_button.png"><img alt="../../../../../_images/feature_info_button.png" src="../../../../../_images/feature_info_button.png" style="width: 441.6px; height: 440.0px;" /></a>
+</div>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">FeaureInfo</span>       <span class="c1"># Titel des Elements</span>
+<span class="l l-Scalar l-Scalar-Plain">tooltip</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Feature Info</span>   <span class="c1"># Text des Tooltips</span>
+<span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dialog</span>            <span class="c1"># Default und mandatory: dialog.</span>
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">map</span>             <span class="c1"># ID des Kartenelements</span>
+<span class="l l-Scalar l-Scalar-Plain">autoActivate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>     <span class="c1"># true, wenn die Infoabfrage beim Start der Anwendung geöffnet wird, der Standardwert ist false.</span>
+<span class="l l-Scalar l-Scalar-Plain">deactivateOnClose</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># true/false um die Funktion nach dem Schließen des Ergebnisfensters zu deaktivieren, der Standardwert ist true</span>
+<span class="l l-Scalar l-Scalar-Plain">onlyValid</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>        <span class="c1"># Korrekte HTML Ausgabe erfordern. Standardwert ist false.</span>
+<span class="l l-Scalar l-Scalar-Plain">printResult</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>      <span class="c1"># Anzeige eines Links, über den die Infoabfrage ausgedruckt werden kann. Standardwert ist false.</span>
+<span class="l l-Scalar l-Scalar-Plain">showOriginal</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>     <span class="c1"># Der Original css-Stil des Ergebnisses wird angezeigt. Standardwert ist false.</span>
+<span class="l l-Scalar l-Scalar-Plain">displayType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">tabs</span>       <span class="c1"># tabs/accordion Default: tabs</span>
+<span class="l l-Scalar l-Scalar-Plain">width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">700</span>              <span class="c1"># Breite des Dialogs in Pixel, Standardwert: 700</span>
+<span class="l l-Scalar l-Scalar-Plain">height</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>             <span class="c1"># Höhe des Dialog in Pixel, Standardwert: 500</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\FeatureInfo</li>
+<li><strong>Widget:</strong> mapbender.element.featureInfo.js</li>
+<li><strong>Style:</strong> mapbender.elements.css</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>Keine.</p>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="activate">
+<h3>activate<a class="headerlink" href="#activate" title="Permalink to this headline">¶</a></h3>
+<p>Aktiviert das Modul, welches dann auf einen Mausklick wartet, um die Infoabfrage zu öffnen.</p>
+</div>
+<div class="section" id="deactivate">
+<h3>deactivate<a class="headerlink" href="#deactivate" title="Permalink to this headline">¶</a></h3>
+<p>Deaktiviert das Modul.</p>
+</div>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>Keine.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Feature Info (Information)</a><ul>
+<li><a class="reference internal" href="#konfiguration">Konfiguration</a><ul>
+<li><a class="reference internal" href="#anzeige-als-original-und-gestyled">Anzeige als Original und gestyled</a></li>
+<li><a class="reference internal" href="#anzeige-als-tabs-und-accordion">Anzeige als Tabs und Accordion</a></li>
+<li><a class="reference internal" href="#ausdruck-der-resultate">Ausdruck der Resultate</a></li>
+<li><a class="reference internal" href="#button-konfiguration">Button-Konfiguration</a></li>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a><ul>
+<li><a class="reference internal" href="#activate">activate</a></li>
+<li><a class="reference internal" href="#deactivate">deactivate</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="digitizer.html"
+                        title="previous chapter">Digitalisierung (Digitizer)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="gpsposition.html"
+                        title="next chapter">GPS-Position</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/de/bundles/Mapbender/CoreBundle/elements/feature_info.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="gpsposition.html" title="GPS-Position"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="digitizer.html" title="Digitalisierung (Digitizer)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Navigation Toolbar (Zoombar) &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="Layerset" href="../entities/layerset.html" />
+    <link rel="prev" title="Spatial Reference System Selector (SRS Selector)" href="srs_selector.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../entities/layerset.html" title="Layerset"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="srs_selector.html" title="Spatial Reference System Selector (SRS Selector)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="navigation-toolbar-zoombar">
+<span id="zoom-bar"></span><h1>Navigation Toolbar (Zoombar)<a class="headerlink" href="#navigation-toolbar-zoombar" title="Permalink to this headline">¶</a></h1>
+<p>The Navigation Toolbar element provides a control to pan and zoom, similar to the OpenLayers PanZoomBar control.</p>
+<a class="reference internal image-reference" href="../../../../../_images/zoom_bar1.png"><img alt="../../../../../_images/zoom_bar1.png" src="../../../../../_images/zoom_bar1.png" style="width: 60.8px; height: 340.8px;" /></a>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/zoom_bar_configuration1.png"><img alt="../../../../../_images/zoom_bar_configuration1.png" src="../../../../../_images/zoom_bar_configuration1.png" style="width: 365.6px; height: 389.6px;" /></a>
+<ul class="simple">
+<li><strong>Draggable:</strong> element is draggable or not, default true.</li>
+<li><strong>Title:</strong> Title of the element. The title will be listed in &#8220;Layouts&#8221; and allows to distinguish between different buttons. It will be indicated if &#8220;Show label&#8221; is activated.</li>
+<li><strong>Tooltip:</strong> text to use as tooltip.</li>
+<li><strong>Components:</strong> components of the navigation toolbar, default all selected.</li>
+<li><strong>Target:</strong> Id of Map element to query.</li>
+<li><strong>Step size:</strong> step value for pan.</li>
+<li><strong>Step by pixel:</strong> step type &#8220;by pixel&#8221;/&#8221;percent&#8221;, false = percent, default is false.</li>
+<li><strong>Anchor:</strong> navigation toolbar alignment, default is &#8216;left-top&#8217; (use inline f.e. in sidebar).</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre>tooltip: &#39;Navigation Toolbar&#39; # text to use as tooltip
+components: array(&quot;pan&quot;,      # components of the navigation toolbar, default all selected
+  &quot;history&quot;,&quot;zoom_box&quot;,
+  &quot;zoom_max&quot;,&quot;zoom_in_out&quot;,
+  &quot;zoom_slider&quot;)
+target: ~                     # Id of Map element to query
+stepSize: 50                  # step value for pan
+stepByPixel: false            # step type &quot;by pixel&quot;/&quot;percent&quot;, false = percent, default is false
+anchor: &#39;inline&#39;/&#39;left-top&#39;/  # navigation toolbar alignment, default is &#39;left-top&#39;
+  &#39;left-bottom&#39;/&#39;right-top&#39;/  # use inline f.e. in sidebar
+  &#39;right-bottom&#39;
+draggable: true               # element is draggable or not, default true
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\ZoomBar</li>
+<li><strong>Widget:</strong> mapbender.element.zoombar.js</li>
+<li><strong>Style:</strong> mapbender.element.zoombar.css</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Navigation Toolbar (Zoombar)</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a></li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="srs_selector.html"
+                        title="previous chapter">Spatial Reference System Selector (SRS Selector)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../entities/layerset.html"
+                        title="next chapter">Layerset</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/en/bundles/Mapbender/CoreBundle/elements/zoom_bar.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../entities/layerset.html" title="Layerset"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="srs_selector.html" title="Spatial Reference System Selector (SRS Selector)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

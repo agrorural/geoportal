@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Developer’s Book &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../index.html" />
+    <link rel="up" title="Welcome to Mapbender3’s documentation!" href="index.html" />
+    <link rel="next" title="Introduction" href="book/development/introduction.html" />
+    <link rel="prev" title="How to create a Bundle?" href="book/development/bundle.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="book/development/introduction.html" title="Introduction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="book/development/bundle.html" title="How to create a Bundle?"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-developer-s-book">
+<h1>The Developer&#8217;s Book<a class="headerlink" href="#the-developer-s-book" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="book/development/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book/development/introduction.html#things-you-should-now">Things you should now</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/introduction.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/introduction.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/introduction.html#topics">Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/apidocumentation.html">API documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book/development/apidocumentation.html#how-to-write-mapbender3-api-documentation">How to write Mapbender3 API Documentation?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/apidocumentation.html#javascript">JavaScript</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/frontend_architecture.html">Frontend architecture (Status Version 3.0.3.0)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/elements.html">Understanding Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book/development/elements.html#parts-of-an-elements">Parts of an Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/elements.html#element-to-element-communication">Element to Element communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/element_generate.html">How to create your own Element?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book/development/element_generate.html#the-steps-to-create-your-own-element">The steps to create your own Element?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/element_generate.html#use-app-console-to-generate-your-own-bundle">Use app/console to generate your own bundle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/element_generate.html#use-app-console-to-generate-a-new-element">Use app/console to generate a new element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/element_generate.html#edit-your-new-element-for-your-needs">Edit your new element for your needs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/element_generate.html#register-the-new-element">Register the new Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/element_generate.html#add-the-new-element-to-an-application">Add the new element to an application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/element_generate.html#change-the-action-on-click-event">Change the action on Click event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/element_generate.html#default-definition-of-mapclickworker">Default definition of _mapClickWorker()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/element_generate.html#modified-mapclickworker-opens-openstreetmap">modified _mapClickWorker() opens OpenStreetMap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/requestresponse.html">Request / Response Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book/development/requestresponse.html#application-workflow">Application Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/requestresponse.html#element-rendering-workflow">Element Rendering Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/requestresponse.html#element-callback-workflow">Element Callback Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/requestresponse.html#manager-workflow">Manager Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/bundle.html">How to create a Bundle?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/proxy.html">How to use the OWSProxy3?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/controllers.html">Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book/development/controllers.html#the-front-controller-using-routes">The Front Controller - Using Routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/controllers.html#defining-routes-using-annotations">Defining routes using annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/controllers.html#mapbender3-controllers">Mapbender3 Controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/twig.html">Twig</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book/development/twig.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/twig.html#twig-syntax">Twig Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/twig.html#twig-template-caching">Twig Template caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/twig.html#template-location">Template Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/twig.html#template-name">Template Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/twig.html#check-the-syntax-of-your-twig-template">Check the syntax of your Twig template</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/symfony.html">Symfony2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book/development/symfony.html#project-page">Project page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/symfony.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/git.html">Quick primer on using Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/conventions.html">Conventions for Mapbender3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book/development/conventions.html#code-conventions">Code conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/conventions.html#git-branch-conventions">Git branch conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/conventions.html#layout-conventions">Layout conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/conventions.html#translation-where">Translation where</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/conventions.html#issue-conventions">Issue conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/conventions.html#version-conventions">Version conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/conventions.html#release">Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/conventions.html#how-to-build-a-new-mapbender3-build">How to build a new Mapbender3 build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/conventions.html#documentation-conventions">Documentation conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="book/development/documentation_howto.html">How to write Mapbender3 Documentation?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book/development/documentation_howto.html#mapbender3-documentation-website">Mapbender3 Documentation website</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/documentation_howto.html#edit-documentation-at-git-repository-mapbender-documentation">Edit documentation at Git Repository mapbender-documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/documentation_howto.html#structure-of-the-documentation">Structure of the documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/documentation_howto.html#how-to-build-the-documentation-via-sphinx">How to build the documentation via Sphinx?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/documentation_howto.html#how-to-write-documentation">How to write documentation?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/documentation_howto.html#images-figures">Images (figures)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/documentation_howto.html#quickstart">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/documentation_howto.html#example-for-element-documentation">Example for element documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book/development/documentation_howto.html#working-with-restructured-text-rst">Working with reStructured Text (rst)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="book/development/bundle.html"
+                        title="previous chapter">How to create a Bundle?</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="book/development/introduction.html"
+                        title="next chapter">Introduction</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/en/development.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="book/development/introduction.html" title="Introduction"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="book/development/bundle.html" title="How to create a Bundle?"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

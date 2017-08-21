@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Directory structure in Mapbender3 &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../index.html" />
+    <link rel="up" title="The Book" href="../thebook.html" />
+    <link rel="next" title="Concepts" href="concepts.html" />
+    <link rel="prev" title="Components" href="components.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="concepts.html" title="Concepts"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="components.html" title="Components"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" accesskey="U">The Book</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="directory-structure-in-mapbender3">
+<span id="directory-structure"></span><h1>Directory structure in Mapbender3<a class="headerlink" href="#directory-structure-in-mapbender3" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="app">
+<h2>app<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h2>
+<p>This directory contains:</p>
+<ul class="simple">
+<li>the php-Cache (app/cache)</li>
+<li>the logs (app/logs)</li>
+<li>the configurations (app/config)</li>
+<li>the applicationkernel (app/AppKernel.php) (this is called by the FrontendControllers and controlls the whole application)</li>
+<li>the Autoloading (autoload.php)</li>
+<li>the application specific resource directory (Resources)</li>
+<li>the command line application for maintaining and management tasks (app/console)</li>
+</ul>
+<div class="section" id="app-config">
+<h3>app/config<a class="headerlink" href="#app-config" title="Permalink to this headline">¶</a></h3>
+<p>Basic configuration files of Mapbender are placed in the app/config directory. Two files are of particular importance:</p>
+<ul>
+<li><p class="first">parameters.yml: The most basic parameters of Mapbender are defined here. For example the database of the MB3-repository and the databases on which some elements rely on (like Search or Digitizer).</p>
+<p>The default language of the interface has to be defined here as cookie- and proxy-settings.</p>
+</li>
+<li><p class="first">config.yml: This file contains basic configuration of the arhcitecture. Also you&#8217;ll find many parameters defined as wildcards for the parameters.yml</p>
+<p><strong>Important</strong>: Each database that is defined in the parameters.yml has to be defined as a wildcard in config.yml.</p>
+<p>Furthermore the file defines which configuration has to be loaded for the productive and development mode.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="app-config-applications">
+<h3>app/config/applications<a class="headerlink" href="#app-config-applications" title="Permalink to this headline">¶</a></h3>
+<p>The directory app/config/applications contains all applications that are defined in a YAML file. The known example-applications &#8220;Mapbender mobile&#8221;, &#8220;Mapbender Demo Map&#8221; and &#8220;Mapbender Demo Map basic&#8221; are now placed there as single files. Since version 3.0.6 they replace the former single file mapbender.yml. Additional applications can be placed in this directory and are automatically recognized by Mapbender3.</p>
+</div>
+</div>
+<div class="section" id="bin">
+<h2>bin<a class="headerlink" href="#bin" title="Permalink to this headline">¶</a></h2>
+<p>Here are symlinks to the following binaries placed:</p>
+<ul class="simple">
+<li>apigen</li>
+<li>composer</li>
+<li>coveralls</li>
+<li>doctrine</li>
+<li>doctrine.php</li>
+<li>phantomjs</li>
+<li>phing</li>
+<li>phpunit</li>
+</ul>
+</div>
+<div class="section" id="documentation">
+<h2>documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Folder for this documentation.</p>
+</div>
+<div class="section" id="fom">
+<h2>fom<a class="headerlink" href="#fom" title="Permalink to this headline">¶</a></h2>
+<p>Directory of the <a class="reference external" href="https://github.com/mapbender/fom">FOM submodule</a>.</p>
+</div>
+<div class="section" id="mapbender">
+<h2>mapbender<a class="headerlink" href="#mapbender" title="Permalink to this headline">¶</a></h2>
+<p>Directory of the <a class="reference external" href="https://github.com/mapbender/mapbender">Mapbender submodule</a>. Provides the mapbender-specific bundles and the Mapbender3 code.</p>
+<div class="section" id="mapbender-translations">
+<h3>mapbender/...../translations<a class="headerlink" href="#mapbender-translations" title="Permalink to this headline">¶</a></h3>
+<p>Directory: mapbender/src/Mapbender/CoreBundle/Resources/translations/</p>
+<p>The translations are stored in <a class="reference external" href="https://en.wikipedia.org/wiki/XLIFF">XLIFF textfiles</a>. Every language needs an xliff-file like messages.en.xlf for the English translation.</p>
+</div>
+</div>
+<div class="section" id="owsproxy">
+<h2>owsproxy<a class="headerlink" href="#owsproxy" title="Permalink to this headline">¶</a></h2>
+<p>Directory of the <a class="reference external" href="https://github.com/mapbender/owsproxy3">OWSProxy submodule</a>.</p>
+</div>
+<div class="section" id="vendor">
+<h2>vendor<a class="headerlink" href="#vendor" title="Permalink to this headline">¶</a></h2>
+<p>Directory for external libraries (loaded by composer) and further Mapbender modules (a.o. Digitizer, Mapbender-Icons).</p>
+</div>
+<div class="section" id="web">
+<h2>web<a class="headerlink" href="#web" title="Permalink to this headline">¶</a></h2>
+<p>This directory has to be published by the webserver. The ALIAS has to refer to this directory.</p>
+<p>It controlls:</p>
+<ul class="simple">
+<li>the FrontendController (PHP-Script, which can be called). These are <strong>app.php</strong> for the productive-system and <strong>app_dev.php</strong> for the development version. The development version contains the profiler for perfomance tests and more.</li>
+<li>this directory contains the static resoures like css, js, favicon etc.</li>
+</ul>
+<div class="section" id="web-bundles">
+<h3>web/bundles<a class="headerlink" href="#web-bundles" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>here the static resources of the single bundles are stored.</li>
+<li>the following command copies the resources from the bundles to the folder.</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console assets:install --symlink web</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>Notice</strong>: if you use Windows you can&#8217;t create symbolic links and therefore you have to run the command (<strong>app/console assets:install web</strong>) after every change in the code to copy the files to the directory.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="src">
+<h2>src<a class="headerlink" href="#src" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>directory for applications specific bundles (similar to the former x-directories in Mapbender 2.x)</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>vendor<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>directory where all the Bundles which are used from Symfony are found. Resources are used by Symfony using the Autoloading.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Directory structure in Mapbender3</a><ul>
+<li><a class="reference internal" href="#app">app</a><ul>
+<li><a class="reference internal" href="#app-config">app/config</a></li>
+<li><a class="reference internal" href="#app-config-applications">app/config/applications</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bin">bin</a></li>
+<li><a class="reference internal" href="#documentation">documentation</a></li>
+<li><a class="reference internal" href="#fom">fom</a></li>
+<li><a class="reference internal" href="#mapbender">mapbender</a><ul>
+<li><a class="reference internal" href="#mapbender-translations">mapbender/...../translations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#owsproxy">owsproxy</a></li>
+<li><a class="reference internal" href="#vendor">vendor</a></li>
+<li><a class="reference internal" href="#web">web</a><ul>
+<li><a class="reference internal" href="#web-bundles">web/bundles</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src">src</a></li>
+<li><a class="reference internal" href="#id1">vendor</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="components.html"
+                        title="previous chapter">Components</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="concepts.html"
+                        title="next chapter">Concepts</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/en/book/directory_structure.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="concepts.html" title="Concepts"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="components.html" title="Components"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" >The Book</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

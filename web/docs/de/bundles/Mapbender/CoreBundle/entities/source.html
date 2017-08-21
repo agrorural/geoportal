@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Source (Datenquelle) &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="mapbender - Mapbender\CoreBundle\Mapbender" href="../services/mapbender.html" />
+    <link rel="prev" title="Layerset" href="layerset.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../services/mapbender.html" title="mapbender - Mapbender\CoreBundle\Mapbender"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="layerset.html" title="Layerset"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="source-datenquelle">
+<span id="source"></span><h1>Source (Datenquelle)<a class="headerlink" href="#source-datenquelle" title="Permalink to this headline">¶</a></h1>
+<p>Über die Datenquellen können Sie OGC-WMS Dienste in der Version 1.1.1 und 1.3.0 in Mapbender3 registrieren.</p>
+<p>Informationen zum Einbinden von Diensten und der Nutzung in Mapbender finden Sie im <a class="reference external" href="../../../../book/quickstart.html#laden-von-web-map-services">Quickstart Dokument</a>.</p>
+<a class="reference internal image-reference" href="../../../../../_images/source_wms.png"><img alt="../../../../../_images/source_wms.png" src="../../../../../_images/source_wms.png" style="width: 639.2px; height: 300.0px;" /></a>
+<ul>
+<li><p class="first"><strong>Dienst URL</strong>: URL zum Capabilities-Dokument des WMS Dienstes (z.B.: <code class="docutils literal"><span class="pre">http://osm-demo.wheregroup.com/service?SERVICE=WMS&amp;Version=1.3.0&amp;REQUEST=GetCapabilities</span></code>)</p>
+</li>
+<li><p class="first"><strong>Benutzername / Passwort</strong>: Eingabe von Benutzername und Passwort bei gesicherten Diensten.</p>
+</li>
+<li><p class="first"><strong>nur valid</strong>: Hiermit werden die WMS Dienste auf Validität überprüft. Dabei werden nur die Standard-Namensräume unterstützt. WMS Dienste, die in ihren Capabilities auf weitere Schema-Dateien verweisen können daher nicht als &#8220;valide&#8221; eingebunden werden. Diese Einschränkung stammt aus Erfahrungen mit falsch konfigurierten WMS Diensten, die Probleme bei der Nutzung gemacht haben.</p>
+<p>In der Regel verweisen OGC-WMS Capabilities auf <code class="docutils literal"><span class="pre">xsi:schemaLocation=&quot;http://www.opengis.net/wms</span> <span class="pre">http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd</span></code>. Die dort unterstützen Namensräume sind:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.w3.org/1999/xlink">http://www.w3.org/1999/xlink</a>,</li>
+<li><a class="reference external" href="http://www.opengis.net/wms">http://www.opengis.net/wms</a>,</li>
+<li><a class="reference external" href="http://www.w3.org/2001/XMLSchema">http://www.w3.org/2001/XMLSchema</a></li>
+</ul>
+<p>Dienste, die ohne Validitätsüberprüfung registriert wurden, erscheinen in der Diensteliste mit einem Ausrufezeichen. In vielen Fällen funktionieren diese Dienste mit Mapbender3, obwohl sie eigene Schemata eingebunden haben.</p>
+<a class="reference internal image-reference" href="../../../../../_images/source_not_valid.png"><img alt="../../../../../_images/source_not_valid.png" src="../../../../../_images/source_not_valid.png" style="width: 623.2px; height: 86.4px;" /></a>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="layerset.html"
+                        title="previous chapter">Layerset</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../services/mapbender.html"
+                        title="next chapter">mapbender - Mapbender\CoreBundle\Mapbender</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/de/bundles/Mapbender/CoreBundle/entities/source.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../services/mapbender.html" title="mapbender - Mapbender\CoreBundle\Mapbender"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="layerset.html" title="Layerset"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

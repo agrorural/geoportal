@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Konzept &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../index.html" />
+    <link rel="up" title="Das Buch" href="../thebook.html" />
+    <link rel="next" title="Konfiguration der Datenbank" href="database.html" />
+    <link rel="prev" title="Verzeichnisstruktur in Mapbender3" href="directory_structure.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="database.html" title="Konfiguration der Datenbank"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="directory_structure.html" title="Verzeichnisstruktur in Mapbender3"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" accesskey="U">Das Buch</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="konzept">
+<h1>Konzept<a class="headerlink" href="#konzept" title="Permalink to this headline">¶</a></h1>
+<p>Dieses Kapitel gibt eine Einführung in das Konzept von Mapbender3. Nach dem Lesen sollten Sie den Aufbau von Mapbender3 und ihre Interaktion verstehen.</p>
+<div class="section" id="anwendung">
+<h2>Anwendung<a class="headerlink" href="#anwendung" title="Permalink to this headline">¶</a></h2>
+<p>Eine Anwendung (Applikation) ist eine einzelne Mapbender3-Konfiguration, die normalerweise als interaktive Webkarte verwendet wird.</p>
+<p>Jede Anwendung besteht aus verschiedenen Komponenten:</p>
+<ul class="simple">
+<li>Elemente</li>
+<li>Layersets</li>
+<li>Anwendungsvorlagen</li>
+</ul>
+</div>
+<div class="section" id="elemente">
+<h2>Elemente<a class="headerlink" href="#elemente" title="Permalink to this headline">¶</a></h2>
+<p>Elemente sind die Bausteine der Anwendung. Jedes Element liefert Funktionalität und kann ggf. mit anderen Elementen interagieren. Das Kartenelement ist vermutlich das Element, das Sie am meisten benutzen werden.</p>
+<p>Jedes Element besteht aus vier Bereichen:</p>
+<ul class="simple">
+<li>PHP Klasse - sie beschreibt das Element mit seinen Möglichkeiten. Die Klasse kann auch ein Ajax callback point bereit stellen, so dass das clientseitige Widget (siehe unten) Datenbankabfragen ausführen kann und die Ergebnisse beispielsweise anzeigen kann.</li>
+<li>JavaScript Widget– dies ist der clientseitige Teil des Elements. Dieser Teil beinhaltet alles, was Sie am Bildschirm ausführen und mit dem Sie interagieren. Über Ajax kann dieser Teil den serverseitigen Gegenpart aufrufen und beispielsweise Datenbankabfragen ausführen.</li>
+<li>Template – HTML, das das Element verwendet. In der einfachsten Version würde dies nur ein DIV-Tag sein. Aber es kann auch komplexer sein.</li>
+<li>CSS - dient dem Styling der Elemente.</li>
+</ul>
+</div>
+<div class="section" id="anwendungsvorlage">
+<h2>Anwendungsvorlage<a class="headerlink" href="#anwendungsvorlage" title="Permalink to this headline">¶</a></h2>
+<p>Jede Anwendung ist eine HTML-Seite. Die Anwendungsvorlage definiert das Basislayout der Seite. Die Anwendungen können unterschiedliche Vorlagen verwenden, beispielsweise spezielle Vorlagen für die mobile Anwendung.</p>
+</div>
+<div class="section" id="frontend">
+<h2>Frontend<a class="headerlink" href="#frontend" title="Permalink to this headline">¶</a></h2>
+<p>Das Frontend ist die Anwendungssicht der Mapbender3-Installation. Es beinhaltet die Anwendungsliste und jede Sicht auf die Anwendung. Der Anwender interagiert mit dem Frontend.</p>
+</div>
+<div class="section" id="backend">
+<h2>Backend<a class="headerlink" href="#backend" title="Permalink to this headline">¶</a></h2>
+<p>Über das Backend wird die Mapbender3-Installation konfiguriert. Es wird auch der Manager genannt. Mit dem Backend können Administratoren Benutzer, Rollen, Dienste, Anwendungen und Elemente verwalten.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Konzept</a><ul>
+<li><a class="reference internal" href="#anwendung">Anwendung</a></li>
+<li><a class="reference internal" href="#elemente">Elemente</a></li>
+<li><a class="reference internal" href="#anwendungsvorlage">Anwendungsvorlage</a></li>
+<li><a class="reference internal" href="#frontend">Frontend</a></li>
+<li><a class="reference internal" href="#backend">Backend</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="directory_structure.html"
+                        title="previous chapter">Verzeichnisstruktur in Mapbender3</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="database.html"
+                        title="next chapter">Konfiguration der Datenbank</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/de/book/concepts.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="database.html" title="Konfiguration der Datenbank"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="directory_structure.html" title="Verzeichnisstruktur in Mapbender3"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" >Das Buch</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

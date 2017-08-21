@@ -1,0 +1,12 @@
+.elementFormFeatureInfo {
+  $label: 60px;
+  .labelInput {
+    width: $label;
+  }
+  .checkWrapper {
+    margin-bottom: $space/2;
+  }
+  .labelCheck {
+    margin-right: $space;
+  }
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Systemvoraussetzungen und Download &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="Installation" href="../installation.html" />
+    <link rel="next" title="Installation im Symfony eigenen Webserver" href="installation_symfony.html" />
+    <link rel="prev" title="Installation" href="../installation.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="installation_symfony.html" title="Installation im Symfony eigenen Webserver"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../installation.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../thebook.html" >Das Buch</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../installation.html" accesskey="U">Installation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="systemvoraussetzungen-und-download">
+<span id="systemrequirements"></span><h1>Systemvoraussetzungen und Download<a class="headerlink" href="#systemvoraussetzungen-und-download" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="systemvoraussetzungen">
+<h2>Systemvoraussetzungen<a class="headerlink" href="#systemvoraussetzungen" title="Permalink to this headline">¶</a></h2>
+<p>Mapbender3 benötigt die folgenden Komponenten:</p>
+<ul class="simple">
+<li>PHP 5.5.4 oder neuer (php5)</li>
+<li>PHP CLI Interpreter (php5-cli)</li>
+<li>PHP SQLite Erweiterung (php5-sqlite)</li>
+<li>PHP cURL Erweiterung (php5-curl)</li>
+<li>PHP Internationalisierungserweiterung (php5-intl)</li>
+<li>PHP GD für den Druck (php5-gd)</li>
+<li>PHP Multibyte String (php5-mbstring)</li>
+<li>PHP FileInfo für den Druck zur Prüfung der Bilder</li>
+<li>APACHE mod_rewrite</li>
+<li>OpenSSL</li>
+<li>Für die Entwicklung, speziell durch das phantomjs Hilfspaket, wird außerdem die BZ2 Extension benötigt (php-bz2)</li>
+</ul>
+<div class="section" id="php-7">
+<h3>PHP 7<a class="headerlink" href="#php-7" title="Permalink to this headline">¶</a></h3>
+<p>Mapbender3 unterstützt auch PHP 7. Sie benötigen die oben beschriebenen PHP-Bibliotheken für PHP 7 und zusätzlich die folgenden:</p>
+<ul class="simple">
+<li>PHP Zip (php-zip)</li>
+<li>PHP BZ2 (php-bz2)</li>
+<li>PHP XML (php-xml)</li>
+</ul>
+</div>
+<div class="section" id="datenbanken">
+<h3>Datenbanken<a class="headerlink" href="#datenbanken" title="Permalink to this headline">¶</a></h3>
+<p>Um optional eine andere Datenbank als die vorkonfigurierte SQLite zu verwenden, wird eine PHP-Erweiterung benötigt, die von Doctrine unterstützt wird: <a class="reference external" href="http://www.doctrine-project.org/projects/dbal.html">Doctrine</a>. Für PostgreSQL beispielsweise php5-pgsql.</p>
+<p>Beachten Sie, dass die SQLite Erweiterung auf jeden Fall benötigt wird. Sie benötigen diese, um im Entwicklermodus zu arbeiten oder um Profiler-Daten zu erzeugen sowie um Fehler zu analysieren.</p>
+</div>
+</div>
+<div class="section" id="systemvoraussetzungen-windows">
+<h2>Systemvoraussetzungen Windows<a class="headerlink" href="#systemvoraussetzungen-windows" title="Permalink to this headline">¶</a></h2>
+<p>Auch unter Windows benötigen Sie <a class="reference external" href="http://www.php.net/">PHP</a> und damit einen PHP-fähigen Webserver wie <a class="reference external" href="http://httpd.apache.org/">Apache</a>.</p>
+<p>Wir haben gute Erfahrungen mit den 64-bit Downloads von Apache und PHP gemacht.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.apachelounge.com/download/">Apache Download</a>: Die Downloads der Apache Lounge sind für verschiedene Versionen von Windows angepasst. Für neuere Versionen wählen Sie die &#8220;VC11&#8221; oder &#8220;VC14&#8221; Variante (benötigt die Visual C++ Redistributable für Visual Studio 2012 bzw. 2015) und die Win64 Version (64-bit).</li>
+<li><a class="reference external" href="http://windows.php.net/download#php-5.6">PHP Download</a>: Wählen Sie die &#8220;Non Thread Safe&#8221; Variante des PHP Downloads. als x64 Paket (64-bit).</li>
+</ul>
+<div class="section" id="anmerkungen-zu-windows">
+<h3>Anmerkungen zu Windows<a class="headerlink" href="#anmerkungen-zu-windows" title="Permalink to this headline">¶</a></h3>
+<p>Die Apache Downloads unterscheiden sich nach der Version von Visual Studio, mit der sie kompiliert worden sind und damit nach der geeigneten Version der Microsoft Visual C++ Redistributable. Bei neueren Windows Versionen ist das in der Regel unproblematisch. Es gibt drei unterschiedliche Varianten:</p>
+<ul class="simple">
+<li><strong>VC 14</strong>: Benötigt Visual C++ Redistributable for Visual Studio 2015.</li>
+<li><strong>VC 11</strong>: Benötigt Visual C++ Redistributable for Visual Studio 2012. PHP baut i.d.R. noch auf dieser Version auf.</li>
+<li><strong>VC 10</strong>: Benötigt Visual C++ Redistributable for Visual Studio 2008 SP1.</li>
+</ul>
+<p>Zusätzlich gibt es 32- und 64-bit Versionen von Apache für Windows.</p>
+</div>
+</div>
+<div class="section" id="download-von-mapbender3">
+<h2>Download von Mapbender3<a class="headerlink" href="#download-von-mapbender3" title="Permalink to this headline">¶</a></h2>
+<p>Installationspakete von Mapbender3 werden als komprimierte Pakete ausgegeben und sind auf der <a class="reference external" href="http://mapbender3.org/download">Download-Seite</a> verfügbar.</p>
+<p>Nach dem Herunterladen extrahieren Sie die komprimierten Pakete in ein Verzeichnis Ihrer Wahl. In dieser Installationsbeschreibung wird davon ausgegangen, dass die Dateien unter</p>
+<ul class="simple">
+<li><strong>/var/www</strong> (für Linux) oder</li>
+<li><strong>C:/</strong> (für Windows, nicht empfehlenswert, der Einfachheit halber) ausgepackt werden.</li>
+</ul>
+<p>Benennen Sie für die weitere Installationsanleitung das entpackte Verzechnis (z.B.: &#8220;mapbender3-3.0.5.2&#8221;) nach &#8220;mapbender3&#8221; um.</p>
+<p>Die weiteren Schritte der Installation finden Sie in den folgenden Kapiteln:</p>
+<ul class="simple">
+<li><a class="reference external" href="installation_ubuntu.html">Installation für Ubuntu und Debian</a></li>
+<li><a class="reference external" href="installation_windows.html">Installation auf Windows</a></li>
+</ul>
+<p>Für den schnellen Test können Sie auch die <a class="reference external" href="installation_symfony.html">Installation im Symfony eigenen Webserver</a> durchführen. Die <a class="reference external" href="installation_git.html">Git-basierte Installation</a> benötigt diese Download Pakete nicht, sondern lädt sich Mapbender3 von den Git-Quellen. Dafür sind dort zusätzlich Schritte notwendig.</p>
+<div class="section" id="verzeichnisstruktur">
+<h3>Verzeichnisstruktur<a class="headerlink" href="#verzeichnisstruktur" title="Permalink to this headline">¶</a></h3>
+<p>Nach dem Entpacken des TAR.GZ- bzw des ZIP-Archivs finden Sie in dem Mapbender-Verzeichnis folgende Unterverzeichnisse:</p>
+<div class="highlight-bash"><div class="highlight"><pre>.
+├── app
+├── bin
+├── fom
+├── mapbender
+├── owsproxy
+├── src
+├── vendor
+└── web
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Systemvoraussetzungen und Download</a><ul>
+<li><a class="reference internal" href="#systemvoraussetzungen">Systemvoraussetzungen</a><ul>
+<li><a class="reference internal" href="#php-7">PHP 7</a></li>
+<li><a class="reference internal" href="#datenbanken">Datenbanken</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#systemvoraussetzungen-windows">Systemvoraussetzungen Windows</a><ul>
+<li><a class="reference internal" href="#anmerkungen-zu-windows">Anmerkungen zu Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#download-von-mapbender3">Download von Mapbender3</a><ul>
+<li><a class="reference internal" href="#verzeichnisstruktur">Verzeichnisstruktur</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../installation.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation_symfony.html"
+                        title="next chapter">Installation im Symfony eigenen Webserver</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/de/book/installation/systemrequirements.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="installation_symfony.html" title="Installation im Symfony eigenen Webserver"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../installation.html" title="Installation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../thebook.html" >Das Buch</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../installation.html" >Installation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

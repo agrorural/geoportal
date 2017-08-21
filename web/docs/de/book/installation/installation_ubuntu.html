@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation auf Ubuntu und Debian &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="Installation" href="../installation.html" />
+    <link rel="next" title="Installation auf Windows" href="installation_windows.html" />
+    <link rel="prev" title="Installation im Symfony eigenen Webserver" href="installation_symfony.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="installation_windows.html" title="Installation auf Windows"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation_symfony.html" title="Installation im Symfony eigenen Webserver"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../thebook.html" >Das Buch</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../installation.html" accesskey="U">Installation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="installation-auf-ubuntu-und-debian">
+<span id="installation-ubuntu"></span><h1>Installation auf Ubuntu und Debian<a class="headerlink" href="#installation-auf-ubuntu-und-debian" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="der-schnelle-weg-und-die-vorkonfigurierte-datenbank">
+<h2>Der schnelle Weg und die vorkonfigurierte Datenbank<a class="headerlink" href="#der-schnelle-weg-und-die-vorkonfigurierte-datenbank" title="Permalink to this headline">¶</a></h2>
+<p>Die folgende Installationsanleitung beschreibt die notwendigen Schritte auf einem aktuellen Ubuntu- oder Debian-System mit PHP 5.5 oder 5.6.  Wir nehmen an, dass Apache 2.4 auf dem System läuft. Anmerkungen <a class="reference external" href="installation_ubuntu.html#php-7">zu PHP 7</a> und <a class="reference external" href="installation_ubuntu.html#einrichtung-fur-apache-2-2">zu Apache 2.2</a> finden sich weiter unten.</p>
+<p>Falls Sie einen schnellen Test ohne Einrichtung eines Webservers bevorzugen, schauen Sie in das Kapitel <a class="reference external" href="installation_symfony.html">Installation auf dem Symfony eigenen Webserver</a>.</p>
+<p>Mapbender wird seit Version 3.0.6.0 mit einer vorkonfigurierten Datenbank auf Basis von SQLite mitgeliefert, in der schon Anwendungen realisiert sind (die Datenbank liegt unter <strong>&lt;mapbender&gt;/app/db/demo.sqlite</strong>). Die Datenbank enthält die Mapbender-Konfiguration, wie Anwendungen, Nutzer und registrierte Dienste, sie enthält keine Geodaten.</p>
+<p>Falls Sie eine andere Datenbank wie PostgreSQL vorliegen haben und nutzen möchten, finden Sie im Kapitel <a class="reference external" href="#mapbender-einrichtung-auf-postgresql">Mapbender Einrichtung auf PostgreSQL</a> die notwendigen Schritte.</p>
+</div>
+<div class="section" id="vorbereitung">
+<h2>Vorbereitung<a class="headerlink" href="#vorbereitung" title="Permalink to this headline">¶</a></h2>
+<p>Beachten Sie die <a class="reference external" href="systemrequirements.html">Systemvoraussetzungen</a>, wo Sie auch die Download-Links für Mapbender3 finden.</p>
+<p>Dort sind auch die notwendigen Komponenten für Mapbender3 aufgelistet, die Sie folgendermaßen installieren können:</p>
+<div class="highlight-bash"><div class="highlight"><pre>apt install php5 php5-gd php5-curl php5-cli php5-sqlite sqlite php5-intl php5-mbstring curl openssl
+</pre></div>
+</div>
+<p>Zusätzlich für die Entwicklung:</p>
+<div class="highlight-bash"><div class="highlight"><pre>apt install php5-bz2
+</pre></div>
+</div>
+<p>Laden Sie das Apache Modul rewrite.</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo a2enmod rewrite
+</pre></div>
+</div>
+</div>
+<div class="section" id="entpacken-und-im-webserver-registrieren">
+<h2>Entpacken und im Webserver registrieren<a class="headerlink" href="#entpacken-und-im-webserver-registrieren" title="Permalink to this headline">¶</a></h2>
+<p>Entpacken Sie das Mapbender3 Archiv (tar.gz oder zip) beispielsweise im Verzeichnis <strong>/var/www/mapbender3</strong> (siehe das Kapitel <a class="reference external" href="systemrequirements.html#download-von-mapbender3">Systemvoraussetzungen und den Download</a> für Details).</p>
+<p>Erstellen Sie den Apache Alias. Sie können Mapbender3 in ein beliebiges anderes Verzeichnis entpacken und müssen dann nur die folgende Datei anpassen und auf den richtigen Ordner verweisen lassen.</p>
+<p>Legen Sie die Datei <strong>/etc/apache2/sites-available/mabender3.conf</strong> mit dem folgenden Inhalt an.</p>
+<div class="highlight-apache"><div class="highlight"><pre><span class="nb">Alias</span> <span class="sx">/mapbender3</span> <span class="sx">/var/www/mapbender3/web/</span>
+<span class="nt">&lt;Directory</span> <span class="s">/var/www/mapbender3/web/</span><span class="nt">&gt;</span>
+ <span class="nb">Options</span> MultiViews FollowSymLinks
+ <span class="nb">DirectoryIndex</span> app.php
+ <span class="nb">Require</span> <span class="k">all</span> granted
+
+ <span class="nb">RewriteEngine</span> <span class="k">On</span>
+ <span class="nb">RewriteBase</span> <span class="sx">/mapbender3/</span>
+ <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} !-f
+ <span class="nb">RewriteRule</span> ^(.*)$ app.php [QSA,L]
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+</div>
+<p>Aktivieren Sie danach die Seite mit:</p>
+<div class="highlight-bash"><div class="highlight"><pre>a2ensite mapbender3.conf
+</pre></div>
+</div>
+<p>Laden Sie den Apache Server neu.</p>
+<div class="highlight-bash"><div class="highlight"><pre>service apache2 reload
+</pre></div>
+</div>
+</div>
+<div class="section" id="verzeichnisrechte">
+<h2>Verzeichnisrechte<a class="headerlink" href="#verzeichnisrechte" title="Permalink to this headline">¶</a></h2>
+<p>Setzen Sie die Schreibrechte für Besitzer (u), Gruppe (g) und Andere (o). Weisen Sie die Rechte dem Apache User (www-data) zu.</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo chmod -R ugo+r /var/www/mapbender3
+sudo chown -R www-data:www-data /var/www/mapbender3
+sudo chmod -R ug+w /var/www/mapbender3/web/uploads
+
+<span class="c1"># wenn Sie die vorkonfigurierte dateibasierte Datenbank nutzen möchten</span>
+sudo chmod -R ug+w app/db/demo.sqlite
+</pre></div>
+</div>
+<p>Der Apache Nutzer benötigt v.a. Schreibrechte auf app/cache, app/logs, web/uploads und app/db/demo.sqlite (wenn Sie die mitgelieferte dateibasierte Datenbank nutzen möchten) und Leserechte auf dem web Verzeichnis.</p>
+</div>
+<div class="section" id="start-und-anmelden-am-mapbender">
+<h2>Start und Anmelden am Mapbender<a class="headerlink" href="#start-und-anmelden-am-mapbender" title="Permalink to this headline">¶</a></h2>
+<p>Sie können nun auf Ihre Mapbender3 Installation mit <strong>http://hostname/mapbender3/</strong> zugreifen.</p>
+<p>Klicken Sie auf den Anmelden-Link oben rechts, um zur Anmeldung zu gelangen. Melden Sie sich mit dem neu erstellten Benutzer an. Per Voreinstellung lauten die Anmeldedaten root/root.</p>
+<p>Starten Sie Mapbender3 im Entwicklermodus, indem Sie das Skript app_dev.php aufrufen: <a class="reference external" href="http://localhost/mapbender3/app_dev.php">http://localhost/mapbender3/app_dev.php</a></p>
+<p>Wenn Sie mehr über Mapbender3 erfahren möchten, schauen Sie sich das <a class="reference external" href="../quickstart.html">Mapbender3 Quickstart Dokument</a> an.</p>
+</div>
+<div class="section" id="id1">
+<h2>Mapbender Einrichtung auf PostgreSQL<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Falls Sie die Mapbender3 Konfiguration in einer anderen Datenbank statt der SQLite Datenbank ablegen möchten (und da spricht nichts dagegen), sind hier die notwendigen Schritte beschrieben. Als Datenbank-Umgebung wird in diesem Beispiel PostgreSQL verwendet.</p>
+<p>Sie benötigen den PHP-PostgreSQL Treiber.</p>
+<div class="highlight-bash"><div class="highlight"><pre>apt install php5-pgsql
+</pre></div>
+</div>
+<p>Passen Sie die Mapbender3 Konfigurationsdatei parameters.yml (app/config/parameters.yml) an und definieren Sie die Datenbank, die Sie erzeugen und nutzen möchten. Mehr Informationen dazu finden Sie im Kapitel <a class="reference external" href="../database.html">Konfiguration der Datenbank</a>.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">database_driver</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">pdo_pgsql</span>
+<span class="l l-Scalar l-Scalar-Plain">database_host</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+<span class="l l-Scalar l-Scalar-Plain">database_port</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">5432</span>
+<span class="l l-Scalar l-Scalar-Plain">database_name</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">mapbender3</span>
+<span class="l l-Scalar l-Scalar-Plain">database_path</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">~</span>
+<span class="l l-Scalar l-Scalar-Plain">database_user</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+<span class="l l-Scalar l-Scalar-Plain">database_password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geheim</span>
+</pre></div>
+</div>
+<p>Setzen Sie die app/console Befehle ab. Details zu diesen Befehlen finden Sie im Kapitel <a class="reference external" href="configuration.html">Details zur Konfiguration von Mapbender3</a>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> /var/www/mapbender3
+app/console doctrine:database:create
+app/console doctrine:schema:create
+<span class="c1"># app/console assets:install web # nicht notwendig</span>
+app/console fom:user:resetroot
+app/console doctrine:fixtures:load --fixtures<span class="o">=</span>./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Epsg/ --append
+app/console doctrine:fixtures:load --fixtures<span class="o">=</span>./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Application/ --append
+</pre></div>
+</div>
+<p>Hiermit ist die Konfiguration von Mapbender3 für PostgreSQL fertig und Sie enthält nun auch die drei Beispielanwendung wie auch die unterstützten EPSG-codes.</p>
+</div>
+<div class="section" id="mapbender-einrichtung-auf-mysql">
+<h2>Mapbender Einrichtung auf MySQL<a class="headerlink" href="#mapbender-einrichtung-auf-mysql" title="Permalink to this headline">¶</a></h2>
+<p>Die Einrichtung von Mapbender auf MySQL ist ähnlich der auf PostgreSQL, Sie benötigen nur einen anderen PHP-Treiber und einen anderen Parameter in der parameters.yml. Falls Sie also die Mapbender3 Konfiguration in einer anderen Datenbank statt der SQLite Datenbank ablegen möchten (und da spricht nichts dagegen), sind hier die notwendigen Schritte beschrieben.</p>
+<p>Sie benötigen den PHP-MySQL Treiber.</p>
+<div class="highlight-bash"><div class="highlight"><pre>apt install php-mysql
+</pre></div>
+</div>
+<p>Passen Sie die Mapbender3 Konfigurationsdatei parameters.yml (app/config/parameters.yml) an und definieren Sie die Datenbank, die Sie erzeugen und nutzen möchten. Mehr Informationen dazu finden Sie im Kapitel <a class="reference external" href="../database.html">Konfiguration der Datenbank</a>.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">database_driver</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">pdo_mysql</span>
+<span class="l l-Scalar l-Scalar-Plain">database_host</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+<span class="l l-Scalar l-Scalar-Plain">database_port</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">3306</span>
+<span class="l l-Scalar l-Scalar-Plain">database_name</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">mapbender3</span>
+<span class="l l-Scalar l-Scalar-Plain">database_path</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="l l-Scalar l-Scalar-Plain">database_user</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="l l-Scalar l-Scalar-Plain">database_password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Tr0ub4dor&amp;3</span>
+</pre></div>
+</div>
+<p>Setzen Sie die app/console Befehle ab. Details zu diesen Befehlen finden Sie im Kapitel <a class="reference external" href="configuration.html">Details zur Konfiguration von Mapbender3</a>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> /var/www/mapbender3
+app/console doctrine:database:create
+app/console doctrine:schema:create
+<span class="c1"># app/console assets:install web # nicht notwendig</span>
+app/console fom:user:resetroot
+app/console doctrine:fixtures:load --fixtures<span class="o">=</span>./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Epsg/ --append
+app/console doctrine:fixtures:load --fixtures<span class="o">=</span>./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Application/ --append
+</pre></div>
+</div>
+</div>
+<div class="section" id="php-7">
+<h2>PHP 7<a class="headerlink" href="#php-7" title="Permalink to this headline">¶</a></h2>
+<p>Für PHP 7 werden weitere Quellen benötigt. Die Paketliste bei Verwendung von PHP 7:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt install php php-gd php-curl php-cli php-xml php-sqlite3 sqlite3 php-intl openssl php-zip php-mbstring php-bz2
+</pre></div>
+</div>
+<p>Zur Nutzung von PostgreSQL zusätzlich:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt install php-pgsql
+</pre></div>
+</div>
+<p>Für MySQL:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt install php-mysql
+</pre></div>
+</div>
+<p>Zusätzlich muss PHP 7 in Apache aktiviert werden:</p>
+<div class="highlight-bash"><div class="highlight"><pre>a2enmod php7.0
+</pre></div>
+</div>
+</div>
+<div class="section" id="einrichtung-fur-apache-2-2">
+<h2>Einrichtung für Apache 2.2<a class="headerlink" href="#einrichtung-fur-apache-2-2" title="Permalink to this headline">¶</a></h2>
+<p>Einige Debian Versionen unterstützen für Apache 2.2 die Ablage der mapbender3.conf Datei im Verzeichnis <code class="docutils literal"><span class="pre">/etc/apache2/sites-available</span></code> und die Aktivierung über den Befehl <code class="docutils literal"><span class="pre">a2ensite</span></code>. Je nach Betriebssystem muss die Datei aber im Verzeichnis <code class="docutils literal"><span class="pre">/etc/apache2/conf.d/</span></code> abgelegt werden.</p>
+<p>Aktivieren Sie das Rewrite-Modul von Apache.</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo a2enmod rewrite
+</pre></div>
+</div>
+<p>Im Unterschied zu Apache 2.4 gibt es für Apache 2.2 unterschiedliche Direktiven und andere Standardwerte (<code class="docutils literal"><span class="pre">Order</span></code> und <code class="docutils literal"><span class="pre">Allow</span></code>, <code class="docutils literal"><span class="pre">AllowOverride</span></code>), die in die mapbender3.conf Datei eingetragen werden. Diese Unterschiede sind <a class="reference external" href="http://httpd.apache.org/docs/2.4/upgrading.html">im Upgrade-Guide von Apache 2.2 zu Apache 2.4</a> beschrieben.</p>
+<p>Apache 2.2 Konfiguration <code class="docutils literal"><span class="pre">mapbender3.conf</span></code>:</p>
+<div class="highlight-apache"><div class="highlight"><pre> <span class="nb">ALIAS</span> <span class="sx">/mapbender3</span> <span class="sx">/var/www/mapbender3/web/</span>
+ <span class="nt">&lt;Directory</span> <span class="s">/var/www/mapbender3/web/</span><span class="nt">&gt;</span>
+   <span class="nb">Options</span> MultiViews FollowSymLinks
+   <span class="nb">DirectoryIndex</span> app.php
+   <span class="nb">AllowOverride</span> <span class="k">none</span>
+   <span class="nb">Order</span> allow,deny
+   <span class="nb">Allow</span> from <span class="k">all</span>
+
+   <span class="nb">RewriteEngine</span> <span class="k">On</span>
+   <span class="nb">RewriteBase</span> <span class="sx">/mapbender3/</span>
+   <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} !-f
+   <span class="nb">RewriteRule</span> ^(.*)$ app.php [QSA,L]
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uberprufung">
+<h2>Überprüfung<a class="headerlink" href="#uberprufung" title="Permalink to this headline">¶</a></h2>
+<p>Prüfen Sie, ob der Alias erreichbar ist:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://localhost/mapbender3/">http://localhost/mapbender3/</a></li>
+</ul>
+<p>Öffnen Sie das Symfony Welcome Script config.php. Das Skript prüft, ob alle notwendigen Komponenten installiert wurden und ob die Konfiguration erfolgte. Sofern noch Probleme vorliegen, sollten diese behoben werden.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://localhost/mapbender3/config.php">http://localhost/mapbender3/config.php</a></li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/mapbender3_symfony_check_configphp.png"><img alt="../../../_images/mapbender3_symfony_check_configphp.png" src="../../../_images/mapbender3_symfony_check_configphp.png" style="width: 640.0px; height: 480.0px;" /></a>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation auf Ubuntu und Debian</a><ul>
+<li><a class="reference internal" href="#der-schnelle-weg-und-die-vorkonfigurierte-datenbank">Der schnelle Weg und die vorkonfigurierte Datenbank</a></li>
+<li><a class="reference internal" href="#vorbereitung">Vorbereitung</a></li>
+<li><a class="reference internal" href="#entpacken-und-im-webserver-registrieren">Entpacken und im Webserver registrieren</a></li>
+<li><a class="reference internal" href="#verzeichnisrechte">Verzeichnisrechte</a></li>
+<li><a class="reference internal" href="#start-und-anmelden-am-mapbender">Start und Anmelden am Mapbender</a></li>
+<li><a class="reference internal" href="#id1">Mapbender Einrichtung auf PostgreSQL</a></li>
+<li><a class="reference internal" href="#mapbender-einrichtung-auf-mysql">Mapbender Einrichtung auf MySQL</a></li>
+<li><a class="reference internal" href="#php-7">PHP 7</a></li>
+<li><a class="reference internal" href="#einrichtung-fur-apache-2-2">Einrichtung für Apache 2.2</a></li>
+<li><a class="reference internal" href="#uberprufung">Überprüfung</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation_symfony.html"
+                        title="previous chapter">Installation im Symfony eigenen Webserver</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation_windows.html"
+                        title="next chapter">Installation auf Windows</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/de/book/installation/installation_ubuntu.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="installation_windows.html" title="Installation auf Windows"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation_symfony.html" title="Installation im Symfony eigenen Webserver"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../thebook.html" >Das Buch</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../installation.html" >Installation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

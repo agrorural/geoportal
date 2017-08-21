@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Button &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="Coordinates Display" href="coordinates_display.html" />
+    <link rel="prev" title="BaseSourceSwitcher" href="basesourceswitcher.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="coordinates_display.html" title="Coordinates Display"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="basesourceswitcher.html" title="BaseSourceSwitcher"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="button">
+<span id="button-en"></span><h1>Button<a class="headerlink" href="#button" title="Permalink to this headline">¶</a></h1>
+<p>The button element provides a push button widget. Some elements like <a class="reference external" href="../elements/legend.html">Legend</a> , <a class="reference external" href="layertree.html">Layertree</a>, <a class="reference external" href="feature_info.html">FeatureInfo</a>, <a class="reference external" href="ruler.html">Line/Area Ruler</a> and  <a class="reference external" href="printclient.html">PrintClient</a> need a button to be displayed/activated if not defined in a frame.</p>
+<p>Buttons optionally can be grouped, so that only one button in a group can be active at any given time. This is done by the group paramter.
+You can define a button that refers to a website or script using the click paramter.</p>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/button_configuration1.png"><img alt="../../../../../_images/button_configuration1.png" src="../../../../../_images/button_configuration1.png" style="width: 360.8px; height: 385.6px;" /></a>
+<ul class="simple">
+<li><strong>Show label:</strong> Enable or disable text (title) next to the button.</li>
+<li><strong>Title:</strong> Title of the element. The title will be listed in &#8220;Layouts&#8221; and allows to distinguish between different buttons. It will be indicated if &#8220;Show label&#8221; is activated.</li>
+<li><strong>Tooltip:</strong> Text, that will be indicated if the mouse hovers over the button for a longer time.</li>
+<li><strong>Icon:</strong> Symbol of the button. Based on a CSS class.</li>
+<li><strong>Target:</strong> Target element (Title(ID)) of the button. The target element will be triggered by clicking on the button. (e.g.: Print).</li>
+<li><strong>Click:</strong> Refers to a website or a script (e.g.: <a class="reference external" href="http://mapbender3.org">http://mapbender3.org</a>).</li>
+<li><strong>Group:</strong> Adds the element to a group. Only one button of the group may be activated.</li>
+<li><strong>Action:</strong> Method that is invoked when the button is activated.</li>
+<li><strong>Deactivate:</strong> Method that is invoked when the button is disabled.</li>
+</ul>
+<div class="section" id="icons">
+<h3>Icons<a class="headerlink" href="#icons" title="Permalink to this headline">¶</a></h3>
+<p>For some symbols you can choose between two different types of icons:</p>
+<ul class="simple">
+<li>A symbol based on a graphic (e.g. &#8220;About&#8221;),</li>
+<li>A symbol based on a font (e.g. &#8220;About (Font Awesome)&#8221;).</li>
+</ul>
+<p>The latter are based on a <a class="reference external" href="https://github.com/mapbender/icons">IconSet</a>, which is delivered with Mapbender as a module. We recommend to use the symbols from this library.</p>
+<p>More information on that topic:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/mapbender/icons">https://github.com/mapbender/icons</a></li>
+<li><a class="reference external" href="http://rawgit.com/mapbender/icons/master/demo.html">http://rawgit.com/mapbender/icons/master/demo.html</a></li>
+</ul>
+</div>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span>        <span class="c1"># title</span>
+<span class="l l-Scalar l-Scalar-Plain">tooltip</span><span class="p p-Indicator">:</span>      <span class="c1"># text to use as tooltip</span>
+<span class="l l-Scalar l-Scalar-Plain">icon</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>       <span class="c1"># icon CSS class to use</span>
+<span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>   <span class="c1"># false/true to label the button, default is true</span>
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>     <span class="c1"># title (Id) of target element</span>
+<span class="l l-Scalar l-Scalar-Plain">click</span><span class="p p-Indicator">:</span>        <span class="c1"># refer to a website or script like http://mapbender3.org</span>
+<span class="l l-Scalar l-Scalar-Plain">group</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>      <span class="c1"># group to put the button into. Only one button per group can be active</span>
+<span class="l l-Scalar l-Scalar-Plain">action</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>     <span class="c1"># method of target to call when button is activated</span>
+<span class="l l-Scalar l-Scalar-Plain">deactivate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span> <span class="c1"># method of target to call when button is deactivated</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\Button</li>
+<li><strong>Widget:</strong> mapbender.mbButton (mapbender.element.button.js)</li>
+<li><strong>Style:</strong> mapbender.elements.css</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="activate">
+<h3>activate<a class="headerlink" href="#activate" title="Permalink to this headline">¶</a></h3>
+<p>Activates button. Gets called on click if button is deactivated.</p>
+</div>
+<div class="section" id="deactivate">
+<h3>deactivate<a class="headerlink" href="#deactivate" title="Permalink to this headline">¶</a></h3>
+<p>Deactivates button. Gets called on click if button is active or when another button of the same group gets activated.</p>
+</div>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Button</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#icons">Icons</a></li>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a><ul>
+<li><a class="reference internal" href="#activate">activate</a></li>
+<li><a class="reference internal" href="#deactivate">deactivate</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="basesourceswitcher.html"
+                        title="previous chapter">BaseSourceSwitcher</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="coordinates_display.html"
+                        title="next chapter">Coordinates Display</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/en/bundles/Mapbender/CoreBundle/elements/button.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="coordinates_display.html" title="Coordinates Display"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="basesourceswitcher.html" title="BaseSourceSwitcher"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

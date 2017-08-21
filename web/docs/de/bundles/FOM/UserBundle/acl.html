@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Access Control Lists (ACL) &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../index.html" />
+    <link rel="up" title="FOMUserBundle - Benutzer und Absicherung" href="index.html" />
+    <link rel="next" title="Benutzer" href="users.html" />
+    <link rel="prev" title="FOMUserBundle - Benutzer und Absicherung" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="users.html" title="Benutzer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="FOMUserBundle - Benutzer und Absicherung"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">FOMUserBundle - Benutzer und Absicherung</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="access-control-lists-acl">
+<span id="acl"></span><h1>Access Control Lists (ACL)<a class="headerlink" href="#access-control-lists-acl" title="Permalink to this headline">¶</a></h1>
+<p>Die Absicherung von Domain-Objekten (generell Datenbank Entities) wird über
+Access Control Lists (ACL) implementiert. ACLs ermöglichen eine flexible
+Genehmigung für individuelle Objekte.</p>
+<p>Für jede Domain-Objektklasse können bis zu 30 verschiedene Rechte
+gewährleistet werden. Generell reichen die folgenden 7 aus:</p>
+<ul class="simple">
+<li>View       : Objekt lesen</li>
+<li>Create     : Ein neues Objekt erstellen</li>
+<li>Edit       : Ein existierendes Objekt bearbeiten</li>
+<li>Delete     : Ein existierendes Objekt löschen</li>
+<li>Operator   : Die Rechte zu Lesen, Erstellen, Editieren und zu Löschen</li>
+<li>Master     : Die Operator Rechte, kann alle Rechte bis zum Operator Level verwalten</li>
+<li>Owner      : Master Rechte. Kann Master Rechte selbst verwalten</li>
+</ul>
+<p>Jedes ACL baut sich aus einer Objekt Identity und bestimmten Access Control Entries (ACE) auf.</p>
+<div class="section" id="objekt-identitat">
+<h2>Objekt Identität<a class="headerlink" href="#objekt-identitat" title="Permalink to this headline">¶</a></h2>
+<p>ACLs werden nicht direkt den Objekten zugeordnet sondern den sogenannten
+Objekt Identities. Diese repräsentieren individuelle Objekte oder Klassen
+(das Create Recht ist zum Beispiel ein Recht auf eine Klasse).</p>
+</div>
+<div class="section" id="access-control-entries">
+<h2>Access Control Entries<a class="headerlink" href="#access-control-entries" title="Permalink to this headline">¶</a></h2>
+<p>Jedes ACE enthält die Rechte für einen Benutzer oder eine Rolle. Die Rechte
+werden als Interger Bit abgelegt, daher können 32 Rechte verwaltet
+werden. Da einige PHP Implementationen 30 bit große Integers verwalten, hat
+sich die Zahl 30 als plattformübergreifender Höchstwert etabliert. Wie schon
+erwähnt reichen 7 Rechte aus, um einen umfangreichen CRUD Workflow zu
+modellieren und die restlichen 23 für Eigenentwicklungen vorzuhalten.</p>
+</div>
+<div class="section" id="security-identitat">
+<h2>Security Identität<a class="headerlink" href="#security-identitat" title="Permalink to this headline">¶</a></h2>
+<p>ACEs können entweder mit Benutzern oder Rollen assoziiert werden, um damit
+beide mit einer Security Identität zu kapseln.</p>
+<img alt="../../../../_images/acl.png" src="../../../../_images/acl.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../index.html">
+              <img class="logo" src="../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Access Control Lists (ACL)</a><ul>
+<li><a class="reference internal" href="#objekt-identitat">Objekt Identität</a></li>
+<li><a class="reference internal" href="#access-control-entries">Access Control Entries</a></li>
+<li><a class="reference internal" href="#security-identitat">Security Identität</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">FOMUserBundle - Benutzer und Absicherung</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="users.html"
+                        title="next chapter">Benutzer</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/de/bundles/FOM/UserBundle/acl.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="users.html" title="Benutzer"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="FOMUserBundle - Benutzer und Absicherung"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >FOMUserBundle - Benutzer und Absicherung</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Details zur Konfiguration von Mapbender3 &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="Installation" href="../installation.html" />
+    <link rel="next" title="Verzeichnisstruktur in Mapbender3" href="../directory_structure.html" />
+    <link rel="prev" title="Aktualisierung von Mapbender3 auf eine neuere Version" href="update.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../directory_structure.html" title="Verzeichnisstruktur in Mapbender3"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="update.html" title="Aktualisierung von Mapbender3 auf eine neuere Version"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../thebook.html" >Das Buch</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../installation.html" accesskey="U">Installation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="details-zur-konfiguration-von-mapbender3">
+<span id="configuration"></span><h1>Details zur Konfiguration von Mapbender3<a class="headerlink" href="#details-zur-konfiguration-von-mapbender3" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="konfigurationsschritte">
+<h2>Konfigurationsschritte<a class="headerlink" href="#konfigurationsschritte" title="Permalink to this headline">¶</a></h2>
+<p>Im Folgenden werden die für die Mapbender3-Installation aufgeführten Konfigurationsschritte von Mapbender3 näher erläutert. Es sind sechs Schritte notwendig:</p>
+<ul class="simple">
+<li>Erzeugen der Datenbank</li>
+<li>Erzeugen der Datenbankschemas</li>
+<li>Kopieren des bundle Assets in das öffentliche web-Verzeichnis</li>
+<li>Erzeugen des &#8220;root&#8221; Benutzers</li>
+<li>Laden der SRS Parameters (EPSG-Code Definition)</li>
+<li>Laden der Anwendungen der mapbender.yml Definition in die Datenbank</li>
+</ul>
+<p>Diese Schritte werden mit dem console-Hilfsprogramm des <a class="reference external" href="http://symfony.com/">Symfony</a> Frameworks durchgeführt, auf dem Mapbender3 aufbaut. Hier noch ein wichtiger Hinweis, bevor Sie fortfahren:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Das console-Hilfsprogramm wird Dateien in die Verzeichnisse app/cache und app/logs schreiben. Für diese Operationen werden die Benutzerrechte des Benutzers benötigt, mit dem Sie angemeldet sind. Sie benötigen ebenfalls Benutzerrechte für das Verzeichnis app/db und die SQLite Datenbank.  Wenn Sie die Applikation in Ihrem Browser öffnen, wird der Server-PHP- Prozess versuchen, auf  diese Dateien zuzugreifen oder in die Verzeichnisse zu schreiben mit anderen Benutzerrechten. Stellen Sie sicher,  dass Sie den Verzeichnissen und Dateien Schreib- und Leserechte zugewiesen haben.</div>
+</div>
+</div></blockquote>
+<p><strong>Wichtiger Hinweis:</strong> Die folgenden app/console Schritte gehen davon aus dass Sie sich oberhalb des app-Verzeichnisses befinden (für die git-Installation bedeutet das mapbender3/application/ andernfalls mapbender3/).</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">cd mapbender3/</span>
+<span class="l l-Scalar l-Scalar-Plain">oder für die git-basierte Installation</span>
+<span class="l l-Scalar l-Scalar-Plain">cd mapbender3/application</span>
+</pre></div>
+</div>
+<div class="section" id="anpassen-der-konfigurationsdatei">
+<h3>Anpassen der Konfigurationsdatei<a class="headerlink" href="#anpassen-der-konfigurationsdatei" title="Permalink to this headline">¶</a></h3>
+<p>Die Parameter der Datenbankverbindung sind zusammen mit einigen anderen Konfigurationsparametern in der Datei app/config/parameters.yml gespeichert. In dieser Datei wird YAML Syntax verwendet. Achten Sie darauf <strong>keine</strong> Tabulatoren für Einrückungen zu verwenden. Verwenden Sie stattdessen Leerzeichen.</p>
+<p>Ihre Datenbankkonfiguration könnte in der parameters.yml könnte folgendermaßen aussehen, wenn Sie PostgreSQL verwenden:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">database_driver</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">pdo_pgsql</span>
+<span class="l l-Scalar l-Scalar-Plain">database_host</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+<span class="l l-Scalar l-Scalar-Plain">database_port</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">5432</span>
+<span class="l l-Scalar l-Scalar-Plain">database_name</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">mapbender3</span>
+<span class="l l-Scalar l-Scalar-Plain">database_path</span><span class="p p-Indicator">:</span>
+<span class="l l-Scalar l-Scalar-Plain">database_user</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+<span class="l l-Scalar l-Scalar-Plain">database_password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geheim</span>
+</pre></div>
+</div>
+<p>Mehr Informationen dazu finden Sie im Kapitel <a class="reference external" href="../database.html">Konfiguration der Datenbank</a>.</p>
+</div>
+<div class="section" id="erzeugen-der-datenbank">
+<h3>Erzeugen der Datenbank<a class="headerlink" href="#erzeugen-der-datenbank" title="Permalink to this headline">¶</a></h3>
+<p>Mit Symfony2 kann die Datenbank erzeugt werden. Beachten Sie, dass dazu die benötigten Datenbank-Benutzerrechte vorliegen. Rufen Sie folgenden Befehl mit dem console-Hilfsprogramm auf:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console doctrine:database:create</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="erzeugen-des-datenbankschemas">
+<h3>Erzeugen des Datenbankschemas<a class="headerlink" href="#erzeugen-des-datenbankschemas" title="Permalink to this headline">¶</a></h3>
+<p>Erzeugen des Datenbankschemas über Symfony2:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console doctrine:schema:create</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="kopieren-des-asset-bundles">
+<h3>Kopieren des Asset Bundles<a class="headerlink" href="#kopieren-des-asset-bundles" title="Permalink to this headline">¶</a></h3>
+<p>Jedes Bundle hat seine eigenen Abhängigkeiten - CSS-Dateien, JavaScript-Dateien, Bilder und mehr – diese müssen in das öffentliche web-Verzeichnis kopiert werden:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console assets:install web</span>
+</pre></div>
+</div>
+<p>Sie können auch einen symbolischen Link verwenden, statt die Dateien zu kopieren.  Dies erleichtert die Bearbeitung der abhängigen Dateien in den bundle-Verzeichnissen.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console assets:install web --symlink --relative</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="erzeugen-des-administrativen-benutzers">
+<h3>Erzeugen des administrativen Benutzers<a class="headerlink" href="#erzeugen-des-administrativen-benutzers" title="Permalink to this headline">¶</a></h3>
+<p>Der erste Benutzer, der alle Privilegien hat, wird mit folgendem Kommando erzeugt:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console fom:user:resetroot</span>
+</pre></div>
+</div>
+<p>Dieses Kommando wird interaktiv alle notwendigen Informationen abfragen und den Benutzer in der Datenbank erzeugen.</p>
+<p>Sie können auch den Modus &#8220;silent&#8221; verwenden, wenn Sie ein Skript nutzen möchten, um Mapbender3 zu installieren und dabei nicht nach Parametern gefragt werden wollen.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console fom:user:resetroot --username=&quot;root&quot; --password=&quot;root&quot; --email=&quot;root@example.com&quot; --silent</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="einfugen-der-srs-parameter">
+<h3>Einfügen der SRS Parameter<a class="headerlink" href="#einfugen-der-srs-parameter" title="Permalink to this headline">¶</a></h3>
+<p>Fügen Sie die Informationen zu den Koordinatensystemen über den folgenden Aufruf in die Datenbank:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console doctrine:fixtures:load --fixtures=./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Epsg/ --append</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="importieren-von-anwendungen-aus-der-mapbender-yml">
+<h3>Importieren von Anwendungen aus der mapbender.yml<a class="headerlink" href="#importieren-von-anwendungen-aus-der-mapbender-yml" title="Permalink to this headline">¶</a></h3>
+<p>Sie können die Anwendungen, die in der mapbender.yml definiert sind, in die Datenbank importieren:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console doctrine:fixtures:load --fixtures=./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Application/ --append</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="konfigurationsdateien">
+<h2>Konfigurationsdateien<a class="headerlink" href="#konfigurationsdateien" title="Permalink to this headline">¶</a></h2>
+<p>Die Basiskonfiguration erfolgt in der Datei <strong>app/config/parameters.yml</strong>. Eine Vorlage app/config/parameters.yml.dist liegt vor.</p>
+<p>Die Konfigurationsdatei <strong>app/config/config.yml</strong> stellt weitere Parameter bereit, z.B. zur Konfiguration der Portalfunktion, Einrichtung des Owsproxy oder Einrichtung einer weiteren Datenbank.</p>
+<div class="section" id="parameters-yml">
+<h3>parameters.yml<a class="headerlink" href="#parameters-yml" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Datenbank: Parameter, die mit <strong>database</strong> beginnen, definieren die Databankverbindung.</li>
+<li>Mailer: Die Mailerangaben starten mit <strong>mailer</strong>. Nutzen Sie z.B. smtp oder sendmail.</li>
+<li>Spracheinstellung: Sie können eine Sprache (locale) für Ihre Anwendung angeben (Standardwert ist en, de ist verfügbar). Unter <a class="reference external" href="http://doc.mapbender3.org/en/book/translation.html">http://doc.mapbender3.org/en/book/translation.html</a> erfahren Sie mehr über die Anpassung von Übersetzungen und wie neue Sprachen hinzugefügt werden können.</li>
+</ul>
+<p><strong>Hinweis:</strong> Sie benötigen einen Mailer, wenn Sie die Selbstregistrierung und das Paßwortsetzen nutzen möchten.</p>
+<p>Sofern Sie einen Proxy verwenden, müssen Sie diesen in der Datei parameters.yml im Bereich <em>OWSProxy Configuration</em> angeben.</p>
+<p>Eine Konfiguration könnte wie folgt aussehen:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="c1"># OWSProxy Configuration</span>
+    <span class="l l-Scalar l-Scalar-Plain">ows_proxy3_logging</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="l l-Scalar l-Scalar-Plain">ows_proxy3_obfuscate_client_ip</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">ows_proxy3_host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">myproxy</span>
+    <span class="l l-Scalar l-Scalar-Plain">ows_proxy3_port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+    <span class="l l-Scalar l-Scalar-Plain">ows_proxy3_connecttimeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">60</span>
+    <span class="l l-Scalar l-Scalar-Plain">ows_proxy3_timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">90</span>
+    <span class="l l-Scalar l-Scalar-Plain">ows_proxy3_user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>
+    <span class="l l-Scalar l-Scalar-Plain">ows_proxy3_password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>
+    <span class="l l-Scalar l-Scalar-Plain">ows_proxy3_noproxy</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">192.168.1.123</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="config-yml">
+<h3>config.yml<a class="headerlink" href="#config-yml" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>fom_user.selfregistration: Um die Selbstregistrierung zu de/aktivieren, passen Sie den fom_user.selfregistration Parameter an. Sie müssen unter self_registration_groups eine/mehrere Gruppen angeeben, so dass selbstregistriere Anwender automatisch (bei der Registrierung) diesen Gruppen zugewiesen werden. Über die Gruppe bekommen Sie dann entsprechend Rechte zugewiesen.</li>
+<li>fom_user.reset_password: Über diesen Parameter kann die Möglichkeit de/aktiviert werden, das Passwort neu zu setzen.</li>
+<li>framework.session.cookie_httponly: Stellen Sie für HTTP-only session cookies sicher, dass der Parameter framework.session.cookie_httponly auf true steht.</li>
+</ul>
+<p><strong>Hinweis:</strong> Sie benötigen einen Mailer, wenn Sie die Selbstregistrierung und das Paßwortsetzen nutzen möchten.</p>
+</div>
+<div class="section" id="mapbender-yml">
+<h3>mapbender.yml<a class="headerlink" href="#mapbender-yml" title="Permalink to this headline">¶</a></h3>
+<p>Eine Anwendung kann auf zwei Arten konfiguriert werden. Entweder über die mapbender.yml Datei oder über die Mapbender3 Administration im Browser.</p>
+<ul class="simple">
+<li>Das Mapbender Team stellt mit jeder Version eine mapbender.yml mit Demoanwendungen mit den aktuellen Elementdefinitionen zur Verfügung (Sie können die Anwendungen deaktivieren indem Sie published: false setzen oder indem Sie die Datei leeren).</li>
+<li>Anwendungen, die in der mapbender.yml definiert werden, können nicht über die Mapbender3 Administration im Browser bearbeitet werden.</li>
+<li>Sie können allerdings die Anwendungen über einen app/console Befehl in die Datenbank übertragen.</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">app/console doctrine:fixtures:load --fixtures=./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Application/ --append</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="produktions-und-entwicklerumgebung-und-caches-app-php-und-app-dev-php">
+<h2>Produktions- und Entwicklerumgebung und Caches: app.php und app_dev.php<a class="headerlink" href="#produktions-und-entwicklerumgebung-und-caches-app-php-und-app-dev-php" title="Permalink to this headline">¶</a></h2>
+<p>Mapbender3 bietet zwei Umgebungen an: eine Produktionsumgebung für den
+normalen Betrieb- und eine Entwicklerumgebung, in dem die Anwendungen
+getestet werden können. Dieses Konzept orientiert sich an den
+<a class="reference external" href="http://symfony.com/doc/current/book/configuration.html">&#8220;Environments&#8221; im Symfony Framework</a>.</p>
+<p>Die Produktionsumgebung wird mit der URL <a class="reference external" href="http://localhost/mapbender3/app.php">http://localhost/mapbender3/app.php</a>
+aufgerufen, die Entwicklungsumgebung mit der URL
+<a class="reference external" href="http://localhost/mapbender3/app_dev.php">http://localhost/mapbender3/app_dev.php</a>. Der Aufruf über app_dev.php kann
+und sollte nur nur vom localhost erfolgen.</p>
+<p>Es gibt Unterschiede im Verhalten von app.php und app_dev.php:</p>
+<ul>
+<li><p class="first">Der Cache-Mechanismus verhält sich in der Entwicklungsumgebung anders: Es
+werden nicht alle Dateien gecacht, so dass vorgenommene Änderungen direkt
+sichtbar sind. Dadurch ist der Aufruf einer Anwendung über app_dev.php
+immer langsamer als im Produktivbetrieb.</p>
+<p>Im Detail werden in der Entwicklerumgebung von Mapbender3 u.a. die CSS,
+JavaScript und Übersetzungsdateien nicht gecacht.</p>
+<p>In der Produktionsumgebung werden diese aber in app/cache abgelegt.</p>
+</li>
+<li><p class="first">In der Entwicklerumgebung werden Fehlermeldungen und ihr Stacktrace direkt
+an der Oberfläche angezeigt. In der Produktionsumgebung werden die
+Fehlermeldungen in die Datei app/log/prod.log geschrieben.</p>
+</li>
+<li><p class="first">Die Entwicklungsumgebung zeigt den Symfony Profiler an. Dort werden Dinge
+protokolliert, die nur für die Entwickler, aber nicht für Außenstehende
+sichtbar sein sollten.</p>
+<a class="reference internal image-reference" href="../../../_images/symfony_profiler.png"><img alt="../../../_images/symfony_profiler.png" src="../../../_images/symfony_profiler.png" style="width: 1055.2px; height: 39.2px;" /></a>
+</li>
+</ul>
+<p>Das Verzeichnis app/cache enthält die einzelnen Cache-Dateien. Es werden
+Verzeichnisse für jede Umgebung (prod und dev) angelegt, das Verhalten des
+dev-Caches ist aber, wie angesprochen, anders.</p>
+<p>Bei Änderungen an der Oberfläche oder im Code von Mapbender3 ist das Cache
+Verzeichnis (app/cache) zu leeren, damit die Änderungen in der
+Produktionsumgebung sichtbar werden.</p>
+<p>Der folgende Screenshot zeigt den Ort der Cache-Verzeichnisse innerhalb von
+Mapbender3:</p>
+<a class="reference internal image-reference" href="../../../_images/mapbender_cache_directories.png"><img alt="../../../_images/mapbender_cache_directories.png" src="../../../_images/mapbender_cache_directories.png" style="width: 308.0px; height: 240.0px;" /></a>
+</div>
+<div class="section" id="logging-in-mapbender3">
+<h2>Logging in Mapbender3<a class="headerlink" href="#logging-in-mapbender3" title="Permalink to this headline">¶</a></h2>
+<p>Das Log-Level wird in den Dateien <code class="docutils literal"><span class="pre">config_dev.yml</span></code> und <code class="docutils literal"><span class="pre">config_prod.yml</span></code> definiert. Diese liegen im Ordner <code class="docutils literal"><span class="pre">application/app/config/</span></code>. Die config-Dateien sind für die jeweiligen Umgebungen (siehe <a class="reference external" href="configuration.html#produktions-und-entwicklerumgebung-und-caches-app-php-und-app-dev-php">Produktions- und Entwicklungsumgebung</a>) verantwortlich.</p>
+<p>In der Entwicklungsumgebung (bei der Entwicklung in lokalen Systemen) wird Mapbender3 über die <code class="docutils literal"><span class="pre">app_dev.php</span></code> aufgerufen und hier ist die <code class="docutils literal"><span class="pre">config_dev.yml</span></code> verantwortlich. Im Produktivbetrieb, bei der die <code class="docutils literal"><span class="pre">app.php</span></code> eingesetzt wird, kommt die <code class="docutils literal"><span class="pre">config_prod.yml</span></code> zum Einsatz.</p>
+<div class="section" id="loglevel">
+<h3>Loglevel<a class="headerlink" href="#loglevel" title="Permalink to this headline">¶</a></h3>
+<p>Es gibt insgesamt 6 Loglevel (englische Beschreibung):</p>
+<ul class="simple">
+<li>DEBUG (100): Detailed debug information.</li>
+<li>INFO (200): Interesting events. Examples: User logs in, SQL logs.</li>
+<li>NOTICE (250): Normal but significant events.</li>
+<li>WARNING (300): Exceptional occurrences that are not errors. Examples: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong.</li>
+<li>ERROR (400): Runtime errors that do not require immediate action but should typically be logged and monitored.</li>
+<li>CRITICAL (500): Critical conditions. Example: Application component unavailable, unexpected exception.</li>
+<li>ALERT (550): Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up.</li>
+<li>EMERGENCY (600): Emergency: system is unusable.</li>
+</ul>
+<p>Die Beschreibung der Loglevels orientiert sich an dem <a class="reference external" href="http://tools.ietf.org/html/rfc5424">Syslog Protocol der IETF</a>.</p>
+</div>
+<div class="section" id="config-dev-yml">
+<h3>config_dev.yml<a class="headerlink" href="#config-dev-yml" title="Permalink to this headline">¶</a></h3>
+<p>Der verantwortliche Teil in der <code class="docutils literal"><span class="pre">config_dev.yml</span></code> ist im Abschnitt &#8220;monolog&#8221; zu finden:</p>
+<div class="highlight-yaml"><div class="highlight"><pre>monolog:
+    handlers:
+        main:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+        firephp:
+            type:  firephp
+            level: info
+</pre></div>
+</div>
+<p>Es sind zwei &#8220;Handler&#8221; beschrieben, <code class="docutils literal"><span class="pre">main</span></code> und <code class="docutils literal"><span class="pre">firephp</span></code>.</p>
+<ul class="simple">
+<li><strong>main:</strong> Der Handler <code class="docutils literal"><span class="pre">main</span></code> ist auf das Loglevel <code class="docutils literal"><span class="pre">debug</span></code> eingestellt und streamt alle Einträge in eine Datei, die unter <code class="docutils literal"><span class="pre">path</span></code> definiert ist. Diese Datei wird mit Hilfe von Variablen definiert und im Endeffekt bedeutet es, dass in die Datei <code class="docutils literal"><span class="pre">dev.log</span></code> im Ordner <code class="docutils literal"><span class="pre">application/app/logs/</span></code> geschrieben wird.</li>
+<li><strong>firephp:</strong> Der Handler <code class="docutils literal"><span class="pre">firephp</span></code> kann mit einer entsprechenden Extension im Browser kommunizieren. Somit hat der Entwickler die Möglichkeit sich Debug-Meldungen direkt im Browser anzeigen zu lassen und muss nicht die Logdateien öffnen.</li>
+</ul>
+<p>Diese sind die die bevorzugten Einstellungen für Entwicklungsarbeiten.</p>
+</div>
+<div class="section" id="config-prod-yml">
+<h3>config_prod.yml<a class="headerlink" href="#config-prod-yml" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">monolog</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">handlers</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">main</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span>         <span class="l l-Scalar l-Scalar-Plain">fingers_crossed</span>
+            <span class="l l-Scalar l-Scalar-Plain">action_level</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">error</span>
+            <span class="l l-Scalar l-Scalar-Plain">handler</span><span class="p p-Indicator">:</span>      <span class="l l-Scalar l-Scalar-Plain">nested</span>
+        <span class="l l-Scalar l-Scalar-Plain">nested</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span>  <span class="l l-Scalar l-Scalar-Plain">stream</span>
+            <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span>  <span class="s">&quot;%kernel.logs_dir%/%kernel.environment%.log&quot;</span>
+            <span class="l l-Scalar l-Scalar-Plain">level</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">debug</span>
+</pre></div>
+</div>
+<p>Mit diesen Einstellungen wird ein zweistufiges Logging erreicht. Auch hier haben wir zwei &#8220;Debug-Handler&#8221;: <code class="docutils literal"><span class="pre">main</span></code> und <code class="docutils literal"><span class="pre">nested</span></code>.</p>
+<ul>
+<li><p class="first"><strong>main:</strong> Der <code class="docutils literal"><span class="pre">main</span></code>-Handler ist vom Typ <code class="docutils literal"><span class="pre">fingers-crossed</span></code> und auf das Level <code class="docutils literal"><span class="pre">error</span></code> eingestellt. Das bedeutet, dass dieser Handler nur aktiviert wird, wenn ein Fehler auftritt.</p>
+</li>
+<li><p class="first"><strong>nested:</strong> Der <code class="docutils literal"><span class="pre">main</span></code>-Handler ruft dann den Handler <code class="docutils literal"><span class="pre">nested</span></code> auf, der die Meldungen in die <code class="docutils literal"><span class="pre">prod.log</span></code> schreibt.</p>
+<p>Dieser Handler ist per Default auf <code class="docutils literal"><span class="pre">debug</span></code> eingestellt, so dass bei einem Fehler in der <code class="docutils literal"><span class="pre">prod.log</span></code> dann auch die Debug-Meldungen erscheinen.</p>
+<p>Möchte man die Ausgabe der Debug-Meldungen unterbinden, kann man dort ebenfalls das Level <code class="docutils literal"><span class="pre">error</span></code> eintragen.</p>
+</li>
+</ul>
+<p><strong>Weiterführende Links:</strong></p>
+<ul class="simple">
+<li>Im Paket &#8220;monolog&#8221;:<ul>
+<li><a class="reference external" href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md">Using Monolog</a> (englisch)</li>
+<li><a class="reference external" href="https://github.com/Seldaek/monolog/blob/master/doc/02-handlers-formatters-processors.md">Handlers, Formatters and Processors</a> (englisch)</li>
+</ul>
+</li>
+<li><a class="reference external" href="http://www.whitewashing.de/2012/08/26/symfony__monolog_and_different_log_types.html">Symfony, Monolog and different log types</a>. Blogeintrag von Benjamin Eberlei (englisch).</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Details zur Konfiguration von Mapbender3</a><ul>
+<li><a class="reference internal" href="#konfigurationsschritte">Konfigurationsschritte</a><ul>
+<li><a class="reference internal" href="#anpassen-der-konfigurationsdatei">Anpassen der Konfigurationsdatei</a></li>
+<li><a class="reference internal" href="#erzeugen-der-datenbank">Erzeugen der Datenbank</a></li>
+<li><a class="reference internal" href="#erzeugen-des-datenbankschemas">Erzeugen des Datenbankschemas</a></li>
+<li><a class="reference internal" href="#kopieren-des-asset-bundles">Kopieren des Asset Bundles</a></li>
+<li><a class="reference internal" href="#erzeugen-des-administrativen-benutzers">Erzeugen des administrativen Benutzers</a></li>
+<li><a class="reference internal" href="#einfugen-der-srs-parameter">Einfügen der SRS Parameter</a></li>
+<li><a class="reference internal" href="#importieren-von-anwendungen-aus-der-mapbender-yml">Importieren von Anwendungen aus der mapbender.yml</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#konfigurationsdateien">Konfigurationsdateien</a><ul>
+<li><a class="reference internal" href="#parameters-yml">parameters.yml</a></li>
+<li><a class="reference internal" href="#config-yml">config.yml</a></li>
+<li><a class="reference internal" href="#mapbender-yml">mapbender.yml</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#produktions-und-entwicklerumgebung-und-caches-app-php-und-app-dev-php">Produktions- und Entwicklerumgebung und Caches: app.php und app_dev.php</a></li>
+<li><a class="reference internal" href="#logging-in-mapbender3">Logging in Mapbender3</a><ul>
+<li><a class="reference internal" href="#loglevel">Loglevel</a></li>
+<li><a class="reference internal" href="#config-dev-yml">config_dev.yml</a></li>
+<li><a class="reference internal" href="#config-prod-yml">config_prod.yml</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="update.html"
+                        title="previous chapter">Aktualisierung von Mapbender3 auf eine neuere Version</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../directory_structure.html"
+                        title="next chapter">Verzeichnisstruktur in Mapbender3</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/de/book/installation/configuration.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../directory_structure.html" title="Verzeichnisstruktur in Mapbender3"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="update.html" title="Aktualisierung von Mapbender3 auf eine neuere Version"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../thebook.html" >Das Buch</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../installation.html" >Installation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Users &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../index.html" />
+    <link rel="up" title="FOMUserBundle - Users and Security" href="index.html" />
+    <link rel="next" title="Roles and Groups" href="roles_groups.html" />
+    <link rel="prev" title="Access Control Lists" href="acl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="roles_groups.html" title="Roles and Groups"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="acl.html" title="Access Control Lists"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">FOMUserBundle - Users and Security</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="users">
+<h1>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h1>
+<p>User are implemented as FOM\UserBundle\Entity\User and stored in the database.
+The entity has only some basic information about the user itself, more complex
+user data will have to be implemented by user profiles (yet to be done).</p>
+<p>The bundles provides all means to administrate users by admin as well as self-
+registration and password recovery.</p>
+<p>The user with the id 1 is special, as this user is created during installation
+and will always be given full access. If all is lost, you can use this user
+to manage everything. And in the event that the credentials for this user are
+also lost, a console command (fom:user:resetroot) is available for resetting.</p>
+<div class="section" id="forgot-password">
+<h2>Forgot Password<a class="headerlink" href="#forgot-password" title="Permalink to this headline">¶</a></h2>
+<p>If a user has forgot his/her password, he can use the &#8220;Forgot password?&#8221;
+link in the Login-screen to request a new one. For that he types in his
+username or e-mail-adress.</p>
+<img alt="../../../../_images/user_forgot_password1.png" src="../../../../_images/user_forgot_password1.png" />
+<p>After that he gets an e-mail with a link, which leads him to a site where he
+can reset his password. The link isn&#8217;t valid anymore after this
+operation. The text of the mail can be customized in the
+/FOM/UserBundle/Resources/translations/messages.en.xlf file.</p>
+<p>The functionality can be switched off in the config.yml.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">fom_user</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">reset_password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># true/false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="registering">
+<h2>Registering<a class="headerlink" href="#registering" title="Permalink to this headline">¶</a></h2>
+<p>Users can selfregister themselves in Mapbender3. For this you have to adjust
+the setting fom_user:selfregister in the config.yml to true.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">fom_user</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">selfregister</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># true/false</span>
+</pre></div>
+</div>
+<p>The Login-dialog contains a &#8220;Register&#8221; link. This openes a page where the
+user can type in his/her name, password and e-mail adresss.</p>
+<img alt="../../../../_images/user_self_register1.png" src="../../../../_images/user_self_register1.png" />
+<p>After that he gets a confirmation mail to complete the registration. Until
+that time he is only managed as inactive user in Mapbender3.</p>
+<p>The text of the confirmation mail can be customized in the
+/FOM/UserBundle/Resources/translations/messages.en.xlf file.</p>
+</div>
+<div class="section" id="activation-of-users">
+<h2>Activation of users<a class="headerlink" href="#activation-of-users" title="Permalink to this headline">¶</a></h2>
+<p>Since Mapbender 3.0.5.3. Users can be set activated or deactivated by
+Administrators with the User-ACL-right of at least &#8220;edit&#8221;. For this purpose,
+a checkbox exists in the Edit User dialog.</p>
+<p>A user with administration rights cannot activate or deactivate himself.</p>
+<img alt="../../../../_images/edit_user_activated1.png" src="../../../../_images/edit_user_activated1.png" />
+<p>A user who is deactivated cannot login into Mapbender3 anymore until he gets
+activated again.</p>
+<img alt="../../../../_images/user_account_is_disabled1.png" src="../../../../_images/user_account_is_disabled1.png" />
+<p>Users which have self-registered themselves but have not approved the
+activation mail can now be activated by an administrator.</p>
+</div>
+<div class="section" id="managing-users-with-the-security-key-feature">
+<h2>Managing users with the security key feature<a class="headerlink" href="#managing-users-with-the-security-key-feature" title="Permalink to this headline">¶</a></h2>
+<p>Inside every Mapbender application, there is a possibility to adjust the rights of certain users and maintain visibility of what they are allowed to do. You can set these preferences in the &#8220;Layouts&#8221;-tab.</p>
+<p>Next to every element is a security key. If you click on the key, you can adjust the certain rights of each user. Just add users who should gain access to the element with the &#8220;+&#8221; symbol in the pop-up window. A set checkmark next to the user account provides the essential rights for the respective user.</p>
+<p>After setting specific access rights, the security key turns red. If you hover over the key with the cursor, you will see the names of the users who have rights to the element.</p>
+<img alt="../../../../_images/element_security_key_popup1.png" src="../../../../_images/element_security_key_popup1.png" />
+</div>
+<div class="section" id="login-failures">
+<h2>Login Failures<a class="headerlink" href="#login-failures" title="Permalink to this headline">¶</a></h2>
+<p>Login failures are responded with the Message &#8220;Bad credentials&#8221;. For
+security reasons it is not shown if the error is is based on a wrong
+username or a wrong password. Login failures will not lock the account
+indefinately after four attempts.  Rather the account will be locked for a
+given period of time.</p>
+<p>The config.yml allows to adjust the behaviour:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">fom_user</span><span class="p p-Indicator">:</span>
+
+    <span class="c1"># Allow to create user log table on the fly if the table doesn&#39;t exits.</span>
+    <span class="c1"># Default: true</span>
+    <span class="l l-Scalar l-Scalar-Plain">auto_create_log_table</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+    <span class="c1"># Time between to check login tries</span>
+    <span class="l l-Scalar l-Scalar-Plain">login_check_log_time</span><span class="p p-Indicator">:</span> <span class="s">&quot;-5</span><span class="nv"> </span><span class="s">minutes&quot;</span>
+
+    <span class="c1"># Login attemps before delay starts</span>
+    <span class="l l-Scalar l-Scalar-Plain">login_attempts_before_delay</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+
+    <span class="c1"># Login delay after all attemps are failed</span>
+    <span class="l l-Scalar l-Scalar-Plain">login_delay_after_fail</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span> <span class="c1"># Seconds</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>auto_create_log_table:</strong> Backwards compatibility parameter (default: true).</li>
+<li><strong>login_check_log_time:</strong> Cleaning of the login-failure table (default: -5 minutes)</li>
+<li><strong>login_attempts_before_delay:</strong> Number of login failures before the login delay starts (default: 3)</li>
+<li><strong>login_delay_after_fail:</strong> Number of seconds of the login-delay (default: 2).</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../index.html">
+              <img class="logo" src="../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Users</a><ul>
+<li><a class="reference internal" href="#forgot-password">Forgot Password</a></li>
+<li><a class="reference internal" href="#registering">Registering</a></li>
+<li><a class="reference internal" href="#activation-of-users">Activation of users</a></li>
+<li><a class="reference internal" href="#managing-users-with-the-security-key-feature">Managing users with the security key feature</a></li>
+<li><a class="reference internal" href="#login-failures">Login Failures</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="acl.html"
+                        title="previous chapter">Access Control Lists</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="roles_groups.html"
+                        title="next chapter">Roles and Groups</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/en/bundles/FOM/UserBundle/users.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="roles_groups.html" title="Roles and Groups"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="acl.html" title="Access Control Lists"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >FOMUserBundle - Users and Security</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+{"mapbender_manager_application_togglestate":{"tokens":[["text","\/state"],["variable","\/","[^\/]++","slug"],["text","\/manager\/application"]],"defaults":[],"requirements":{"_method":"POST"},"hosttokens":[]}}

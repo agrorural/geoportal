@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Elemente verstehen &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="Einführung" href="introduction.html" />
+    <link rel="next" title="Wie können eigene Elemente erzeugt werden?" href="element_generate.html" />
+    <link rel="prev" title="Request / Response Workflow" href="requestresponse.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="element_generate.html" title="Wie können eigene Elemente erzeugt werden?"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="requestresponse.html" title="Request / Response Workflow"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" >The Developer&#8217;s Book</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="introduction.html" accesskey="U">Einführung</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="elemente-verstehen">
+<h1>Elemente verstehen<a class="headerlink" href="#elemente-verstehen" title="Permalink to this headline">¶</a></h1>
+<p><em>Anmerkung</em>: Dieser Guide wird überarbeitet. Wir werden eine neue Dokumentation im Contributing Guide für Entwickler bereitstellen, der sich im Git-Repository befindet:</p>
+<p><a class="reference external" href="https://github.com/mapbender/mapbender-starter/blob/release/3.0.6/CONTRIBUTING.md#elements">https://github.com/mapbender/mapbender-starter/blob/release/3.0.6/CONTRIBUTING.md#elements</a>.</p>
+<div class="section" id="bereiche-der-elemente">
+<h2>Bereiche der Elemente<a class="headerlink" href="#bereiche-der-elemente" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="php-class">
+<h3>PHP Class<a class="headerlink" href="#php-class" title="Permalink to this headline">¶</a></h3>
+<p>TODO</p>
+</div>
+<div class="section" id="twig-template">
+<h3>Twig Template<a class="headerlink" href="#twig-template" title="Permalink to this headline">¶</a></h3>
+<p>Jedes Element benötigt ein HTML-Element. In den meisten Fällen kann das ein DIV-Element sein, aber es kann auch komplexer sein.</p>
+<p>Für Mapbender3 wird <a class="reference external" href="http://twig.sensiolabs.org/">Twig</a> verwendet. Eine einfache Twig-Vorlage für ein Element kann wie folgt aussehen:</p>
+<div class="highlight-html+jinja"><div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">id</span> <span class="cp">}}</span><span class="s">&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-element mb-element-myclass&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Mehrere Angaben müssen gesetzt werden:</p>
+<ul class="simple">
+<li>id (wird von Mapbender3 generiert)</li>
+<li>allgemeine mb-element-Klasse</li>
+<li>spezielle Klasse für das Element</li>
+</ul>
+</div>
+<div class="section" id="javascript-widgets">
+<h3>JavaScript Widgets<a class="headerlink" href="#javascript-widgets" title="Permalink to this headline">¶</a></h3>
+<p>Element Widgets werden unter Verwendung der jQuery UI <a class="reference external" href="http://wiki.jqueryui.com/w/page/12138135/Widget%20factory">widget factory</a> erzeugt.
+Dies gewährleistet eine einheitliche Struktur für die Widget-Entwicklung und bietet:</p>
+<ul class="simple">
+<li>voreingestellte Optionen.</li>
+<li>Konstruktoren und Dekonstruktoren (optional)</li>
+<li>private und öffentliche Methoden.</li>
+</ul>
+<p>Das grundlegende Gerüst sieht folgendermaßen aus:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="c1">// Das ist die Widget Factory. Es wird sowohl die Widget-Klasse &quot;mbMyClass&quot; im jQuery-Objekt als auch eine</span>
+<span class="c1">//  &quot;mbMyClass&quot; Object im &quot;mapbender&quot;-Namensraum im jQuery-Object  erzeugt (sie werden beide unterschiedlich verwendet). Verwenden Sie ein</span>
+<span class="c1">// &quot;mb&quot;-Präfix für Ihre Widget-Namen, damit existierende jQuery-Funktionen nicht überschrieben werden.</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">widget</span><span class="p">(</span><span class="s1">&#39;mapbender.mbMyClass&#39;</span><span class="p">,</span> <span class="p">{</span>
+             <span class="c1">// Es werden voreingestellte Optionen angelegt, die in der Mapbender3-Konfiguration überschrieben werden kann.</span>
+    <span class="c1">//  Es wird später in die PHP-Klasse verschoben.</span>
+    <span class="c1">// Auf das endgültige options-Objekt kann zugegriffen werden als &quot;this.options&quot;.</span>
+
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">foo</span><span class="o">:</span>    <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+        <span class="nx">answer</span><span class="o">:</span> <span class="mi">42</span>
+    <span class="p">},</span>
+
+    <span class="c1">// Dieses Attribut ist privat für Ihr Widget.</span>
+    <span class="nx">var1</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+    <span class="c1">// Der Konstruktor wird bei der Widget-Initialisierung aufgerufen.</span>
+    <span class="nx">_create</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Hier wird alles für das Setup angelegt, beispielsweise für das Event Handling</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;mbmyclassmagicdone&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onMagicDone</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_clickCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+    <span class="p">},</span>
+
+    <span class="c1">// Der Destruktor, wird in diesem Beispiel über jQuery geliefert.</span>
+    <span class="nx">destroy</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">noop</span><span class="p">,</span>
+
+    <span class="c1">// Öffentliche Funktion, sind beispielsweise über &quot;$(&#39;#element-13&#39;).mbMyClass(&#39;methodA&#39;, parameterA, parameterB)&quot; abrufbar</span>
+    <span class="nx">methodA</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parameterA</span><span class="p">,</span> <span class="nx">parameterB</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_methodB</span><span class="p">(</span><span class="nx">parameterA</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="c1">//  Private Funktion, sind nur innerhalb des Widget abrufbar</span>
+    <span class="nx">_methodB</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parameterA</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Das ausgelöste Signal wird genannt &quot;mbmyclassmagicdone&quot; (kleingeschrieben)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_trigger</span><span class="p">(</span><span class="s1">&#39;magicdone&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">_onMagicDone</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Oh, magic!&quot;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">_clickCallback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="p">})(</span><span class="nx">jQuery</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Für das Event Handling wird jQuery.proxy verwendet, um sicherzustellen, dass ein der Callback im richtigen Kontext gewährleistet wird:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="c1">// ...</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_clickCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+
+<span class="c1">// ...</span>
+</pre></div>
+</div>
+<p>In diesem Fall ist &#8220;this&#8221; innerhalb der clickCallback Methode das This, das als der zweite Parameter übergeben wird (in der Regel die Widget Instanz) und nicht das HTML-Element, das das Event angestoßen hat.</p>
+</div>
+</div>
+<div class="section" id="kommunikation-zwischen-elementen">
+<h2>Kommunikation zwischen Elementen<a class="headerlink" href="#kommunikation-zwischen-elementen" title="Permalink to this headline">¶</a></h2>
+<p>Es gibt eine aktive und passive Kommunikation zwischen den Widgets. Die aktive Kommunikation, wird genutzt, um eine öffentliche Methode eines anderen Widget abzurufen. Dazu selektieren Sie das HTML-Element des Widgets mit jQuery und rufen die Methode folgendermaßen auf:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">otherElement</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#element-13&#39;</span><span class="p">).</span><span class="nx">mbMyClass</span><span class="p">(</span><span class="s1">&#39;methodA&#39;</span><span class="p">,</span> <span class="nx">parameterA</span><span class="p">,</span> <span class="nx">parameterB</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Dies ist eine Standard-jQuery UI Syntax und selbsterklärend. Es ist die Frage, wie Sie die anderen HTML-Elemente erkennen? Um ein Element zu selektieren wird bevorzugt die ID verwendet. Diese ID&#8217;s werden jedoch zur Laufzeit von Mapbender3 generiert, wenn die Anwendung startet, so dass sie nicht davon ausgehen können, dass die ID immer gleich ist. Glücklicherweise können Sie in der Konfiguration eine Element-ID als eine Target-Option für ein anderes Element übergeben. Diese wird mit der Laufzeit-ID des Target-Elements des HTML-Element überschrieben, so dass Sie in Ihrem Widget-Code auf die richtige ID &#8220;this.options.target&#8221; zugreifen können.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">mbMyClass</span><span class="p">(</span><span class="s1">&#39;methodA&#39;</span><span class="p">,</span> <span class="nx">parameterA</span><span class="p">,</span> <span class="nx">parameterB</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Die passive Kommunikation wird verwendet, um Ereignisse anderer Targets anzumelden. Sie müssen das HTML-Element kennen und können nun dem anderen Widget lauschen, um ihr Widget abzurufen. Dieses wird mit Standard-jQuery-Events vorgenommen:</p>
+<p>Wenn Sie die  &#8220;_trigger&#8221;-Methode mit jQuery UI Widget Factory bereitstellen ...</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Elemente verstehen</a><ul>
+<li><a class="reference internal" href="#bereiche-der-elemente">Bereiche der Elemente</a><ul>
+<li><a class="reference internal" href="#php-class">PHP Class</a></li>
+<li><a class="reference internal" href="#twig-template">Twig Template</a></li>
+<li><a class="reference internal" href="#javascript-widgets">JavaScript Widgets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kommunikation-zwischen-elementen">Kommunikation zwischen Elementen</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="requestresponse.html"
+                        title="previous chapter">Request / Response Workflow</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="element_generate.html"
+                        title="next chapter">Wie können eigene Elemente erzeugt werden?</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/de/book/development/elements.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="element_generate.html" title="Wie können eigene Elemente erzeugt werden?"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="requestresponse.html" title="Request / Response Workflow"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" >The Developer&#8217;s Book</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="introduction.html" >Einführung</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

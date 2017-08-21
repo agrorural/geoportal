@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Map &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="Overview" href="overview.html" />
+    <link rel="prev" title="Legend" href="legend.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="overview.html" title="Overview"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="legend.html" title="Legend"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="map">
+<span id="id1"></span><h1>Map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h1>
+<p>MapQuery/OpenLayers based map. You have to define the units, the start and max extent, scales and supported projections.</p>
+<a class="reference internal image-reference" href="../../../../../_images/map1.png"><img alt="../../../../../_images/map1.png" src="../../../../../_images/map1.png" style="width: 434.4px; height: 326.4px;" /></a>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/map_configuration1.png"><img alt="../../../../../_images/map_configuration1.png" src="../../../../../_images/map_configuration1.png" style="width: 440.0px; height: 440.0px;" /></a>
+<ul class="simple">
+<li><strong>Title:</strong> Title of the element. The title will be listed in &#8220;Layouts&#8221; and allows to distinguish between different buttons. It will be indicated if &#8220;Show label&#8221; is activated.</li>
+<li><strong>Layersets:</strong> refer to a layerset, define the layerset first and refer to it (propably main map).</li>
+<li><strong>DPI:</strong> resolution, default is 72.</li>
+<li><strong>SRS:</strong> coordinate reference system. Two ways of srs definitions are supported: EPSG: CODE or EPSG:CODE|MY SRS TITLE.</li>
+<li><strong>Tile size:</strong> Size of the tiles of tiled WMS services.</li>
+<li><strong>Delay before tiles:</strong> For future use of WMS-T if time parameters are used (actually not applicable).</li>
+<li><strong>Map units:</strong> units to use degrees/meters, default is degrees.</li>
+<li><strong>Max. Extent:</strong> maximal map extents.</li>
+<li><strong>Start Extent:</strong> map extents for the start of the application.</li>
+<li><strong>Scales (csv):</strong> a csv scale list.</li>
+<li><strong>Max. resolution:</strong> at the moment only auto is supported, so please do not change.</li>
+<li><strong>OL image path:</strong> OpenLayers image path, at which the images are saved (bundles/mapbendercore/mapquery/lib/openlayers/img).</li>
+<li><strong>Other SRS:</strong> other coordinate reference systems. Two srs definitions are supported: EPSG: CODE or EPSG:CODE|MY SRS TITLE.</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">layerset</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>             <span class="c1"># refer to a layerset, define the layerset first and refer to it</span>
+<span class="l l-Scalar l-Scalar-Plain">dpi</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">72</span>                    <span class="c1"># resolution, default is 72</span>
+<span class="l l-Scalar l-Scalar-Plain">srs</span><span class="p p-Indicator">:</span> <span class="s">&quot;EPSG:4326&quot;</span>           <span class="c1"># coordinate reference system. Two ways of srs definitions are supported:</span>
+                             <span class="p p-Indicator">-</span> <span class="s">&quot;EPSG:CODE&quot;</span> <span class="l l-Scalar l-Scalar-Plain">or</span>
+                             <span class="p p-Indicator">-</span> <span class="s">&quot;EPSG:CODE|MY</span><span class="nv"> </span><span class="s">SRS</span><span class="nv"> </span><span class="s">TITLE&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">units</span><span class="p p-Indicator">:</span> <span class="s">&quot;degrees&quot;</span>           <span class="c1"># units to use degrees/meters, default is degrees</span>
+<span class="l l-Scalar l-Scalar-Plain">extents</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">array(</span>
+    <span class="l l-Scalar l-Scalar-Plain">max</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">array(0, 40, 20, 60)</span>    <span class="c1"># maximal map extents</span>
+    <span class="l l-Scalar l-Scalar-Plain">start</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">array(5, 45, 15, 55))</span> <span class="c1"># map extents for the start of the application</span>
+<span class="l l-Scalar l-Scalar-Plain">scales</span><span class="p p-Indicator">:</span> <span class="s">&quot;25000000,10000000,5000000,1000000,500000&quot;</span> <span class="c1"># a csv scale list</span>
+<span class="l l-Scalar l-Scalar-Plain">maxResolution</span><span class="p p-Indicator">:</span> <span class="s">&quot;auto&quot;</span>      <span class="c1"># at the moment only auto is supported, so please do not change</span>
+<span class="l l-Scalar l-Scalar-Plain">otherSrs</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">array(</span>
+   <span class="l l-Scalar l-Scalar-Plain">&quot;EPSG:31466&quot;,</span>
+   <span class="l l-Scalar l-Scalar-Plain">&quot;EPSG:31467&quot;,</span>
+   <span class="l l-Scalar l-Scalar-Plain">&quot;EPSG:25832&quot;)</span>           <span class="c1"># other coordinate reference systems. Two srs definitions are supported:</span>
+                             <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="s">&quot;EPSG:CODE&quot;</span><span class="p p-Indicator">,</span><span class="s">&quot;EPSG:CODE&quot;</span><span class="p p-Indicator">]</span> <span class="l l-Scalar l-Scalar-Plain">or</span>
+                             <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="s">&quot;EPSG:CODE|MY</span><span class="nv"> </span><span class="s">SRS</span><span class="nv"> </span><span class="s">TITLE&quot;</span><span class="p p-Indicator">,</span><span class="s">&quot;EPSG:CODE|MY</span><span class="nv"> </span><span class="s">SRS</span><span class="nv"> </span><span class="s">TITLE&quot;</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">imgPath</span><span class="p p-Indicator">:</span> <span class="s">&quot;bundles/mapbendercore/mapquery/lib/openlayers/img&quot;</span>   <span class="c1"># path of images</span>
+<span class="l l-Scalar l-Scalar-Plain">tileSize</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">256</span>             <span class="c1"># size of tiles</span>
+<span class="l l-Scalar l-Scalar-Plain">wmsTileDelay</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2500</span>        <span class="c1"># delay on WMS-T (actually not applicable)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="controlling-by-url-parameters">
+<h2>Controlling by URL-parameters<a class="headerlink" href="#controlling-by-url-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="make-layer-visible">
+<h3>Make Layer visible<a class="headerlink" href="#make-layer-visible" title="Permalink to this headline">¶</a></h3>
+<p>If you have a Layer with the id &lt;layerid&gt; in a service with the id &lt;serviceid&gt; you may pass the URL parameter
+visiblelayers to turn the layer visible:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="o">?</span><span class="nx">visiblelayers</span><span class="o">=&lt;</span><span class="nx">serviceid</span><span class="o">&gt;/&lt;</span><span class="nx">layerid</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>You may pass multiple such layers, seperated by comma.</p>
+<p>The layerid and serviceid values are specific to an application. You can get
+the layerid and serviceid in the specific application, namely in the
+layerset and there in a layer. Each layer has an icon with three small dots
+on the right side. Click on the icon and a popup window will appear.</p>
+<a class="reference internal image-reference" href="../../../../../_images/wms_instance_layer_id1.png"><img alt="../../../../../_images/wms_instance_layer_id1.png" src="../../../../../_images/wms_instance_layer_id1.png" style="width: 361.6px; height: 116.0px;" /></a>
+<p>The first value lists the internal SourceID and SourceLayerId (31-591). The
+seconds value lists the InstanceID and InstanceLayerId, that we want to use
+now (73-836).</p>
+<p>Use this values for the &#8220;visibleLayers&#8221; parameter in your URL, and seperate them by a slash.</p>
+<p>For example: <a class="reference external" href="http://localhost/mapbender/application/myapp?visiblelayers=73/836">http://localhost/mapbender/application/myapp?visiblelayers=73/836</a></p>
+<p>If you have two layers that are not visible by default, put the two values
+of layerid and serviceid into the URL and seperate them by a comma.</p>
+<p>For example: <a class="reference external" href="http://localhost/mapbender/application/myapp?visiblelayers=73/836,73/840">http://localhost/mapbender/application/myapp?visiblelayers=73/836,73/840</a></p>
+</div>
+<div class="section" id="passing-pois">
+<h3>Passing POIs<a class="headerlink" href="#passing-pois" title="Permalink to this headline">¶</a></h3>
+<p>You can pass one or more POIs in the URL. Each POI has the following parameters:</p>
+<ul class="simple">
+<li>point: coordinate pair with values separated by comma (mandatory)</li>
+<li>label: Label to display (optional)</li>
+<li>scale: Scale to show POI in (optional, makes only sense with one POI)</li>
+</ul>
+<p>If you pass more than one POI, the map will zoom to 150% of the POIs bounding.</p>
+<p>To pass a single POI, use the following URL format:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="o">?</span><span class="nx">poi</span><span class="p">[</span><span class="nx">point</span><span class="p">]</span><span class="o">=</span><span class="mi">363374</span><span class="p">,</span><span class="mi">5621936</span><span class="o">&amp;</span><span class="nx">poi</span><span class="p">[</span><span class="nx">label</span><span class="p">]</span><span class="o">=</span><span class="nx">Label</span><span class="o">&amp;</span><span class="nx">poi</span><span class="p">[</span><span class="nx">scale</span><span class="p">]</span><span class="o">=</span><span class="mi">5000</span>
+</pre></div>
+</div>
+<p>To pass multiple POIs, use the following format:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="o">?</span><span class="nx">poi</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="nx">point</span><span class="p">]</span><span class="o">=</span><span class="mi">363374</span><span class="p">,</span><span class="mi">5621936</span><span class="o">&amp;</span><span class="nx">poi</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="nx">label</span><span class="p">]</span><span class="o">=</span><span class="nx">Label</span><span class="o">%</span><span class="mi">201</span><span class="o">&amp;</span><span class="nx">poi</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="nx">point</span><span class="p">]</span><span class="o">=</span><span class="mi">366761</span><span class="p">,</span><span class="mi">5623022</span><span class="o">&amp;</span><span class="nx">poi</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="nx">label</span><span class="p">]</span><span class="o">=</span><span class="nx">Label</span><span class="o">%</span><span class="mi">202</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="passing-bbox">
+<h3>Passing BBOX<a class="headerlink" href="#passing-bbox" title="Permalink to this headline">¶</a></h3>
+<p>You can pass a BBOX to zoom to by using the following URL query parameter:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="o">?</span><span class="nx">bbox</span><span class="o">=</span><span class="mi">364286</span><span class="p">,</span><span class="mi">5622263</span><span class="p">,</span><span class="mi">365979</span><span class="p">,</span><span class="mi">5622806</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="passing-the-scale">
+<h3>Passing the scale<a class="headerlink" href="#passing-the-scale" title="Permalink to this headline">¶</a></h3>
+<p>You can set the scale from the list of available scales.</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="o">?</span><span class="nx">scale</span><span class="o">=</span><span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="passing-srs">
+<h3>Passing SRS<a class="headerlink" href="#passing-srs" title="Permalink to this headline">¶</a></h3>
+<p>You can pass a favorite EPSG code you want to use on start of the application by URL query parameter:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="o">?</span><span class="nx">srs</span><span class="o">=</span><span class="nx">EPSG</span><span class="o">:</span><span class="mi">4326</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="passing-center">
+<h3>Passing CENTER<a class="headerlink" href="#passing-center" title="Permalink to this headline">¶</a></h3>
+<p>You can pass a coordinate. The application will open and display the coordinate in the center. In this case, you also have to set the SRS</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="o">?</span><span class="nx">center</span><span class="o">=</span><span class="mi">364286</span><span class="p">,</span><span class="mi">5622263</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="more-start-parameter">
+<h3>more start parameter<a class="headerlink" href="#more-start-parameter" title="Permalink to this headline">¶</a></h3>
+<p>The elments WMS Loader and WMC Loader provide also parameter you can user on start. Have a look at the element discription for further information.</p>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\Map</li>
+<li><strong>Widget:</strong> , mapquery//lib//openlayers//OpenLayers.js, mapquery//lib//jquery//jquery.tmpl.js, mapquery//src//jquery.mapquery.core.js, proj4js//proj4js-compressed.js, mapbender.element.map.js</li>
+<li><strong>Style:</strong> mapbender.elements.css, mapquery//lib//openlayers//theme//default//style.css</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="center">
+<h3>center<a class="headerlink" href="#center" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="highlight">
+<h3>highlight<a class="headerlink" href="#highlight" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="layer">
+<h3>layer<a class="headerlink" href="#layer" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="appendlayer">
+<h3>appendLayer<a class="headerlink" href="#appendlayer" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="insert">
+<h3>insert<a class="headerlink" href="#insert" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="rebuildstacking">
+<h3>rebuildStacking<a class="headerlink" href="#rebuildstacking" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="move">
+<h3>move<a class="headerlink" href="#move" title="Permalink to this headline">¶</a></h3>
+<p>Moves a layer up (direction == true) or down (direction == false) on the same level in the layer hierarchy.</p>
+</div>
+<div class="section" id="zoomin">
+<h3>zoomIn<a class="headerlink" href="#zoomin" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="zoomout">
+<h3>zoomOut<a class="headerlink" href="#zoomout" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="zoomtofullextent">
+<h3>zoomToFullExtent<a class="headerlink" href="#zoomtofullextent" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="zoomtoscale">
+<h3>zoomToScale<a class="headerlink" href="#zoomtoscale" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="panmode">
+<h3>panMode<a class="headerlink" href="#panmode" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="addpopup">
+<h3>addPopup<a class="headerlink" href="#addpopup" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="removepopup">
+<h3>removePopup<a class="headerlink" href="#removepopup" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="removebyid">
+<h3>removeById<a class="headerlink" href="#removebyid" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="layerbyid">
+<h3>layerById<a class="headerlink" href="#layerbyid" title="Permalink to this headline">¶</a></h3>
+<p>Searches for a MapQuery layer by its Mapbender id. Returns the layer or null if not found.</p>
+</div>
+<div class="section" id="scales">
+<h3>scales<a class="headerlink" href="#scales" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="setmapprojection">
+<h3>setMapProjection<a class="headerlink" href="#setmapprojection" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="getallsrs">
+<h3>getAllSrs<a class="headerlink" href="#getallsrs" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="ready">
+<h3>ready<a class="headerlink" href="#ready" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Map</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#controlling-by-url-parameters">Controlling by URL-parameters</a><ul>
+<li><a class="reference internal" href="#make-layer-visible">Make Layer visible</a></li>
+<li><a class="reference internal" href="#passing-pois">Passing POIs</a></li>
+<li><a class="reference internal" href="#passing-bbox">Passing BBOX</a></li>
+<li><a class="reference internal" href="#passing-the-scale">Passing the scale</a></li>
+<li><a class="reference internal" href="#passing-srs">Passing SRS</a></li>
+<li><a class="reference internal" href="#passing-center">Passing CENTER</a></li>
+<li><a class="reference internal" href="#more-start-parameter">more start parameter</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a><ul>
+<li><a class="reference internal" href="#center">center</a></li>
+<li><a class="reference internal" href="#highlight">highlight</a></li>
+<li><a class="reference internal" href="#layer">layer</a></li>
+<li><a class="reference internal" href="#appendlayer">appendLayer</a></li>
+<li><a class="reference internal" href="#insert">insert</a></li>
+<li><a class="reference internal" href="#rebuildstacking">rebuildStacking</a></li>
+<li><a class="reference internal" href="#move">move</a></li>
+<li><a class="reference internal" href="#zoomin">zoomIn</a></li>
+<li><a class="reference internal" href="#zoomout">zoomOut</a></li>
+<li><a class="reference internal" href="#zoomtofullextent">zoomToFullExtent</a></li>
+<li><a class="reference internal" href="#zoomtoscale">zoomToScale</a></li>
+<li><a class="reference internal" href="#panmode">panMode</a></li>
+<li><a class="reference internal" href="#addpopup">addPopup</a></li>
+<li><a class="reference internal" href="#removepopup">removePopup</a></li>
+<li><a class="reference internal" href="#removebyid">removeById</a></li>
+<li><a class="reference internal" href="#layerbyid">layerById</a></li>
+<li><a class="reference internal" href="#scales">scales</a></li>
+<li><a class="reference internal" href="#setmapprojection">setMapProjection</a></li>
+<li><a class="reference internal" href="#getallsrs">getAllSrs</a></li>
+<li><a class="reference internal" href="#ready">ready</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="legend.html"
+                        title="previous chapter">Legend</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="overview.html"
+                        title="next chapter">Overview</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/en/bundles/Mapbender/CoreBundle/elements/map.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="overview.html" title="Overview"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="legend.html" title="Legend"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

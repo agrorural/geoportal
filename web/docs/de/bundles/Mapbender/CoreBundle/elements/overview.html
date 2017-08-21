@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Overview (Übersicht) &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="POI (Treffpunkt)" href="poi.html" />
+    <link rel="prev" title="Map (Karte)" href="map.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="poi.html" title="POI (Treffpunkt)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="map.html" title="Map (Karte)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="overview-ubersicht">
+<span id="overview"></span><h1>Overview (Übersicht)<a class="headerlink" href="#overview-ubersicht" title="Permalink to this headline">¶</a></h1>
+<p>Mit diesem Element kann eine Übersichtskarte erstellt werden, ähnlich wie in OpenLayers.
+Es kann die Größe des Übersichtsfensters und die Position bestimmt werden. In der Übersicht wird ein vorher definiertes Layerset angezeigt.
+Die Übersichtskarte kann fixiert sein, oder sie ist zoomfähig, d.h. wenn in der Hauptkarte gezoomt wird, wird dies auch in der Übersicht angezeigt.
+Es kann auch definiert werden, ob die Übersichtskarte nach dem Öffnen der Applikation minimiert oder maximiert ist.</p>
+<a class="reference internal image-reference" href="../../../../../_images/overview.png"><img alt="../../../../../_images/overview.png" src="../../../../../_images/overview.png" style="width: 413.6px; height: 214.4px;" /></a>
+<div class="section" id="konfiguration">
+<h2>Konfiguration<a class="headerlink" href="#konfiguration" title="Permalink to this headline">¶</a></h2>
+<p>Die Übersichtskarte muss in der Konfiguration unterhalb der Karte (map) platziert werden.</p>
+<a class="reference internal image-reference" href="../../../../../_images/overview_configuration_dependency_map.png"><img alt="../../../../../_images/overview_configuration_dependency_map.png" src="../../../../../_images/overview_configuration_dependency_map.png" style="width: 621.6px; height: 138.4px;" /></a>
+<p>Der Konfigurationsdialog:</p>
+<a class="reference internal image-reference" href="../../../../../_images/overview_configuration.png"><img alt="../../../../../_images/overview_configuration.png" src="../../../../../_images/overview_configuration.png" style="width: 435.2px; height: 436.0px;" /></a>
+<ul class="simple">
+<li><strong>Maximieren:</strong> definiert, ob die Applikation beim Start maximiert ist, der Standardwert ist true.</li>
+<li><strong>Fixieren:</strong> Bereich der Übersichtskarte kann fixiert werden, der Standardwert ist true.</li>
+<li><strong>Title:</strong> Titel des Elements. Dieser wird in der Layouts Liste angezeigt und ermöglicht, mehrere Button-Elemente voneinander zu unterscheiden. Der Titel wird außerdem neben dem Button angezeigt, wenn &#8220;Beschriftung anzeigen&#8221; aktiviert ist.</li>
+<li><strong>Tooltip:</strong> Text, der angezeigt wird, wenn der Mauszeiger eine längere Zeit über dem Element verweilt.</li>
+<li><strong>Layerset:</strong> vorher definiertes Layerset, das angezeigt werden soll.</li>
+<li><strong>Target:</strong> ID des Kartenelements, auf das sich das Element bezieht.</li>
+<li><strong>Anchor:</strong> Ausrichtung der Übersicht, Standard ist &#8216;right-top&#8217; (rechts oben).</li>
+<li><strong>Width/ Height:</strong> Breite und Höhe der Übersichtskarte.</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">tooltip</span><span class="p p-Indicator">:</span> <span class="s">&#39;Overview&#39;</span>              <span class="c1"># Text des Tooltips</span>
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>                        <span class="c1"># ID des Kartenelements</span>
+<span class="l l-Scalar l-Scalar-Plain">layerset</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>                      <span class="c1"># vorher definiertes Layerset, das angezeigt werden soll.</span>
+<span class="l l-Scalar l-Scalar-Plain">width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>                       <span class="c1"># Breite der Übersicht</span>
+<span class="l l-Scalar l-Scalar-Plain">height</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>                      <span class="c1"># Höhe der Übersicht</span>
+<span class="l l-Scalar l-Scalar-Plain">anchor</span><span class="p p-Indicator">:</span> <span class="s">&#39;inline&#39;</span><span class="l l-Scalar l-Scalar-Plain">/&#39;left-top&#39;/</span>     <span class="c1"># Ausrichtung der Übersicht, Standard ist &#39;right-top&#39; (rechts oben)</span>
+  <span class="s">&#39;left-bottom&#39;</span><span class="l l-Scalar l-Scalar-Plain">/&#39;right-top&#39;/</span>     <span class="c1"># Benutzen Sie inline z.B. für die Sidebar</span>
+  <span class="s">&#39;right-bottom&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">position</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">array(&#39;0px&#39;,&#39;0px&#39;)</span>     <span class="c1"># Position der Übersicht in Relation zum Anker, Standard: x=0px, y=0px</span>
+<span class="l l-Scalar l-Scalar-Plain">maximized</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                  <span class="c1"># true/false ob die Applikation beim Start maximiert ist, der Standardwert ist true</span>
+<span class="l l-Scalar l-Scalar-Plain">fixed</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                      <span class="c1"># true/false um den Übersichtsbereich zu fixieren, der Standardwert ist true</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\Overview</li>
+<li><strong>Widget:</strong> mapbender.element.overview.js</li>
+<li><strong>Style:</strong> mapbender.element.overview.css</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>Keine.</p>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<p>Keine.</p>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>Keine.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Overview (Übersicht)</a><ul>
+<li><a class="reference internal" href="#konfiguration">Konfiguration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a></li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="map.html"
+                        title="previous chapter">Map (Karte)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="poi.html"
+                        title="next chapter">POI (Treffpunkt)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/de/bundles/Mapbender/CoreBundle/elements/overview.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="poi.html" title="POI (Treffpunkt)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="map.html" title="Map (Karte)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Request / Response Workflow &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="Einführung" href="introduction.html" />
+    <link rel="next" title="Elemente verstehen" href="elements.html" />
+    <link rel="prev" title="API-Dokumentation" href="apidocumentation.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="elements.html" title="Elemente verstehen"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="apidocumentation.html" title="API-Dokumentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" >The Developer&#8217;s Book</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="introduction.html" accesskey="U">Einführung</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="request-response-workflow">
+<h1>Request / Response Workflow<a class="headerlink" href="#request-response-workflow" title="Permalink to this headline">¶</a></h1>
+<p><em>Anmerkung:</em> Wir werden die englische Dokumentation in den <a class="reference external" href="https://github.com/mapbender/mapbender-starter/blob/release/3.0.6/CONTRIBUTING.md">Contributing Guide für Entwickler</a> verschieben.</p>
+<p>Dieses Dokument erklärt den Request/Response Workflow von Mapbender3. Es existieren drei Abläufe, die bekannt sein sollten:</p>
+<ul class="simple">
+<li>Anwendungs Workflow</li>
+<li>Element Workflow</li>
+<li>Manager Modul Workflow</li>
+</ul>
+<div class="section" id="anwendungs-workflow">
+<h2>Anwendungs Workflow<a class="headerlink" href="#anwendungs-workflow" title="Permalink to this headline">¶</a></h2>
+<p>Die Standardanwendung controller /application/{slug} steuert die MapbenderCoreBundleControllerApplication::applicationAction($slug)-Funktion. Dieses funktioniert folgendermaßen:</p>
+<p>Grundsätzlich fragt der Controller den Mapbender-Service nach einer Anwendung mit dem gegebenen Namen Slug zu suchen. Zunächst sucht der Mapbender-Service die Anwendung in der Datenbank und nur, wenn er sie dort nicht findet, wird in den Anwendungen, die in der Konfigurations-YAML definiert sind, gesucht.</p>
+<p>Die dadurch geladene Entität der Klasse MapbenderCoreBundleEntityApplication wird mit ihrem Ursprung in dem Source-Attribut, das entweder MapbenderCoreBundleEntityApplication::SOURCE_YAML oder MapbenderCoreBundleEntityApplication::SOURCE_DB ist, getaggt.</p>
+<p>Die Entität wird an den Constructor des Laufzeit-Anwendungsobjektes der Klasse MapbenderCoreBundleComponentApplication weitergeleitet, welches die Logik beinhaltet, während die Entität die Daten enthält.</p>
+<p>Zugriffsprüfungen werden nicht im Mapbender-Service, in der Entität oder in der Anwendung vorgenommen, sondern in der Funktion getApplication des Controllers. Behalten Sie dies im Hinterkopf, wenn Sie Ihren eigenen Controller entwickeln wollen.</p>
+<img alt="../../../_images/http_workflow_application.png" src="../../../_images/http_workflow_application.png" />
+</div>
+<div class="section" id="element-rendering-workflow">
+<h2>Element-Rendering-Workflow<a class="headerlink" href="#element-rendering-workflow" title="Permalink to this headline">¶</a></h2>
+<p>Bei dem Anwendungsrendering ist jedes Element aufgefordert, sich selbst zu rendern. Der Arbeitsablauf ist ein wenig kompliziert, aber grundsätzlich fragt die Anwendung ihre Vorlage, sich selbst zu rendern, welches die Vorlagen-Iteration für jedes Element und das Aufrufen der Elementrendering-Funktion beinhaltet.</p>
+<p>Die Render-Funktion verwendet normalerweise Twig zum Rendern eines HTML-Fragments. Dieses Fragment muss ein ID-Attribut enthalten, das der ID des Elements dynamisch von der Mapbender-Anwendung gegeben wird. Da diese IDs dynamisch generiert werden, dürfen Sie diese nicht für das Styling in ihrer Element-CSS verwenden.</p>
+<p>Die Anwendung iteriert über jedes Element und ruft die getConfiguration-Methode auf, um alle Elementkonfiguration-Arrays zu sammeln, die clientsetig in der Mapbender.configuration.elements-Variable verfügbar sind .- sowie zu jeder Element Widget Konstruktionsmethode.</p>
+<p>Die Konfiguration der Elemente ist verfügbar:</p>
+<ul class="simple">
+<li>In der Render-Funktion des Elements, welche die Konfiguration an die Twig-Datei weitergeben kann.</li>
+<li>In der Widget-Methode des Elements &#8220;this-&gt;options&#8221;.</li>
+<li>In der Mapbender.configuration.elements JavaScript-Variable (für alle Elemente)</li>
+</ul>
+</div>
+<div class="section" id="element-callback-workflow">
+<h2>Element Callback Workflow<a class="headerlink" href="#element-callback-workflow" title="Permalink to this headline">¶</a></h2>
+<p>Der übliche Element-Callback /application/{slug}/element/{id}/{action} wird an die Funktion  MapbenderCoreBundleControllerApplicationController::elementAction($slug, $id, $action) geleitet.</p>
+<p>Diese Funktion erledigt das gleiche wie applicationAction, um das Anwendungsobjekt zu erhalten. Dadurch wird der Zugriff auf die Anwendung geprüft. Es ist kein Zugriff auf das Element-Callback möglich, wenn der Benutzer nicht die Erlaubnis hat, die Anwendung zu verwenden.</p>
+<p>Das Element wird erneuert und der Zugriff auf das Element wird, basierend auf der Rolle des aktuellen Benutzers, geprüft.</p>
+<p>Zuletzt wird die Element-Callback-Funktion MapbenderCoreBundleComponentElement::httpAction($action) aufgerufen. Diese Funktion muss ein SymfonyComponentHttpFoundationResponse-Objekt zurückgeben oder eine  Http-Fehlermeldung (nicht gefunden, Zugriff abgelehnt etc.) ausgeben.</p>
+<p>Es bleibt dem element überlassen, seine Logik in der httpAction-Methode zu implementieren. Die beste Vorgehensweise ist, eine Fallunterscheidung über den $action-Parameter vorzunehmen. Standard sollte eine HttpNotFoundException sein. Mit Symfony können Sie in der Elementklasse auf den Request als Symfony-Service mit $this-&gt;get(&#8216;request&#8217;) zugreifen.</p>
+<p>Element Widgets können die Callback-URL zur Verwendung in ihrem Ajax-Aufruf konstruieren. Dazu wird die Element-ID und der Pfad, der in der Mapbender-Variable bereitgestellt wird,  benötigt:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">widget</span><span class="p">(</span><span class="s1">&#39;mapbender.mbDemo&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">elementUrl</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+        <span class="nx">_create</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">elementUrl</span> <span class="o">=</span> <span class="nx">Mapbender</span><span class="p">.</span><span class="nx">configuration</span><span class="p">.</span><span class="nx">elementPath</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">_doMagic</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+                <span class="nx">url</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">elementUrl</span> <span class="o">+</span> <span class="s1">&#39;myAction&#39;</span><span class="p">,</span>
+                <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">})(</span><span class="nx">jQuery</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="manager-workflow">
+<h2>Manager-Workflow<a class="headerlink" href="#manager-workflow" title="Permalink to this headline">¶</a></h2>
+<p>Manager-Module sind einfache Symfony2 Controller-Klassen. Um ihre Routen sicherzustellen sind Präfixe mit /manager – oder welche Präfixe auch immer für das Manager Bundle konfiguriert wurde, nötig. Sie sollten nicht die SensioFrameworkExtraBundleConfigurationRoute Annotation verwenden, sondern die spezielle FOMManagerBundleConfigurationRoute Annotation. Derzeit ist die Annotations-Klasse noch nicht sehr speziell, aber sie erlaubt dem ManagerBundle die Präfixe zu erzwingen.</p>
+<p>Am besten wird die Route-Annotation mit einem anderen Namen verwendet, um so das Debuggen zu erleichtern:</p>
+<div class="highlight-html+php"><div class="highlight"><pre><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\DemoBundle\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Bundle\FrameworkBundle\Controller\Controller</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">FOM\ManagerBundle\Configuration\Route</span> <span class="k">as</span> <span class="nx">ManagerRoute</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">DemoManagerController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @ManagerRoute(&quot;/demo&quot;)</span>
+<span class="sd">     */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="nf">demoAction</span><span class="p">()</span>
+     <span class="p">{</span>
+        <span class="cm">/* ... */</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Request / Response Workflow</a><ul>
+<li><a class="reference internal" href="#anwendungs-workflow">Anwendungs Workflow</a></li>
+<li><a class="reference internal" href="#element-rendering-workflow">Element-Rendering-Workflow</a></li>
+<li><a class="reference internal" href="#element-callback-workflow">Element Callback Workflow</a></li>
+<li><a class="reference internal" href="#manager-workflow">Manager-Workflow</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="apidocumentation.html"
+                        title="previous chapter">API-Dokumentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="elements.html"
+                        title="next chapter">Elemente verstehen</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/de/book/development/requestresponse.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="elements.html" title="Elemente verstehen"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="apidocumentation.html" title="API-Dokumentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" >The Developer&#8217;s Book</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="introduction.html" >Einführung</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

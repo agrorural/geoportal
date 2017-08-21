@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuring the database &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../index.html" />
+    <link rel="up" title="The Book" href="../thebook.html" />
+    <link rel="next" title="Translation in Mapbender3" href="translation.html" />
+    <link rel="prev" title="Concepts" href="concepts.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="translation.html" title="Translation in Mapbender3"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="concepts.html" title="Concepts"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" accesskey="U">The Book</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configuring-the-database">
+<span id="database"></span><h1>Configuring the database<a class="headerlink" href="#configuring-the-database" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="general">
+<h2>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h2>
+<p>To configure the database connection both files, config.yml and paramters.yml are used (see also <a class="reference external" href="http://symfony.com/doc/current/best_practices/configuration.html">the Symfony Documentation</a>). While the config.yml file contains only the placeholders, the values for the database connection are placed in the paramters.yml.</p>
+<p>You can find examples for the Configuration in our <a class="reference external" href="installation.html">Installation Instructions</a>, for example in the chapter <a class="reference external" href="installation/installation_ubuntu.html#configuration-of-mapbender3">Configuration of Mapbender3 on Ubuntu and Debian</a>.</p>
+</div>
+<div class="section" id="doctrine">
+<span id="id1"></span><h2>Doctrine<a class="headerlink" href="#doctrine" title="Permalink to this headline">¶</a></h2>
+<p>In Mapbender3 we use Doctrine which is a set of PHP libraries and offers an Object Relational Mapper and a Database Abstraction Layer. Visit the <a class="reference external" href="http://www.doctrine-project.org/">Doctrine project page</a> and read more.</p>
+</div>
+<div class="section" id="database-definition">
+<h2>Database definition<a class="headerlink" href="#database-definition" title="Permalink to this headline">¶</a></h2>
+<p>The standard database definition in the config.yml looks like this:</p>
+<div class="highlight-yaml"><div class="highlight"><pre>doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+            driver:   %database_driver%
+            host:     %database_host%
+            port:     %database_port%
+            dbname:   %database_name%
+            path:     %database_path%
+            user:     %database_user%
+            password: %database_password%
+            charset:  UTF8
+            logging: %kernel.debug%
+            profiling: %kernel.debug%
+    orm:
+        auto_generate_proxy_classes: %kernel_debug%
+        auto_mapping:true
+</pre></div>
+</div>
+<p>All values encapsulated in % are parameters, loaded from the parameters.yml. The parameters.yml will load these parameters. Therefore, to change the database, modify the parameters values in the parameters.yml.</p>
+<ul class="simple">
+<li>database_driver: The driver of the database. Possible values are:<ul>
+<li>pdo_sqlite - SQLite PDO driver</li>
+<li>pdo_mysql - MySQL PDO driver</li>
+<li>pdo_pgsql - PostgreSQL PDO driver</li>
+<li>oci8 - Oracle OCI8 driver</li>
+<li>pdo_oci - Oracle PDO driver</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div>Please keep in mind, that you have installed resp. activated the appropriate PHP-driver.</div></blockquote>
+<ul class="simple">
+<li>database_host: The host, where the database is installed. Either the name (e.g. localhost) or the IP-address (e.g.. 127.0.0.1).</li>
+<li>database_port: The port, on which the database listens (e.g. 5432 for PostgreSQL).</li>
+<li>database_name: The Name of the database (e.g. mapbender3). Create the database and the scheme with <code class="docutils literal"><span class="pre">doctrine:database:create</span></code> resp. <code class="docutils literal"><span class="pre">doctrine:schema:create</span></code>, see <a class="reference external" href="installation.html">Installation Instructions</a> for details.</li>
+<li>database_path: The %database_path% is the path to a SQLite database. If you don&#8217;t use a SQLite database, don&#8217;t delete the parameter from the parameters.yml though. Just put in as a value a tilde (~) or <code class="docutils literal"><span class="pre">null</span></code>.</li>
+<li>database_user: Username for the connection to the database.</li>
+<li>database_password: The password of the database-user.</li>
+<li>charset: The codepage that the database uses.</li>
+<li>logging: This options sets, that all SQL statements are not  logged. (Default: %kernel.debug%). <a class="reference external" href="http://www.loremipsum.at/blog/doctrine-2-sql-profiler-in-debugleiste/">Further information</a>.</li>
+<li>profiling: This option handles the profiling of SQL statements. This option can be switched off in production environments (Default: %kernel.debug%).</li>
+</ul>
+<div class="section" id="using-multiple-databases">
+<h3>Using multiple databases<a class="headerlink" href="#using-multiple-databases" title="Permalink to this headline">¶</a></h3>
+<p>Using multiple databases is easy with Mapbender3 and advised if you want to separate your own data from Mapbender&#8217;s. This is useful in a scenario where you have your own custom code provided by an non-Mapbender bundle.</p>
+<p>There&#8217;s always a default database connection and all Mapbender code assumes that it can access it&#8217;s data using that default database connection.</p>
+<p>So if your code wants to use a different database you have to define a second named database connection and always
+use that named database connection.</p>
+<ul class="simple">
+<li>Write the additional parameter &#8220;default_connection&#8221;. This is the database-connection that Mapbender3 uses as the default (e.g. <code class="docutils literal"><span class="pre">default_connection:</span> <span class="pre">default</span></code> or <code class="docutils literal"><span class="pre">default_connection:</span> <span class="pre">search_db</span></code>).</li>
+</ul>
+<p>Here is an example for a database connection block in the <strong>config.yml</strong> with two connections:</p>
+<div class="highlight-yaml"><div class="highlight"><pre>doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:   %database_driver%
+                host:     %database_host%
+                port:     %database_port%
+                dbname:   %database_name%
+                path:     %database_path%
+                user:     %database_user%
+                password: %database_password%
+                charset:  UTF8
+                logging: %kernel.debug%
+                profiling: %kernel.debug%
+            search_db:
+                driver:   %database2_driver%
+                host:     %database2_host%
+                port:     %database2_port%
+                dbname:   %database2_name%
+                path:     %database2_path%
+                user:     %database2_user%
+                password: %database2_password%
+                charset:  UTF8
+                logging: %kernel.debug%
+                profiling: %kernel.debug%
+</pre></div>
+</div>
+<p>The definition of the database variables is done in the file <strong>parameters.yml</strong>.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+    <span class="c1"># database-connection &quot;default&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">database_driver</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">pdo_pgsql</span>
+    <span class="l l-Scalar l-Scalar-Plain">database_host</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+    <span class="l l-Scalar l-Scalar-Plain">database_port</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">5432</span>
+    <span class="l l-Scalar l-Scalar-Plain">database_name</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">mapbender3</span>
+    <span class="l l-Scalar l-Scalar-Plain">database_path</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">~</span>
+    <span class="l l-Scalar l-Scalar-Plain">database_user</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+    <span class="l l-Scalar l-Scalar-Plain">database_password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+
+    <span class="c1"># database-connection &quot;search_db&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">database2_driver</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">pdo_pgsql</span>
+    <span class="l l-Scalar l-Scalar-Plain">database2_host</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+    <span class="l l-Scalar l-Scalar-Plain">database2_port</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">5432</span>
+    <span class="l l-Scalar l-Scalar-Plain">database2_name</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">search_db</span>
+    <span class="l l-Scalar l-Scalar-Plain">database2_path</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">~</span>
+    <span class="l l-Scalar l-Scalar-Plain">database2_user</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+    <span class="l l-Scalar l-Scalar-Plain">database2_password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Configuring the database</a><ul>
+<li><a class="reference internal" href="#general">General</a></li>
+<li><a class="reference internal" href="#doctrine">Doctrine</a></li>
+<li><a class="reference internal" href="#database-definition">Database definition</a><ul>
+<li><a class="reference internal" href="#using-multiple-databases">Using multiple databases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="concepts.html"
+                        title="previous chapter">Concepts</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="translation.html"
+                        title="next chapter">Translation in Mapbender3</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/en/book/database.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="translation.html" title="Translation in Mapbender3"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="concepts.html" title="Concepts"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" >The Book</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

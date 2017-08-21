@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to create your own Template? &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../index.html" />
+    <link rel="up" title="The Book" href="../thebook.html" />
+    <link rel="next" title="How to change the style of your application with the css-editor?" href="css.html" />
+    <link rel="prev" title="Translation in Mapbender3" href="translation.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="css.html" title="How to change the style of your application with the css-editor?"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="translation.html" title="Translation in Mapbender3"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" accesskey="U">The Book</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-create-your-own-template">
+<span id="templates"></span><h1>How to create your own Template?<a class="headerlink" href="#how-to-create-your-own-template" title="Permalink to this headline">¶</a></h1>
+<p>Mapbender3 comes with application templates you can use. But usually you want to use your own template with your own corporate design.
+This document will show you how to create a Workshop DemoBundle for demonstration purposes.</p>
+<p>From version 3.0.4.0 on you can change the style of your application with the css-Editor. You find the documentation about the css-editor at <a class="reference internal" href="css.html"><em>How to change the style of your application with the css-editor?</em></a>.</p>
+<div class="section" id="id1">
+<h2>How to create your own template?<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>There are some steps you have to follow on the way to your own template.</p>
+<ul class="simple">
+<li>create your own bundle</li>
+<li>create a template php-file to register your template</li>
+<li>create your own twig-file</li>
+<li>create your own css-file(s)</li>
+<li>register your bundle in app/AppKernel.php</li>
+<li>use your template in yml-configuration or choose it through the administration (for new applications) or change the template path for an existing application in your database in table <em>mb_core_application</em> in column <em>template</em></li>
+</ul>
+<p>Notice: We already prepared a Workshop/DemoBundle that you can use as a template. You can download it here:</p>
+<ul class="simple">
+<li>Workshop/DemoBundle at <a class="reference external" href="https://github.com/mapbender/mapbender-workshop">https://github.com/mapbender/mapbender-workshop</a></li>
+</ul>
+</div>
+<div class="section" id="create-your-own-bundle">
+<h2>Create your own bundle<a class="headerlink" href="#create-your-own-bundle" title="Permalink to this headline">¶</a></h2>
+<p>User bundles are stored in the src-directory.</p>
+<p>This is how the structure can look like:</p>
+<div class="highlight-bash"><div class="highlight"><pre>src/Workshop/DemoBundle/
+                   WorkshopDemoBundle.php
+                   /Resources
+                                 /public
+                                        demo_fullscreen.css
+                                        /imgage
+                                            workshop.ico
+                                            workshop_logo.png
+                                            print.png
+                                            ...
+                                 /views
+                                       /Template
+                                            fullscreen_demo.html.twig
+                       /Template
+                               DemoFullscreen.php
+</pre></div>
+</div>
+<div class="section" id="create-a-new-namespace">
+<h3>Create a new namespace<a class="headerlink" href="#create-a-new-namespace" title="Permalink to this headline">¶</a></h3>
+<p>The file WorkshopDemoBundle.php creates the namespace for the bundle and refers to the template and to your css-file(s).</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="cm">/*</span>
+<span class="cm"> * This file is part of the Mapbender 3 project.</span>
+<span class="cm"> *</span>
+<span class="cm"> * For the full copyright and license information, please view the LICENSE</span>
+<span class="cm"> * file that was distributed with this source code.</span>
+<span class="cm"> */</span>
+<span class="k">namespace</span> <span class="nx">Workshop\DemoBundle</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Mapbender\CoreBundle\Component\MapbenderBundle</span><span class="p">;</span>
+<span class="sd">/**</span>
+<span class="sd"> * WorkshopDemo</span>
+<span class="sd"> *</span>
+<span class="sd"> * @author Astrid Emde</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">WorkshopDemoBundle</span> <span class="k">extends</span> <span class="nx">MapbenderBundle</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @inheritdoc</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getTemplates</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Workshop\DemoBundle\Template\DemoFullscreen&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @inheritdoc</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getElements</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-your-own-template-file">
+<h3>Create your own template file<a class="headerlink" href="#create-your-own-template-file" title="Permalink to this headline">¶</a></h3>
+<p>In our example the template file is called FullscreenDemo.php. You find it at src/Workshop/DemoBundle/Template/FullscreenDemo.php.</p>
+<p>In the template file you define the name of your template, the regions that you want to provide and refer to a twig file.</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Workshop\DemoBundle</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Mapbender\CoreBundle\Component\MapbenderBundle</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">DemoFullscreen</span> <span class="k">extends</span> <span class="nx">MapbenderBundle</span>
+<span class="p">{</span>
+   <span class="o">...</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getTitle</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="s1">&#39;DemoFullscreen&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">....</span>
+
+<span class="k">static</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">listAssets</span><span class="p">()</span>
+<span class="p">{</span>
+       <span class="nv">$assets</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+           <span class="s1">&#39;css&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;@MapbenderCoreBundle/Resources/public/sass/template/fullscreen.scss&#39;</span><span class="p">,</span><span class="s1">&#39;@WorkshopDemoBundle/Resources/public/demo_fullscreen.css&#39;</span><span class="p">),</span>
+           <span class="s1">&#39;js&#39;</span>    <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+               <span class="s1">&#39;/components/underscore/underscore-min.js&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;@FOMCoreBundle/Resources/public/js/widgets/popup.js&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;@FOMCoreBundle/Resources/public/js/frontend/sidepane.js&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;@FOMCoreBundle/Resources/public/js/frontend/tabcontainer.js&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;@MapbenderCoreBundle/Resources/public/regional/vendor/notify.0.3.2.min.js&#39;</span><span class="p">,</span>
+               <span class="s2">&quot;/components/datatables/media/js/jquery.dataTables.min.js&quot;</span><span class="p">,</span>
+               <span class="s1">&#39;/components/jquerydialogextendjs/jquerydialogextendjs-built.js&#39;</span><span class="p">,</span>
+               <span class="s2">&quot;/components/vis-ui.js/vis-ui.js-built.js&quot;</span>
+
+           <span class="p">),</span>
+           <span class="s1">&#39;trans&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">()</span>
+       <span class="p">);</span>
+   <span class="k">return</span> <span class="nv">$assets</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">...</span>
+<span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;WorkshopDemoBundle:Template:demo_fullscreen.html.twig&#39;</span><span class="p">,</span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-properties-for-your-sidepane-region">
+<h3>Adding properties for your &#8220;sidepane&#8221; region<a class="headerlink" href="#adding-properties-for-your-sidepane-region" title="Permalink to this headline">¶</a></h3>
+<p>For a &#8220;sidepane&#8221; region are &#8220;tabs&#8221; and &#8220;accordion&#8221; properties supported.</p>
+<ul class="simple">
+<li>&#8220;tabs&#8221; orders Mapbender elements in tabs</li>
+<li>&#8220;accordion&#8221; displays Mapbender elements as an accordion list</li>
+</ul>
+<p>For adding you define the function &#8220;getRegionsProperties&#8221; in the template file.</p>
+<p>For configuration you check an option in your application&#8217;s configuration.</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="sd">/**</span>
+<span class="sd">  @inheritdoc</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getRegionsProperties</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;sidepane&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;tabs&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tabs&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mb.manager.template.region.tabs.label&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;accordion&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;accordion&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mb.manager.template.region.accordion.label&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="create-your-own-twig-file">
+<h2>Create your own twig-file<a class="headerlink" href="#create-your-own-twig-file" title="Permalink to this headline">¶</a></h2>
+<p>You find the twig-files at the following path:</p>
+<ul class="simple">
+<li>mapbender\src\Workshop\DemoBundle\Resources\views\Template</li>
+</ul>
+<p>The easiest way to create your own twig file is to copy an existing twig, save it under a new name and change the content like colors.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> mapbender/src/Workshop/DemoBundle/Resources/views/Template
+</pre></div>
+</div>
+<p>Use the existing template from mapbender/src/Mapbender/CoreBundle/Resources/views/Template/fullscreen.html.twig and copy it to fullscreen_demo.html.twig</p>
+</div>
+<div class="section" id="create-your-own-css-file">
+<h2>Create your own css-file<a class="headerlink" href="#create-your-own-css-file" title="Permalink to this headline">¶</a></h2>
+<p>Create an empty css-file and fill it with content. From Mapbender3 version 3.0.3.0 you only have to define the parts that have to look different from the default style of the element.</p>
+<p>Firebug can help you to find out the styles you want to change.</p>
+<p>Your file could be named like this: src/Workshop/DemoBundle/Resources/public/demo_fullscreen.css and have the following definition:</p>
+<div class="highlight-css"><div class="highlight"><pre><span class="nc">.toolBar</span> <span class="p">{</span>
+  <span class="nb">background-color</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span> <span class="m">29</span><span class="o">,</span> <span class="m">122</span><span class="o">,</span> <span class="m">0</span><span class="o">.</span><span class="m">8</span><span class="p">)</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.toolPane</span> <span class="p">{</span>
+  <span class="nb">background-color</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span> <span class="m">29</span><span class="o">,</span> <span class="m">122</span><span class="o">,</span> <span class="m">0</span><span class="o">.</span><span class="m">8</span><span class="p">)</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.sidePane</span> <span class="p">{</span>
+  <span class="nb">overflow</span><span class="o">:</span> <span class="nb">visible</span><span class="p">;</span>
+  <span class="nb">background-image</span><span class="o">:</span> <span class="sx">url(&quot;&quot;)</span><span class="p">;</span>
+  <span class="nb">background-color</span><span class="o">:</span> <span class="m">#eff7e9</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.sidePane.opened</span> <span class="p">{</span>
+    <span class="nb">width</span><span class="o">:</span> <span class="m">350px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.logoContainer</span> <span class="p">{</span>
+  <span class="nb">background-color</span><span class="o">:</span> <span class="nb">white</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="nb">background-image</span><span class="o">:</span> <span class="sx">url(&quot;&quot;)</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="o">:</span> <span class="m">0px</span> <span class="m">0px</span> <span class="m">3px</span> <span class="m">#0028AD</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="o">:</span> <span class="m">0px</span> <span class="m">0px</span> <span class="m">3px</span> <span class="m">#0028AD</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="o">:</span> <span class="m">0px</span> <span class="m">0px</span> <span class="m">3px</span> <span class="m">#0028AD</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.sidePaneTabItem</span> <span class="p">{</span>
+   <span class="nb">background-color</span><span class="o">:</span> <span class="m">#0028AD</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.layer-opacity-handle</span> <span class="p">{</span>
+    <span class="nb">background-color</span><span class="o">:</span> <span class="m">#0028AD</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.mb-element-overview</span> <span class="nc">.toggleOverview</span> <span class="p">{</span>
+    <span class="nb">background-color</span><span class="o">:</span> <span class="m">#0028AD</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.button</span><span class="o">,</span> <span class="nc">.tabContainerAlt</span> <span class="nc">.tab</span> <span class="p">{</span>
+    <span class="nb">background-color</span><span class="o">:</span> <span class="m">#0028AD</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.iconPrint</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="c">/*content: &quot;\f02f&quot;; }*/</span>
+  <span class="nb">content</span><span class="o">:</span><span class="sx">url(&quot;image/print.png&quot;)</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.popup</span> <span class="p">{</span>
+  <span class="nb">background-color</span><span class="o">:</span> <span class="m">#eff7e9</span><span class="p">;</span>
+  <span class="nb">background-image</span><span class="o">:</span> <span class="sx">url(&quot;&quot;)</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.pan</span><span class="p">{</span>
+  <span class="nb">background-color</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span> <span class="m">93</span><span class="o">,</span> <span class="m">83</span><span class="o">,</span> <span class="m">0</span><span class="o">.</span><span class="m">9</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The result of these few lines of css will look like this:</p>
+<a class="reference internal image-reference" href="../../_images/workshop_application1.png"><img alt="../../_images/workshop_application1.png" src="../../_images/workshop_application1.png" style="width: 800.0px; height: 392.0px;" /></a>
+<p>When you open your new application a css-file will be created at:</p>
+<ul class="simple">
+<li>web/assets/WorkshopDemoBundle__demo_fullscreen__css.css</li>
+</ul>
+<p>If you do further edits at your css file you may delete the generated css file in the assets directory to see the changes. You also have to clear the browser cache.</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo rm -f web/assets/WorkshopDemoBundle__demo_fullscreen__css.css
+</pre></div>
+</div>
+</div>
+<div class="section" id="register-your-template">
+<h2>Register your template<a class="headerlink" href="#register-your-template" title="Permalink to this headline">¶</a></h2>
+<p>To register your template you have to create a file at</p>
+<ul class="simple">
+<li>mapbender/src/Workshop/DemoBundle/Template/DemoFullscreen.php</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> mapbender/src/Mapbender/CoreBundle/Template
+cp Fullscreen.php mapbender/src/Workshop/DemoBundle/Template/DemoFullscreen.php
+</pre></div>
+</div>
+<p>Add your new css-file to the listAssets function as last array-entry:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="k">static</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">listAssets</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$assets</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;css&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;@MapbenderCoreBundle/Resources/public/sass/template/fullscreen.scss&#39;</span><span class="p">,</span><span class="s1">&#39;@WorkshopDemoBundle/Resources/public/demo_fullscreen.css&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;js&#39;</span>    <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;/components/underscore/underscore-min.js&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;@FOMCoreBundle/Resources/public/js/widgets/popup.js&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;@FOMCoreBundle/Resources/public/js/frontend/sidepane.js&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;@FOMCoreBundle/Resources/public/js/frontend/tabcontainer.js&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;@MapbenderCoreBundle/Resources/public/regional/vendor/notify.0.3.2.min.js&#39;</span><span class="p">,</span>
+            <span class="s2">&quot;/components/datatables/media/js/jquery.dataTables.min.js&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;/components/jquerydialogextendjs/jquerydialogextendjs-built.js&#39;</span><span class="p">,</span>
+            <span class="s2">&quot;/components/vis-ui.js/vis-ui.js-built.js&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;trans&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">()</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$assets</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-php"><div class="highlight"><pre><span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">(</span><span class="nv">$format</span> <span class="o">=</span> <span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="nv">$html</span> <span class="o">=</span> <span class="k">true</span><span class="p">,</span> <span class="nv">$css</span> <span class="o">=</span> <span class="k">true</span><span class="p">,</span>
+        <span class="nv">$js</span> <span class="o">=</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$templating</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">container</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;templating&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$templating</span>
+                    <span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;WorkshopDemoBundle:Template:demo_fullscreen.html.twig&#39;</span><span class="p">,</span>
+                             <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;html&#39;</span> <span class="o">=&gt;</span> <span class="nv">$html</span><span class="p">,</span>
+                        <span class="s1">&#39;css&#39;</span> <span class="o">=&gt;</span> <span class="nv">$css</span><span class="p">,</span>
+                        <span class="s1">&#39;js&#39;</span> <span class="o">=&gt;</span> <span class="nv">$js</span><span class="p">,</span>
+                        <span class="s1">&#39;application&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">application</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-your-new-template-in-mapbender-yml">
+<h2>Use your new template in mapbender.yml<a class="headerlink" href="#use-your-new-template-in-mapbender-yml" title="Permalink to this headline">¶</a></h2>
+<p>Now you can use the template in mapbender.yml where you can configure applications.</p>
+<p>You find the mapbender.yml at:</p>
+<ul class="simple">
+<li>app/config</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre>&quot;template:   Workshop\DemoBundle\Template\DemoFullscreen&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="register-your-bundle-in-app-appkernel-php">
+<h2>Register your bundle in app/AppKernel.php<a class="headerlink" href="#register-your-bundle-in-app-appkernel-php" title="Permalink to this headline">¶</a></h2>
+<p>When you create a new application through the Mapbender3 administration you have to choose a template you want to use.</p>
+<p>Before your new template will show up you have to register your bundle in the file app/AppKernel.php</p>
+<ul class="simple">
+<li>mapbender/app/AppKernel.php</li>
+</ul>
+<div class="highlight-php"><div class="highlight"><pre><span class="k">class</span> <span class="nc">AppKernel</span> <span class="k">extends</span> <span class="nx">Kernel</span>
+<span class="p">{</span>
+   <span class="k">public</span> <span class="k">function</span> <span class="nf">registerBundles</span><span class="p">()</span>
+   <span class="p">{</span>
+       <span class="nv">$bundles</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+           <span class="c1">// Standard Symfony2 bundles</span>
+           <span class="k">new</span> <span class="nx">Symfony\Bundle\FrameworkBundle\FrameworkBundle</span><span class="p">(),</span>
+           <span class="o">....</span>
+
+           <span class="c1">// Extra bundles required by Mapbender3/OWSProxy3</span>
+           <span class="k">new</span> <span class="nx">FOS\JsRoutingBundle\FOSJsRoutingBundle</span><span class="p">(),</span>
+
+           <span class="c1">// FoM bundles</span>
+           <span class="k">new</span> <span class="nx">FOM\CoreBundle\FOMCoreBundle</span><span class="p">(),</span>
+           <span class="o">...</span>
+
+           <span class="c1">// Mapbender3 bundles</span>
+           <span class="k">new</span> <span class="nx">Mapbender\CoreBundle\MapbenderCoreBundle</span><span class="p">(),</span>
+           <span class="o">...</span>
+
+               <span class="k">new</span> <span class="nx">Workshop\DemoBundle\WorkshopDemoBundle</span><span class="p">(),</span>
+
+       <span class="p">);</span>
+</pre></div>
+</div>
+<p>Add write access to the web-directory for your webserver user.</p>
+<div class="highlight-bash"><div class="highlight"><pre>chmod ug+w web
+</pre></div>
+</div>
+<p>Update the web-directory. Each bundle has it&#8217;s own assets - CSS files, JavaScript files, images and more -
+but these need to be copied into the public web folder:</p>
+<div class="highlight-bash"><div class="highlight"><pre>app/console assets:install web
+</pre></div>
+</div>
+<p>Alternatively, as a developer, you might want to use the symlink switch on that command to
+symlink instead of copy. This will make editing assets inside the bundle
+directories way easier.</p>
+<div class="highlight-bash"><div class="highlight"><pre>app/console assets:install web --symlink --relative
+</pre></div>
+</div>
+<p>Now your template should show up in the template list when you create a new application.</p>
+<p>You can change the template for existing applications in the table <em>mb_core_application</em> in column <em>template</em>.</p>
+<p>For the WorkshopDemoBundle you can change <em>MapbenderCoreBundleTemplateFullscreen</em> to <em>WorkshopDemoBundleWorkshopDemoBundle</em>.</p>
+</div>
+<div class="section" id="how-to-change-your-design">
+<h2>How to change your design?<a class="headerlink" href="#how-to-change-your-design" title="Permalink to this headline">¶</a></h2>
+<p>You have to edit the following files, if want to change the design</p>
+<ul class="simple">
+<li>twig - changes in the structure (like - delete a component like sidebar), refer to a logo</li>
+<li>demo_fullscreen.css - changes of color, icons, fonts</li>
+</ul>
+</div>
+<div class="section" id="how-to-change-the-logo">
+<h2>How to change the logo?<a class="headerlink" href="#how-to-change-the-logo" title="Permalink to this headline">¶</a></h2>
+<p>The logo (default is the Mapbender3 logo) can be changed in the parameters.yml. Which causes a global change.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">server_logo</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">bundles/workshopdemo/image/workshop_logo.png</span>
+</pre></div>
+</div>
+<p>Or in the twig file:</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;logo&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;40&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Workshop Logo&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{ asset(&#39;bundles/workshopdemo/imgage/workshop_logo.png&#39;)}}&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-change-the-title-and-favicon">
+<h2>How to change the title and favicon?<a class="headerlink" href="#how-to-change-the-title-and-favicon" title="Permalink to this headline">¶</a></h2>
+<p>You can adjust the title and the favicon also in the twig-file:</p>
+<div class="highlight-yaml"><div class="highlight"><pre>{% block title %}Workshop - {{ application.title }}{% endblock %}
+
+{% block favicon %}{{ asset(&#39;bundles/workshopdemo/imgage/workshop.ico&#39;) }}{% endblock %}
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-change-the-buttons">
+<h2>How to change the buttons?<a class="headerlink" href="#how-to-change-the-buttons" title="Permalink to this headline">¶</a></h2>
+<p>Mapbender3 uses Fonts from the FontAwesome collection:</p>
+<div class="highlight-css"><div class="highlight"><pre><span class="k">@font-face</span> <span class="p">{</span>
+  <span class="nt">font-family</span><span class="o">:</span> <span class="s1">&#39;FontAwesome&#39;</span><span class="o">;</span>
+  <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;../../bundles/fomcore/images/icons/fontawesome-webfont.eot?v=3.0.1&quot;</span><span class="o">);</span>
+  <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;../../bundles/fomcore/images/icons/fontawesome-webfont.eot?#iefix&amp;v=3.0.1&quot;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s2">&quot;embedded-opentype&quot;</span><span class="o">),</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;../../bundles/fomcore/images/icons/fontawesome-webfont.woff?v=3.0.1&quot;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s2">&quot;woff&quot;</span><span class="o">),</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;../../bundles/fomcore/images/icons/fontawesome-webfont.ttf?v=3.0.1&quot;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s2">&quot;truetype&quot;</span><span class="o">);</span>
+  <span class="nt">font-weight</span><span class="o">:</span> <span class="nt">normal</span><span class="o">;</span>
+  <span class="nt">font-style</span><span class="o">:</span> <span class="nt">normal</span><span class="o">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>In your css-file you can refer to a font images like this:</p>
+<div class="highlight-css"><div class="highlight"><pre><span class="nc">.iconPrint</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="nb">content</span><span class="o">:</span> <span class="s2">&quot;\f02f&quot;</span><span class="p">;}</span>
+</pre></div>
+</div>
+<p>If you want to use an image you could place the image in your bundle and refer to it like this</p>
+<div class="highlight-css"><div class="highlight"><pre><span class="nc">.iconPrint</span><span class="nd">:before</span> <span class="p">{</span>
+ <span class="nb">content</span><span class="o">:</span><span class="sx">url(&quot;imgage/print.png&quot;)</span><span class="p">;}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="try-this-out">
+<h2>Try this out<a class="headerlink" href="#try-this-out" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>you can download the Workshop/DemoBundle at <a class="reference external" href="https://github.com/mapbender/mapbender-workshop">https://github.com/mapbender/mapbender-workshop</a></li>
+<li>change the color of your icons</li>
+<li>change the size of your icons</li>
+<li>change the color of the toolbar</li>
+<li>use an image instead of a font-icon for your button</li>
+<li>move the position of your overview to the left</li>
+<li>Have a look at the workshop files to see how it works</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to create your own Template?</a><ul>
+<li><a class="reference internal" href="#id1">How to create your own template?</a></li>
+<li><a class="reference internal" href="#create-your-own-bundle">Create your own bundle</a><ul>
+<li><a class="reference internal" href="#create-a-new-namespace">Create a new namespace</a></li>
+<li><a class="reference internal" href="#create-your-own-template-file">Create your own template file</a></li>
+<li><a class="reference internal" href="#adding-properties-for-your-sidepane-region">Adding properties for your &#8220;sidepane&#8221; region</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-your-own-twig-file">Create your own twig-file</a></li>
+<li><a class="reference internal" href="#create-your-own-css-file">Create your own css-file</a></li>
+<li><a class="reference internal" href="#register-your-template">Register your template</a></li>
+<li><a class="reference internal" href="#use-your-new-template-in-mapbender-yml">Use your new template in mapbender.yml</a></li>
+<li><a class="reference internal" href="#register-your-bundle-in-app-appkernel-php">Register your bundle in app/AppKernel.php</a></li>
+<li><a class="reference internal" href="#how-to-change-your-design">How to change your design?</a></li>
+<li><a class="reference internal" href="#how-to-change-the-logo">How to change the logo?</a></li>
+<li><a class="reference internal" href="#how-to-change-the-title-and-favicon">How to change the title and favicon?</a></li>
+<li><a class="reference internal" href="#how-to-change-the-buttons">How to change the buttons?</a></li>
+<li><a class="reference internal" href="#try-this-out">Try this out</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="translation.html"
+                        title="previous chapter">Translation in Mapbender3</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="css.html"
+                        title="next chapter">How to change the style of your application with the css-editor?</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/en/book/templates.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="css.html" title="How to change the style of your application with the css-editor?"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="translation.html" title="Translation in Mapbender3"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" >The Book</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

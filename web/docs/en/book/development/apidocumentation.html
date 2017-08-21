@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API documentation &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="Introduction" href="introduction.html" />
+    <link rel="next" title="Request / Response Workflow" href="requestresponse.html" />
+    <link rel="prev" title="Quick primer on using Git" href="git.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="requestresponse.html" title="Request / Response Workflow"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="git.html" title="Quick primer on using Git"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" >The Developer&#8217;s Book</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="introduction.html" accesskey="U">Introduction</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api-documentation">
+<span id="apidocumentation"></span><h1>API documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Mapbender3 offers an API documentation at <a class="reference external" href="http://api.mapbender3.org/">http://api.mapbender3.org/</a>.</p>
+<p>The API documentation is shipped with Mapbender and can be created with:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">bin/composer docs</span>
+</pre></div>
+</div>
+<p>The documentation is then available at: <a class="reference external" href="http://localhost:8000/docs/api/">http://localhost:8000/docs/api/</a> and the Mapbender-documentation at: <a class="reference external" href="http://localhost:8000/docs/">http://localhost:8000/docs/</a></p>
+<p>Please see the <a class="reference external" href="https://github.com/mapbender/mapbender-starter/blob/release/3.0.6/CONTRIBUTING.md#start-web-server">Contributing Guide for details on using the built-in server</a>.</p>
+<p>For usage in Apache or Nginx, you may have to adjust the access-rights for the generated files in the web-directory of Mapbender.</p>
+<div class="section" id="how-to-write-mapbender3-api-documentation">
+<h2>How to write Mapbender3 API Documentation?<a class="headerlink" href="#how-to-write-mapbender3-api-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="php">
+<h3>PHP<a class="headerlink" href="#php" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://apigen.org">ApiGen</a> is used to generate API documentation. &#8216;All&#8217; you
+have to do is to insert docblocks in your code. Below you find an example class
+with docbblock annotations:</p>
+<div class="highlight-html+php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;?php</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * License Block - Todo</span>
+<span class="sd"> */</span>
+
+<span class="k">namespace</span> <span class="nx">Mapbender</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Mapbender\Component\Foo</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * Just an API-doc example (Oneline description used in lists)</span>
+<span class="sd"> *</span>
+<span class="sd"> * Bar is just an API documentation example to serve as a guideline,</span>
+<span class="sd"> * inspiration and to be included in the developer&#39;s book.</span>
+<span class="sd"> *</span>
+<span class="sd"> * This file is directly included in the documentation. Yeah!</span>
+<span class="sd"> *</span>
+<span class="sd"> * @todo Make me better</span>
+<span class="sd"> *</span>
+<span class="sd"> * @author Christian Wygoda &lt;christian.wygoda@wheregroup.com&gt;</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Example</span> <span class="k">extends</span> <span class="nx">Foo</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Constructor</span>
+<span class="sd">     *</span>
+<span class="sd">     * Does some magic.</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Magic function</span>
+<span class="sd">     *</span>
+<span class="sd">     * Does some pretty awesome magic.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param array $input input data</span>
+<span class="sd">     * @return string Result string</span>
+<span class="sd">     *</span>
+<span class="sd">     * @deprecated use newMagic instead</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">oldMagic</span><span class="p">(</span><span class="k">array</span> <span class="nv">$input</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Magic function</span>
+<span class="sd">     *</span>
+<span class="sd">     * Does some pretty awesome magic, only better.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param array $input input data</span>
+<span class="sd">     * @return string Result string</span>
+<span class="sd">     *</span>
+<span class="sd">     * @todo make faster</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">newMagic</span><span class="p">(</span><span class="k">array</span> <span class="nv">$input</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Have a look at the docblocks at <a class="reference external" href="https://github.com/mapbender/mapbender-documentation/blob/master/de/book/development/Example.php">Example.php</a>.</p>
+</div>
+</div>
+<div class="section" id="javascript">
+<h2>JavaScript<a class="headerlink" href="#javascript" title="Permalink to this headline">¶</a></h2>
+<p>This has not yet been decided as good tools are almost not to be found.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">API documentation</a><ul>
+<li><a class="reference internal" href="#how-to-write-mapbender3-api-documentation">How to write Mapbender3 API Documentation?</a><ul>
+<li><a class="reference internal" href="#php">PHP</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript">JavaScript</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="git.html"
+                        title="previous chapter">Quick primer on using Git</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="requestresponse.html"
+                        title="next chapter">Request / Response Workflow</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/en/book/development/apidocumentation.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="requestresponse.html" title="Request / Response Workflow"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="git.html" title="Quick primer on using Git"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" >The Developer&#8217;s Book</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="introduction.html" >Introduction</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Spatial Reference System Selector (SRS Selector) &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="Navigation Toolbar (Zoombar)" href="zoom_bar.html" />
+    <link rel="prev" title="Sketch" href="sketch.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="zoom_bar.html" title="Navigation Toolbar (Zoombar)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sketch.html" title="Sketch"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spatial-reference-system-selector-srs-selector">
+<span id="srs-selector"></span><h1>Spatial Reference System Selector (SRS Selector)<a class="headerlink" href="#spatial-reference-system-selector-srs-selector" title="Permalink to this headline">¶</a></h1>
+<p>The spatial reference system selector changes the map&#8217;s spatial reference system.
+Notice: The Selectbox offers the SRS that are defined for the <a class="reference external" href="../elements/map.html">map element</a>.</p>
+<a class="reference internal image-reference" href="../../../../../_images/srs_selector1.png"><img alt="../../../../../_images/srs_selector1.png" src="../../../../../_images/srs_selector1.png" style="width: 258.0px; height: 217.0px;" /></a>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/srs_selector_configuration1.png"><img alt="../../../../../_images/srs_selector_configuration1.png" src="../../../../../_images/srs_selector_configuration1.png" style="width: 364.8px; height: 224.8px;" /></a>
+<ul class="simple">
+<li><strong>Show label:</strong> indicates the element.</li>
+<li><strong>Title:</strong> Title of the element. The title will be listed in &#8220;Layouts&#8221; and allows to distinguish between different buttons. It will be indicated if &#8220;Show label&#8221; is activated.</li>
+<li><strong>Tooltip:</strong> text to use as tooltip.</li>
+<li><strong>Target:</strong> Id of Map element to query.</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">tooltip</span><span class="p p-Indicator">:</span> <span class="s">&#39;SRS</span><span class="nv"> </span><span class="s">Selector&#39;</span>  <span class="c1"># text to use as tooltip</span>
+<span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>             <span class="c1"># true/false to label the srs selector, default is false</span>
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>                <span class="c1"># Id of Map element to query</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\SrsSelector</li>
+<li><strong>Widget:</strong> mapbender.element.srsselector.js</li>
+<li><strong>Style:</strong> mapbender.elements.css</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="showhidde">
+<h3>showHidde<a class="headerlink" href="#showhidde" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="selectsrs">
+<h3>selectSrs<a class="headerlink" href="#selectsrs" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="getselectedsrs">
+<h3>getSelectedSrs<a class="headerlink" href="#getselectedsrs" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="issrssupported">
+<h3>isSrsSupported<a class="headerlink" href="#issrssupported" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="issrsenabled">
+<h3>isSrsEnabled<a class="headerlink" href="#issrsenabled" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="disablesrs">
+<h3>disableSrs<a class="headerlink" href="#disablesrs" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="enablesrs">
+<h3>enableSrs<a class="headerlink" href="#enablesrs" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="enableonlysrs">
+<h3>enableOnlySrs<a class="headerlink" href="#enableonlysrs" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="getfullsrsobj">
+<h3>getFullSrsObj<a class="headerlink" href="#getfullsrsobj" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="enableallsrs">
+<h3>enableAllSrs<a class="headerlink" href="#enableallsrs" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="disableallsrs">
+<h3>disableAllSrs<a class="headerlink" href="#disableallsrs" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="getinnerjoinsrs">
+<h3>getInnerJoinSrs<a class="headerlink" href="#getinnerjoinsrs" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+<div class="section" id="getinnerjoinarrays">
+<h3>getInnerJoinArrays<a class="headerlink" href="#getinnerjoinarrays" title="Permalink to this headline">¶</a></h3>
+<p>&lt;&gt;</p>
+</div>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Spatial Reference System Selector (SRS Selector)</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a><ul>
+<li><a class="reference internal" href="#showhidde">showHidde</a></li>
+<li><a class="reference internal" href="#selectsrs">selectSrs</a></li>
+<li><a class="reference internal" href="#getselectedsrs">getSelectedSrs</a></li>
+<li><a class="reference internal" href="#issrssupported">isSrsSupported</a></li>
+<li><a class="reference internal" href="#issrsenabled">isSrsEnabled</a></li>
+<li><a class="reference internal" href="#disablesrs">disableSrs</a></li>
+<li><a class="reference internal" href="#enablesrs">enableSrs</a></li>
+<li><a class="reference internal" href="#enableonlysrs">enableOnlySrs</a></li>
+<li><a class="reference internal" href="#getfullsrsobj">getFullSrsObj</a></li>
+<li><a class="reference internal" href="#enableallsrs">enableAllSrs</a></li>
+<li><a class="reference internal" href="#disableallsrs">disableAllSrs</a></li>
+<li><a class="reference internal" href="#getinnerjoinsrs">getInnerJoinSrs</a></li>
+<li><a class="reference internal" href="#getinnerjoinarrays">getInnerJoinArrays</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="sketch.html"
+                        title="previous chapter">Sketch</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="zoom_bar.html"
+                        title="next chapter">Navigation Toolbar (Zoombar)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/en/bundles/Mapbender/CoreBundle/elements/srs_selector.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="zoom_bar.html" title="Navigation Toolbar (Zoombar)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sketch.html" title="Sketch"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

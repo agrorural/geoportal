@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Examples &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../index.html" />
+    <link rel="up" title="FOMUserBundle - Users and Security" href="index.html" />
+    <link rel="next" title="FOMManagerBundle -Using the FOM Manager" href="../ManagerBundle/index.html" />
+    <link rel="prev" title="Security Concepts" href="security.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../ManagerBundle/index.html" title="FOMManagerBundle -Using the FOM Manager"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="security.html" title="Security Concepts"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">FOMUserBundle - Users and Security</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="reset-user-with-id-1">
+<h2>Reset User with ID 1<a class="headerlink" href="#reset-user-with-id-1" title="Permalink to this headline">¶</a></h2>
+<p>The command <code class="docutils literal"><span class="pre">app/console</span> <span class="pre">fom:user:resetroot</span></code> resets the user with ID 1. This user owns generally all rights.</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ app/console fom:user:resetroot
+
+      Welcome to the Mapbender3 root account management <span class="nb">command</span>
+
+      Enter the username to use <span class="k">for</span> the root account.
+      Username <span class="o">[</span>root<span class="o">]</span>: root
+
+      Enter the e-mail adress to use <span class="k">for</span> the root account.
+      E-Mail <span class="o">[</span>root@root.de<span class="o">]</span>: admin@mycompany.foo
+
+      Enter the password to use <span class="k">for</span> the root account.
+      Password: secret
+
+      Do you confirm reset <span class="o">[</span>yes<span class="o">]</span>? yes
+
+      The root is now usable. Have fun!
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-new-user">
+<h2>Create new user<a class="headerlink" href="#create-new-user" title="Permalink to this headline">¶</a></h2>
+<p>The root user (ID 1) can create new users. A user itself can create a new user if he owns the Owner role in the ACL &#8220;users&#8221;. We chose this exception of the rules to avoid other users changing their user-name.</p>
+</div>
+<div class="section" id="create-new-applications">
+<h2>Create new applications<a class="headerlink" href="#create-new-applications" title="Permalink to this headline">¶</a></h2>
+<p>A user who should create new applications has to have the Create right in the ACL &#8220;Applications&#8221;. Once he has this right he can also import and export applications.</p>
+<p>To create Layerset Instances, he has to have the right Edit in ACL &#8220;Service Source&#8221;.</p>
+</div>
+<div class="section" id="copy-applications">
+<h2>Copy applications<a class="headerlink" href="#copy-applications" title="Permalink to this headline">¶</a></h2>
+<p>A user can copy applications if:</p>
+<ul class="simple">
+<li>he has the right Edit in ACL &#8220;Applications&#8221;</li>
+<li>or he has the right Edit in the application itself. The right of the application overwrites the global ACL right.</li>
+</ul>
+<p>Thereby the user is automatically owner of his copied application.</p>
+</div>
+<div class="section" id="delete-applications">
+<h2>Delete applications<a class="headerlink" href="#delete-applications" title="Permalink to this headline">¶</a></h2>
+<p>A user can delete applications if:</p>
+<ul class="simple">
+<li>he has the right Delete in the ACL &#8220;Applications&#8221;</li>
+<li>or he has the right Delete in the application itself. The right of the applications overwriters the global ACL right.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../index.html">
+              <img class="logo" src="../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Examples</a><ul>
+<li><a class="reference internal" href="#reset-user-with-id-1">Reset User with ID 1</a></li>
+<li><a class="reference internal" href="#create-new-user">Create new user</a></li>
+<li><a class="reference internal" href="#create-new-applications">Create new applications</a></li>
+<li><a class="reference internal" href="#copy-applications">Copy applications</a></li>
+<li><a class="reference internal" href="#delete-applications">Delete applications</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="security.html"
+                        title="previous chapter">Security Concepts</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../ManagerBundle/index.html"
+                        title="next chapter">FOMManagerBundle -Using the FOM Manager</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/en/bundles/FOM/UserBundle/examples.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../ManagerBundle/index.html" title="FOMManagerBundle -Using the FOM Manager"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="security.html" title="Security Concepts"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >FOMUserBundle - Users and Security</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

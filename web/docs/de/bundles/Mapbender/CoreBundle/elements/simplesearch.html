@@ -1,0 +1,457 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SimpleSearch &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="Sketch" href="sketch.html" />
+    <link rel="prev" title="Search Router" href="search_router.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="sketch.html" title="Sketch"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="search_router.html" title="Search Router"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="simplesearch">
+<span id="id1"></span><h1>SimpleSearch<a class="headerlink" href="#simplesearch" title="Permalink to this headline">¶</a></h1>
+<p>SimpleSearch bietet eine Einfeldsuche oder Schlagwortsuche. Die Suchanfrage erfolgt dabei an einen Suchdienst z.B. Solr. Es wird ein Eingabefeld angeboten, welches direkt in die Toolbar oder in der Seitenleiste (Sidepane) eingebunden werden kann. SimpleSearch sendet den eingegebenen Suchbegriff an eine konfigurierbare URL und empfängt JSON-formatierte Daten, welche eine Beschriftung und Geometrieattribute für jeden Eintrag beinhalten.</p>
+<p>Die Geometriedaten können in WKT oder in GeoJSON-Format codiert werden.</p>
+<a class="reference internal image-reference" href="../../../../../_images/simplesearch.png"><img alt="../../../../../_images/simplesearch.png" src="../../../../../_images/simplesearch.png" style="width: 502.4px; height: 221.6px;" /></a>
+<div class="section" id="konfiguration">
+<h2>Konfiguration<a class="headerlink" href="#konfiguration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/simplesearch_configuration_a.png"><img alt="../../../../../_images/simplesearch_configuration_a.png" src="../../../../../_images/simplesearch_configuration_a.png" style="width: 440.8px; height: 441.6px;" /></a>
+<a class="reference internal image-reference" href="../../../../../_images/simplesearch_configuration_b.png"><img alt="../../../../../_images/simplesearch_configuration_b.png" src="../../../../../_images/simplesearch_configuration_b.png" style="width: 440.8px; height: 441.6px;" /></a>
+<ul class="simple">
+<li><strong>Title:</strong> Titel des Elements. Dieser wird in der Layouts Liste angezeigt und ermöglicht, mehrere Button-Elemente voneinander zu unterscheiden. Der Titel wird außerdem neben dem Button angezeigt, wenn “Beschriftung anzeigen” aktiviert ist.</li>
+<li><strong>Query URL:</strong> Solr URL, an die der eingegebene Suchbegriff gesendet wird (z.B. <code class="docutils literal"><span class="pre">http://localhost:8080/solr/core0/select?wt=json&amp;indent=true</span></code>).</li>
+<li><strong>Query URL key:</strong> Der Suchparameterschlüssel, der angehängt wird (z.B. <code class="docutils literal"><span class="pre">q</span></code>).</li>
+<li><strong>Query Whitespace replacement pattern:</strong> Muster zum Austausch von Leerzeichen.</li>
+<li><strong>Query key format:</strong> Einfaches Suchformat (z.B. <code class="docutils literal"><span class="pre">%s</span></code>).</li>
+<li><strong>Token search/ replace (JavaScript regex):</strong> Tokenizer spaltet/ sucht/ ersetzt regexp.<ul>
+<li>Token, z.B.: <code class="docutils literal"><span class="pre">[^a-zA-Z0-9äöüÄÖÜß]</span></code></li>
+<li>Token search, z.B.: <code class="docutils literal"><span class="pre">([a-zA-ZäöüÄÖÜß]{3,})</span></code></li>
+<li>Token replace, z.B.: <code class="docutils literal"><span class="pre">$1*</span></code></li>
+</ul>
+</li>
+<li><strong>Collection path:</strong> Dies kann ein Attributspfad sein, der vom Abfrageergebnis extrahiert wird (z.B. <code class="docutils literal"><span class="pre">response.docs</span></code>).</li>
+<li><strong>Label attribut:</strong> Attributname der zur Beschriftung genutzt wird (z.B. <code class="docutils literal"><span class="pre">label</span></code>).</li>
+<li><strong>Geom attribut:</strong> Attributname der Geodaten (z.B. <code class="docutils literal"><span class="pre">geom</span></code>).</li>
+<li><strong>Geom format:</strong> Geodatenformat, kann WKT oder GeoJSON sein (z.B. <code class="docutils literal"><span class="pre">WKT</span></code>).</li>
+<li><strong>Delay:</strong> Automatische Vervollständigungs-Verzögerung (z.B. <code class="docutils literal"><span class="pre">300</span></code>).</li>
+<li><strong>Result buffer:</strong> Puffert das Objekt (in Karteneinheiten) vor dem Zoomen (z.B. <code class="docutils literal"><span class="pre">10</span></code>).</li>
+<li><strong>Result minscale/ maxscale:</strong> Maßstabsbegrenzung beim Zoomen (z.B. <code class="docutils literal"><span class="pre">1000</span></code> und <code class="docutils literal"><span class="pre">5000</span></code>). ~ wenn keine Begrenzung gewünscht wird.</li>
+<li><strong>Result icon url:</strong> Symbol, das zur Trefferanzeige verwendet werden soll (z.B. <code class="docutils literal"><span class="pre">http://demo.mapbender3.org/bundles/mapbendercore/image/pin_red.png</span></code>).</li>
+<li><strong>Result icon offset:</strong> Versatz x und y des Symbols (z.B. <code class="docutils literal"><span class="pre">-6,-38</span></code> für das Stecknadel-Icon).</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">query_url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://example.com/solr/core/0/select?wt=json&amp;indent=true&amp;rows=8</span>   <span class="c1"># Solr URL (z.B. ``http://localhost:8080/solr/core0/select?wt=json&amp;indent=true``).</span>
+<span class="l l-Scalar l-Scalar-Plain">query_key</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">q</span>                                                                  <span class="c1"># Der Suchparameterschlüssel, der angehängt wird</span>
+<span class="l l-Scalar l-Scalar-Plain">query_ws_replace</span><span class="p p-Indicator">:</span>                                                             <span class="c1"># Pattern zum Austausch von Leerzeichen.</span>
+<span class="l l-Scalar l-Scalar-Plain">query_format</span><span class="p p-Indicator">:</span> <span class="s">&#39;%s&#39;</span>                                                            <span class="c1"># Einfaches Suchformat.</span>
+<span class="l l-Scalar l-Scalar-Plain">token_regex</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">^a-zA-Z0-9äöüÄÖÜß</span><span class="p p-Indicator">]</span>                                              <span class="c1"># Tokenizer split regexp.</span>
+<span class="l l-Scalar l-Scalar-Plain">token_regex_in</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">([a-zA-ZäöüÄÖÜß]{3,})</span>                                         <span class="c1"># Tokenizer search regexp.</span>
+<span class="l l-Scalar l-Scalar-Plain">token_regex_out</span><span class="p p-Indicator">:</span> <span class="s">&#39;$1*&#39;</span>                                                        <span class="c1"># Tokenizer replace regexp.</span>
+<span class="l l-Scalar l-Scalar-Plain">collection_path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">response.docs</span>                                                <span class="c1"># Es kann ein Attributspfad sein, der vom Abfrageergebnis extrahiert wird.</span>
+<span class="l l-Scalar l-Scalar-Plain">label_attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">label</span>                                                        <span class="c1"># Attributname, der für die Trefferausgabe genutzt wird</span>
+<span class="l l-Scalar l-Scalar-Plain">geom_attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geom</span>                                                          <span class="c1"># Name des Attributs der Geometriedaten</span>
+<span class="l l-Scalar l-Scalar-Plain">geom_format</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">WKT</span>                                                              <span class="c1"># Geodatenformat, kann WKT oder GeoJSON sein</span>
+<span class="l l-Scalar l-Scalar-Plain">delay</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">300</span>                                                                    <span class="c1"># Automatische Vervollständigungs-Verzögerung. 0</span>
+<span class="l l-Scalar l-Scalar-Plain">result_buffer</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">50</span>                                                             <span class="c1"># Puffert den Treffer in Karteneinheiten vor dem Zoomen</span>
+<span class="l l-Scalar l-Scalar-Plain">result_minscale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1000</span>                                                         <span class="c1"># Maßstabsbegrenzung beim Zoomen, ~ für keine Begrenzung</span>
+<span class="l l-Scalar l-Scalar-Plain">result_maxscale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5000</span>
+<span class="l l-Scalar l-Scalar-Plain">result_icon_url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://demo.mapbender3.org/bundles/mapbendercore/image/pin_red.png</span> <span class="c1"># Marker, der zur Trefferanzeige verwendet werden soll</span>
+<span class="l l-Scalar l-Scalar-Plain">result_icon_offset</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">-6,-38</span>                                                    <span class="c1"># Versatz x und y des Symbols</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="so-richten-sie-solr-ein">
+<h2>So richten Sie Solr ein:<a class="headerlink" href="#so-richten-sie-solr-ein" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<p>Laden Sie Apache Solr herunter und entpacken Sie es in einen beliebigen Ordner. Nach dem erfolgreichen Entpacken der Datei kann Solr durch den Aufruf von solr/bin/install_solr_service.sh als Service in einem Linux-System installiert werden.</p>
+<ul class="simple">
+<li><strong>Download</strong>: <a class="reference external" href="http://lucene.apache.org/solr/">http://lucene.apache.org/solr/</a></li>
+<li><strong>Dokumentation</strong>: <a class="reference external" href="http://lucene.apache.org/solr/resources.html#documentation">http://lucene.apache.org/solr/resources.html#documentation</a></li>
+<li><strong>Quickstart</strong>: <a class="reference external" href="http://lucene.apache.org/solr/quickstart.html">http://lucene.apache.org/solr/quickstart.html</a></li>
+</ul>
+<p><strong>Installation</strong> von Apache Solr über das Terminal im data-Verzeichnis:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">cd /data</span>
+<span class="l l-Scalar l-Scalar-Plain">wget http://apache.lauf-forum.at/lucene/solr/5.4.1/solr-5.4.1.tgz</span>
+<span class="l l-Scalar l-Scalar-Plain">tar -zxvf solr-5.4.1.tgz</span>
+<span class="l l-Scalar l-Scalar-Plain">cd solr-5.4.1/</span>
+</pre></div>
+</div>
+<p>Apache Solr läuft auf Java 7 oder höher, Java 8 ist kompatibel und kann einige Performance-Verbesserungen bringen. Bei der Verwendung von Oracle Java 7 oder 7 OpenJDK sollten Sie sich sicher sein, dass Sie die GA 147 oder Update-Versionen U40, U45 und U51 nicht verwenden. Wir empfehlen u55 oder höher zu verwenden.</p>
+</div>
+<div class="section" id="start-und-stopp">
+<h3>Start und Stopp<a class="headerlink" href="#start-und-stopp" title="Permalink to this headline">¶</a></h3>
+<p>Sie können durch die folgende Befehle Solr über das Terminal starten und stoppen:</p>
+<ul class="simple">
+<li><strong>Start Solr:</strong></li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">/data/solr-5.4.1/bin/solr start -s /data/solr-5.4.1/server/solr</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>Solr Stop:</strong></li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">/data/solr-5.4.1/bin/solr stop -all</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>Solr-Administrationsseite:</strong></li>
+<li>für die Verwaltung der Cores</li>
+<li><a class="reference external" href="http://localhost:8983/solr">http://localhost:8983/solr</a></li>
+</ul>
+</div>
+<div class="section" id="solr-core">
+<h3>Solr-Core<a class="headerlink" href="#solr-core" title="Permalink to this headline">¶</a></h3>
+<p>Der Solr-Home Ordner ist der Bereich, in dem sich die verschiedenen Solr-Kerne für die Suche befinden. Die Minimalkonfiguration wird in folgender Datei vorgenommen:</p>
+<p>Datei: solr-5.4.1/server/solr/solr.xml</p>
+<p>Tragen Sie den folgenden XML-Block in die Datei ein:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;solr&gt;&lt;/solr&gt;</span>
+</pre></div>
+</div>
+<p>Die solr.xml identifiziert das Verzeichniss als Solr-Ordner mit den Cores. Hier können auch die eigenen Solr-Cores abgelegt werden. Da wir jedoch unabhängig von der Solr-Version arbeiten wollen legen wir uns im folgenden ein separates Verzeichniss mit den Kernen an. Falls Sie diesen Schritt nicht durchführen wollen, dann führen Sie die folgende Anleitung in dem Verzeichnis solr-5.4.1/server/solr/ durch.</p>
+</div>
+<div class="section" id="eigener-solr-core">
+<h3>Eigener Solr-Core<a class="headerlink" href="#eigener-solr-core" title="Permalink to this headline">¶</a></h3>
+<p>Für die Anlage eigener Kerne erstellen Sie einen Ordner unter /data/solr_data und kopieren Sie die <em>solr.yml</em> aus dem Verzeichnis /data/solr-5.4.1/server/solr in dieses Verzeichnis (/data/solr_data/solr.yml). Dann erstellen Sie einen neuen Ordner für ihren Kerne. Im Folgenden wurde der Core <em>places</em> unter /data/solr_data/places genutzt.</p>
+<p>Jeder Core besteht aus drei unentbehrlichen Konfigurationsdateien:</p>
+<ul class="simple">
+<li><strong>core.properties</strong></li>
+<li>Durch die core.properties wird der Core von Solr als Kern erkannt</li>
+<li><strong>solrconfig.xml</strong></li>
+<li>Die solrconfig.xml beschreibt den Funktionsumfang den dieser Kern mit sich bringt</li>
+<li><strong>schema.xml</strong></li>
+<li>Die schema.xml beschreibt den Aufbau des Index</li>
+</ul>
+<p>Kopieren Sie sich die Konfigurationsdateien aus dem Verzeichniss /data/solr-5.4.1/server/solr/configsets/basic_configs in das Verzeichniss des Cores unter /data/solr_data/places oder legen Sie diese neu an mit den folgenden Inhalten:</p>
+<ul class="simple">
+<li><strong>core.properties</strong></li>
+<li>ablegen unter /data/solr_data/places/core.properties</li>
+<li>Anpassung der core.properties:</li>
+<li>Fügen Sie hier den folgenden Konfigurations-Block ein:</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">name=places</span>
+<span class="l l-Scalar l-Scalar-Plain">shard=${shard:}</span>
+<span class="l l-Scalar l-Scalar-Plain">collection=${collection:places}</span>
+<span class="l l-Scalar l-Scalar-Plain">config=${solrconfig:solrconfig.xml}</span>
+<span class="l l-Scalar l-Scalar-Plain">schema=${schema:schema.xml}</span>
+<span class="l l-Scalar l-Scalar-Plain">coreNodeName=${coreNodeName:}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>solrconfig.xml</strong></li>
+<li>ablegen unter /data/solr_data/places/conf/solrconfig.xml</li>
+<li>Anpassung der solrconfig.xml:</li>
+<li>Fügen Sie hier den folgenden YML-Block ein:</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;config&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;luceneMatchVersion&gt;5.4.0&lt;/luceneMatchVersion&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;dataDir&gt;${solr.data.dir:}&lt;/dataDir&gt;</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">&lt;schemaFactory class=&quot;ClassicIndexSchemaFactory&quot; /&gt;</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">&lt;!-- RequestHandler zum abfragen des Index --&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;requestHandler name=&quot;/select&quot; class=&quot;solr.SearchHandler&quot; /&gt;</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">&lt;!-- RequestHandler zum indizieren von Daten --&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;requestHandler name=&quot;/update&quot; class=&quot;solr.UpdateRequestHandler&quot; /&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;/config&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>schema.xml</strong></li>
+<li>ablegen unter /data/solr_data/places/conf/schema.xml</li>
+<li>Anpassung der schema.xml:</li>
+<li>Fügen Sie hier den folgenden YAML-Block ein:</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;schema name=&quot;places&quot; version=&quot;1.5&quot;&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;!-- FIELDS --&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;field indexed=&quot;true&quot; multiValued=&quot;false&quot; name=&quot;id&quot; required=&quot;true&quot; stored=&quot;true&quot; type=&quot;string&quot;/&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;field indexed=&quot;true&quot; multiValued=&quot;false&quot; name=&quot;text&quot; required=&quot;true&quot; stored=&quot;true&quot; type=&quot;string&quot;/&gt;</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">&lt;uniqueKey&gt;id&lt;/uniqueKey&gt;</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">&lt;!-- FIELD TYPES --&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;fieldType class=&quot;solr.StrField&quot; name=&quot;string&quot; sortMissingLast=&quot;true&quot;/&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;/schema&gt;</span>
+</pre></div>
+</div>
+<p>Falls Sie bestimmte Wörter als <em>Stopwords</em> markieren wollen, dann können Sie diese als Liste in einer Datei unter /data/solr_data/places/conf/stopwords.txt speichern. Sinnvoll sind hier Worter wie z.B.: als, auf, im, in usw.</p>
+<p>Nun können Sie Solr mit den eigenen Kernen neustarten. Nutzen Sie dazu den obigen Befehl zum Stoppen und dann den folgenden angepassten Befehl mit dem neuen Core-Verzeichnis:</p>
+<ul class="simple">
+<li><strong>Start Solr:</strong></li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">/data/solr-5.4.1/bin/solr start -s /data/solr_data</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="solr-example">
+<h3>Solr example<a class="headerlink" href="#solr-example" title="Permalink to this headline">¶</a></h3>
+<p>Das Verzeichnis /solr-5.4.1/example enthält Beispiele für Solr. Jedes Beispiel ist in einem seperaten Verzeichnis abgelegt. Um ein bestimmtes Beispiel auszuführen, geben Sie den folgenden Befehl im Terminal ein:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">bin/solr -e &lt;EXAMPLE&gt; where &lt;EXAMPLE&gt; is one of</span><span class="p p-Indicator">:</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">cloud</span>        <span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">SolrCloud Beispiel</span>
+  <span class="l l-Scalar l-Scalar-Plain">dih</span>          <span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Datenimport Handler (rdbms, mail, rss, tika)</span>
+  <span class="l l-Scalar l-Scalar-Plain">schemaless</span>   <span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Schemaloses Beispiel (Schema wird durch die Daten währen dem Indizieren abgeleitet)</span>
+  <span class="l l-Scalar l-Scalar-Plain">techproducts</span> <span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Beispiele für umfassende Funktionen von Solr</span>
+</pre></div>
+</div>
+<p>Um ein Beispiele zu testen geben Sie den folgenden Befehl im Terminal ein:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">/data/solr-5.4.1/bin/solr start -e techproducts</span>
+</pre></div>
+</div>
+<p>und gehen Sie zu <a class="reference external" href="http://localhost:8983/solr">http://localhost:8983/solr</a>.</p>
+<p>Das Standardverzeichnis für die Cores ist /data/solr-5.4.1/server/solr; dieses Verzeichnis muss die solr.xml enthalten.</p>
+<p>/data/solr-5.4.1/server/solr/configsets:</p>
+<ul class="simple">
+<li>Diese Verzeichnis enthält verschiedene Konfigurationsoptionen, um Solr auszuführen.</li>
+<li>basic_configs: Basiskonfiguration für eine minimale Solr-Ausführung.</li>
+<li>Beispiel liegt unter /data/solr-5.4.1/server/solr/configsets/basic_configs</li>
+</ul>
+</div>
+<div class="section" id="indexing-solr-xml">
+<h3>Indexing Solr XML<a class="headerlink" href="#indexing-solr-xml" title="Permalink to this headline">¶</a></h3>
+<p>Nutzen Sie die Beispieldaten unter /solr-5.4.1./example/exampledocs/<a href="#id2"><span class="problematic" id="id3">*</span></a>.xml oder eigene Daten, um die Solr XML-Dateien zu indizieren.</p>
+<p>Für die Indexierung haben Sie zwei Möglichkeiten:</p>
+<ul class="simple">
+<li><strong>DataImportHandler</strong></li>
+<li>zur Einrichtung einer PostgreSQL-Datenverbindung</li>
+<li><strong>UpdateHandler</strong></li>
+<li>um Daten über HTTP Post direkt an Solr zu senden</li>
+</ul>
+</div>
+<div class="section" id="dataimporthandler">
+<h3>DataImportHandler<a class="headerlink" href="#dataimporthandler" title="Permalink to this headline">¶</a></h3>
+<p>Importiere Datensätze aus einer <strong>PostgreSQL-Datenbank</strong>, über den Data Import Handler.</p>
+<p>Für die Anpassung der Datenverbindung in den Konfigurationsdateien unter /data/solr_data/places/config:</p>
+<ul class="simple">
+<li><strong>solrconfig.xml</strong></li>
+<li><strong>data-config.xml</strong></li>
+<li>Angabe der Datenverbindung:</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;dataConfig&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;dataSource</span>
+        <span class="l l-Scalar l-Scalar-Plain">type=&quot;JdbcDataSource&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">driver=&quot;org.postgresql.Driver&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">readOnly=&quot;true&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">autoCommit=&quot;false&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">transactionIsolation=&quot;TRANSACTION_READ_COMMITTED&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">holdability=&quot;CLOSE_CURSORS_AT_COMMIT&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">url=&quot;jdbc:postgresql://localhost:5432/datenbankname&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">user=&quot;postgres&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">password=&quot; &quot; /&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;document&gt;</span>
+        <span class="l l-Scalar l-Scalar-Plain">&lt;entity name=&quot;places&quot; query=&quot;SELECT * FROM schema.tabelle&quot;&gt;</span>
+            <span class="l l-Scalar l-Scalar-Plain">&lt;field column=&quot;gid&quot; name=&quot;gid&quot; /&gt;</span>
+            <span class="l l-Scalar l-Scalar-Plain">&lt;field column=&quot;text&quot; name=&quot;text&quot; /&gt;</span>
+            <span class="l l-Scalar l-Scalar-Plain">&lt;field column=&quot;label&quot; name=&quot;label&quot; /&gt;</span>
+            <span class="l l-Scalar l-Scalar-Plain">&lt;field column=&quot;geom&quot; name=&quot;geom&quot; /&gt;</span>
+        <span class="l l-Scalar l-Scalar-Plain">&lt;/entity&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">&lt;/document&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;/dataConfig&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>passenden PostgreSQL-Treiber downloaden und im core oder im Unterverzeichnis lib ablegen:</li>
+<li>Download unter <a class="reference external" href="https://jdbc.postgresql.org/download.html">https://jdbc.postgresql.org/download.html</a></li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">cd /sites/solr_data/places/</span>
+<span class="l l-Scalar l-Scalar-Plain">wget https://jdbc.postgresql.org/download/postgresql-9.1-903.jdbc4.jar</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="updatehandler">
+<h3>UpdateHandler<a class="headerlink" href="#updatehandler" title="Permalink to this headline">¶</a></h3>
+<p>Der UpdateHandler muss in der solrconfig.xml unter /data/solr_data/places/config angepasst werden. Anschließend können Sie mit dem folgenden Befehl Dokumente an Solr schicken.</p>
+<p>Beispiel csv:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">/opt/solr/bin/post -c places /opt/schulung/data/germany.csv</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="solr-schema">
+<h3>Solr-Schema<a class="headerlink" href="#solr-schema" title="Permalink to this headline">¶</a></h3>
+<p>Ein Solr-Schema besteht aus den folgenden Teilen:</p>
+<ul class="simple">
+<li><strong>Feldern</strong> (field)</li>
+<li><strong>Feldtypen</strong> (fieldType)</li>
+<li><strong>Angabe eines ID-Feldes</strong> per uniqueKey</li>
+</ul>
+</div>
+<div class="section" id="jetty-absichern">
+<h3>Jetty absichern<a class="headerlink" href="#jetty-absichern" title="Permalink to this headline">¶</a></h3>
+<p>Um den Apache Solr nach Außen abzusichern, müssen Sie Jetty konfigurieren.</p>
+<ul class="simple">
+<li>Freigabe bestimmter IP Adressen für den Zugriff in der Jetty-Konfiguration</li>
+<li>Anpassung unter solr/etc/jetty.xml</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">&lt;Set name=&quot;host&quot;&gt;&lt;SystemProperty name=&quot;jetty.host&quot; /&gt;&lt;/Set&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;Set name=&quot;port&quot;&gt;&lt;SystemProperty name=&quot;jetty.port&quot; default=&quot;8983&quot;/&gt;&lt;/Set&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\SimpleSearch</li>
+<li><strong>Widget:</strong> mapbender.element.simplesearch.js</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>/search: Proxy-Element, welches die konfigurierbare URL abfragt. Im Entwicklungsmodus wird die endgültige Abfrage-URL zum einfachen Debugging als ein x-mapbender-simplesearch-url Header zurückgegeben.</li>
+</ul>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<p>Keine.</p>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>Keine.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SimpleSearch</a><ul>
+<li><a class="reference internal" href="#konfiguration">Konfiguration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#so-richten-sie-solr-ein">So richten Sie Solr ein:</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#start-und-stopp">Start und Stopp</a></li>
+<li><a class="reference internal" href="#solr-core">Solr-Core</a></li>
+<li><a class="reference internal" href="#eigener-solr-core">Eigener Solr-Core</a></li>
+<li><a class="reference internal" href="#solr-example">Solr example</a></li>
+<li><a class="reference internal" href="#indexing-solr-xml">Indexing Solr XML</a></li>
+<li><a class="reference internal" href="#dataimporthandler">DataImportHandler</a></li>
+<li><a class="reference internal" href="#updatehandler">UpdateHandler</a></li>
+<li><a class="reference internal" href="#solr-schema">Solr-Schema</a></li>
+<li><a class="reference internal" href="#jetty-absichern">Jetty absichern</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a></li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="search_router.html"
+                        title="previous chapter">Search Router</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sketch.html"
+                        title="next chapter">Sketch</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/de/bundles/Mapbender/CoreBundle/elements/simplesearch.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="sketch.html" title="Sketch"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="search_router.html" title="Search Router"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BaseSourceSwitcher &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="Button" href="button.html" />
+    <link rel="prev" title="Activity Indicator" href="activity_indicator.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="button.html" title="Button"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="activity_indicator.html" title="Activity Indicator"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="basesourceswitcher">
+<span id="id1"></span><h1>BaseSourceSwitcher<a class="headerlink" href="#basesourceswitcher" title="Permalink to this headline">¶</a></h1>
+<p>BaseSourceSwitcher is a button group to change the map&#8217;s background sources. The BaseSourceSwitcher allows you to switch over between the predefined source sets. For every sourceset a button will be displayed in the client. Notice that only one button can be active.</p>
+<p>You have the possibility to define groups. All sourcesets of the same group will be listed in a dropdown list with the group name as title.</p>
+<a class="reference internal image-reference" href="../../../../../_images/basesourceswitcher1.png"><img alt="../../../../../_images/basesourceswitcher1.png" src="../../../../../_images/basesourceswitcher1.png" style="width: 212.8px; height: 80.0px;" /></a>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The configuration occurs in 2 steps:</p>
+<ol class="arabic simple">
+<li>Create a BaseSourceSwitcher Element with Title, Tooltip and Target</li>
+<li>Add Sourceset/s with one or more sources and definition of a group (optional)</li>
+</ol>
+<a class="reference internal image-reference" href="../../../../../_images/basesourceswitcher_configuration.png"><img alt="../../../../../_images/basesourceswitcher_configuration.png" src="../../../../../_images/basesourceswitcher_configuration.png" style="width: 440.0px; height: 697.6px;" /></a>
+<ul class="simple">
+<li><strong>Title:</strong> Title of the element.</li>
+<li><strong>Tooltip:</strong> The text entered as a tooltip will be indicated by hovering over the element with the mouse cursor a longer time.</li>
+<li><strong>Target:</strong> Id of Map element, activated after the click.</li>
+<li><strong>Instances:</strong> List of Sourcesets, defined by a title and group: (optional) group name to group of sourcesets by &#8220;group name&#8221;</li>
+</ul>
+<p>In the configuration example you can see that either one, none or several entries per instanceset can be selected. You can created groups, which are then grouped together in the drop-down list.</p>
+<ul class="simple">
+<li><strong>Title</strong>: Title of the BaseSource</li>
+<li><strong>Group</strong>: Optionaly group name to group of sourcesets by &#8220;group name&#8221;</li>
+<li><strong>Instances</strong>: Sources for the BaseSource</li>
+</ul>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition:<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="s">&#39;BaseSourceSwitcher&#39;</span>                         <span class="c1"># title</span>
+<span class="l l-Scalar l-Scalar-Plain">tooltip</span><span class="p p-Indicator">:</span> <span class="s">&#39;BaseSourceSwitcher&#39;</span>                       <span class="c1"># text to use as tooltip</span>
+<span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">map</span>                                         <span class="c1"># Id of Map element</span>
+<span class="l l-Scalar l-Scalar-Plain">sourcesets</span><span class="p p-Indicator">:</span>                                         <span class="c1"># List of sourcesets</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">title</span><span class="p p-Indicator">:</span> <span class="nv">sourcesetname</span><span class="p p-Indicator">,</span> <span class="nv">group</span><span class="p p-Indicator">:</span> <span class="nv">groupname</span><span class="p p-Indicator">,</span>
+        <span class="nv">sources</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">sourceId</span><span class="p p-Indicator">]}</span>                        <span class="c1"># sourceset: title,</span>
+                                                    <span class="c1"># group: (optional) group name to group of sourcesets by &quot;group name&quot;</span>
+                                                    <span class="c1"># sources list of sources</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\BaseSourceSwitcher</li>
+<li><strong>Widget:</strong> mapbender.element.basesourceswitcher.js</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">BaseSourceSwitcher</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a></li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a></li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="activity_indicator.html"
+                        title="previous chapter">Activity Indicator</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="button.html"
+                        title="next chapter">Button</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/en/bundles/Mapbender/CoreBundle/elements/basesourceswitcher.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="button.html" title="Button"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="activity_indicator.html" title="Activity Indicator"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

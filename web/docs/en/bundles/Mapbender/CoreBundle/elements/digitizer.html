@@ -1,0 +1,1072 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Digitizer &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="Feature Info" href="feature_info.html" />
+    <link rel="prev" title="Copyright" href="copyright.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="feature_info.html" title="Feature Info"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="copyright.html" title="Copyright"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="digitizer">
+<span id="id1"></span><h1>Digitizer<a class="headerlink" href="#digitizer" title="Permalink to this headline">¶</a></h1>
+<p>The Digitizer element allows building editing-interfaces. Currently you can build up your interface for point, line and polygon editing with a YAML-definition.</p>
+<p>Right now PostgreSQL is supported as a database. Oracle and SpatialLite can be used experimentally. The development of the Digitizer allows other data sources so that it can be extended to support - for example - OGC WFS services.</p>
+<p>The Digitizer-Element offers complex editing functionality:</p>
+<ul class="simple">
+<li>move objects</li>
+<li>add vertices (lines, polygons)</li>
+<li>generation of enclaves, exclaves, circles and ellipses</li>
+</ul>
+<p>In connection with the digitization, very complex forms can be generated for the acquisition of data.</p>
+<a class="reference internal image-reference" href="../../../../../_images/digitizer1.png"><img alt="../../../../../_images/digitizer1.png" src="../../../../../_images/digitizer1.png" style="width: 813.6px; height: 441.6px;" /></a>
+<p>The following option for the construction of the forms are available:</p>
+<ul class="simple">
+<li>define more then one feature types for digitization. You can switch from one feature type to the other with a select box</li>
+<li>use a table as source. You can also define a filter to get a subset of the table</li>
+<li>Textfields</li>
+<li>Selectboxes, Multiselectboxes</li>
+<li>Radiobuttons, Checkboxes</li>
+<li>Textareas</li>
+<li>Datepicker</li>
+<li>File upload and Image Display</li>
+<li>Definition of tabs</li>
+<li>Definition breaklines</li>
+<li>Definition of Text</li>
+<li>Mandatory fields, regular expressions to valid the content are possible</li>
+<li>Help texts</li>
+</ul>
+<a class="reference internal image-reference" href="../../../../../_images/digitizer_with_tabs1.png"><img alt="../../../../../_images/digitizer_with_tabs1.png" src="../../../../../_images/digitizer_with_tabs1.png" style="width: 667.2px; height: 418.4px;" /></a>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>You can only use the element in the sidepane.</p>
+<a class="reference internal image-reference" href="../../../../../_images/digitizer_configuration1.png"><img alt="../../../../../_images/digitizer_configuration1.png" src="../../../../../_images/digitizer_configuration1.png" style="width: 875.2px; height: 545.6px;" /></a>
+<ul class="simple">
+<li><strong>Title:</strong> Title of the element. This is displayed in the layouts list and allows you to define several elements.</li>
+<li><strong>Target:</strong> (ID) of the map.</li>
+<li><strong>Schemes:</strong> YAML-Definition of the element Digitizer</li>
+</ul>
+<p>The Ditigitzer needs access to a database where the editable tables are. You have to define a new database configuration to be able to connect with the geo database.
+Read more about this at <a class="reference external" href="http://doc.mapbender3.org/en/book/database.html">http://doc.mapbender3.org/en/book/database.html</a></p>
+<p>The definition of the Digitizer is done in YAML syntax in the textarea configuration at schemes. Here you define the database connection, the editable table, the form to display the table, the attribute form and other behavior.
+If errors occur in the database, fields or form, various error messages appear. Via the normal call and app.php comes a general error message.
+If you want to reproduce the exact error, you should call the page via app_dev.php. In this case, detailed error messages about the error behavior appear.</p>
+<div class="section" id="yaml-definition-for-the-element-digitizer-in-the-textarea-schemes">
+<h3>YAML-Definition for the element Digitizer in the textarea schemes<a class="headerlink" href="#yaml-definition-for-the-element-digitizer-in-the-textarea-schemes" title="Permalink to this headline">¶</a></h3>
+<p>In the following YAML block, the example definition for three Digitizer forms is included. Copy the following block into your Digitizer element to test the capture of points, lines, and polygons.
+You must first create the database connection and the three demo tables. The SQL commands for creating the tables can be found below.
+The functionality of the built-in features and additional functions are explained in more detail in this example.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">poi</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">point digitizing</span>
+    <span class="l l-Scalar l-Scalar-Plain">inlineSearch</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">maxResults</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
+    <span class="l l-Scalar l-Scalar-Plain">featureType</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">connection</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">search_db</span>
+        <span class="l l-Scalar l-Scalar-Plain">table</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">poi</span>
+        <span class="l l-Scalar l-Scalar-Plain">uniqueId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gid</span>
+        <span class="l l-Scalar l-Scalar-Plain">geomType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">point</span>
+        <span class="l l-Scalar l-Scalar-Plain">geomField</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geom</span>
+        <span class="l l-Scalar l-Scalar-Plain">srid</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4326</span>
+    <span class="l l-Scalar l-Scalar-Plain">openFormAfterEdit</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">zoomScaleDenominator</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
+    <span class="l l-Scalar l-Scalar-Plain">allowEditData</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">allowDelete</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">allowDigitize</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">useContextMenu</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">toolset</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">drawPoint</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">moveFeature</span>
+    <span class="l l-Scalar l-Scalar-Plain">popup</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">point test suite</span>
+        <span class="l l-Scalar l-Scalar-Plain">width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500px</span>
+    <span class="l l-Scalar l-Scalar-Plain">searchType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">currentExtent</span>
+    <span class="l l-Scalar l-Scalar-Plain">tableFields</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">gid</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">Nr.</span> <span class="p p-Indicator">,</span> <span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">20%</span><span class="p p-Indicator">}</span>
+        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">Name</span> <span class="p p-Indicator">,</span> <span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">80%</span><span class="p p-Indicator">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">styles</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#0e6a9e&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#1289CD&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+            <span class="l l-Scalar l-Scalar-Plain">pointRadius</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+        <span class="l l-Scalar l-Scalar-Plain">select</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#0e6a9e&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.7</span>
+            <span class="l l-Scalar l-Scalar-Plain">pointRadius</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="l l-Scalar l-Scalar-Plain">formItems</span><span class="p p-Indicator">:</span>
+       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">tabs</span>
+         <span class="l l-Scalar l-Scalar-Plain">children</span><span class="p p-Indicator">:</span>
+           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">form</span>
+             <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Basic information</span>
+             <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">padding</span><span class="p p-Indicator">:</span> <span class="nv">10px</span><span class="p p-Indicator">}</span>
+             <span class="l l-Scalar l-Scalar-Plain">children</span><span class="p p-Indicator">:</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">label</span>
+                   <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Welcome to the digitize demo. Try the new Mapbender3 feature!</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>
+                   <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>
+                   <span class="l l-Scalar l-Scalar-Plain">mandatory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+                   <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name</span>
+                   <span class="l l-Scalar l-Scalar-Plain">mandatoryText</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Please give a name to the poi.</span>
+                   <span class="l l-Scalar l-Scalar-Plain">infoText</span><span class="p p-Indicator">:</span> <span class="s">&quot;Help:</span><span class="nv"> </span><span class="s">Please</span><span class="nv"> </span><span class="s">give</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">object.&quot;</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>
+                   <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Title</span>
+                   <span class="l l-Scalar l-Scalar-Plain">mandatory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+                   <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">title</span>
+                   <span class="l l-Scalar l-Scalar-Plain">mandatoryText</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Please give a title to the poi.</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">textArea</span>
+                   <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">abstract</span>
+                   <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Abstract</span>
+                   <span class="l l-Scalar l-Scalar-Plain">placeholder</span><span class="p p-Indicator">:</span> <span class="s">&#39;please</span><span class="nv"> </span><span class="s">edit</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">field&#39;</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
+                   <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Type</span>
+                   <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">type</span>
+                   <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">A</span><span class="p p-Indicator">:</span> <span class="nv">A</span><span class="p p-Indicator">,</span> <span class="nv">B</span><span class="p p-Indicator">:</span> <span class="nv">B</span><span class="p p-Indicator">,</span> <span class="nv">C</span><span class="p p-Indicator">:</span> <span class="nv">C</span><span class="p p-Indicator">,</span> <span class="nv">D</span><span class="p p-Indicator">:</span> <span class="nv">D</span><span class="p p-Indicator">,</span> <span class="nv">E</span><span class="p p-Indicator">:</span> <span class="nv">E</span><span class="p p-Indicator">}</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">breakLine</span>
+           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">form</span>
+             <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Personal information</span>
+             <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">padding</span><span class="p p-Indicator">:</span> <span class="nv">10px</span><span class="p p-Indicator">}</span>
+             <span class="l l-Scalar l-Scalar-Plain">children</span><span class="p p-Indicator">:</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">label</span>
+                   <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Please give us some information about yourself.</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fieldSet</span>
+                   <span class="l l-Scalar l-Scalar-Plain">children</span><span class="p p-Indicator">:</span>
+                       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>
+                         <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Firstname</span>
+                         <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">firstname</span>
+                         <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">30%</span><span class="p p-Indicator">}</span>
+                       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>
+                         <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Lastname</span>
+                         <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">lastname</span>
+                         <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">30%</span><span class="p p-Indicator">}</span>
+                       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>
+                         <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">E-Mail</span>
+                         <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">email</span>
+                         <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">40%</span><span class="p p-Indicator">}</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
+                   <span class="l l-Scalar l-Scalar-Plain">multiple</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+                   <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Interests</span>
+                   <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">interests</span>
+                   <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">maps</span><span class="p p-Indicator">:</span> <span class="nv">maps</span><span class="p p-Indicator">,</span> <span class="nv">reading</span><span class="p p-Indicator">:</span> <span class="nv">reading</span><span class="p p-Indicator">,</span> <span class="nv">swimming</span><span class="p p-Indicator">:</span> <span class="nv">swimming</span><span class="p p-Indicator">,</span> <span class="nv">dancing</span><span class="p p-Indicator">:</span> <span class="nv">dancing</span><span class="p p-Indicator">,</span> <span class="nv">beer</span><span class="p p-Indicator">:</span> <span class="nv">beer</span><span class="p p-Indicator">,</span> <span class="nv">flowers</span><span class="p p-Indicator">:</span> <span class="nv">flowers</span><span class="p p-Indicator">}</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">date</span>
+                   <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">favorite Date</span>
+                   <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">date_favorite</span>
+                   <span class="l l-Scalar l-Scalar-Plain">placeholder</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Please add a date in the following style dd-mm-yy.</span>
+                   <span class="l l-Scalar l-Scalar-Plain">dateFormat</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dd-mm-yy</span>
+                   <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">01-01-2016</span>
+                   <span class="l l-Scalar l-Scalar-Plain">mandatory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+                   <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">25%</span><span class="p p-Indicator">}</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">breakLine</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">breakLine</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">checkbox</span>
+                   <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">public</span>
+                   <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+                   <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">public (this new object is public)</span>
+<span class="l l-Scalar l-Scalar-Plain">line</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">line digitizing</span>
+    <span class="l l-Scalar l-Scalar-Plain">inlineSearch</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">maxResults</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1500</span>
+    <span class="l l-Scalar l-Scalar-Plain">featureType</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">connection</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">search_db</span>
+        <span class="l l-Scalar l-Scalar-Plain">table</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">lines</span>
+        <span class="l l-Scalar l-Scalar-Plain">uniqueId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gid</span>
+        <span class="l l-Scalar l-Scalar-Plain">geomType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">line</span>
+        <span class="l l-Scalar l-Scalar-Plain">geomField</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geom</span>
+        <span class="l l-Scalar l-Scalar-Plain">srid</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4326</span>
+    <span class="l l-Scalar l-Scalar-Plain">openFormAfterEdit</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">allowDelete</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">useContextMenu</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">toolset</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">drawLine</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">modifyFeature</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">moveFeature</span>
+    <span class="l l-Scalar l-Scalar-Plain">popup</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">line test suite</span>
+        <span class="l l-Scalar l-Scalar-Plain">width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500px</span>
+    <span class="l l-Scalar l-Scalar-Plain">searchType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">currentExtent</span>
+    <span class="l l-Scalar l-Scalar-Plain">tableFields</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">gid</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">Nr.</span> <span class="p p-Indicator">,</span> <span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">20%</span><span class="p p-Indicator">}</span>
+        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">Name</span> <span class="p p-Indicator">,</span> <span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">80%</span><span class="p p-Indicator">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">styles</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#0e6a9e&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#1289CD&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+            <span class="l l-Scalar l-Scalar-Plain">pointRadius</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+        <span class="l l-Scalar l-Scalar-Plain">select</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#0e6a9e&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.7</span>
+            <span class="l l-Scalar l-Scalar-Plain">pointRadius</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="l l-Scalar l-Scalar-Plain">formItems</span><span class="p p-Indicator">:</span>
+       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">form</span>
+         <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Basic information</span>
+         <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">padding</span><span class="p p-Indicator">:</span> <span class="nv">10px</span><span class="p p-Indicator">}</span>
+         <span class="l l-Scalar l-Scalar-Plain">children</span><span class="p p-Indicator">:</span>
+             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">label</span>
+               <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Welcome to the digitize demo. Try the new Mapbender3 feature!</span>
+             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>
+               <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>
+               <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name</span>
+               <span class="l l-Scalar l-Scalar-Plain">mandatory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+               <span class="l l-Scalar l-Scalar-Plain">mandatoryText</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Please give a name to the new object.</span>
+               <span class="l l-Scalar l-Scalar-Plain">infoText</span><span class="p p-Indicator">:</span> <span class="s">&quot;Help:</span><span class="nv"> </span><span class="s">Please</span><span class="nv"> </span><span class="s">give</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">object.&quot;</span>
+             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
+               <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Type</span>
+               <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">type</span>
+               <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">A</span><span class="p p-Indicator">:</span> <span class="nv">A</span><span class="p p-Indicator">,</span> <span class="nv">B</span><span class="p p-Indicator">:</span> <span class="nv">B</span><span class="p p-Indicator">,</span> <span class="nv">C</span><span class="p p-Indicator">:</span> <span class="nv">C</span><span class="p p-Indicator">,</span> <span class="nv">D</span><span class="p p-Indicator">:</span> <span class="nv">D</span><span class="p p-Indicator">,</span> <span class="nv">E</span><span class="p p-Indicator">:</span> <span class="nv">E</span><span class="p p-Indicator">}</span>
+<span class="l l-Scalar l-Scalar-Plain">polygon</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">polygon digitizing</span>
+    <span class="l l-Scalar l-Scalar-Plain">inlineSearch</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">maxResults</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1500</span>
+    <span class="l l-Scalar l-Scalar-Plain">featureType</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">connection</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">search_db</span>
+        <span class="l l-Scalar l-Scalar-Plain">table</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">polygons</span>
+        <span class="l l-Scalar l-Scalar-Plain">uniqueId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gid</span>
+        <span class="l l-Scalar l-Scalar-Plain">geomType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">polygon</span>
+        <span class="l l-Scalar l-Scalar-Plain">geomField</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geom</span>
+        <span class="l l-Scalar l-Scalar-Plain">srid</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4326</span>
+    <span class="l l-Scalar l-Scalar-Plain">openFormAfterEdit</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">allowDelete</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="l l-Scalar l-Scalar-Plain">useContextMenu</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">toolset</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">drawPolygon</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">drawRectangle</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">drawDonut</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">drawEllipse</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">drawCircle</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">modifyFeature</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">moveFeature</span>
+    <span class="l l-Scalar l-Scalar-Plain">popup</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">polygon test suite</span>
+        <span class="l l-Scalar l-Scalar-Plain">width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500px</span>
+    <span class="l l-Scalar l-Scalar-Plain">searchType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">currentExtent</span>
+    <span class="l l-Scalar l-Scalar-Plain">tableFields</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">gid</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">Nr.</span> <span class="p p-Indicator">,</span> <span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">20%</span><span class="p p-Indicator">}</span>
+        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">Name</span> <span class="p p-Indicator">,</span> <span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">80%</span><span class="p p-Indicator">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">styles</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#0e6a9e&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#1289CD&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+            <span class="l l-Scalar l-Scalar-Plain">pointRadius</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+        <span class="l l-Scalar l-Scalar-Plain">select</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#0e6a9e&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.7</span>
+            <span class="l l-Scalar l-Scalar-Plain">pointRadius</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="l l-Scalar l-Scalar-Plain">formItems</span><span class="p p-Indicator">:</span>
+       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">form</span>
+         <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Basic information</span>
+         <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">padding</span><span class="p p-Indicator">:</span> <span class="nv">10px</span><span class="p p-Indicator">}</span>
+         <span class="l l-Scalar l-Scalar-Plain">children</span><span class="p p-Indicator">:</span>
+             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">label</span>
+               <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Welcome to the digitize demo. Try the new Mapbender3 feature!</span>
+             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>
+               <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>
+               <span class="l l-Scalar l-Scalar-Plain">mandatory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+               <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name</span>
+               <span class="l l-Scalar l-Scalar-Plain">mandatoryText</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Please give a name to the new object.</span>
+               <span class="l l-Scalar l-Scalar-Plain">infoText</span><span class="p p-Indicator">:</span> <span class="s">&quot;Help:</span><span class="nv"> </span><span class="s">Please</span><span class="nv"> </span><span class="s">give</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">object.&quot;</span>
+             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
+               <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Type</span>
+               <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">type</span>
+               <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">A</span><span class="p p-Indicator">:</span> <span class="nv">A</span><span class="p p-Indicator">,</span> <span class="nv">B</span><span class="p p-Indicator">:</span> <span class="nv">B</span><span class="p p-Indicator">,</span> <span class="nv">C</span><span class="p p-Indicator">:</span> <span class="nv">C</span><span class="p p-Indicator">,</span> <span class="nv">D</span><span class="p p-Indicator">:</span> <span class="nv">D</span><span class="p p-Indicator">,</span> <span class="nv">E</span><span class="p p-Indicator">:</span> <span class="nv">E</span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sql-for-the-demo-tables">
+<h3>SQL for the demo tables<a class="headerlink" href="#sql-for-the-demo-tables" title="Permalink to this headline">¶</a></h3>
+<p>The following SQL commands must be executed in your database. You create three demo tables so that the individual functions can be tested using the YAML definition shown above.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">create</span> <span class="k">table</span> <span class="k">public</span><span class="p">.</span><span class="n">poi</span> <span class="p">(</span>
+    <span class="n">gid</span> <span class="nb">serial</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="k">type</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">abstract</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="k">public</span> <span class="nb">boolean</span><span class="p">,</span>
+    <span class="n">date_favorite</span> <span class="nb">date</span><span class="p">,</span>
+    <span class="n">title</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">firstname</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">lastname</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">email</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">interests</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">user_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">group_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">modification_date</span> <span class="nb">date</span><span class="p">,</span>
+    <span class="n">my_type</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">file_reference</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">x</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">y</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">geom</span> <span class="n">geometry</span><span class="p">(</span><span class="n">point</span><span class="p">,</span><span class="mi">4326</span><span class="p">),</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_poi_gid</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">gid</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">create</span> <span class="k">table</span> <span class="k">public</span><span class="p">.</span><span class="n">lines</span> <span class="p">(</span>
+    <span class="n">gid</span> <span class="nb">serial</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="k">type</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">abstract</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="k">public</span> <span class="nb">boolean</span><span class="p">,</span>
+    <span class="n">date_favorite</span> <span class="nb">date</span><span class="p">,</span>
+    <span class="n">title</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">firstname</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">lastname</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">email</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">interests</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="k">length</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">category</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">user_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">group_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">modification_date</span> <span class="nb">date</span><span class="p">,</span>
+    <span class="n">my_type</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">file_reference</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">x</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">y</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">geom</span> <span class="n">geometry</span><span class="p">(</span><span class="n">linestring</span><span class="p">,</span><span class="mi">4326</span><span class="p">),</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_lines_gid</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">gid</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">create</span> <span class="k">table</span> <span class="k">public</span><span class="p">.</span><span class="n">polygons</span> <span class="p">(</span>
+    <span class="n">gid</span> <span class="nb">serial</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="k">type</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">abstract</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="k">public</span> <span class="nb">boolean</span><span class="p">,</span>
+    <span class="n">date_favorite</span> <span class="nb">date</span><span class="p">,</span>
+    <span class="n">title</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">firstname</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">lastname</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">email</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">interests</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">area</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">category</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">user_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">group_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">modification_date</span> <span class="nb">date</span><span class="p">,</span>
+    <span class="n">my_type</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">file_reference</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">x</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">y</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">geom</span> <span class="n">geometry</span><span class="p">(</span><span class="n">polygon</span><span class="p">,</span><span class="mi">4326</span><span class="p">),</span>
+    <span class="k">CONSTRAINT</span> <span class="n">pk_polygons_gid</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">gid</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general">
+<h3>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<p>The Digitizer allows the editing of FeatureTypes. These are based on points, lines and polygon-geometries and their attribute-data. The attribute-data is displayed in the formular of the Digitizer. The geometry-editing is done via the map.</p>
+</div>
+<div class="section" id="create-geometries">
+<h3>Create geometries<a class="headerlink" href="#create-geometries" title="Permalink to this headline">¶</a></h3>
+<p>Every FeatureType can unlock several <a class="reference external" href="#definition-of-the-available-toolsets-toolset-type">Toolsets</a> that can be used in the button-bar of the Digitizer.</p>
+<p>For example in the FeatureType &#8220;poi&#8221; the toolset &#8220;drawPoint&#8221; unlocks the button to create a new point, the toolset &#8220;modifyFeature&#8221; unlocks the move-button.</p>
+<a class="reference internal image-reference" href="../../../../../_images/digitizer_buttons_poi1.png"><img alt="../../../../../_images/digitizer_buttons_poi1.png" src="../../../../../_images/digitizer_buttons_poi1.png" style="width: 116.0px; height: 51.2px;" /></a>
+</div>
+<div class="section" id="save-delete-cancel">
+<h3>Save, Delete, Cancel<a class="headerlink" href="#save-delete-cancel" title="Permalink to this headline">¶</a></h3>
+<p>Three buttons are available in the attribute-dialog: Save, Delete and Cancel.</p>
+<p><em>Saving</em> changes only happens, if the &#8220;Save&#8221; button in the attribute-dialog is pressed. A move of the geometry alone doesn&#8217;t save the feature directly (to avoid unnecessary stores into the database). It is mandatory to open the attribute-dialog and to click Save, yet.</p>
+<a class="reference internal image-reference" href="../../../../../_images/digitizer_save_delete_cancel1.png"><img alt="../../../../../_images/digitizer_save_delete_cancel1.png" src="../../../../../_images/digitizer_save_delete_cancel1.png" style="width: 404.0px; height: 196.0px;" /></a>
+<ul class="simple">
+<li><strong>Save:</strong> Saves the geometry and the attribute-data into the database.</li>
+<li><strong>Delet:</strong> Deletes the data.</li>
+<li><strong>Cancel:</strong> Doesn&#8217;t save and delete the data, but keeps the geometry for further editing in the internal storage. The geometry is still present in the map and can be adjusted (for example with polygons). Attribute data is not stored.</li>
+</ul>
+<p>Several options exit in the <a class="reference external" href="#feature-basic-definition">basic definitions</a>, to customize the behaviour.</p>
+<ul class="simple">
+<li>allowEditData: Show the Save button.</li>
+<li>allowDelete: Show the Delete button.</li>
+<li>allowCancelButton: Show the Cancel button.</li>
+<li>allowDeleteByCancelNewGeometry: Behaviour of the Cancel button.</li>
+</ul>
+<p>The <em>Delete</em> of a feature can be done with the dialog and from the table.</p>
+</div>
+<div class="section" id="vertices">
+<h3>Vertices<a class="headerlink" href="#vertices" title="Permalink to this headline">¶</a></h3>
+<p>Editing polygons allows you to edit, move and delete vertices. The &#8220;edit vertices&#8221; button expects you to select a polygon. It will then be shown with its vertices.</p>
+<a class="reference internal image-reference" href="../../../../../_images/digitizer_edit_vertices1.png"><img alt="../../../../../_images/digitizer_edit_vertices1.png" src="../../../../../_images/digitizer_edit_vertices1.png" style="width: 617.6px; height: 371.2px;" /></a>
+<p>The existing vertices are displayed opaque, possible new vertices are always in the middle of an edge, are light transparent and can be added by clicking on them.</p>
+<p>Existing vertices can be deleted with the Delete-Key of the keyboard. To do this, move your mouse-pointer over a vertex and press the Del-key. <em>Note:</em> If the deletion of a vertex doesn&#8217;t work in the first place, a click with the right mouse-button on the map may help. Especially with activated context-menu some events can currently get stuck.</p>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The following chapters explain the individual components of the Digitizer that build up the base-structure and which can be used in the formular.</p>
+<div class="section" id="feature-basic-definition">
+<h3>Feature basic definition<a class="headerlink" href="#feature-basic-definition" title="Permalink to this headline">¶</a></h3>
+<p>A basic definition, here for the poi-example, may look like the following snippet:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">poi</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">point digitizing</span>
+    <span class="l l-Scalar l-Scalar-Plain">maxResults</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
+    <span class="l l-Scalar l-Scalar-Plain">minScale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5000</span>
+    <span class="l l-Scalar l-Scalar-Plain">featureType</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">connection</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">search_db</span>
+        <span class="l l-Scalar l-Scalar-Plain">table</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">poi</span>
+        <span class="l l-Scalar l-Scalar-Plain">uniqueId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gid</span>
+        <span class="l l-Scalar l-Scalar-Plain">geomType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">point</span>
+        <span class="l l-Scalar l-Scalar-Plain">geomField</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geom</span>
+        <span class="l l-Scalar l-Scalar-Plain">srid</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4326</span>
+    <span class="l l-Scalar l-Scalar-Plain">openFormAfterEdit</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">zoomScaleDenominator</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
+    <span class="l l-Scalar l-Scalar-Plain">allowEditData</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">allowDelete</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">allowDigitize</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+    <span class="l l-Scalar l-Scalar-Plain">popup</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>The possible options are:</p>
+<ul class="simple">
+<li><strong>label:</strong> Label of the Digitizer popup</li>
+<li><strong>minScale:</strong> Minimum scale, where the features should be displayed in the map (e.g. minscale: 5000 = show from a scale &#8216;over&#8217; 1:5000, when zooming out).</li>
+<li><strong>maxResults:</strong> Maximum number of results</li>
+<li><strong>featureType:</strong> Connection to the database<ul>
+<li>connection: Name of the database-connection from the parameters/config.yml</li>
+<li>table: Table-name in which the FeatureTypes are stored</li>
+<li>uniqueId: Column-name with the unique identifier</li>
+<li>geomType: Geometry-type</li>
+<li>geomField: Column-name in which the geometry is stored</li>
+<li>srid: Coordinate-system in EPSG-code</li>
+</ul>
+</li>
+<li><strong>openFormAfterEdit:</strong> After creating a geometry the form popup is opened automatically to insert the attribute data. [true/false] Standard is true.</li>
+<li><strong>zoomScaleDenominator:</strong> Zoom-scales to use for zooming to a feature.</li>
+<li><strong>allowEditData:</strong> Allow or disable functions to edit or remove data. [true/false]. If true, the Save button is visible.</li>
+<li><strong>allowDigitize:</strong> Allow to save data [true/false].
+* <strong>allowDelete:</strong> Allow to delete data [true/false]. The Delete button is visible.</li>
+<li><strong>allowDigitize:</strong> Allow to create new features [true/false]. if false, no Digitizer buttons will occur (new Point, move, etc.).</li>
+<li><strong>useContextMenu:</strong> Show the context-menu of a feature. [true/false]</li>
+<li><strong>allowCancelButton:</strong> Show the Cancel button [true/false]. See <a class="reference external" href="#save-delete-cancel">Save, Delete, Cancel</a>.</li>
+<li><strong>allowDeleteByCancelNewGeometry:</strong> If true: When you create a new feature, the Cancel button will behave like the Delete button: The feature is removed from the map and the table. This is not the case if you edit an existing feature. [true/false]</li>
+<li><strong>displayOnInactive:</strong> The current FeatureType will still be displayed on the map, although the Digitizer is deactivated in the Sidepane (Accordion, Tabs) [true/false]. If switched to true, this option is a bit tricky, due to the still activated Digitizer events but will be helpful for experienced users.</li>
+</ul>
+</div>
+<div class="section" id="definition-of-the-popup">
+<h3>Definition of the popup<a class="headerlink" href="#definition-of-the-popup" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">popup</span><span class="p p-Indicator">:</span>             <span class="c1"># Define the form as a popup. Further experimental adaptations here: http://api.jqueryui.com/dialog/</span>
+    <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">POI</span>     <span class="c1"># Definition of the popup title</span>
+    <span class="l l-Scalar l-Scalar-Plain">height</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">400</span>    <span class="c1"># height of the popup</span>
+    <span class="l l-Scalar l-Scalar-Plain">width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>     <span class="c1"># width of the popup</span>
+
+    <span class="c1">#modal: true   # Everything except the form window is grayed out and the position and size of the window is fixed for the duration of the data collection.</span>
+    <span class="c1">#position: {at: &quot;left+20px&quot;,  my: &quot;left top-460px&quot;}  # Position of the popup in the browser area</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="definition-of-the-feature-table">
+<h3>Definition of the feature table<a class="headerlink" href="#definition-of-the-feature-table" title="Permalink to this headline">¶</a></h3>
+<p>The Digitizer provides an object table. This can be used to navigate to features (zoom on the objects) and open the editing form. The object table can be sorted.
+The width of the individual columns can optionally be specified in percent or pixels.</p>
+<ul class="simple">
+<li>tableFields - define the columns for the feature table.</li>
+<li>searchType <strong>all</strong> or <strong>currentExtent</strong></li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">searchType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">currentExtent</span>   <span class="c1"># [currentExtent | all] currentExtent lists only the features displayed in the current extent in the table (default). all lists all features in the table.</span>
+<span class="l l-Scalar l-Scalar-Plain">tableFields</span><span class="p p-Indicator">:</span>                <span class="c1"># definition of the colums to be displayed</span>
+    <span class="l l-Scalar l-Scalar-Plain">gid</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">Nr.</span> <span class="p p-Indicator">,</span> <span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">20%</span><span class="p p-Indicator">}</span> <span class="c1"># [table column]: {label: [label text], width: [css-definition, like width]}  # Definition of a column</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">label</span><span class="p p-Indicator">:</span> <span class="nv">Name</span> <span class="p p-Indicator">,</span> <span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">80%</span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tabs-type-tabs">
+<h3>Tabs (type tabs)<a class="headerlink" href="#tabs-type-tabs" title="Permalink to this headline">¶</a></h3>
+<p>Form elements can be placed unto different Tabs. The formItem type &#8220;tabs&#8221; is used for this.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">formItems</span><span class="p p-Indicator">:</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">tabs</span>                      <span class="c1"># Type tabs creates tabs in the popup</span>
+     <span class="l l-Scalar l-Scalar-Plain">children</span><span class="p p-Indicator">:</span>                       <span class="c1"># The tabs are defined as sub-objects (children) of the form.</span>
+       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">form</span>
+         <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Basic information</span>    <span class="c1"># title of the tabs</span>
+         <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">padding</span><span class="p p-Indicator">:</span> <span class="nv">10px</span><span class="p p-Indicator">}</span>
+         <span class="l l-Scalar l-Scalar-Plain">children</span><span class="p p-Indicator">:</span>                   <span class="c1"># Multiple subobjects in groups can be used to arrange data in the form next to each other</span>
+             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">label</span>
+               <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Welcome to the digitize demo. Try the new Mapbender3 feature!</span>
+               <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="textfields-type-input">
+<h3>Textfields (type input)<a class="headerlink" href="#textfields-type-input" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>                    <span class="c1"># element type definition</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Title for the field</span>     <span class="c1"># labeling (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">column_name</span>              <span class="c1"># reference to table column (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">mandatory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                <span class="c1"># specify mandatory field (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">mandatoryText</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">You have to provide information.</span>
+  <span class="l l-Scalar l-Scalar-Plain">cssClass</span><span class="p p-Indicator">:</span> <span class="s">&#39;input-css&#39;</span>          <span class="c1"># additional css definition (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="s">&#39;default</span><span class="nv"> </span><span class="s">Text&#39;</span>          <span class="c1"># define a default value  (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">placeholder</span><span class="p p-Indicator">:</span> <span class="s">&#39;please</span><span class="nv"> </span><span class="s">edit</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">field&#39;</span> <span class="c1"># placeholder appears in the field as information (optional)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="selectbox-selectbox-or-multiselect-type-select">
+<h3>Selectbox (selectbox or multiselect [type select])<a class="headerlink" href="#selectbox-selectbox-or-multiselect-type-select" title="Permalink to this headline">¶</a></h3>
+<p>By defining a selectbox, predefined values can be used in the form.
+You can choose between a selectbox with a selectable entry (type select) or a multiselectbox with several selectable entries (type multiselect).</p>
+<p><strong>(1) select - one selectable entry</strong></p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>                     <span class="c1"># element type definition</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select a type</span>             <span class="c1"># labeling (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_type</span>                    <span class="c1"># reference to table column (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">multiple</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>                  <span class="c1"># define a multiselect, default is false</span>
+  <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>                         <span class="c1"># definition of the options (key, value)</span>
+      <span class="l l-Scalar l-Scalar-Plain">1</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pub</span>
+      <span class="l l-Scalar l-Scalar-Plain">2</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bar</span>
+      <span class="l l-Scalar l-Scalar-Plain">3</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pool</span>
+      <span class="l l-Scalar l-Scalar-Plain">4</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">garden</span>
+      <span class="l l-Scalar l-Scalar-Plain">5</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">playground</span>
+</pre></div>
+</div>
+<p><strong>(2) multiselect - several selectable entries</strong></p>
+<p>The Multiselect-Box is activated by the attribute &#8220;multiple: true&#8221;. You can choose multiple entries in the selectbox. The usage and their requirements of the database may vary. In general with the example above, you can switch the &#8220;interests&#8221; in the POIs to multiselects. The database fields is still a character varying.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
+  <span class="l l-Scalar l-Scalar-Plain">multiple</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Interests</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">interests</span>
+  <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">maps</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">maps</span>
+    <span class="l l-Scalar l-Scalar-Plain">reading</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">reading</span>
+    <span class="l l-Scalar l-Scalar-Plain">swimming</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">swimming</span>
+    <span class="l l-Scalar l-Scalar-Plain">dancing</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dancing</span>
+    <span class="l l-Scalar l-Scalar-Plain">beer</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">beer</span>
+    <span class="l l-Scalar l-Scalar-Plain">flowers</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">flowers</span>
+</pre></div>
+</div>
+<p>The SQL (if maps and reading were chosen):</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">gisdb</span><span class="o">=&gt;</span> <span class="k">select</span> <span class="n">interests</span> <span class="k">from</span> <span class="n">poi</span> <span class="k">where</span> <span class="n">gid</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
+<span class="n">interests</span>
+<span class="c1">--------------</span>
+<span class="n">maps</span><span class="p">,</span><span class="n">reading</span>
+<span class="p">(</span><span class="mi">1</span> <span class="k">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>On saving the keywords are saved in the database (for example: &#8220;dancing: Tanzen&#8221; and &#8220;flowers: Blumen&#8221; stores &#8220;dancing,flowers&#8221;).</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>                       <span class="c1"># element type definition</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select some types</span>           <span class="c1"># labeling (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_type</span>                      <span class="c1"># reference to table column (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">multiple</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                     <span class="c1"># define a multiselect, default is false</span>
+  <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">a</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">a</span>                             <span class="c1"># definition of the options (key, value)</span>
+    <span class="l l-Scalar l-Scalar-Plain">b</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">b</span>
+    <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">c</span>
+</pre></div>
+</div>
+<p><strong>Get the options for the selectbox via SQL</strong></p>
+<p>Wir a SQL request, the values of the selectbox can be directly pulled from the database. In this case, the key value mapping is not possible and only the indices of the entries can be stored.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>                     <span class="c1"># element type definition</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select some types</span>         <span class="c1"># labeling (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my_type</span>                    <span class="c1"># reference to table column</span>
+  <span class="l l-Scalar l-Scalar-Plain">connection</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">connectionName</span>       <span class="c1"># Define a connection selectbox via SQL</span>
+  <span class="l l-Scalar l-Scalar-Plain">sql</span><span class="p p-Indicator">:</span> <span class="s">&#39;SELECT</span><span class="nv"> </span><span class="s">DISTINCT</span><span class="nv"> </span><span class="s">key,</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">tableName</span><span class="nv"> </span><span class="s">order</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">value&#39;</span> <span class="c1"># get the options of the</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="text-label-type-label">
+<h3>Text/Label (type label)<a class="headerlink" href="#text-label-type-label" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">label</span>                        <span class="c1"># element type definition, label writes a non-editable text to the form window.</span>
+  <span class="l l-Scalar l-Scalar-Plain">text</span><span class="p p-Indicator">:</span> <span class="s">&#39;Please</span><span class="nv"> </span><span class="s">give</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">poi.&#39;</span> <span class="c1"># define a text</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="text-type-text">
+<h3>Text (type text)<a class="headerlink" href="#text-type-text" title="Permalink to this headline">¶</a></h3>
+<p>Texts can be defined as a label in the form. In this case, fields of the data source can be accessed by using JavaScript.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>              <span class="c1"># Type text for generating dynamic texts from the database</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span>       <span class="l l-Scalar l-Scalar-Plain">Name</span>       <span class="c1"># Label (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span>        <span class="l l-Scalar l-Scalar-Plain">name</span>       <span class="c1"># Name of the field (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span>         <span class="p p-Indicator">{</span><span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">80%</span><span class="p p-Indicator">}</span> <span class="c1"># CSS definition (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">text</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">data.gid + &#39;</span><span class="p p-Indicator">:</span> <span class="s">&#39;</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">data.name</span>
+  <span class="s">#</span><span class="nv"> </span><span class="s">Text</span><span class="nv"> </span><span class="s">definition</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">JavaScript</span>
+  <span class="s">#</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">object,</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">gives</span><span class="nv"> </span><span class="s">access</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">fields.</span>
+  <span class="s">#</span><span class="nv"> </span><span class="s">z.B.:</span><span class="nv"> </span><span class="s">data.id</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">&#39;</span><span class="l l-Scalar l-Scalar-Plain">:&#39; + data.name</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="textareas-type-textarea">
+<h3>Textareas (type textarea)<a class="headerlink" href="#textareas-type-textarea" title="Permalink to this headline">¶</a></h3>
+<p>Similar to the text field via type input (see above), text areas can be created that can contain several lines using type textArea.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">textArea</span>      <span class="c1"># Typ textArea creates a text area</span>
+  <span class="l l-Scalar l-Scalar-Plain">rows</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>             <span class="c1"># Number of rows for the text area that appears when the form is opened. Field can be expanded by mouse in the form.</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">beschreibung</span>  <span class="c1"># table column</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Bestandsaufnahme Bemerkung</span> <span class="c1"># Label (optional)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="breaklines-type-breakline">
+<h3>Breaklines (type breakline)<a class="headerlink" href="#breaklines-type-breakline" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">breakline</span>                     <span class="c1"># element type definition, will draw a line</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checkboxes-type-checkbox">
+<h3>Checkboxes (type checkbox)<a class="headerlink" href="#checkboxes-type-checkbox" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span>  <span class="l l-Scalar l-Scalar-Plain">checkbox</span>        <span class="c1"># Type checkbox creates a checkbox. When activated, the specified value (here &#39;TRUE&#39;) is written to the database.</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Is this true?</span>   <span class="c1"># Label (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span>  <span class="l l-Scalar l-Scalar-Plain">public</span>          <span class="c1"># table column</span>
+  <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>            <span class="c1"># parameter when activating the checkbox is stored in DB (here &#39;TRUE&#39;).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mandatory-fields">
+<h3>Mandatory fields<a class="headerlink" href="#mandatory-fields" title="Permalink to this headline">¶</a></h3>
+<p>The notes for a mandatory field appear above the used fields. In the case of a missing entry in a defined mandatory field, this will be marked in red and (if defined) a speech bubble will appear. The object can not be saved if mandatory data is missing.</p>
+<p>Note: When using multiple tabs in the form, the creator may set an entry incorrectly on a non-visible tab in a mandatory field, so the saving process does not work.
+No error message appears outside the form. The applicant has to check the information in the form (label: red border / speech bubble with reference) before it can be stored correctly.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span>  <span class="p p-Indicator">[</span><span class="nv">Angabe zum Feldtyp</span><span class="p p-Indicator">]</span>           <span class="c1"># Each field can be made mandatory</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">mandatory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                       <span class="c1"># true - field has to be set. Else you can&#39;t save the object. Regular expressions are possible too - see below.</span>
+  <span class="l l-Scalar l-Scalar-Plain">mandatorytitle</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Mandatory info!</span>       <span class="c1"># Text that appears in the field when the field is not filled or filled with an invalid value.</span>
+  <span class="l l-Scalar l-Scalar-Plain">mandatoryText</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Please choose a type!</span>  <span class="c1"># Text that is displayed in a speech bubble above the field when the field is not filled when it is saved or invalid.</span>
+  <span class="l l-Scalar l-Scalar-Plain">mandatory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/^\w+$/gi</span>                  <span class="c1"># You can define a regular expression to check the input for a field. You can check f.e. for email or numbers. Read more http://wiki.selfhtml.org/wiki/JavaScript/Objekte/RegExp</span>
+
+  <span class="c1"># Check if input is a number</span>
+  <span class="l l-Scalar l-Scalar-Plain">mandatory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/^[0-9]+$/</span>
+  <span class="l l-Scalar l-Scalar-Plain">mandatoryText</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Only numbers are valid for this field!</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="datepicker-type-date">
+<h3>Datepicker (type date)<a class="headerlink" href="#datepicker-type-date" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../../../../_images/digitizer_datepicker1.png"><img alt="../../../../../_images/digitizer_datepicker1.png" src="../../../../../_images/digitizer_datepicker1.png" style="width: 144.0px; height: 168.0px;" /></a>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">date</span>              <span class="c1"># click in the textfield opens a datepicker</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">favorite Date</span>    <span class="c1"># Label (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">date_favorite</span>     <span class="c1"># data table</span>
+  <span class="l l-Scalar l-Scalar-Plain">placeholder</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Please add a date in the following style yy-dd-mm</span>   <span class="c1"># placeholder for the dateformat (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">dateFormat</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">yy-dd-mm</span>    <span class="c1"># define the display of the dateformat (optional), default is dd.mm.yy which means 16.01.2016. Examples yy/mm/dd (2017/01/16) or yy-mm-dd (2017-01-16).</span>
+  <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2016-01-01</span>       <span class="c1"># define a start value for the datepicker (optional)</span>
+</pre></div>
+</div>
+<p>When using a column with the table format date, the date is written into the date database column, regardless of the dateFormat specification in the format YYYY-MM-DD.
+If the parameter dateFormat is used with a different dateFormat, a table field in the text format (for example, date_text varchar) must be created.</p>
+</div>
+<div class="section" id="helptexts-to-the-form-elements-attribute-infotext">
+<h3>Helptexts to the form-elements (attribute infotext)<a class="headerlink" href="#helptexts-to-the-form-elements-attribute-infotext" title="Permalink to this headline">¶</a></h3>
+<p>The infotext can appear over every field, regardless of whether this is a mandatory field or not. If a infotext is specified, an info button appears above the field. Clicking on this button opens the information text.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span>  <span class="p p-Indicator">[</span><span class="nv">type name</span><span class="p p-Indicator">]</span>           <span class="c1"># every field, regardless of whether this is a mandatory field or not</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">infoText</span><span class="p p-Indicator">:</span>  <span class="l l-Scalar l-Scalar-Plain">Please note - only numbers are valid for this field.</span> <span class="c1"># Notice which will be displayed by i-symbol</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="element-groups-type-fieldset">
+<h3>Element groups (type: fieldSet)<a class="headerlink" href="#element-groups-type-fieldset" title="Permalink to this headline">¶</a></h3>
+<p>Elements can be grouped together in one row to provide logical connections or save space. To define a group you have to set type fieldSet and afterwards define the children which shall be grouped.</p>
+<p>For each children you can define a width to controll the pace for each element.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fieldSet</span>             <span class="c1"># Grouping of fields, regardless of field type</span>
+  <span class="l l-Scalar l-Scalar-Plain">children</span><span class="p p-Indicator">:</span>                  <span class="c1"># Define the group elements by children</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>
+        <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Firstname</span>
+        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">firstname</span>
+        <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">30%</span><span class="p p-Indicator">}</span>    <span class="c1"># Specifies the width of the group element. Together, the elements should be 100%.</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>
+        <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Lastname</span>
+        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">lastname</span>
+        <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">30%</span><span class="p p-Indicator">}</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">input</span>
+        <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">E-Mail</span>
+        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">email</span>
+        <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">width</span><span class="p p-Indicator">:</span> <span class="nv">40%</span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="file-upload-type-file">
+<h3>File upload (type file)<a class="headerlink" href="#file-upload-type-file" title="Permalink to this headline">¶</a></h3>
+<p>The file upload can be used to link files to a database column in the form. To do this, the uploaded files are stored in Mapbender3 and the path is noted in the column.</p>
+<p>The storage path and the name of the stored files can not yet be changed. The file upload always saves to the same directory and is  built up from the parameters:</p>
+<ul class="simple">
+<li>tablename</li>
+<li>columnname</li>
+<li>filename</li>
+</ul>
+<p>The filesystem path is:</p>
+<ul class="simple">
+<li>&lt;mapbender&gt;/web/uploads/featureTypes/[tablename]/[columnname]/[filename].png</li>
+</ul>
+<p>The linked URL stored in the database column is:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://localhost/mapbender/uploads/featureTypes/[tablename]/[columnname]/[filename].png">http://localhost/mapbender/uploads/featureTypes/[tablename]/[columnname]/[filename].png</a></li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file</span>                <span class="c1"># Typ file for the upload of files</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Dateiupload</span>        <span class="c1"># Label (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">text</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Laden Sie ein Bild hoch.</span> <span class="c1"># Informationtext (optional)</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file_reference</span>      <span class="c1"># table column for the storage path</span>
+
+
+  <span class="c1"># Experimental parameters:</span>
+  <span class="c1">#accept: image/*          # Pre-selection of elements in the image format (window for file upload opens with restriction filter)</span>
+                            <span class="c1"># Other file-formats can be still uploaded</span>
+</pre></div>
+</div>
+<p><strong>Notes:</strong> At this time, a &#8220;thumbnail&#8221; directory is created, which includes a smaller version of an image file. In future development this will be changed.</p>
+<p>A possibility to show the uploaded images is the image-element.</p>
+</div>
+<div class="section" id="images-type-image">
+<h3>Images (type image)<a class="headerlink" href="#images-type-image" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../../../../_images/digitizer_image1.png"><img alt="../../../../../_images/digitizer_image1.png" src="../../../../../_images/digitizer_image1.png" style="width: 400.0px; height: 398.4px;" /></a>
+<p>The image-element can be used to view an picture in the form. You can display images by specifying a URL in a database field or URL using the src parameter.</p>
+<p>Images, which are marked by the element file in a table column can thus also directly integrated and displayed.</p>
+<p>The image can be specified by specifying the two parameters src and name.</p>
+<ul class="simple">
+<li><strong>src</strong>: Url-path or file path (can be relative path)</li>
+<li><strong>name</strong>: Url-path or file path from the table column (can&#8217;t be relative path)</li>
+<li>definition of name and src together: The content of the database column from name is taken. If the column is empty, the src is used.</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">image</span>               <span class="c1"># Feature type field name image.</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file_reference</span>      <span class="c1"># Reference to the database column. If defined, the path or URL in the field can be used and replaces &quot;src&quot; option</span>
+  <span class="l l-Scalar l-Scalar-Plain">src</span><span class="p p-Indicator">:</span> <span class="s">&quot;bundles/mapbendercore/image/logo_mb3.png&quot;</span>  <span class="c1"># Specify a path or URL to an image. If the path is relative use relative: true.</span>
+  <span class="l l-Scalar l-Scalar-Plain">relative</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>            <span class="c1"># Optional. Default value is false. If true, the &quot;src&quot; path is determined from the &quot;/web&quot; directory.</span>
+  <span class="l l-Scalar l-Scalar-Plain">enlargeImage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>        <span class="c1"># Image is enlarged to original size/ maximum resolution by clicking on the preview image. It is not scaled to screen size.</span>
+
+  <span class="c1"># Experimental information about styling</span>
+  <span class="l l-Scalar l-Scalar-Plain">imageCss</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100%</span>              <span class="c1"># Image CSS Style: Scales the preview image in the form, different from the original size in percent.</span>
+</pre></div>
+</div>
+<p><strong>Caution</strong>: If only name and not name and src are specified, the wrong image appears from the previous data entry, if the column is empty.</p>
+<p>Dynamic paths (eg &#8220;bundles/mapbendercore/image/[nr].png&#8221; or &#8216;bundles/mapbendercore/image/&#8217; + data.image_reference) can not be specified.</p>
+<p>One way to work around this is to create a trigger that will merge the path and contents of a table field into the database column.</p>
+</div>
+<div class="section" id="definition-of-the-available-toolsets-toolset-type">
+<h3>Definition of the available toolsets (Toolset Type)<a class="headerlink" href="#definition-of-the-available-toolsets-toolset-type" title="Permalink to this headline">¶</a></h3>
+<p>Toolset types:</p>
+<ul class="simple">
+<li><strong>drawPoint</strong> - Draw point</li>
+<li><strong>drawLine</strong> - Draw a line</li>
+<li><strong>drawPolygon</strong> - Draw polygon</li>
+<li><strong>drawRectangle</strong> - Draw rectangle</li>
+<li><strong>drawCircle</strong> - Draw circle</li>
+<li><strong>drawEllipse</strong> - Draw ellipse</li>
+<li><strong>drawDonut</strong> - Draw a Donut (enclave)</li>
+<li><strong>modifyFeature</strong> - Move vertices of a geometry</li>
+<li><strong>moveFeature</strong> - Move geometry</li>
+<li><strong>selectFeature</strong> - Geometry de-/select (experimental). There is no interaction with the table yet and the available workflows are limited to the Delete operation.</li>
+<li><strong>removeSelected</strong> - delete selected geometry (experimental). Deletes all objects selected in the map.</li>
+<li><strong>removeAll</strong> - Caution: remove all geometries from the table</li>
+</ul>
+<p>YAML-Definition of toolset types</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">polygon</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+    <span class="l l-Scalar l-Scalar-Plain">toolset</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">drawPolygon</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">drawRectangle</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">drawDonut</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">removeSelected</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="search-in-the-tables-inline-search">
+<h3>Search in the tables (inline Search)<a class="headerlink" href="#search-in-the-tables-inline-search" title="Permalink to this headline">¶</a></h3>
+<p>You can use the inline search to search for a element in the table.
+The activated element displays a search bar above the table. It shows all the search results for records of the table.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">poi</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="l l-Scalar l-Scalar-Plain">inlineSearch</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>      <span class="c1"># true: allows the search in the table, default is true</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="context-menu">
+<h3>Context Menu<a class="headerlink" href="#context-menu" title="Permalink to this headline">¶</a></h3>
+<p>Using the context menu, an object on the map can be considered in more detail.
+After the activation you can open a context menu via the right mouse click on an object or cluster.</p>
+<a class="reference internal image-reference" href="../../../../../_images/digitizer_contextmenu1.png"><img alt="../../../../../_images/digitizer_contextmenu1.png" src="../../../../../_images/digitizer_contextmenu1.png" style="width: 472.8px; height: 312.8px;" /></a>
+<p>Items of the Context Menu:</p>
+<ul class="simple">
+<li><strong>Zoom to:</strong> Zoom to the map extent of the object</li>
+<li><strong>Edit features:</strong> Edit the features of the object. Opens the Digitizer dialog.</li>
+<li><strong>Remove:</strong> Remove the selected object.</li>
+</ul>
+<p>If the corresponding <a class="reference external" href="#feature-basic-definition">basic definition</a> (allowEditData, allowDelete) not defined, then they are also not available in the Context Menu. In the above example the delete function is not available for the polygons.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">poi</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="l l-Scalar l-Scalar-Plain">useContextMenu</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clustering-experimental">
+<h3>Clustering (experimental)<a class="headerlink" href="#clustering-experimental" title="Permalink to this headline">¶</a></h3>
+<p>By clustering the objects can be combined on the map.
+Depending on the defined distance and zoom level different numbers of objects can be clustered.</p>
+<p>Due to the complexity of the Clustering, future versions may have changes in functionality and syntax, so we define that still as experimental. Dependencies are to the display of features in the current extent/all areas and the different geometry types.</p>
+<a class="reference internal image-reference" href="../../../../../_images/digitizer_clustering1.png"><img alt="../../../../../_images/digitizer_clustering1.png" src="../../../../../_images/digitizer_clustering1.png" style="width: 396.8px; height: 243.2px;" /></a>
+<p>Definition of the cluster element:</p>
+<ul class="simple">
+<li><strong>scale:</strong> Zoom level.</li>
+<li><strong>distance:</strong> distance between features in m to activate the clustering.</li>
+<li><strong>disable:</strong> zoom level to disable the clustering.</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">poi</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="l l-Scalar l-Scalar-Plain">clustering</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span>
+            <span class="l l-Scalar l-Scalar-Plain">scale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10000</span>        <span class="c1"># Zoom level</span>
+            <span class="l l-Scalar l-Scalar-Plain">distance</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">60</span>        <span class="c1"># distance between features to cluster</span>
+        <span class="p p-Indicator">-</span>
+            <span class="l l-Scalar l-Scalar-Plain">scale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2500</span>
+            <span class="l l-Scalar l-Scalar-Plain">distance</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">40</span>
+        <span class="p p-Indicator">-</span>
+            <span class="l l-Scalar l-Scalar-Plain">scale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1000</span>
+            <span class="l l-Scalar l-Scalar-Plain">distance</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+        <span class="p p-Indicator">-</span>
+            <span class="l l-Scalar l-Scalar-Plain">scale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
+            <span class="l l-Scalar l-Scalar-Plain">distance</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+            <span class="l l-Scalar l-Scalar-Plain">disable</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>       <span class="c1"># disable clustering at defined zoomlevel</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="events">
+<h3>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h3>
+<p>Different events exist that can be associated to a feature to manipulate attributes before or after an action.</p>
+<ul class="simple">
+<li><strong>onBeforeSave</strong>: Event before the storage of a new/ modified information</li>
+<li><strong>onAfterSave</strong>: Event after the storage of a new/ modified information</li>
+<li><strong>onBeforeUpdate</strong>: Event before the update of a modified information</li>
+<li><strong>onAfterUpdate</strong>: Event after the update of a modified information</li>
+<li><strong>onBeforeSearch</strong>: Event before the search in the SearchField of the Digitizer</li>
+<li><strong>onAfterSearch</strong>: Event after the search in the SearchField of the Digitizer</li>
+<li><strong>onBeforeRemove</strong>: Event before deleting data</li>
+<li><strong>onAfterRemove</strong>: Event after deleting data</li>
+</ul>
+<p>In difference to the Save-events, the update-events work only on an update of the data, not on creation.</p>
+<p><strong>Note:</strong> The events are still in development and should be used with caution. The correct matching of the events and their dependencies are not yet finished and may be changed in future versions.</p>
+<p>The following sections show some examples.</p>
+<p><strong>Storage of attibute data in an additional attribute-columns:</strong></p>
+<p>This example shows how data can be stored in an additional attribute-column after saving. In this case it is done with two geometry-columns &#8220;geom&#8221; and &#8220;geom2&#8221;. When saving, the data of &#8220;geom&#8221; should be saved in the field &#8220;geom2&#8221;.</p>
+<p>Depending on the use-case the onBeforeInsert or the onBeforeUpdate event can be used.</p>
+<p>At the time of the saving-process the new geometry doesn&#8217;t yet persist in the database. Therefore it cannot be accessed as a feature but only via the corresponding &#8220;item&#8221;, an internal Digitizer structure. This &#8220;item&#8221; are based on the formular and the defined attribute fields.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">events</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">onBeforeInsert</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$item[&#39;geom2&#39;] = $item[&#39;geom&#39;];</span>
+  <span class="l l-Scalar l-Scalar-Plain">onBeforeUpdate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$item[&#39;geom2&#39;] = $item[&#39;geom&#39;];</span>
+</pre></div>
+</div>
+<p>In this event the value of &#8220;geom2&#8221; is overwritten with the value of &#8220;geom&#8221;.</p>
+<p><strong>Storage of different geometry-types:</strong></p>
+<p>The above scenario can be extended to a slightly constructed example in which simultaneously different geometry types shall be saved. With the help of PostGIS lines are interpolated to points. The Digitizer can use an event to fire the according SQL statement.</p>
+<div class="highlight-sql"><div class="highlight"><pre>events:
+  onBeforeInsert: |
+    $sql = &quot;SELECT
+    ST_Line_Interpolate_Point(&#39;&quot;.$item[&#39;geomline&#39;].&quot;&#39;::geometry, 1) as geom&quot;;
+    $stmnt = $this-&gt;getConnection()-&gt;prepare($sql);
+    $stmnt-&gt;execute();
+    $result  = $stmnt-&gt;fetchAll();
+    $item[&#39;geompoi&#39;] = $result[0][&#39;geom&#39;];
+</pre></div>
+</div>
+<p>The onBeforeInsert event is used here. The pipe symbol &#8220;|&#8221; after the event signals a following multiline statement. This blog contains PHP code, which calls SQL-statement. The SQL-statement calls the ST_Line_Interpolate_Point function of PostGIS and commits the digitized line. Because this line is not yet persisted in the database, you have to access it with the &#8220;item&#8221; (geomline). The next lines build up the SQL Statement and deliver it to the SQL-Connection defined in the featuretype. The last line writes the resulting point (geompoi) into the point-geometry-field.</p>
+</div>
+<div class="section" id="design-and-styles">
+<h3>Design and Styles<a class="headerlink" href="#design-and-styles" title="Permalink to this headline">¶</a></h3>
+<p>By specifying a style the way the objects are displayed on the map can be defined.
+<em>Default</em> defines the normal display of the objects on the map and <em>Select</em> defines the appearance of the selected objects.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">poi</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="l l-Scalar l-Scalar-Plain">styles</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#0e6a9e&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#1289CD&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+            <span class="l l-Scalar l-Scalar-Plain">pointRadius</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+        <span class="l l-Scalar l-Scalar-Plain">select</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeWidth</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#0e6a9e&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.7</span>
+            <span class="l l-Scalar l-Scalar-Plain">pointRadius</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="yaml-definition-for-the-element-digitizer-in-mapbender-yml">
+<h2>YAML-Definition for the element Digitizer in mapbender.yml<a class="headerlink" href="#yaml-definition-for-the-element-digitizer-in-mapbender-yml" title="Permalink to this headline">¶</a></h2>
+<p>This code-snippet shows how to include the Digitizer into a YAML-file based application.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">sidepane</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">digitizer</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Mapbender\DigitizerBundle\Element\Digitizer</span>
+        <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Digitalisation</span>
+        <span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">map</span>
+        <span class="l l-Scalar l-Scalar-Plain">schemes</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Class: Mapbender\DigitizerBundle\Element\Digitizer</li>
+<li>Widget: mapbender.element.digitizer.js</li>
+<li>Style: sass\element\digitizer.scss</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Digitizer</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a><ul>
+<li><a class="reference internal" href="#yaml-definition-for-the-element-digitizer-in-the-textarea-schemes">YAML-Definition for the element Digitizer in the textarea schemes</a></li>
+<li><a class="reference internal" href="#sql-for-the-demo-tables">SQL for the demo tables</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#general">General</a></li>
+<li><a class="reference internal" href="#create-geometries">Create geometries</a></li>
+<li><a class="reference internal" href="#save-delete-cancel">Save, Delete, Cancel</a></li>
+<li><a class="reference internal" href="#vertices">Vertices</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#feature-basic-definition">Feature basic definition</a></li>
+<li><a class="reference internal" href="#definition-of-the-popup">Definition of the popup</a></li>
+<li><a class="reference internal" href="#definition-of-the-feature-table">Definition of the feature table</a></li>
+<li><a class="reference internal" href="#tabs-type-tabs">Tabs (type tabs)</a></li>
+<li><a class="reference internal" href="#textfields-type-input">Textfields (type input)</a></li>
+<li><a class="reference internal" href="#selectbox-selectbox-or-multiselect-type-select">Selectbox (selectbox or multiselect [type select])</a></li>
+<li><a class="reference internal" href="#text-label-type-label">Text/Label (type label)</a></li>
+<li><a class="reference internal" href="#text-type-text">Text (type text)</a></li>
+<li><a class="reference internal" href="#textareas-type-textarea">Textareas (type textarea)</a></li>
+<li><a class="reference internal" href="#breaklines-type-breakline">Breaklines (type breakline)</a></li>
+<li><a class="reference internal" href="#checkboxes-type-checkbox">Checkboxes (type checkbox)</a></li>
+<li><a class="reference internal" href="#mandatory-fields">Mandatory fields</a></li>
+<li><a class="reference internal" href="#datepicker-type-date">Datepicker (type date)</a></li>
+<li><a class="reference internal" href="#helptexts-to-the-form-elements-attribute-infotext">Helptexts to the form-elements (attribute infotext)</a></li>
+<li><a class="reference internal" href="#element-groups-type-fieldset">Element groups (type: fieldSet)</a></li>
+<li><a class="reference internal" href="#file-upload-type-file">File upload (type file)</a></li>
+<li><a class="reference internal" href="#images-type-image">Images (type image)</a></li>
+<li><a class="reference internal" href="#definition-of-the-available-toolsets-toolset-type">Definition of the available toolsets (Toolset Type)</a></li>
+<li><a class="reference internal" href="#search-in-the-tables-inline-search">Search in the tables (inline Search)</a></li>
+<li><a class="reference internal" href="#context-menu">Context Menu</a></li>
+<li><a class="reference internal" href="#clustering-experimental">Clustering (experimental)</a></li>
+<li><a class="reference internal" href="#events">Events</a></li>
+<li><a class="reference internal" href="#design-and-styles">Design and Styles</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yaml-definition-for-the-element-digitizer-in-mapbender-yml">YAML-Definition for the element Digitizer in mapbender.yml</a></li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="copyright.html"
+                        title="previous chapter">Copyright</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="feature_info.html"
+                        title="next chapter">Feature Info</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/en/bundles/Mapbender/CoreBundle/elements/digitizer.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="feature_info.html" title="Feature Info"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="copyright.html" title="Copyright"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

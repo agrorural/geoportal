@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Access Control Lists &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../index.html" />
+    <link rel="up" title="FOMUserBundle - Users and Security" href="index.html" />
+    <link rel="next" title="Users" href="users.html" />
+    <link rel="prev" title="FOMUserBundle - Users and Security" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="users.html" title="Users"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="FOMUserBundle - Users and Security"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">FOMUserBundle - Users and Security</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="access-control-lists">
+<span id="acl"></span><h1>Access Control Lists<a class="headerlink" href="#access-control-lists" title="Permalink to this headline">¶</a></h1>
+<p>Security for domain objects (generally database entities) is implemented using
+Access Control Lists (ACL). ACLs provide flexible permissions for individual
+objects.</p>
+<p>For each domain object class up to 30 individual permissions can be given. In
+general, 7 are used most often:</p>
+<ul class="simple">
+<li>View       : View object</li>
+<li>Create     : Create a new object</li>
+<li>Edit       : Edit an existing object</li>
+<li>Delete     : Delete an existing object</li>
+<li>Operator   : View, Create, Edit, and Delete permission</li>
+<li>Master     : Operator permission, can manage all permissions up to operator level.</li>
+<li>Owner      : Master permission, can grant master permission as well.</li>
+</ul>
+<p>Each ACL is composed by an object identity and several Access Control Entries
+(ACE).</p>
+<div class="section" id="object-identites">
+<h2>Object identites<a class="headerlink" href="#object-identites" title="Permalink to this headline">¶</a></h2>
+<p>ACLs are not assigned to objects directly, but to so called object identities.
+They represent individual objects or classes (the create permission is a
+class-based permission for example).</p>
+</div>
+<div class="section" id="access-control-entries">
+<h2>Access Control Entries<a class="headerlink" href="#access-control-entries" title="Permalink to this headline">¶</a></h2>
+<p>Each ACE holds the permissions for a single user or role. The permissions are
+stored as an integer bitmask, therefore 32 permissions can be used - as some
+PHP implementations use 30 bit long integers, 30 is the cross-platform maximum
+number of permissions. But as laid out above, 7 are already enough to model
+an enhanced CRUD workflow, leaving 23 for custom-tailored permission if needed.</p>
+</div>
+<div class="section" id="security-identities">
+<h2>Security Identities<a class="headerlink" href="#security-identities" title="Permalink to this headline">¶</a></h2>
+<p>ACEs can be associated with either users or roles by means of encapsulating both
+with an security identity.</p>
+<img alt="../../../../_images/acl1.png" src="../../../../_images/acl1.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../index.html">
+              <img class="logo" src="../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Access Control Lists</a><ul>
+<li><a class="reference internal" href="#object-identites">Object identites</a></li>
+<li><a class="reference internal" href="#access-control-entries">Access Control Entries</a></li>
+<li><a class="reference internal" href="#security-identities">Security Identities</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">FOMUserBundle - Users and Security</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="users.html"
+                        title="next chapter">Users</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/en/bundles/FOM/UserBundle/acl.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="users.html" title="Users"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="FOMUserBundle - Users and Security"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >FOMUserBundle - Users and Security</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

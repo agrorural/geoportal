@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Wie können eigene Elemente erzeugt werden? &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="The Developer’s Book" href="../../development.html" />
+    <link rel="prev" title="Elemente verstehen" href="elements.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="elements.html" title="Elemente verstehen"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" accesskey="U">The Developer&#8217;s Book</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="wie-konnen-eigene-elemente-erzeugt-werden">
+<span id="element-generate"></span><h1>Wie können eigene Elemente erzeugt werden?<a class="headerlink" href="#wie-konnen-eigene-elemente-erzeugt-werden" title="Permalink to this headline">¶</a></h1>
+<p><em>Anmerkung</em>: Diese Anleitung wird gerade überarbeitet. Wir werden eine neue Dokumentation im Contributing Guide für Entwickler im Git-Repository bereitstellen:</p>
+<p><a class="reference external" href="https://github.com/mapbender/mapbender-starter/blob/release/3.0.6/CONTRIBUTING.md">https://github.com/mapbender/mapbender-starter/blob/release/3.0.6/CONTRIBUTING.md</a>.</p>
+<p>Mapbender3 bietet einen app/console-Befehl zur Erzeugung von Elementen.</p>
+<p>Hierbei können vier verschiedene Typen von Elementen generiert werden:</p>
+<ul class="simple">
+<li>einfache Elemente (general)</li>
+<li>Schaltflächen (buttons)</li>
+<li>Elemente, die auf einen Kartenklick (map-click) reagieren</li>
+<li>Elemente, die auf das Aufziehen eines Rechtecks (map-box) reagieren</li>
+</ul>
+<p><em>Achtung:</em> Die generierten Elemente enthalten lediglich ein Basisgerüst und müssen anschließend noch angepasst werden.</p>
+<p>Im Folgenden soll am Beispiel eines map-klick-Elementes das Erzeugen und die Anpassung eines Elementes gezeigt werden.</p>
+<div class="section" id="die-arbeitsschritte-zum-erzeugen-von-eigenen-elementen">
+<h2>Die Arbeitsschritte zum Erzeugen von eigenen Elementen<a class="headerlink" href="#die-arbeitsschritte-zum-erzeugen-von-eigenen-elementen" title="Permalink to this headline">¶</a></h2>
+<p>Die Arbeitsschritte auf dem Weg zum eigenen Element.</p>
+<ul class="simple">
+<li>Erzeugen Sie ein eigenes Bundle</li>
+<li>Erzeugen Sie ein Element mit Hilfe von app/console</li>
+<li>Passen Sie das Element an Ihre Bedürfnisse an</li>
+<li>Fügen Sie das Element in die Funktion <em>getElements()</em> ein, um es über das Backend verfügbar zu machen</li>
+</ul>
+</div>
+<div class="section" id="anlegen-eines-eigenen-bundles-mit-app-console-generate-bundle">
+<h2>Anlegen eines eigenen Bundles mit app/console generate:bundle<a class="headerlink" href="#anlegen-eines-eigenen-bundles-mit-app-console-generate-bundle" title="Permalink to this headline">¶</a></h2>
+<p>Die Hilfe zum Befehl erhalten Sie über die Option help:</p>
+<div class="highlight-bash"><div class="highlight"><pre>app/console generate:bundle --help
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>app/console generate:bundle --namespace<span class="o">=</span>Workshop/DemoBundle --dir<span class="o">=</span>src
+</pre></div>
+</div>
+<p>Für die Erstellung müssen noch einige Angaben gemacht werden:</p>
+<div class="highlight-bash"><div class="highlight"><pre>Bundle name <span class="o">[</span>WorkshopDemoBundle<span class="o">]</span>: WorkshopDemoBundle
+
+Determine the format to use <span class="k">for</span> the generated configuration.
+Configuration format <span class="o">(</span>yml, xml, php, or annotation<span class="o">)</span>: annotation
+
+To <span class="nb">help</span> you get started faster, the <span class="nb">command</span> can generate some
+code snippets <span class="k">for</span> you.
+
+Do you want to generate the whole directory structure <span class="o">[</span>no<span class="o">]</span>? yes
+
+Summary before generation
+You are going to generate a <span class="s2">&quot;Workshop\DemoBundle\WorkshopDemoBundle&quot;</span> bundle
+in <span class="s2">&quot;src/&quot;</span> using the <span class="s2">&quot;annotation&quot;</span> format.
+
+Do you confirm generation <span class="o">[</span>yes<span class="o">]</span>? yes
+
+Confirm automatic update of your Kernel <span class="o">[</span>yes<span class="o">]</span>? yes
+
+Confirm automatic update of the Routing <span class="o">[</span>yes<span class="o">]</span>? yes
+</pre></div>
+</div>
+<p>Nach diesen Schritten liegt das neue Bundle im Verzeichnis src vor. Außerdem wurde das Bundle in der Datei AppKernel.php registriert. In der Datei routing.yml wurde eine neue Route für das Bundle eingetragen.</p>
+</div>
+<div class="section" id="eigene-elemente-uber-app-console-generieren">
+<h2>Eigene Elemente über app/console generieren<a class="headerlink" href="#eigene-elemente-uber-app-console-generieren" title="Permalink to this headline">¶</a></h2>
+<p>Auflistung der Mapbender app/console Befehle:</p>
+<div class="highlight-bash"><div class="highlight"><pre>app/console list mapbender
+
+Available commands <span class="k">for</span> the <span class="s2">&quot;mapbender&quot;</span> namespace:
+ mapbender:assets:dump            Dump all Mapbender application assets.
+ mapbender:generate:element       Generates a Mapbender element
+ mapbender:generate:template      Generates a Mapbender application template
+ mapbender:generate:translation   Generates a Mapbender translation
+</pre></div>
+</div>
+<p>Die Hilfe zum Befehl erhalten Sie über die Option help:</p>
+<div class="highlight-bash"><div class="highlight"><pre>app/console mapbender:generate:element --help
+</pre></div>
+</div>
+<p>Erzeugen Sie ein Element über den folgende Befehl:</p>
+<div class="highlight-bash"><div class="highlight"><pre>app/console mapbender:generate:element --type <span class="s2">&quot;map-click&quot;</span> <span class="s2">&quot;Workshop\DemoBundle&quot;</span> MapKlick src
+</pre></div>
+</div>
+<p>Es wird eine Übersicht über die erfolgte Aktion ausgegeben. Es wurde eine PHP-Datei und eine js-Datei erzeugt.</p>
+<div class="highlight-bash"><div class="highlight"><pre>Summary of actions
+- Your element WorkshopDemoBundle<span class="se">\E</span>lement<span class="se">\M</span>apKlick has been created.
+- The following files have been created:
+ - PHP class <span class="o">(</span>src/Workshop/DemoBundle/Element/MapKlick.php<span class="o">)</span>
+ - jQuery widget <span class="o">(</span>src/Workshop/DemoBundle/Resources/public/mapbender.element.mapklick.js<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="anpassung-des-eigenen-elements">
+<h2>Anpassung des eigenen Elements<a class="headerlink" href="#anpassung-des-eigenen-elements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="anpassung-des-titels-und-der-beschreibung">
+<h3>Anpassung des Titels und der Beschreibung<a class="headerlink" href="#anpassung-des-titels-und-der-beschreibung" title="Permalink to this headline">¶</a></h3>
+<p>In der PHP-Datei finden Sie zahlreiche Funktionen. Ändern Sie den return-Wert der Funktionen <em>getClassTitle()</em> und <em>getClassDescription()</em>.</p>
+<div class="highlight-bash"><div class="highlight"><pre>public static <span class="k">function</span> getClassTitle<span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s2">&quot;MapKlick&quot;</span><span class="p">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>public static <span class="k">function</span> getClassDescription<span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s2">&quot;Generates an Url with the the mapklick coordinates added&quot;</span><span class="p">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="registrierung-des-neuen-elements">
+<h2>Registrierung des neuen Elements<a class="headerlink" href="#registrierung-des-neuen-elements" title="Permalink to this headline">¶</a></h2>
+<p>Ein Element kann registriert werden, indem es in der Funktion <em>getElements()</em> in der Datei src/Workshop/DemoBundle/WorkshopDemoBundle.php aufgeführt wird. Nach der Erstellung liegt diese Funktion vorerst nicht vor. Fügen Sie diese ein. Außerdem muss die Referenz zum MapbernderCoreBundle eingetragen werden (use Mapbender\CoreBundle...). Sie müssen weiterhin angeben, dass die Klasse, das MapbenderBundle erweitert.</p>
+<p>Durch diesen Eintrag kann das Element im Backend bei der Anwendungskonfiguration ausgewählt werden.</p>
+<div class="highlight-bash"><div class="highlight"><pre>&lt;?php
+
+namespace Workshop<span class="se">\D</span>emoBundle<span class="p">;</span>
+
+use Symfony<span class="se">\C</span>omponent<span class="se">\H</span>ttpKernel<span class="se">\B</span>undle<span class="se">\B</span>undle<span class="p">;</span>
+use Mapbender<span class="se">\C</span>oreBundle<span class="se">\C</span>omponent<span class="se">\M</span>apbenderBundle<span class="p">;</span>
+
+class WorkshopDemoBundle extends MapbenderBundle
+<span class="o">{</span>
+    public <span class="k">function</span> getElements<span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> array<span class="o">(</span>
+            <span class="s1">&#39;Workshop\DemoBundle\Element\MapKlick&#39;</span>
+        <span class="o">)</span><span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="element-zu-einer-anwendung-hinzufugen">
+<h2>Element zu einer Anwendung hinzufügen<a class="headerlink" href="#element-zu-einer-anwendung-hinzufugen" title="Permalink to this headline">¶</a></h2>
+<p>Erstellen Sie eine Anwendung und fügen Sie das neue Element zu der Anwendung hinzu. Sie finden das Element unter dem Element-Titel in der Liste der Elemente. Beachten Sie, dass die anschließende Konfiguration des Elementes im YAML-Syntax erfolgt. Wenn Sie das Karten-Element (map) als <em>target</em> verwenden möchten, müssen Sie die ID des Kartenelements ermitteln. Dies kann beispielsweise über Firebug erfolgen.</p>
+</div>
+<div class="section" id="andern-der-aktion-des-klick-ereignisses">
+<h2>Ändern der Aktion des Klick-Ereignisses<a class="headerlink" href="#andern-der-aktion-des-klick-ereignisses" title="Permalink to this headline">¶</a></h2>
+<p>Wenn Sie ein map-click-Element erzeugen reagiert dieses auf das Klick-Ereignis mit einer Aktion. Diese Aktion kann modifiziert werden. Schauen Sie sich dazu die JQuery widget Datei an (mapbender/src/Workshop/DemoBundle/Resources/public/mapbender.element.mapklick.js).</p>
+<p>Hier finden Sie die Funktion <em>_mapClickHandler()</em>, die die Koordinaten des Klick-Ereignisses ermittelt und an die Funktion <em>_mapClickWorker()</em> weitergibt. Standarmäßig gibt das neu generierte Element die Pixelposition und Koordinate des Klicks in einem Dialog aus.</p>
+<p>Sie können die Aktion der Funktion  <em>_mapClickWorker()</em> anpassen.</p>
+</div>
+<div class="section" id="standarddefinition-der-funktion-mapclickworker">
+<h2>Standarddefinition der Funktion mapClickWorker<a class="headerlink" href="#standarddefinition-der-funktion-mapclickworker" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre>_mapClickWorker: <span class="k">function</span><span class="o">(</span>coordinates<span class="o">)</span> <span class="o">{</span>
+       alert<span class="o">(</span><span class="s1">&#39;You clicked: &#39;</span> +
+               coordinates.pixel.x + <span class="s1">&#39; x &#39;</span> + coordinates.pixel.y +
+               <span class="s1">&#39; (Pixel), which equals &#39;</span> +
+               coordinates.world.x + <span class="s1">&#39; x &#39;</span> + coordinates.world.y +
+               <span class="s1">&#39; (World).&#39;</span><span class="o">)</span><span class="p">;</span>
+   <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="angepassung-der-funktion-mapclickworker-zum-aufruf-einer-url">
+<h2>Angepassung der Funktion mapClickWorker() zum Aufruf einer URL<a class="headerlink" href="#angepassung-der-funktion-mapclickworker-zum-aufruf-einer-url" title="Permalink to this headline">¶</a></h2>
+<p>Alternativ kann beispielsweise ein neues Fenster mit einer URL geöffnet und die Koordinaten als Parameter übergeben werden. So können Sie beispielsweise OpenStreetMap aufrufen und die Koordinate des Klickereignisses zentrieren.</p>
+<p><a class="reference external" href="http://www.openstreetmap.org/export#map=15/50.7311/7.0985">http://www.openstreetmap.org/export#map=15/50.7311/7.0985</a></p>
+<div class="highlight-bash"><div class="highlight"><pre>_mapClickWorker: <span class="k">function</span><span class="o">(</span>coordinates<span class="o">)</span> <span class="o">{</span>
+       window.open<span class="o">(</span><span class="s1">&#39;http://www.openstreetmap.org/export#map=15/&#39;</span> + coordinates.world.y + <span class="s1">&#39;/&#39;</span> + coordinates.world.x<span class="o">)</span><span class="p">;</span>
+   <span class="o">}</span>
+ src/Workshop/DemoBundle/WorkshopDemoBundle.php
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Wie können eigene Elemente erzeugt werden?</a><ul>
+<li><a class="reference internal" href="#die-arbeitsschritte-zum-erzeugen-von-eigenen-elementen">Die Arbeitsschritte zum Erzeugen von eigenen Elementen</a></li>
+<li><a class="reference internal" href="#anlegen-eines-eigenen-bundles-mit-app-console-generate-bundle">Anlegen eines eigenen Bundles mit app/console generate:bundle</a></li>
+<li><a class="reference internal" href="#eigene-elemente-uber-app-console-generieren">Eigene Elemente über app/console generieren</a></li>
+<li><a class="reference internal" href="#anpassung-des-eigenen-elements">Anpassung des eigenen Elements</a><ul>
+<li><a class="reference internal" href="#anpassung-des-titels-und-der-beschreibung">Anpassung des Titels und der Beschreibung</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#registrierung-des-neuen-elements">Registrierung des neuen Elements</a></li>
+<li><a class="reference internal" href="#element-zu-einer-anwendung-hinzufugen">Element zu einer Anwendung hinzufügen</a></li>
+<li><a class="reference internal" href="#andern-der-aktion-des-klick-ereignisses">Ändern der Aktion des Klick-Ereignisses</a></li>
+<li><a class="reference internal" href="#standarddefinition-der-funktion-mapclickworker">Standarddefinition der Funktion mapClickWorker</a></li>
+<li><a class="reference internal" href="#angepassung-der-funktion-mapclickworker-zum-aufruf-einer-url">Angepassung der Funktion mapClickWorker() zum Aufruf einer URL</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="elements.html"
+                        title="previous chapter">Elemente verstehen</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/de/book/development/element_generate.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="elements.html" title="Elemente verstehen"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../development.html" >The Developer&#8217;s Book</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

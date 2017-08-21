@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation on Windows &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../index.html" />
+    <link rel="up" title="Installation" href="../installation.html" />
+    <link rel="next" title="Git-based installation" href="installation_git.html" />
+    <link rel="prev" title="Installation on Ubuntu and Debian" href="installation_ubuntu.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="installation_git.html" title="Git-based installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation_ubuntu.html" title="Installation on Ubuntu and Debian"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../thebook.html" >The Book</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../installation.html" accesskey="U">Installation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="installation-on-windows">
+<span id="installation-windows"></span><h1>Installation on Windows<a class="headerlink" href="#installation-on-windows" title="Permalink to this headline">¶</a></h1>
+<p>Please take note of the <a class="reference external" href="systemrequirements.html">system requirements</a> where you can also find the Download links to Mapbender3. Install the neccessary components:</p>
+<blockquote>
+<div><ul class="simple">
+<li>add the path to your PHP-bin directory to the PATH variable</li>
+<li>activate the PHP extensions in your php.ini configuration file</li>
+<li>load the Apache module rewrite</li>
+</ul>
+</div></blockquote>
+<div class="highlight-ini"><div class="highlight"><pre><span class="c1"># php.ini</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_curl.dll</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_fileinfo.dll</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_gd2.dll</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_intl.dll</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_pdo_pgsql.dll</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_pdo_sqlite.dll</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_pgsql.dll</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_openssl.dll</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_mbstring.dll</span>
+</pre></div>
+</div>
+<p>For development:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="c1"># php.ini</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_bz2.dll</span>
+</pre></div>
+</div>
+<p>Additional for PHP 7:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="c1"># php.ini</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_zip.dll</span>
+<span class="na">extension</span><span class="o">=</span><span class="s">php_bz2.dll</span>
+</pre></div>
+</div>
+<div class="highlight-apache"><div class="highlight"><pre><span class="c"># Windows: edit file httpd.conf (remove the comment-sign #) and restart apache</span>
+<span class="nb">LoadModule</span> rewrite_module modules/mod_rewrite.so
+</pre></div>
+</div>
+<p>Create the Apache alias. In Windows there are several ways. A clear way is to create a file mapbender3.conf and to refer to that file in Apaches httpd.conf</p>
+<ul class="simple">
+<li>Create a subfolder &#8220;alias&#8221; in the directory &#8220;&lt;apache&gt;/conf&#8221;. Create the mapbender3.conf file there. (You can use this directory to place additional Alias definition-files for other sites there.)</li>
+<li>In the httpd.conf (in directory &lt;apache&gt;/conf/)refer to this file mapbender3.conf</li>
+</ul>
+<p>In httpd.conf:</p>
+<div class="highlight-apache"><div class="highlight"><pre><span class="c"># Refer to Mapbender3 alias</span>
+<span class="nb">Include</span> <span class="s2">&quot;conf/alias/mapbender3.conf&quot;</span>
+</pre></div>
+</div>
+<p>In mapbender3.conf:</p>
+<div class="highlight-apache"><div class="highlight"><pre><span class="nb">Alias</span> <span class="sx">/mapbender3</span> c:/mapbender3/web/
+<span class="nt">&lt;Directory</span> <span class="s">c:/mapbender3/web/</span><span class="nt">&gt;</span>
+ <span class="nb">Options</span> MultiViews FollowSymLinks
+ <span class="nb">DirectoryIndex</span> app.php
+ <span class="nb">Require</span> <span class="k">all</span> granted
+
+ <span class="nb">RewriteEngine</span> <span class="k">On</span>
+ <span class="nb">RewriteBase</span> <span class="sx">/mapbender3/</span>
+ <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} !-f
+ <span class="nb">RewriteRule</span> ^(.*)$ app.php [QSA,L]
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+</div>
+<p>We assume in this example, that Mapbender3 is unzipped directy under <strong>C:/</strong> (see the <a class="reference external" href="systemrequirements.html#download-of-mapbender3">System Requirements and Download</a> chapter for details). You can easily choose a different directory and have to adjust the Apache mapbender3.conf file above to the right location.</p>
+<p>Restart the Apache webserver.</p>
+<div class="section" id="optional-features">
+<h2>Optional features<a class="headerlink" href="#optional-features" title="Permalink to this headline">¶</a></h2>
+<p>The following steps may lead to a better performance under some Windows installations.</p>
+<div class="section" id="sass-compiler">
+<h3>SASS Compiler<a class="headerlink" href="#sass-compiler" title="Permalink to this headline">¶</a></h3>
+<p>The SASS compiler is part of Mapbender since version 3.0.5 and contains und contains a filter since version 3.0.6.0 which makes sure that the generated CSS statements are stored in a temporary file instead of delivering it out in a pipe.</p>
+</div>
+<div class="section" id="mod-fcgid">
+<h3>mod_fcgid<a class="headerlink" href="#mod-fcgid" title="Permalink to this headline">¶</a></h3>
+<p>&#8220;mod_fcgid&#8221; is an Apache handler that is recommended for Windows Installations with Apache, because server requests can be executed parallel. These instructions are an offer for your deployment, although many other varaiants exist, which we cannot cover in this documentation.</p>
+<p>The common way to register PHP in Apache is as a module:</p>
+<div class="highlight-apache"><div class="highlight"><pre><span class="c"># LoadModule php5_module &quot;c:/bin/php/5.6.30/php5apache2_4.dll&quot;</span>
+<span class="c"># AddHandler application/x-httpd-php .php</span>
+
+<span class="c"># configure the path to php.ini</span>
+<span class="c"># PHPIniDir &quot;c:/bin/php/5.6.30&quot;</span>
+</pre></div>
+</div>
+<p>This way is substituded with the FCGID method. It needs some preparation since them module is not shipped with Apache installations out of the box.</p>
+<ul class="simple">
+<li>Website: <a class="reference external" href="https://httpd.apache.org/mod_fcgid/">https://httpd.apache.org/mod_fcgid/</a></li>
+<li>Download for Windows (VC 11, please mind your dependencies): <a class="reference external" href="https://www.apachelounge.com/download/VC11/">https://www.apachelounge.com/download/VC11/</a> and there the <strong>modules-...zip</strong> file.</li>
+<li>Unzip the mod_fcgid.so file from the archive into the module-directory of Apache.</li>
+</ul>
+<p>Adjust the httpd.conf:</p>
+<div class="highlight-apache"><div class="highlight"><pre><span class="c"># FCGI</span>
+<span class="nb">LoadModule</span> fcgid_module <span class="s2">&quot;modules/mod_fcgid.so&quot;</span>
+<span class="nb">FcgidInitialEnv</span> PHPRC <span class="s2">&quot;c:/bin/php/5.6.30&quot;</span>
+<span class="nb">AddHandler</span> fcgid-script .php
+<span class="nb">FcgidWrapper</span> <span class="s2">&quot;c:/bin/php/5.6.30/php-cgi.exe&quot;</span> .php
+</pre></div>
+</div>
+<p>In the Mapbender-Apache-Site file (mapbender.conf), add the &#8220;ExecCGI&#8221; parameter, for example:</p>
+<div class="highlight-apache"><div class="highlight"><pre>&lt;Directory c:/srv/mapbender3-starter-3.0.6.0/web/&gt;
+    [...]
+    Options MultiViews FollowSymLinks ExecCGI
+    [...]
+&lt;/Directory&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="wincache-php-optional">
+<h3>WinCache PHP (optional)<a class="headerlink" href="#wincache-php-optional" title="Permalink to this headline">¶</a></h3>
+<p>The Windows Cache Extension for PHP is a PHP accelerator that is used to increase the speed of PHP applications running on Windows and Windows Server. The extension included PHP opcode cache, user data cache, session cache, file system cache and relative path cache.</p>
+<p>Further information under:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.iis.net/downloads/microsoft/wincache-extension">https://www.iis.net/downloads/microsoft/wincache-extension</a></li>
+<li><a class="reference external" href="https://sourceforge.net/projects/wincache/">https://sourceforge.net/projects/wincache/</a></li>
+</ul>
+<p><strong>WinCache Installation</strong></p>
+<ul class="simple">
+<li>Download: <a class="reference external" href="https://sourceforge.net/projects/wincache/">https://sourceforge.net/projects/wincache/</a></li>
+<li>The download is shipped as a self-extracting archive (.exe).</li>
+</ul>
+<div class="highlight-txt"><div class="highlight"><pre>To install and enable the extension, use the following steps:
+Unpack the package that is appropriate for the PHP version you are using.
+Copy the php_wincache.dll file into the PHP extensions folder. Typically this folder is called &quot;ext&quot; and it is located in the same folder with all PHP binary files. For example:
+&quot;C:\Program Files\PHP\ext&quot;.
+Using a text editor, open the php.ini file, which is usually located in the same folder where all PHP binary files are. For example:
+&quot;C:\Program Files\PHP\php.ini&quot;.
+Add the following line at the end of the php.ini file:
+extension = php_wincache.dll
+Save and close the php.ini file.
+</pre></div>
+</div>
+<p><strong>set session.handler to WinCache:</strong></p>
+<div class="highlight-txt"><div class="highlight"><pre>To change the location of the session file use session.save_path directive.
+sesion.save_handler = wincache
+session.save_path = C:\inetpub\tmp\session\
+</pre></div>
+</div>
+<p><strong>activate wincache.reroute_enabled</strong></p>
+<div class="highlight-txt"><div class="highlight"><pre>The reroutes are not enabled by default. To enable them, set the reroute_enabled directive in either the php.ini or the .user.ini.
+wincache.reroute_enabled = 1
+</pre></div>
+</div>
+</div>
+<div class="section" id="opcache-optional">
+<h3>OpCache (optional)<a class="headerlink" href="#opcache-optional" title="Permalink to this headline">¶</a></h3>
+<p>OPCache is a PHP-extension which is delievered with PHP since version 5.5.5. but is not activated by default.</p>
+<p>More info: <a class="reference external" href="https://www.sitepoint.com/understanding-opcache/">https://www.sitepoint.com/understanding-opcache/</a></p>
+<p><strong>OPCache installation</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="http://php.net/manual/de/book.opcache.php">http://php.net/manual/de/book.opcache.php</a></li>
+</ul>
+<p>In php.ini:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[opcache]</span>
+<span class="c1">; Pfad zur php_opcache.dll</span>
+<span class="na">zend_extension</span><span class="o">=</span><span class="s">C:/bin/php/5.6.30/ext/php_opcache.dll</span>
+
+<span class="c1">; Determines if Zend OPCache is enabled</span>
+<span class="na">opcache.enable</span><span class="o">=</span><span class="s">1</span>
+
+<span class="c1">; Determines if Zend OPCache is enabled for the CLI version of PHP</span>
+<span class="c1">;opcache.enable_cli=0</span>
+
+<span class="c1">; The OPcache shared memory storage size.</span>
+<span class="na">opcache.memory_consumption</span><span class="o">=</span><span class="s">64</span>
+<span class="c1">; The amount of memory for interned strings in Mbytes.</span>
+<span class="na">opcache.interned_strings_buffer</span><span class="o">=</span><span class="s">4</span>
+<span class="c1">; The maximum number of keys (scripts) in the OPcache hash table.</span>
+<span class="c1">; Only numbers between 200 and 100000 are allowed.</span>
+<span class="na">opcache.max_accelerated_files</span><span class="o">=</span><span class="s">2000</span>
+<span class="c1">; The maximum percentage of &quot;wasted&quot; memory until a restart is scheduled.</span>
+<span class="na">opcache.max_wasted_percentage</span><span class="o">=</span><span class="s">5</span>
+</pre></div>
+</div>
+<p>Symfony recommends, to increase the <strong>opcache.max_accelerated_files</strong> value: <a class="reference external" href="http://symfony.com/doc/3.1/performance.html#optimizing-all-the-files-used-by-symfony">http://symfony.com/doc/3.1/performance.html#optimizing-all-the-files-used-by-symfony</a></p>
+</div>
+</div>
+<div class="section" id="check">
+<h2>Check<a class="headerlink" href="#check" title="Permalink to this headline">¶</a></h2>
+<p>Check that the Alias is accessible:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://localhost/mapbender3/">http://localhost/mapbender3/</a></li>
+</ul>
+<p>Open Symfony´s Welcome Script config.php. This script checks whether all necessary components are installed and configurations are done. If there are still problems, you should fix them.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://localhost/mapbender3/config.php">http://localhost/mapbender3/config.php</a></li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/mapbender3_symfony_check_configphp1.png"><img alt="../../../_images/mapbender3_symfony_check_configphp1.png" src="../../../_images/mapbender3_symfony_check_configphp1.png" style="width: 640.0px; height: 480.0px;" /></a>
+<p>Adapt the Mapbender3 configuration file parameters.yml (app/config/parameters.yml) and define the database you want to create. Further information is available in the chapter <a class="reference external" href="../database.html">Configuring the database</a>.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">database_driver</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">pdo_pgsql</span>
+<span class="l l-Scalar l-Scalar-Plain">database_host</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+<span class="l l-Scalar l-Scalar-Plain">database_port</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">5432</span>
+<span class="l l-Scalar l-Scalar-Plain">database_name</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">mapbender3</span>
+<span class="l l-Scalar l-Scalar-Plain">database_path</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">~</span>
+<span class="l l-Scalar l-Scalar-Plain">database_user</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+<span class="l l-Scalar l-Scalar-Plain">database_password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">secret</span>
+</pre></div>
+</div>
+<p>Run the app/console commands with php. First you have to open a terminal (cmd).</p>
+<div class="highlight-text"><div class="highlight"><pre>c:
+cd mapbender3
+php.exe app/console doctrine:database:create
+php.exe app/console doctrine:schema:create
+php.exe app/console assets:install web
+php.exe app/console fom:user:resetroot
+php.exe app/console doctrine:fixtures:load --fixtures=./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Epsg/ --append
+php.exe app/console doctrine:fixtures:load --fixtures=./mapbender/src/Mapbender/CoreBundle/DataFixtures/ORM/Application/ --append
+</pre></div>
+</div>
+<p>Installation of Mapbender3 is done.</p>
+<p>Check the config.php again:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://localhost/mapbender3/config.php">http://localhost/mapbender3/config.php</a></li>
+</ul>
+<p>You can start using Mapbender3 now. You can open the developer mode when you run app_dev.php.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://localhost/mapbender3/app_dev.php">http://localhost/mapbender3/app_dev.php</a></li>
+</ul>
+<p><strong>Notice:</strong> Go to the login link at the right-top and log in with the new user you created.</p>
+<p>To learn more about Mapbender3 have a look at the <a class="reference external" href="../quickstart.html">Mapbender3 Quickstart</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation on Windows</a><ul>
+<li><a class="reference internal" href="#optional-features">Optional features</a><ul>
+<li><a class="reference internal" href="#sass-compiler">SASS Compiler</a></li>
+<li><a class="reference internal" href="#mod-fcgid">mod_fcgid</a></li>
+<li><a class="reference internal" href="#wincache-php-optional">WinCache PHP (optional)</a></li>
+<li><a class="reference internal" href="#opcache-optional">OpCache (optional)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#check">Check</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation_ubuntu.html"
+                        title="previous chapter">Installation on Ubuntu and Debian</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation_git.html"
+                        title="next chapter">Git-based installation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/en/book/installation/installation_windows.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="installation_git.html" title="Git-based installation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation_ubuntu.html" title="Installation on Ubuntu and Debian"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../thebook.html" >The Book</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../installation.html" >Installation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

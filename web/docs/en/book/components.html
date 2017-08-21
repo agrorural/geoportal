@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Components &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../index.html" />
+    <link rel="up" title="The Book" href="../thebook.html" />
+    <link rel="next" title="Directory structure in Mapbender3" href="directory_structure.html" />
+    <link rel="prev" title="Details of the configuration of Mapbender3" href="installation/configuration.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="directory_structure.html" title="Directory structure in Mapbender3"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation/configuration.html" title="Details of the configuration of Mapbender3"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" accesskey="U">The Book</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="components">
+<span id="id1"></span><h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h1>
+<p>Mapbender3 is made up of different components. On the server side we use Symfony2 as a framework which comes along with powerfull components like Doctrine, Twig, Monolog and more.</p>
+<p>On the client side we use OpenLayers, MapQuery and jQuery &amp; jQuery UI.</p>
+<p>We have a Mapbender core bundle with the Mapbender basic functionalities. And more Mapbender bundles which are optional.</p>
+<p>We offer a Mapbender Starter package. With the Mapbender Starter package you can set up a Mapbender3 installation easily.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/mapbender3_components.png"><img alt="../../_images/mapbender3_components.png" src="../../_images/mapbender3_components.png" style="width: 513.0px; height: 283.8px;" /></a>
+</div></blockquote>
+<div class="section" id="symfony2">
+<h2>Symfony2<a class="headerlink" href="#symfony2" title="Permalink to this headline">¶</a></h2>
+<a class="reference external image-reference" href="http://symfony.com/"><img alt="Symfony Project page" class="align-center" src="http://symfony.com/images/common/logo/logo_symfony_header.png" /></a>
+<p>Symfony2 is a full object oriented PHP Web Development Framework. It builds blocks for all modern web application needs. It is a collection of software and a development methodology. It relies on the philosophy of building blocks. It is optimized for speed. It uses Byte Code Cache.</p>
+<p>Here comes just a list of some components Symfony offers:</p>
+<ul class="simple">
+<li>Symfony config.php to check the prerequisites</li>
+<li>Symfony Profiler</li>
+<li>Database abstraction via Doctrine</li>
+<li>User authentication, authorization</li>
+<li>Templating via Twig</li>
+<li>Translation using xliff-files</li>
+<li>Logging via Monolog</li>
+<li>Security</li>
+</ul>
+<p>The project has a very good documentation</p>
+<ul class="simple">
+<li>TheBook <a class="reference external" href="http://symfony.com/doc/current/book/index.html">http://symfony.com/doc/current/book/index.html</a></li>
+</ul>
+</div>
+<div class="section" id="openlayers">
+<h2>OpenLayers<a class="headerlink" href="#openlayers" title="Permalink to this headline">¶</a></h2>
+<a class="reference external image-reference" href="http://openlayers.org/"><img alt="OpenLayers Project page" class="align-center" src="http://www.openlayers.org/images/OpenLayers.trac.png" /></a>
+<p>OpenLayers is a powerfull software for web maps. It supports lot of data sources and functionality.</p>
+<p>Read more about OpenLayers at <a class="reference external" href="http://openlayers.org/">http://openlayers.org/</a></p>
+<p>You find example applications with OpenLayers at <a class="reference external" href="http://dev.openlayers.org/examples/">http://dev.openlayers.org/examples/</a></p>
+</div>
+<div class="section" id="mapquery">
+<h2>MapQuery<a class="headerlink" href="#mapquery" title="Permalink to this headline">¶</a></h2>
+<a class="reference external image-reference" href="http://mapquery.org/"><img alt="MapQuery Project page" class="align-center" src="http://mapquery.org/img/logo.png" /></a>
+<p>MapQuery implements a jQuery interface to OpenLayers. It provides a set of mapping related widgets. In Mapbender3 MapQuery is used to interact with OpenLayers.</p>
+<p>Read more about MapQuery at <a class="reference external" href="http://mapquery.org/">http://mapquery.org/</a></p>
+</div>
+<div class="section" id="jquery-and-jquery-ui">
+<h2>jQuery and jQuery UI<a class="headerlink" href="#jquery-and-jquery-ui" title="Permalink to this headline">¶</a></h2>
+<p>jQuery is a feature-rich JavaScript library. jQuery UI is a set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library.</p>
+<blockquote>
+<div><p><a class="reference external" href="http://jquery.com">http://jquery.com</a></p>
+<p><a class="reference external" href="http://jqueryui.com/">http://jqueryui.com/</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="mapbender3">
+<h2>Mapbender3<a class="headerlink" href="#mapbender3" title="Permalink to this headline">¶</a></h2>
+<p>Mapbender3 is a collection of bundles. Only the MapbenderCoreBundle and the FOMBundles are mandatory.</p>
+<p>There are optional bundles like:</p>
+<ul class="simple">
+<li>WMSBundle</li>
+<li>WMTSBundle</li>
+<li>WMCBundle</li>
+<li>MonitoringBundle</li>
+</ul>
+<div class="section" id="corebundle">
+<h3>CoreBundle<a class="headerlink" href="#corebundle" title="Permalink to this headline">¶</a></h3>
+<p>The Mapbender CoreBundle is the base bundle for Mapbender. It offers base classes for applications, elements, layers and more.</p>
+<p>It provides jQuery, jQuery UI, OpenLayers and MapQuery for all other Mapbender bundles.</p>
+</div>
+</div>
+<div class="section" id="mapbender-starter">
+<h2>Mapbender Starter<a class="headerlink" href="#mapbender-starter" title="Permalink to this headline">¶</a></h2>
+<p>Mapbender Starter is Symfony2 demo project which uses the Mapbender bundles to showcase a Mapbender3 application.</p>
+<p>It contains demo applications which are defined in the mapbender.yml with WMS, WMTS. It provides a web interface with authentication which provides the possibility to create applications, create users/groups and build up a service repository.</p>
+<p>Mapbender Starter can be used as a boiler template to start Mapbender3 projects.</p>
+</div>
+<div class="section" id="external-repositories">
+<h2>External Repositories<a class="headerlink" href="#external-repositories" title="Permalink to this headline">¶</a></h2>
+<p>You find more code connected to Mapbender3 at GitHub, which is not part of the main project. Other providers can offer Bundles for Mapbender3 like the DesktopIntegrationBundle which is provided by <a class="reference external" href="http://wheregroup.com">WhereGroup</a> and sponsored by customers.</p>
+<dl class="docutils">
+<dt>WhereGroup offers Bundles for Mapbender3 at:</dt>
+<dd><a class="reference external" href="https://github.com/WhereGroup">https://github.com/WhereGroup</a></dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Components</a><ul>
+<li><a class="reference internal" href="#symfony2">Symfony2</a></li>
+<li><a class="reference internal" href="#openlayers">OpenLayers</a></li>
+<li><a class="reference internal" href="#mapquery">MapQuery</a></li>
+<li><a class="reference internal" href="#jquery-and-jquery-ui">jQuery and jQuery UI</a></li>
+<li><a class="reference internal" href="#mapbender3">Mapbender3</a><ul>
+<li><a class="reference internal" href="#corebundle">CoreBundle</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mapbender-starter">Mapbender Starter</a></li>
+<li><a class="reference internal" href="#external-repositories">External Repositories</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation/configuration.html"
+                        title="previous chapter">Details of the configuration of Mapbender3</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="directory_structure.html"
+                        title="next chapter">Directory structure in Mapbender3</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/en/book/components.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="directory_structure.html" title="Directory structure in Mapbender3"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation/configuration.html" title="Details of the configuration of Mapbender3"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" >The Book</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

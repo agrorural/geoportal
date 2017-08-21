@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Search Router &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../../index.html" />
+    <link rel="up" title="MapbenderCoreBundle" href="../index.html" />
+    <link rel="next" title="SimpleSearch" href="simplesearch.html" />
+    <link rel="prev" title="ScaleDisplay" href="scaledisplay.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="simplesearch.html" title="SimpleSearch"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="scaledisplay.html" title="ScaleDisplay"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="search-router">
+<span id="id1"></span><h1>Search Router<a class="headerlink" href="#search-router" title="Permalink to this headline">¶</a></h1>
+<p>Search frontend GUI for plugable search engine modules. Right now a generic SQL search engine
+is provided, with more to come (think Lucene enhanced search, etc.)</p>
+<a class="reference internal image-reference" href="../../../../../_images/search_router1.png"><img alt="../../../../../_images/search_router1.png" src="../../../../../_images/search_router1.png" style="width: 388.8px; height: 300.0px;" /></a>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/search_router_configuration1.png"><img alt="../../../../../_images/search_router_configuration1.png" src="../../../../../_images/search_router_configuration1.png" style="width: 443.2px; height: 442.4px;" /></a>
+<p>The SearchRouter needs access to the database where the search tables are. You have to define a new database configuration to be able to connect with the geo database. Read more about this at <a class="reference external" href="http://doc.mapbender3.org/en/book/database.html">http://doc.mapbender3.org/en/book/database.html</a></p>
+<p><strong>Note</strong>: For the use of the below-described search the digitizer tables can be used. The SQL to create the tables can be found at <a class="reference internal" href="digitizer.html"><em>Digitizer</em></a>.</p>
+<ul class="simple">
+<li><strong>Title:</strong> Title of the element. The title will be listed in &#8220;Layouts&#8221; and allows to distinguish between different buttons. It will be indicated if &#8220;Show label&#8221; is activated.</li>
+<li><strong>Target:</strong> Id of Map element to query.</li>
+<li><strong>Dialog:</strong> Render inside a dialog or not.</li>
+<li><strong>Timeout factor:</strong> Timeout factor (multiplied with autcomplete delay) to prevent autocomplete right after a search has been started.</li>
+<li><strong>Width:</strong>  Width of the dialog (only for dialog, not sidepane)</li>
+<li><strong>Height:</strong>  Height of the dialog (only for dialog, not sidepane)</li>
+<li><strong>Routes:</strong> Collection of search routes.</li>
+</ul>
+<p>You can define Searches (Routes) with the <code class="docutils literal"><span class="pre">+</span></code> Button. Each Search has a <code class="docutils literal"><span class="pre">title</span></code> which will show up in the search form in a selectbox where you can choose the search you want to use. The definition of the search is done in YAML syntax in the textarea configuration. Here you define the database connection, the Search tables/views, the design of the form and of the result table.</p>
+<p>Example of a route-configuration in the <code class="docutils literal"><span class="pre">configuration</span></code> area:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Mapbender\CoreBundle\Component\SQLSearchEngine</span>
+<span class="l l-Scalar l-Scalar-Plain">class_options</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">connection</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">search_db</span>
+    <span class="l l-Scalar l-Scalar-Plain">relation</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ortschaften</span>
+    <span class="l l-Scalar l-Scalar-Plain">attributes</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gid</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ortsname</span>
+    <span class="l l-Scalar l-Scalar-Plain">geometry_attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geom</span>
+<span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">ortsname</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+        <span class="l l-Scalar l-Scalar-Plain">compare</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">exact</span>
+<span class="l l-Scalar l-Scalar-Plain">results</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">view</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
+    <span class="l l-Scalar l-Scalar-Plain">count</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">gid</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ID</span>
+        <span class="l l-Scalar l-Scalar-Plain">ortsname</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>
+    <span class="l l-Scalar l-Scalar-Plain">callback</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">event</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">click</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">buffer</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+            <span class="l l-Scalar l-Scalar-Plain">minScale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+            <span class="l l-Scalar l-Scalar-Plain">maxScale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+</pre></div>
+</div>
+<div class="section" id="yaml-definition">
+<h3>YAML-Definition<a class="headerlink" href="#yaml-definition" title="Permalink to this headline">¶</a></h3>
+<p>For mapbender.yml:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">map</span>  <span class="c1"># for result visualization</span>
+<span class="l l-Scalar l-Scalar-Plain">asDialog</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>  <span class="c1"># render inside a dialog or not</span>
+<span class="l l-Scalar l-Scalar-Plain">timeoutFactor</span><span class="p p-Indicator">:</span>  <span class="l l-Scalar l-Scalar-Plain">3</span>  <span class="c1"># timeout factor (multiplied with autcomplete delay) to prevent autocomplete right after a search has been started</span>
+<span class="l l-Scalar l-Scalar-Plain">height</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span> <span class="c1"># height of the dialog</span>
+<span class="l l-Scalar l-Scalar-Plain">width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">700</span> <span class="c1"># width of the dialog</span>
+<span class="l l-Scalar l-Scalar-Plain">routes</span><span class="p p-Indicator">:</span>      <span class="c1"># collection of search routes</span>
+    <span class="l l-Scalar l-Scalar-Plain">demo_polygon</span><span class="p p-Indicator">:</span>       <span class="c1"># machine readable name</span>
+                     <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Mapbender\CoreBundle\Component\SQLSearchEngine</span>  <span class="c1"># Search engine to use</span>
+                     <span class="l l-Scalar l-Scalar-Plain">class_options</span><span class="p p-Indicator">:</span>  <span class="c1"># these are forwarded to the search engine</span>
+                         <span class="l l-Scalar l-Scalar-Plain">connection</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">search_db</span>    <span class="c1"># search_db  # DBAL connection name to use, use ~ for the default one</span>
+                         <span class="l l-Scalar l-Scalar-Plain">relation</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">polygons</span>  <span class="c1"># Relation to select from, you can use subqueries</span>
+                         <span class="l l-Scalar l-Scalar-Plain">attributes</span><span class="p p-Indicator">:</span>
+                             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gid</span>  <span class="c1"># array of columns to select, expressions are possible</span>
+                             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span>
+                             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span>
+                         <span class="l l-Scalar l-Scalar-Plain">geometry_attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geom</span>  <span class="c1"># name of the geometry column to query. Note: projection of geom has to be the same as map-Element projection</span>
+                     <span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>  <span class="c1"># search form configuration</span>
+                         <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span>  <span class="c1"># field name, use relation column name to query or anything else for splitted fields (see below)</span>
+                             <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>  <span class="c1"># field type, usually text or integer</span>
+                             <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>  <span class="c1"># field options</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>  <span class="c1"># HTML5 required attribute</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>  <span class="c1"># Enter a custom label, otherwise the label will be derived off the field name</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">attr</span><span class="p p-Indicator">:</span>  <span class="c1"># HTML attributes to inject</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">data-autocomplete</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">on</span>  <span class="c1"># this triggers autocomplete</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">data-autocomplete-distinct</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">on</span>  <span class="c1"># This forces DISTINCT select</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">data-autocomplete-using</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">type</span>   <span class="c1"># komma separierte Liste von anderen Eingabefeldern, in denen WHERE Angaben für die Autovervollständigung gemacht werden</span>
+                             <span class="l l-Scalar l-Scalar-Plain">compare</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ilike</span>  <span class="c1"># See note below for compare modes</span>
+                         <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span>
+                             <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">choice</span>
+                             <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">empty_value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Please select a type.</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">choices</span><span class="p p-Indicator">:</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">A</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">A</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">B</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">B</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">C</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">C</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">D</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">D</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">E</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">E</span>
+                     <span class="l l-Scalar l-Scalar-Plain">results</span><span class="p p-Indicator">:</span>
+                         <span class="l l-Scalar l-Scalar-Plain">view</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>  <span class="c1"># only result view type for now</span>
+                         <span class="l l-Scalar l-Scalar-Plain">count</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># show number of results</span>
+                         <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>  <span class="c1"># hash of table headers and the corresponding result columns</span>
+                             <span class="l l-Scalar l-Scalar-Plain">gid</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ID</span>  <span class="c1"># column name -&gt; header label</span>
+                             <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>
+                             <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Type</span>
+                         <span class="l l-Scalar l-Scalar-Plain">callback</span><span class="p p-Indicator">:</span>  <span class="c1"># What to do on hover/click</span>
+                             <span class="l l-Scalar l-Scalar-Plain">event</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">click</span>  <span class="c1"># result row event to listen for (click or mouseover)</span>
+                             <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">buffer</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">minScale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>  <span class="c1"># scale restrictions for zooming, ~ for none</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">maxScale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>
+                         <span class="l l-Scalar l-Scalar-Plain">results</span><span class="p p-Indicator">:</span>
+                             <span class="l l-Scalar l-Scalar-Plain">styleMap</span><span class="p p-Indicator">:</span>  <span class="c1"># See below</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#00ff00&#39;</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">strokeOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+                                 <span class="l l-Scalar l-Scalar-Plain">select</span><span class="p p-Indicator">:</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#ff0000&#39;</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">fillColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#ff0000&#39;</span>
+                                     <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.4</span>
+</pre></div>
+</div>
+<p>You need a button to show this element. See <a class="reference internal" href="button.html"><em>Button</em></a> for inherited configuration options.</p>
+</div>
+<div class="section" id="compare-modes">
+<h3>Compare modes<a class="headerlink" href="#compare-modes" title="Permalink to this headline">¶</a></h3>
+<p>Each field can be assigned a compare mode which is evaluated by the engine when building the search query. The SQL search
+engine has the following modes:</p>
+<ul class="simple">
+<li><strong>exact:</strong> exact comparison (key = val)</li>
+<li><strong>iexact:</strong> case-insensitive comparison</li>
+<li><strong>like:</strong> default, uses two-sided like</li>
+<li><strong>like-left:</strong> uses left-sided like</li>
+<li><strong>like-right:</strong> uses right-sided like</li>
+<li><strong>ilike:</strong> uses two-sided case-insensitive like (<em>searchstring</em>)</li>
+<li><strong>ilike-left:</strong> uses left-sided case-insensitive like (f.e <em>searchstring</em>)</li>
+<li><strong>ilike-right:</strong> uses right-sided case-insensitive like (f.e searchstring*)</li>
+</ul>
+</div>
+<div class="section" id="result-feature-styling">
+<h3>Result feature styling<a class="headerlink" href="#result-feature-styling" title="Permalink to this headline">¶</a></h3>
+<p>By default, the result features are styled using the default styles OpenLayers provides. This gives the
+well-known orange look and blue look for the selected feature. If you want to override that, you can
+provide a styleMap configuration for the results like this:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">results</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">styleMap</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="l l-Scalar l-Scalar-Plain">select</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.4</span>
+</pre></div>
+</div>
+<p>This will not draw polygon interiors, but only their outlines in default mode. The selected feature will
+have it&#8217;s interior drawn with 60% transparency.</p>
+<p>The default style properties will override the properties OpenLayers uses for the default style, therefore
+you only need to set properties you wish to change. If you omit the default part, OpenLayers default style
+will be used as is.</p>
+<p>A similar logic applies to the select style – any property you provide will override the corresponding
+property of the <em>final</em> default style. Therefore the example above will <em>not</em> yield a blue look for the
+selected feature!</p>
+<p>Keep in mind to quote hex color codes as the pound sign will otherwise be treated as a inline comment!</p>
+<p>A more elaborate example with green (hollow) features and the selected one in red:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">results</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">styleMap</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#00ff00&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="l l-Scalar l-Scalar-Plain">select</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#ff0000&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#ff0000&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-widget-style">
+<h2>Class, Widget &amp; Style<a class="headerlink" href="#class-widget-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Class:</strong> Mapbender\CoreBundle\Element\SearchRouter</li>
+<li><strong>Widget:</strong> mapbender.element.searchRouter.js, mapbender.element.searchRouter.Feature.js, mapbender.element.searchRouter.Search.js</li>
+<li><strong>Style:</strong> mapbender.element.searchRouter.css</li>
+</ul>
+</div>
+<div class="section" id="http-callbacks">
+<h2>HTTP Callbacks<a class="headerlink" href="#http-callbacks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="route-id-autocomplete">
+<h3>&lt;route_id&gt;/autocomplete<a class="headerlink" href="#route-id-autocomplete" title="Permalink to this headline">¶</a></h3>
+<p>Autocomplete Ajax endpoint for given search route. Autocomplete is implemented
+using Backbone.js with the Mapbender.Autocomplete model implemented in
+mapbender.element.searchRouter.Search.js.</p>
+</div>
+<div class="section" id="route-id-search">
+<h3>&lt;route_id&gt;/search<a class="headerlink" href="#route-id-search" title="Permalink to this headline">¶</a></h3>
+<p>Search Ajax endpoint for given search route. Search is implemented using
+Backbone.js with the Mapbender.Search model implemented in
+mapbender.element.searchRouter.Search.js.</p>
+</div>
+</div>
+<div class="section" id="javascript-api">
+<h2>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="open">
+<h3>open<a class="headerlink" href="#open" title="Permalink to this headline">¶</a></h3>
+<p>If configured as dialog, open.</p>
+</div>
+<div class="section" id="close">
+<h3>close<a class="headerlink" href="#close" title="Permalink to this headline">¶</a></h3>
+<p>If configured as dialog, close.</p>
+</div>
+</div>
+<div class="section" id="javascript-signals">
+<h2>JavaScript Signals<a class="headerlink" href="#javascript-signals" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Example with autocomplete and individual result style:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">Create or Replace view brd.qry_gn250_p_ortslage as Select gid, name, gemeinde, bundesland, oba, ewz_ger,  hoehe_ger ,geom from brd.gn250_p where oba = &#39;AX_Ortslage&#39; order by name;</span>
+</pre></div>
+</div>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Mapbender\CoreBundle\Component\SQLSearchEngine</span>
+<span class="l l-Scalar l-Scalar-Plain">class_options</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">connection</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">search_db</span>
+    <span class="l l-Scalar l-Scalar-Plain">relation</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">brd.qry_gn250_p_ortslage</span>
+    <span class="l l-Scalar l-Scalar-Plain">attributes</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gid</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gemeinde</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bundesland</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ewz_ger</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">hoehe_ger</span>
+    <span class="l l-Scalar l-Scalar-Plain">geometry_attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geom</span>
+<span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+            <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>
+            <span class="l l-Scalar l-Scalar-Plain">attr</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">data-autocomplete</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">on</span>
+        <span class="l l-Scalar l-Scalar-Plain">compare</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ilike</span>
+    <span class="l l-Scalar l-Scalar-Plain">gemeinde</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">compare</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ilike</span>
+<span class="l l-Scalar l-Scalar-Plain">results</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">view</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
+    <span class="l l-Scalar l-Scalar-Plain">count</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>
+        <span class="l l-Scalar l-Scalar-Plain">gemeinde</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Gemeinde</span>
+        <span class="l l-Scalar l-Scalar-Plain">bundesland</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Bundesland</span>
+        <span class="l l-Scalar l-Scalar-Plain">ewz_ger</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Einwohner</span>
+        <span class="l l-Scalar l-Scalar-Plain">hoehe_ger</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Höhe</span>
+    <span class="l l-Scalar l-Scalar-Plain">callback</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">event</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">click</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">buffer</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1000</span>
+            <span class="l l-Scalar l-Scalar-Plain">minScale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+            <span class="l l-Scalar l-Scalar-Plain">maxScale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+    <span class="l l-Scalar l-Scalar-Plain">styleMap</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#00ff00&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="l l-Scalar l-Scalar-Plain">select</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">strokeColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#ff0000&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillColor</span><span class="p p-Indicator">:</span> <span class="s">&#39;#ff0000&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">fillOpacity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.8</span>
+</pre></div>
+</div>
+<p>Example with selectbox:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">Create or Replace view brd.qry_gn250_p as Select gid, name, gemeinde, bundesland, oba, geom from brd.gn250_p where oba = &#39;AX_Ortslage&#39; OR oba = &#39;AX_Wasserlauf&#39; order by name;</span>
+</pre></div>
+</div>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Mapbender\CoreBundle\Component\SQLSearchEngine</span>
+<span class="l l-Scalar l-Scalar-Plain">class_options</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">connection</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">search_db</span>
+    <span class="l l-Scalar l-Scalar-Plain">relation</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">brd.qry_gn250_p_ortslage</span>
+    <span class="l l-Scalar l-Scalar-Plain">attributes</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gid</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gemeinde</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bundesland</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">oba</span>
+    <span class="l l-Scalar l-Scalar-Plain">geometry_attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geom</span>
+<span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">oba</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">choice</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">empty_value</span><span class="p p-Indicator">:</span> <span class="s">&#39;Bitte</span><span class="nv"> </span><span class="s">wählen...&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">choices</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">AX_Ortslage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Ort</span>
+                <span class="l l-Scalar l-Scalar-Plain">AX_Wasserlauf</span><span class="p p-Indicator">:</span> <span class="s">&#39;Gewässer&#39;</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+            <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>
+            <span class="l l-Scalar l-Scalar-Plain">attr</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">data-autocomplete</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">on</span>
+        <span class="l l-Scalar l-Scalar-Plain">compare</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ilike</span>
+    <span class="l l-Scalar l-Scalar-Plain">gemeinde</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">compare</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ilike</span>
+<span class="l l-Scalar l-Scalar-Plain">results</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">view</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
+    <span class="l l-Scalar l-Scalar-Plain">count</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>
+        <span class="l l-Scalar l-Scalar-Plain">gemeinde</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Gemeinde</span>
+        <span class="l l-Scalar l-Scalar-Plain">bundesland</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Bundesland</span>
+    <span class="l l-Scalar l-Scalar-Plain">callback</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">event</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">click</span>
+        <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">buffer</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1000</span>
+            <span class="l l-Scalar l-Scalar-Plain">minScale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+            <span class="l l-Scalar l-Scalar-Plain">maxScale</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Search Router</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#yaml-definition">YAML-Definition</a></li>
+<li><a class="reference internal" href="#compare-modes">Compare modes</a></li>
+<li><a class="reference internal" href="#result-feature-styling">Result feature styling</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-widget-style">Class, Widget &amp; Style</a></li>
+<li><a class="reference internal" href="#http-callbacks">HTTP Callbacks</a><ul>
+<li><a class="reference internal" href="#route-id-autocomplete">&lt;route_id&gt;/autocomplete</a></li>
+<li><a class="reference internal" href="#route-id-search">&lt;route_id&gt;/search</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-api">JavaScript API</a><ul>
+<li><a class="reference internal" href="#open">open</a></li>
+<li><a class="reference internal" href="#close">close</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javascript-signals">JavaScript Signals</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="scaledisplay.html"
+                        title="previous chapter">ScaleDisplay</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="simplesearch.html"
+                        title="next chapter">SimpleSearch</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/en/bundles/Mapbender/CoreBundle/elements/search_router.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="simplesearch.html" title="SimpleSearch"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="scaledisplay.html" title="ScaleDisplay"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../bundles.html" >Bundle Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >MapbenderCoreBundle</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

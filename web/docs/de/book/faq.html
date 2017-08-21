@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FAQ - Häufig gestellte Fragen &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../index.html" />
+    <link rel="up" title="Das Buch" href="../thebook.html" />
+    <link rel="next" title="Versionshistorie" href="versions.html" />
+    <link rel="prev" title="Mapbender Templates" href="mapbender_templates.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="versions.html" title="Versionshistorie"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mapbender_templates.html" title="Mapbender Templates"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" accesskey="U">Das Buch</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="faq-haufig-gestellte-fragen">
+<h1>FAQ - Häufig gestellte Fragen<a class="headerlink" href="#faq-haufig-gestellte-fragen" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="allgemein">
+<h2>Allgemein<a class="headerlink" href="#allgemein" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dienste-und-in-welchen-anwendungen-sie-genutzt-werden">
+<h3>Dienste und in welchen Anwendungen sie genutzt werden<a class="headerlink" href="#dienste-und-in-welchen-anwendungen-sie-genutzt-werden" title="Permalink to this headline">¶</a></h3>
+<p>F: Ich würde gerne wissen, in welchen Anwendungen ein bestimmter WMS Dienst eingebaut ist. Gibt es einen Weg das herauszufinden?</p>
+<p>A: Bis wir die Information an der Oberfläche anbieten, hilft Ihnen folgendes SQL Statement:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">mb_core_application</span><span class="p">.</span><span class="o">*</span> <span class="k">from</span> <span class="n">mb_core_application</span><span class="p">,</span> <span class="n">mb_core_layerset</span><span class="p">,</span> <span class="n">mb_core_sourceinstance</span><span class="p">,</span> <span class="n">mb_wms_wmsinstance</span><span class="p">,</span> <span class="n">mb_wms_wmssource</span><span class="p">,</span> <span class="n">mb_core_source</span>
+<span class="k">where</span>
+<span class="c1">-- Anwendungen und ihre Layersets</span>
+<span class="n">mb_core_application</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">mb_core_layerset</span><span class="p">.</span><span class="n">application_id</span> <span class="k">and</span>
+<span class="c1">-- Layersets und ihre Instanzen</span>
+<span class="n">mb_core_layerset</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">mb_core_sourceinstance</span><span class="p">.</span><span class="n">layerset</span> <span class="k">and</span>
+<span class="c1">-- Layerset-Instanzen und die WMS-Instanz</span>
+<span class="n">mb_core_sourceinstance</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">mb_wms_wmsinstance</span><span class="p">.</span><span class="n">id</span> <span class="k">and</span>
+<span class="c1">-- WMS-Instanz und WMS-Source</span>
+<span class="n">mb_wms_wmsinstance</span><span class="p">.</span><span class="n">wmssource</span> <span class="o">=</span> <span class="n">mb_wms_wmssource</span><span class="p">.</span><span class="n">id</span> <span class="k">and</span>
+<span class="c1">-- WMS-Source und MB3-Core Source</span>
+<span class="n">mb_wms_wmssource</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">mb_core_source</span><span class="p">.</span><span class="n">id</span> <span class="k">and</span>
+<span class="n">mb_core_source</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">id_of_the_wms</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Als ID &lt;id_of_the_wms&gt; geben Sie die Nummer ein, die auf der Seite der Datenquellen dem jeweiligen WMS zugeordnet ist.</p>
+</div>
+</div>
+<div class="section" id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="arbeiten-mit-groszeren-wms-diensten">
+<h3>Arbeiten mit größeren WMS Diensten<a class="headerlink" href="#arbeiten-mit-groszeren-wms-diensten" title="Permalink to this headline">¶</a></h3>
+<p>F: Beim Laden von größeren WMS (z.B. mehr als 100 Layer) in eine Anwendung werden in der Konfiguration der <a class="reference external" href="../de/bundles/Mapbender/CoreBundle/entities/layerset.html">Layerset-Instance</a>  nur Teile der Layer übernommen und angezeigt. Die WMS Instance kann auch nicht abgespeichert werden. Warum?</p>
+<p>A: Mittels des PHP-Parameters <a class="reference external" href="http://php.net/manual/de/info.configuration.php#ini.max-input-vars">max-input_vars</a> kann die Zahl der Eingabe Variablen erhöht werden. Der Standardwert liegt (je nach PHP Version) bei 1000. Die Zahl der Eingabe Variablen ist bei einem WMS mit vielen Layern sehr hoch, vergleichbar mit der Anzahl der Auswahlmöglichkeiten innerhalb des WMS-Instance Dialogs. Setzen Sie in dem Fall den Parameter hoch, beispielsweise auf 2000. Die Zahl hängt direkt mit der Anzahl der Layer im WMS zusammen.</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="c1">;; 1000 (default) oder höher</span>
+<span class="na">max_input_vars</span> <span class="o">=</span> <span class="s">1000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="der-zugriff-auf-oracle-datenbanken-ist-langsam">
+<h3>Der Zugriff auf Oracle-Datenbanken ist langsam<a class="headerlink" href="#der-zugriff-auf-oracle-datenbanken-ist-langsam" title="Permalink to this headline">¶</a></h3>
+<p>F: Beim Zugriff auf Oracle-Datenbanken reagiert Mapbender teilweise recht langsam, Abfragen dauern länger als gewöhnlich. Was kann ich anpassen?</p>
+<p>A: Es gibt zwei Parameter in der php.ini, mit der die Zugriffe auf die Oracle Datenbanken verbessert werden können: <a class="reference external" href="http://php.net/manual/de/oci8.configuration.php#ini.oci8.max-persistent">oci8.max_persistent</a> und <a class="reference external" href="http://php.net/manual/de/oci8.configuration.php#ini.oci8.default-prefetch">oci8.default_prefetch</a>. Passen Sie diese an.</p>
+<div class="highlight-bash"><div class="highlight"><pre>oci8.max_persistent <span class="o">=</span> 15
+oci8.default_prefetch <span class="o">=</span> 100000
+</pre></div>
+</div>
+<p>Des weiteren stellen Sie in der config.yml in der jeweiligen Datenbank-Verbindung den persistent Parameter auf true.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">persistent</span><span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="meine-anwendung-kann-nicht-kopiert-werden">
+<h3>Meine Anwendung kann nicht kopiert werden<a class="headerlink" href="#meine-anwendung-kann-nicht-kopiert-werden" title="Permalink to this headline">¶</a></h3>
+<p>F: Ich habe eine komplexe Anwendung und möchte Sie kopieren. Das schlägt fehl.</p>
+<p>A: Eine mögliche Ursache ist, dass PHP nicht das Arbeiten mit großen Dateien (YAML-Export/Import, etc.) erlaubt. Das tritt v.a. bei Fast-CGI auf. Dafür dient der PHP Parameter MaxRequestLen, den Sie in der Konfiguration von FCGI anpassen können.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c1"># mod_fcgi.conf (Windows)</span>
+<span class="c1"># set value to 2 MB</span>
+<span class="nv">MaxRequestLen</span> <span class="o">=</span> 2000000
+
+<span class="c1"># fcgid.conf (Linux)</span>
+<span class="c1"># set value to 2 MB</span>
+MaxRequestLen 2000000
+</pre></div>
+</div>
+<p>Analog dazu können Sie die PHP-Werte in der php.ini überprüfen:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">max_execution_time</span> <span class="o">=</span> 240
+<span class="nv">memory_limit</span> <span class="o">=</span> 1024M
+<span class="nv">upload_max_filesize</span> <span class="o">=</span> 2M
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="entwicklung-und-manuelle-updates-von-modulen">
+<h2>Entwicklung und manuelle Updates von Modulen<a class="headerlink" href="#entwicklung-und-manuelle-updates-von-modulen" title="Permalink to this headline">¶</a></h2>
+<p>F: Wie kann ich einen speziellen Branch des Mapbender Moduls auschecken und testen? Wie bekomme ich das wieder rückgängig? Hilft mir Composer dabei?</p>
+<p>A: Möglichkeit 1: In das Verzeichnis application/mapbender gehen und den speziellen Branch auschecken. Danach wieder den aktuellen Branch auschecken. Leeren Sie das Cache Verzeichnis zwischendurch (app/cache für Symfony 2, var/cache für das kommende Symfony 3))</p>
+<p>Möglichkeit 2: Im Composer: &#8220;mapbender/mapbender&#8221;: &#8220;dev-fix/meinfix&#8221; eintragen und ein Composer Update ausführen. Dabei werden aber auch alle anderen Vendor-Pakete aktualisiert (für Developer ist das OK). Rückgängig wieder mit der Angabe des vorherigen Branches. Dazu nochmal in appliaction/mapbender gehen und den Branch mit der Hand auschecken.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="attempted-to-call-function-imagecreatefrompng">
+<h3>Attempted to call function &#8220;imagecreatefrompng&#8221;<a class="headerlink" href="#attempted-to-call-function-imagecreatefrompng" title="Permalink to this headline">¶</a></h3>
+<p>F: Ich bekomme einen Fehler beim Drucken. Ich habe in das Log geschaut (app/logs/prod.log) und da steht so ungefähr folgendes drin.</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="nx">CRITICAL</span> <span class="o">-</span> <span class="nx">Uncaught</span> <span class="nx">PHP</span> <span class="nx">Exception</span> <span class="nx">Symfony\Component\Debug\Exception\UndefinedFunctionException</span><span class="o">:</span>
+<span class="s2">&quot;Attempted to call function &quot;</span><span class="nb">imagecreatefrompng</span><span class="s2">&quot;</span>
+<span class="s2">from namespace &quot;</span><span class="nx">Mapbender\PrintBundle\Component</span><span class="s2">&quot;.&quot;</span>
+<span class="nx">at</span> <span class="o">/</span><span class="nx">srv</span><span class="o">/</span><span class="nx">mapbender</span><span class="o">-</span><span class="nx">starter</span><span class="o">/</span><span class="nx">application</span><span class="o">/</span><span class="nx">mapbender</span><span class="o">/</span><span class="nx">src</span><span class="o">/</span><span class="nx">Mapbender</span><span class="o">/</span><span class="nx">PrintBundle</span><span class="o">/</span><span class="nx">Component</span><span class="o">/</span><span class="nx">PrintService</span><span class="o">.</span><span class="nx">php</span> <span class="nx">line</span> <span class="mi">310</span>
+</pre></div>
+</div>
+<p>A: Bitte stellen Sie sicher, dass Sie die php5-gd Bibliothek installiert haben.</p>
+</div>
+<div class="section" id="deprecation-notices-bei-composer-oder-bootstrap-script">
+<h3>Deprecation Notices bei composer oder bootstrap Script<a class="headerlink" href="#deprecation-notices-bei-composer-oder-bootstrap-script" title="Permalink to this headline">¶</a></h3>
+<p>F: Ich bekomme beim Ausführen von bootstrap bzw. von composer Update eine Deprecation Warnung:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="nx">Deprecation</span> <span class="nx">Notice</span><span class="o">:</span> <span class="nx">The</span> <span class="nx">callback</span> <span class="nx">ComposerBootstrap</span><span class="o">::</span><span class="na">checkConfiguration</span> <span class="nx">declared</span> <span class="nx">at</span>
+<span class="o">/</span><span class="nx">srv</span><span class="c1">//mapbender-starter/application/src/ComposerBootstrap.php accepts a Composer\Script\CommandEvent</span>
+<span class="nx">but</span> <span class="nx">post</span><span class="o">-</span><span class="nx">update</span><span class="o">-</span><span class="nx">cmd</span> <span class="nx">events</span> <span class="k">use</span> <span class="nx">a</span> <span class="nx">Composer\Script\Event</span> <span class="nx">instance</span><span class="o">.</span>
+<span class="nx">Please</span> <span class="nx">adjust</span> <span class="nx">your</span> <span class="nx">type</span> <span class="nx">hint</span> <span class="nx">accordingly</span><span class="p">,</span> <span class="nx">see</span> <span class="nx">https</span><span class="o">://</span><span class="nx">getcomposer</span><span class="o">.</span><span class="nx">org</span><span class="o">/</span><span class="nx">doc</span><span class="o">/</span><span class="nx">articles</span><span class="o">/</span><span class="nx">scripts</span><span class="o">.</span><span class="nx">md</span><span class="c1">#event-classes</span>
+<span class="nx">in</span> <span class="nx">phar</span><span class="o">:///</span><span class="nx">srv</span><span class="o">/</span><span class="nx">mapbender</span><span class="o">-</span><span class="nx">starter</span><span class="o">/</span><span class="nx">composer</span><span class="o">.</span><span class="nx">phar</span><span class="o">/</span><span class="nx">src</span><span class="o">/</span><span class="nx">Composer</span><span class="o">/</span><span class="nx">EventDispatcher</span><span class="o">/</span><span class="nx">EventDispatcher</span><span class="o">.</span><span class="nx">php</span><span class="o">:</span><span class="mi">290</span>
+</pre></div>
+</div>
+<p>A: Das ist abhängig von der PHP Version, auf der Sie diese Kommandos aufrufen und taucht bei PHP Versionen &lt; 7 auf.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">FAQ - Häufig gestellte Fragen</a><ul>
+<li><a class="reference internal" href="#allgemein">Allgemein</a><ul>
+<li><a class="reference internal" href="#dienste-und-in-welchen-anwendungen-sie-genutzt-werden">Dienste und in welchen Anwendungen sie genutzt werden</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#performance">Performance</a><ul>
+<li><a class="reference internal" href="#arbeiten-mit-groszeren-wms-diensten">Arbeiten mit größeren WMS Diensten</a></li>
+<li><a class="reference internal" href="#der-zugriff-auf-oracle-datenbanken-ist-langsam">Der Zugriff auf Oracle-Datenbanken ist langsam</a></li>
+<li><a class="reference internal" href="#meine-anwendung-kann-nicht-kopiert-werden">Meine Anwendung kann nicht kopiert werden</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#entwicklung-und-manuelle-updates-von-modulen">Entwicklung und manuelle Updates von Modulen</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#attempted-to-call-function-imagecreatefrompng">Attempted to call function &#8220;imagecreatefrompng&#8221;</a></li>
+<li><a class="reference internal" href="#deprecation-notices-bei-composer-oder-bootstrap-script">Deprecation Notices bei composer oder bootstrap Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mapbender_templates.html"
+                        title="previous chapter">Mapbender Templates</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="versions.html"
+                        title="next chapter">Versionshistorie</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/de/book/faq.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="versions.html" title="Versionshistorie"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mapbender_templates.html" title="Mapbender Templates"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" >Das Buch</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

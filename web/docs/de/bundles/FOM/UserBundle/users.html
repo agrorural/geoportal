@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Benutzer &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../../../index.html" />
+    <link rel="up" title="FOMUserBundle - Benutzer und Absicherung" href="index.html" />
+    <link rel="next" title="Rollen und Gruppen" href="roles_groups.html" />
+    <link rel="prev" title="Access Control Lists (ACL)" href="acl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="roles_groups.html" title="Rollen und Gruppen"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="acl.html" title="Access Control Lists (ACL)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">FOMUserBundle - Benutzer und Absicherung</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="benutzer">
+<h1>Benutzer<a class="headerlink" href="#benutzer" title="Permalink to this headline">¶</a></h1>
+<p>Benutzer werden als FOM\UserBundle\Entity\User implementiert und im
+Datenbank Repository gespeichert. Die Entität hält nur die notwendigen
+Informationen über einen Nutzer vor, komplexere Benutzerdaten sollten in
+Benutzerprofilen hinterlegt werden (TBD).</p>
+<p>Das Bundle enthält alle Mittel um Benutzer durch einen Administrator zu
+verwalten als auch das eigene Registrieren eines Nutzes sowie das
+Zurücksetzen des eigenen Passwortes.</p>
+<p>Der Benutzer mit der ID 1 ist besonders, da dieser Benutzer bei der
+Installation erstellt wird und immer alle Rechte hat. Falls alle Stricke
+reißen, können Sie mit diesem Benutzer alles verwalten. Und falls Sie gar
+die Anmeldedaten vergessen haben sollten, können Sie über ein app/console
+Kommando den Benutzer zurücksetzen: fom:user:resetroot.</p>
+<div class="section" id="passwort-vergessen">
+<h2>Passwort vergessen<a class="headerlink" href="#passwort-vergessen" title="Permalink to this headline">¶</a></h2>
+<p>Falls ein Benutzer sein Passwort vergessen hat, kann er in der Login-Maske
+über den Link &#8220;Passwort vergessen&#8221; ein neues Passwort anfordern. Dazu gibt
+er dann seinen Benutzernamen oder seine E-Mail Adresse an.</p>
+<img alt="../../../../_images/user_forgot_password.png" src="../../../../_images/user_forgot_password.png" />
+<p>Danach bekommt der Benutzer eine E-Mail mit einem Link, die zu der Seite
+führt, um das Passwort zurückzusetzen. Der Link ist danach nicht mehr
+gültig. Der Text der Mail kann in der Datei
+/FOM/UserBundle/Resources/translations/messages.de.xlf angepasst werden.</p>
+<p>Die Funktionalität kann in der config.yml ausgeschaltet werden.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">fom_user</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">reset_password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># true/false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="registrierung">
+<h2>Registrierung<a class="headerlink" href="#registrierung" title="Permalink to this headline">¶</a></h2>
+<p>Benutzer können sich an Mapbender3 selbst registrieren. Dafür stellt man in
+der config.yml die Einstellung fom_user:selfregister auf true.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">fom_user</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">selfregister</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># true/false</span>
+</pre></div>
+</div>
+<p>Im Login-Dialog erscheint der &#8220;Register&#8221; Link. Der Benutzer wird zu einer
+Maske geführt, in der er seinen Namen, sein Passwort und seine E-Mail
+Adresse angeben kann.</p>
+<img alt="../../../../_images/user_self_register.png" src="../../../../_images/user_self_register.png" />
+<p>Danach erhält er eine Bestätigungsmail, mit der er seine Anmeldung
+abschließen kann. Bis zu diesen Zeitpunkt ist er als inaktiver Nutzer in
+Mapbender3 hinterlegt.</p>
+<p>Die Texte der Bestätigungsmail können unter
+/FOM/UserBundle/Resources/translations/messages.de.xlf angepasst werden.</p>
+</div>
+<div class="section" id="aktivieren-von-nutzern">
+<h2>Aktivieren von Nutzern<a class="headerlink" href="#aktivieren-von-nutzern" title="Permalink to this headline">¶</a></h2>
+<p>Seit Mapbender 3.0.5.3. Benutzer können von Administratoren mit mindestens
+der Benutzer ACL-Rolle &#8220;edit&#8221; aktiviert oder deaktiviert werden. Dazu dient
+der Schalter im Edit User Dialog.</p>
+<p>Ein Benutzer mit Administrationsrechten kann sich selbst nicht aktivieren
+oder deaktivieren.</p>
+<img alt="../../../../_images/edit_user_activated.png" src="../../../../_images/edit_user_activated.png" />
+<p>Ein Benutzer, der deaktiviert ist, kann sich nicht mehr am Mapbender3
+anmelden, bis er wieder aktiviert wird.</p>
+<img alt="../../../../_images/user_account_is_disabled.png" src="../../../../_images/user_account_is_disabled.png" />
+<p>Benutzer, die sich selbst registriert haben, aber die Freischaltungsmail
+noch nicht bestätigt haben, können so von einem Administrator per Hand
+freigeschaltet werden.</p>
+</div>
+<div class="section" id="usermanagement-uber-sicherheitsschlusselabfrage">
+<h2>Usermanagement über Sicherheitsschlüsselabfrage<a class="headerlink" href="#usermanagement-uber-sicherheitsschlusselabfrage" title="Permalink to this headline">¶</a></h2>
+<p>Innerhalb jeder Mapbender-Applikation besteht zusätzlich die Möglichkeit der Rechtevergabeanpassung. Im Tab &#8220;Layouts&#8221; findet sich diese Einstellung in Form eines Schlüssels neben jedem Element.</p>
+<p>Um anzupassen, ob jemand Zugriff auf das Element hat, muss zunächst auf den Schlüssel geklickt werden. Im Anschluss kann ein Nutzer hinzugefügt werden. Dies geschieht über das &#8220;+&#8221;-Symbol.</p>
+<p>Ein gesetzter Haken neben dem entsprechenden Nutzeraccount erlaubt dem jeweiligen Nutzer den Zugriff. Der Schlüssel wird nach erfolgreicher Rechtevergabe rot. Wenn Sie nun den Cursor über den Schlüssel halten, sehen Sie die Namen der berechtigten Nutzer in einem Pop-Up Fenster.</p>
+<img alt="../../../../_images/element_security_key_popup.png" src="../../../../_images/element_security_key_popup.png" />
+</div>
+<div class="section" id="login-fehler">
+<h2>Login Fehler<a class="headerlink" href="#login-fehler" title="Permalink to this headline">¶</a></h2>
+<p>Fehlerhafte Logins werden mit der Meldung &#8220;Login fehlerhaft&#8221;
+kommentiert. Aus Sicherheitsgründen wird nicht genannt, ob es am falschen
+Loginnamen oder falschen Passwort liegt. Login Fehler schließen den Account
+nicht dauerhaft aus. Vielmehr wird der Account für eine bestimmte Zeit
+ausgeschlossen (gelockt).</p>
+<p>Die config.yml ermöglicht die Anpassung des Verhaltens:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">fom_user</span><span class="p p-Indicator">:</span>
+
+    <span class="c1"># Allow to create user log table on the fly if the table doesn&#39;t exits.</span>
+    <span class="c1"># Default: true</span>
+    <span class="l l-Scalar l-Scalar-Plain">auto_create_log_table</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+    <span class="c1"># Time between to check login tries</span>
+    <span class="l l-Scalar l-Scalar-Plain">login_check_log_time</span><span class="p p-Indicator">:</span> <span class="s">&quot;-5</span><span class="nv"> </span><span class="s">minutes&quot;</span>
+
+    <span class="c1"># Login attemps before delay starts</span>
+    <span class="l l-Scalar l-Scalar-Plain">login_attempts_before_delay</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+
+    <span class="c1"># Login delay after all attemps are failed</span>
+    <span class="l l-Scalar l-Scalar-Plain">login_delay_after_fail</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span> <span class="c1"># Seconds</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>auto_create_log_table:</strong> Angabe zur Rückwärtskompatibilität (Default: true).</li>
+<li><strong>login_check_log_time:</strong> Angabe zur Bereinigung der Login-Failure Tabelle (Default: -5 minutes)</li>
+<li><strong>login_attempts_before_delay:</strong> Anzahl der Login Versuche, bevor das Login-Delay greift (Default: 3)</li>
+<li><strong>login_delay_after_fail:</strong> Länge des Login-Delays in Sekunden (Default: 2).</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../index.html">
+              <img class="logo" src="../../../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Benutzer</a><ul>
+<li><a class="reference internal" href="#passwort-vergessen">Passwort vergessen</a></li>
+<li><a class="reference internal" href="#registrierung">Registrierung</a></li>
+<li><a class="reference internal" href="#aktivieren-von-nutzern">Aktivieren von Nutzern</a></li>
+<li><a class="reference internal" href="#usermanagement-uber-sicherheitsschlusselabfrage">Usermanagement über Sicherheitsschlüsselabfrage</a></li>
+<li><a class="reference internal" href="#login-fehler">Login Fehler</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="acl.html"
+                        title="previous chapter">Access Control Lists (ACL)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="roles_groups.html"
+                        title="next chapter">Rollen und Gruppen</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/de/bundles/FOM/UserBundle/users.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="roles_groups.html" title="Rollen und Gruppen"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="acl.html" title="Access Control Lists (ACL)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Willkommen bei der Mapbender3 Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../../../bundles.html" >Bundle Dokumentation</a> &raquo;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >FOMUserBundle - Benutzer und Absicherung</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Translation in Mapbender3 &mdash; Mapbender3 Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/mapbender3.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/mapbender3.ico"/>
+    <link rel="top" title="Mapbender3 Documentation" href="../../index.html" />
+    <link rel="up" title="The Book" href="../thebook.html" />
+    <link rel="next" title="How to create your own Template?" href="templates.html" />
+    <link rel="prev" title="Configuring the database" href="database.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="templates.html" title="How to create your own Template?"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="database.html" title="Configuring the database"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" accesskey="U">The Book</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="translation-in-mapbender3">
+<span id="translation"></span><h1>Translation in Mapbender3<a class="headerlink" href="#translation-in-mapbender3" title="Permalink to this headline">¶</a></h1>
+<p>Mapbender3 uses the translator service which is a Symfony component. You get more information at the <a class="reference external" href="http://symfony.com/doc/2.8/book/translation.html">Symfony Translation Documentation</a> and <a class="reference external" href="http://api.symfony.com/2.8/Symfony/Component/Translation.html">Translator Class Documentation</a> .</p>
+<p>In the code you use the function <strong>trans</strong> to translate a text into another language.</p>
+<p>Example how the function <strong>trans</strong> can be used in a Twig template:</p>
+<div class="highlight-yaml"><div class="highlight"><pre>{% block title %}{{ application.title | trans }}{% endblock %}
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-yaml"><div class="highlight"><pre>{% trans %}{{ application.title }}{% endtrans %}
+</pre></div>
+</div>
+<p>Example for PHP:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">echo $translator-&gt;trans(&#39;Hello World&#39;);</span>
+</pre></div>
+</div>
+<div class="section" id="yml-files-for-translations">
+<h2>yml-files for translations<a class="headerlink" href="#yml-files-for-translations" title="Permalink to this headline">¶</a></h2>
+<p>The translations can be stored in different formats. We use yml-format for Mapbender3.</p>
+<p>We use place holder for every text e.g. <strong>mb.core.featureinfo.popup.btn.ok</strong>. Like this you can define different translations for the same word which occurs in different modules.</p>
+<p>We translate the place holder to different languages. English is the default language that we provide. It is also defined as the fallback language in the parameters.yml file. The fallback language will be used if you define a language in parameters.yml that does not exist.</p>
+<p>This is how a translation file messages.de.yml for German translation could look like.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">mb</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">core</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">featureinfo</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">error</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">nolayer</span><span class="p p-Indicator">:</span> <span class="s">&#39;Informationsebene</span><span class="nv"> </span><span class="s">existiert</span><span class="nv"> </span><span class="s">nicht.&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">unknownoption</span><span class="p p-Indicator">:</span> <span class="s">&#39;Unbekannte</span><span class="nv"> </span><span class="s">Option</span><span class="nv"> </span><span class="s">%key%</span><span class="nv"> </span><span class="s">für</span><span class="nv"> </span><span class="s">%namespace%.%widgetname%.&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">noresult</span><span class="p p-Indicator">:</span> <span class="s">&#39;kein</span><span class="nv"> </span><span class="s">Ergebnis&#39;</span>
+      <span class="l l-Scalar l-Scalar-Plain">popup</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">btn</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">ok</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Schließen</span>
+      <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Information</span>
+        <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Information</span>
+      <span class="l l-Scalar l-Scalar-Plain">tag</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">featureinfo</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Information</span>
+        <span class="l l-Scalar l-Scalar-Plain">feature</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Objekt</span>
+        <span class="l l-Scalar l-Scalar-Plain">info</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Info</span>
+        <span class="l l-Scalar l-Scalar-Plain">dialog</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Dialog</span>
+    <span class="l l-Scalar l-Scalar-Plain">aboutdialog</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">content</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">versionprefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Version</span>
+        <span class="l l-Scalar l-Scalar-Plain">learnmore</span><span class="p p-Indicator">:</span> <span class="s">&#39;Lernen</span><span class="nv"> </span><span class="s">Sie</span><span class="nv"> </span><span class="s">Mapbender3</span><span class="nv"> </span><span class="s">kennen</span><span class="nv"> </span><span class="s">&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">linktitle</span><span class="p p-Indicator">:</span> <span class="s">&#39;Besuchen</span><span class="nv"> </span><span class="s">Sie</span><span class="nv"> </span><span class="s">die</span><span class="nv"> </span><span class="s">offizielle</span><span class="nv"> </span><span class="s">Mapbender3</span><span class="nv"> </span><span class="s">Webseite.&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">website</span><span class="p p-Indicator">:</span> <span class="s">&#39;-</span><span class="nv"> </span><span class="s">zur</span><span class="nv"> </span><span class="s">Webseite&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">.....</span>
+</pre></div>
+</div>
+<p><strong>Notice:</strong> Each time you create a new translation resource you have to clear your cache.</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">cache</span><span class="o">:</span><span class="nx">clear</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-can-you-activate-translation">
+<h2>How can you activate translation?<a class="headerlink" href="#how-can-you-activate-translation" title="Permalink to this headline">¶</a></h2>
+<p>Activate your default locale in the configuration file <strong>app/config/parameters.yml</strong></p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">fallback_locale</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">en</span>
+<span class="l l-Scalar l-Scalar-Plain">locale</span><span class="p p-Indicator">:</span>            <span class="l l-Scalar l-Scalar-Plain">de</span>
+</pre></div>
+</div>
+<p>Check whether translations (yml-files) for your language exist</p>
+<ul class="simple">
+<li>mapbender/src/Mapbender/CoreBundle/Resources/translations/</li>
+<li>mapbender/src/Mapbender/ManagerBundle/Resources/translations/</li>
+<li>mapbender/src/Mapbender/PrintBundle/Resources/translations/</li>
+<li>mapbender/src/Mapbender/WmcBundle/Resources/translations/</li>
+<li>mapbender/src/Mapbender/WmsBundle/Resources/translations/</li>
+<li>fom/src/FOM/CoreBundle/Resources/translations/</li>
+<li>fom/src/FOM/ManagerBundle/Resources/translations/</li>
+<li>fom/src/FOM/UserBundle/Resources/translations/</li>
+<li>...</li>
+</ul>
+</div>
+<div class="section" id="create-yml-files-for-your-language">
+<h2>Create yml-files for your language<a class="headerlink" href="#create-yml-files-for-your-language" title="Permalink to this headline">¶</a></h2>
+<p>If your language is not translated yet, it is easy to add a new language.</p>
+<ul class="simple">
+<li>Check the translation directories and create a new file by copying the English locale (messages.en.yml)</li>
+<li>translate</li>
+<li>set locale in your parameters.yml to the new language</li>
+<li>clear your cache</li>
+<li>if everything is fine with your new language give the files to the Mapbender3 community - best would be a pull request or send the files to <a class="reference external" href="mailto:mapbender&#37;&#52;&#48;osgeo&#46;org">mapbender<span>&#64;</span>osgeo<span>&#46;</span>org</a></li>
+</ul>
+</div>
+<div class="section" id="naming-conventions-and-locations">
+<h2>Naming conventions and locations<a class="headerlink" href="#naming-conventions-and-locations" title="Permalink to this headline">¶</a></h2>
+<p>Symfony looks for translation files in the following directories in the following order:</p>
+<ul class="simple">
+<li>the &lt;kernel root directory&gt;/Resources/translations</li>
+<li>the &lt;kernel root directory&gt;/Resources/&lt;bundle name&gt;/translations</li>
+<li>Resources/translations/ directory of the bundle.</li>
+</ul>
+<p>Bundle translations can overwrite translations of the other directories.</p>
+<div class="section" id="naming">
+<h3>Naming<a class="headerlink" href="#naming" title="Permalink to this headline">¶</a></h3>
+<p>The naming convention is <strong>domain.locale.loader</strong>.</p>
+<ul class="simple">
+<li>domain    - we use the default domain messages</li>
+<li>locale    - locale that the translations is made for (e.g. de, de_DE);</li>
+<li>loader    - defines the loader to load and parse the file. We use YAML</li>
+</ul>
+</div>
+</div>
+<div class="section" id="share-your-translations-with-the-mapbender3-community">
+<h2>Share your translations with the Mapbender3 community!<a class="headerlink" href="#share-your-translations-with-the-mapbender3-community" title="Permalink to this headline">¶</a></h2>
+<p>Supporting more and more language would be great for Mapbender3. The Mapbender project would be happy if you could share your translations with the community.</p>
+<p>This is what you have to do:</p>
+<ul class="simple">
+<li>Option 1: send the new yml-files for your language to the Mapbender developer (<a class="reference external" href="mailto:mapbender&#37;&#52;&#48;osgeo&#46;org">mapbender<span>&#64;</span>osgeo<span>&#46;</span>org</a>) or</li>
+<li>Option 2: create a pull request on GitHub.</li>
+</ul>
+<p>We prefer option 2.</p>
+<div class="section" id="how-to-translate-and-make-a-pull-request">
+<h3>How to translate and make a pull request<a class="headerlink" href="#how-to-translate-and-make-a-pull-request" title="Permalink to this headline">¶</a></h3>
+<p>Repositories</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/mapbender/mapbender/">https://github.com/mapbender/mapbender/</a></li>
+<li><a class="reference external" href="https://github.com/mapbender/mapbender-digitizer/">https://github.com/mapbender/mapbender-digitizer/</a></li>
+<li><a class="reference external" href="https://github.com/mapbender/fom">https://github.com/mapbender/fom</a></li>
+<li><a class="reference external" href="https://github.com/mapbender/data-manager/">https://github.com/mapbender/data-manager/</a></li>
+</ul>
+<p><a class="reference external" href="https://github.com/mapbender/data-source">https://github.com/mapbender/data-source</a>
+<a class="reference external" href="https://github.com/mapbender/map-tools/">https://github.com/mapbender/map-tools/</a></p>
+<p>Since Git is a distributed versioning system, it is very convenient for each developer/contributor to have a personal public copy of the &#8220;official&#8221; repository (also known as fork).</p>
+<p>Web hosting services like GitLab or GitHub provide this option if you visit the main code repository and press the button &#8220;Fork&#8221;. This way the developer can make changes to a personal isolated repository. Then one can ask the rest of the developers to review the code and merge accordingly through a &#8220;pull request&#8221;.</p>
+<p>After forking the official repositories, your working repositories are: <a class="reference external" href="https://github.com/your_id/mapbender">https://github.com/your_id/mapbender</a> and <a class="reference external" href="https://github.com/your_id/mapbender">https://github.com/your_id/mapbender</a></p>
+<div class="section" id="github-editing-on-github">
+<h4>Github - editing on GitHub<a class="headerlink" href="#github-editing-on-github" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>you can edit files directly on GitHub.</li>
+<li>navigate to the file f.e <a class="reference external" href="https://github.com/mapbender/mapbender/blob/release/3.0.6/src/Mapbender/CoreBundle/Resources/translations/messages.de.yml">https://github.com/mapbender/mapbender/blob/release/3.0.6/src/Mapbender/CoreBundle/Resources/translations/messages.de.yml</a></li>
+<li>edit the file</li>
+<li>save changes and create a new branch for this commit and start a pull request</li>
+</ul>
+</div>
+<div class="section" id="git-working-on-the-command-line">
+<h4>git - working on the command line<a class="headerlink" href="#git-working-on-the-command-line" title="Permalink to this headline">¶</a></h4>
+<p>On Linux systems get the source code locally using:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">git clone https://github.com/your_id/mapbender</span>
+</pre></div>
+</div>
+<p>In order to be able to get and send changes to your public repository, you need to link your local copy to your public copy. This is done automatically for you when you &#8220;git clone&#8221;. The repository that you cloned from has the alias &#8220;origin&#8221;.</p>
+<p>In order to be able to get changes that others do to the main repository, you need to manually link to that using:</p>
+<p>git remote add upstream <a class="reference external" href="https://github.com/mapbender/mapbender">https://github.com/mapbender/mapbender</a></p>
+<p>On MS Windows systems, install TortoiseGit, which extends Windows Explorer to include git commands.</p>
+<ol class="arabic simple">
+<li>The first thing you should do when you install Git is to set your user name and e-mail address.</li>
+</ol>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">git config --global user.name &quot;John Doe&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">git config --global user.email johndoe@example.com</span>
+</pre></div>
+</div>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">cd mapbender</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Pull any updates from upstream project (master is the equivalent of subversion trunk)</li>
+</ol>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">git pull upstream master</span>
+</pre></div>
+</div>
+<p>optionally check to see what has changed.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">git diff messages.de.yml</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>add the changes into stage area</li>
+</ol>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">git add messages.de.yml</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>commit changes locally</li>
+</ol>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">git commit -m &quot;changed translation&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>send the changes to your public repository</li>
+</ol>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">git push origin master</span>
+</pre></div>
+</div>
+<p>At this point you can let others know that you have some changes that you want to merge, so you can use the button &#8220;Pull Request&#8221; on GitLab or GitHub. Or you can continue until you feel ready to share your changes :)</p>
+<ol class="arabic simple" start="6">
+<li>Last step: pull request</li>
+</ol>
+<p>In order to merge your work with the main repository, you have to make a pull request.</p>
+<p>You can do it by logging on your github account and go to the branch you changed. Click on the New pull request green button. The changes you made previously while appear.</p>
+<p>You can review and comment your request before submitting. To submit, click on the Create pull request green button. Then, you&#8217;re done ! Good job !</p>
+<p>More information about Github pull request here: <a class="reference external" href="https://help.github.com/articles/using-pull-requests/">https://help.github.com/articles/using-pull-requests/</a></p>
+<p>Working with files:</p>
+<p>to add a file</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">cd &lt;dir&gt;</span>
+</pre></div>
+</div>
+<p>create a file</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">git add &lt;file&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">git commit -m &quot;commit message&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">git push origin master</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/mapbender3_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Translation in Mapbender3</a><ul>
+<li><a class="reference internal" href="#yml-files-for-translations">yml-files for translations</a></li>
+<li><a class="reference internal" href="#how-can-you-activate-translation">How can you activate translation?</a></li>
+<li><a class="reference internal" href="#create-yml-files-for-your-language">Create yml-files for your language</a></li>
+<li><a class="reference internal" href="#naming-conventions-and-locations">Naming conventions and locations</a><ul>
+<li><a class="reference internal" href="#naming">Naming</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#share-your-translations-with-the-mapbender3-community">Share your translations with the Mapbender3 community!</a><ul>
+<li><a class="reference internal" href="#how-to-translate-and-make-a-pull-request">How to translate and make a pull request</a><ul>
+<li><a class="reference internal" href="#github-editing-on-github">Github - editing on GitHub</a></li>
+<li><a class="reference internal" href="#git-working-on-the-command-line">git - working on the command line</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="database.html"
+                        title="previous chapter">Configuring the database</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="templates.html"
+                        title="next chapter">How to create your own Template?</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/en/book/translation.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="templates.html" title="How to create your own Template?"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="database.html" title="Configuring the database"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mapbender3 Documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Welcome to Mapbender3&#8217;s documentation!</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../thebook.html" >The Book</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, The Mapbender Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
